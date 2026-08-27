@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vocabulary — بين يديك</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+.head{padding:32px 0 0}
+.head h1{font-size:26px;font-weight:700}
+.tabs{display:flex;margin-top:20px;border-bottom:1px solid var(--rule)}
+.tabs button{background:none;border:none;padding:12px 22px;font-family:var(--la);font-size:14px;color:var(--ink-soft);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--verdigris);font-weight:500}
+.panel{display:none;padding:22px 0 56px}
+.panel.on{display:block}
+
+/* full list */
+.search{border:1px solid var(--rule);border-radius:3px;background:var(--card);height:40px;display:flex;align-items:center;padding:0 12px;margin-bottom:14px}
+.search input{border:none;background:none;width:100%;font-family:var(--la);font-size:14px;color:var(--ink);outline:none}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-family:var(--ut);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding:10px 12px;border-bottom:1px solid var(--rule)}
+td{padding:12px;border-bottom:1px solid var(--rule);font-size:15px;vertical-align:middle}
+td.ar{font-family:var(--ar);direction:rtl;font-size:22px;text-align:right;width:32%}
+td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
+.status{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-soft)}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.dot.new{background:var(--rubric)}.dot.learning{background:var(--gold)}.dot.known{background:var(--verdigris)}
+
+/* daily test */
+.progress{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.count{font-family:var(--ut);font-size:11px;color:var(--ink-soft);white-space:nowrap}
+.bar{flex:1;height:6px;background:var(--paper-deep);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--verdigris);transition:width .3s}
+.stage{display:flex;justify-content:center}
+.tcard{background:var(--card);border:1px solid var(--rule);border-radius:10px;width:min(560px,100%);padding:48px 36px;text-align:center}
+.tcard .label{margin-bottom:22px}
+.tcard .ar{font-family:var(--ar);direction:rtl;font-size:clamp(48px,10vw,72px);font-weight:700;line-height:1.1}
+.reveal{margin-top:26px;padding-top:22px;border-top:1px solid var(--rule);display:none}
+.reveal.show{display:block}
+.reveal .en{font-size:22px}
+.reveal .trl{font-family:var(--ut);font-size:12px;color:var(--ink-soft);margin-top:6px}
+.actions{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hint{margin-top:16px;font-size:12px;color:var(--ink-soft)}
+.done{text-align:center;padding:50px 20px}
+.done .ar{font-family:var(--ar);direction:rtl;font-size:56px;color:var(--verdigris)}
+.done h2{font-size:22px;margin-top:14px}
+.done p{color:var(--ink-soft);margin-top:8px}
+.speak{background:none;border:1px solid var(--rule);border-radius:3px;padding:8px 14px;font-family:var(--la);font-size:13px;color:var(--ink-soft);cursor:pointer;margin-top:18px}
+.speak:hover{border-color:var(--verdigris);color:var(--verdigris)}
+.reset{margin-top:30px;text-align:center}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="dashboard.html">بَيْنَ <span>يَدَيْكَ</span></a>
+  <div class="navlinks">
+    <a href="dashboard.html">Dashboard</a>
+    <a class="active" href="vocab.html">Vocab</a>
+    <a href="drills.html">Drills</a>
+    <a href="login.html">Log out</a>
+  </div>
+</nav>
+<main class="wrap">
+  <div class="head">
+    <h1>Vocabulary</h1>
+    <div class="tabs">
+      <button id="tabTest" class="on" onclick="showTab('test')">Daily test</button>
+      <button id="tabList" onclick="showTab('list')">Full list</button>
+    </div>
+  </div>
+
+  <!-- DAILY TEST -->
+  <section id="panelTest" class="panel on">
+    <div id="testActive">
+      <div class="progress">
+        <span class="count" id="posLabel">—</span>
+        <div class="bar"><i id="barFill"></i></div>
+        <span class="count" id="leftLabel">—</span>
+      </div>
+      <div class="stage">
+        <div class="tcard">
+          <div class="label">Say it aloud, then reveal</div>
+          <div class="ar" id="cardAr">—</div>
+          <button class="speak" onclick="speakCurrent()">🔊 Hear it</button>
+          <div class="reveal" id="reveal">
+            <div class="en" id="cardEn">—</div>
+            <div class="trl" id="cardTr">—</div>
+          </div>
+          <div class="actions" id="actions">
+            <button class="btn ghost" onclick="revealCard()" id="revealBtn">Reveal answer</button>
+          </div>
+          <div class="hint">Got it → longer gap before it returns · Missed → comes back soon</div>
+        </div>
+      </div>
+    </div>
+    <div id="testDone" class="done" style="display:none">
+      <div class="ar">أَحْسَنْت</div>
+      <h2>All done for today</h2>
+      <p id="doneMsg">You've reviewed every word due today.</p>
+    </div>
+    <div class="reset">
+      <button class="btn danger" onclick="resetProgress()">Reset all progress</button>
+    </div>
+  </section>
+
+  <!-- FULL LIST -->
+  <section id="panelList" class="panel">
+    <div class="search"><input id="searchBox" type="text" placeholder="Search Arabic, English or transliteration…" oninput="renderList()"></div>
+    <table>
+      <thead><tr><th>Arabic</th><th>English</th><th>Transliteration</th><th>Status</th></tr></thead>
+      <tbody id="listBody"></tbody>
+    </table>
+  </section>
+</main>
+
+<script src="vocab-data.js"></script>
+<script>
+/* ---------- Leitner spaced repetition ----------
+   Each word sits in a box (1..5). Higher box = longer gap.
+   Got it  -> move up a box (max 5)
+   Missed  -> back to box 1
+   A word is "due" when today >= its next-due day.
+   Gaps by box, in days: 1,2,4,8,16.
+------------------------------------------------ */
+const STORE_KEY = 'bay_vocab_progress_v1';
+const GAPS = {1:1, 2:2, 3:4, 4:8, 5:16};
+const DAY = 86400000;
+const today = () => Math.floor(Date.now()/DAY);
+
+function loadProgress(){
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
+  catch(_){ return {}; }
+}
+function saveProgress(p){
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(p)); } catch(_){}
+}
+// ensure every word has a record; new words are due today (box 1, due now)
+function ensure(p){
+  let changed=false;
+  VOCAB.forEach(w=>{
+    if(!p[w.id]){ p[w.id]={box:1, due:today()}; changed=true; }
+  });
+  if(changed) saveProgress(p);
+  return p;
+}
+function statusOf(rec){
+  if(rec.box>=4) return 'known';
+  if(rec.box>=2) return 'learning';
+  return 'new';
+}
+
+let progress = ensure(loadProgress());
+let queue = [];
+let current = null;
+
+function buildQueue(){
+  const t = today();
+  queue = VOCAB.filter(w => progress[w.id].due <= t);
+  // stable-ish shuffle
+  queue.sort(()=>Math.random()-0.5);
+}
+
+function showTab(which){
+  const test = which==='test';
+  document.getElementById('tabTest').classList.toggle('on', test);
+  document.getElementById('tabList').classList.toggle('on', !test);
+  document.getElementById('panelTest').classList.toggle('on', test);
+  document.getElementById('panelList').classList.toggle('on', !test);
+  if(!test) renderList();
+}
+
+/* ---- daily test flow ---- */
+function startTest(){
+  buildQueue();
+  document.getElementById('testDone').style.display = queue.length? 'none':'block';
+  document.getElementById('testActive').style.display = queue.length? 'block':'none';
+  if(queue.length){ nextCard(true); }
+}
+let total=0, doneCount=0;
+function nextCard(fresh){
+  if(fresh){ total = queue.length; doneCount = 0; }
+  if(queue.length===0){
+    document.getElementById('testActive').style.display='none';
+    document.getElementById('testDone').style.display='block';
+    return;
+  }
+  current = queue[0];
+  document.getElementById('cardAr').textContent = current.ar;
+  document.getElementById('cardEn').textContent = current.en;
+  document.getElementById('cardTr').textContent = current.tr;
+  document.getElementById('reveal').classList.remove('show');
+  document.getElementById('actions').innerHTML =
+    '<button class="btn ghost" id="revealBtn" onclick="revealCard()">Reveal answer</button>';
+  updateProgressUI();
+}
+function updateProgressUI(){
+  document.getElementById('posLabel').textContent = 'Word '+(doneCount+1)+' of '+total+' due today';
+  document.getElementById('leftLabel').textContent = queue.length+' left';
+  document.getElementById('barFill').style.width = (total? (doneCount/total*100):0)+'%';
+}
+function revealCard(){
+  document.getElementById('reveal').classList.add('show');
+  document.getElementById('actions').innerHTML =
+    '<button class="btn danger" onclick="grade(false)">Missed it</button>'+
+    '<button class="btn" onclick="grade(true)">Got it</button>';
+}
+function grade(gotIt){
+  const rec = progress[current.id];
+  if(gotIt){ rec.box = Math.min(5, rec.box+1); }
+  else { rec.box = 1; }
+  rec.due = today() + GAPS[rec.box];
+  saveProgress(progress);
+  queue.shift();
+  doneCount++;
+  nextCard(false);
+}
+function resetProgress(){
+  if(!confirm('Reset progress for all words? This clears every box and due date.')) return;
+  progress = {};
+  VOCAB.forEach(w=> progress[w.id]={box:1, due:today()});
+  saveProgress(progress);
+  startTest();
+  renderList();
+}
+
+/* ---- speech ---- */
+function speakCurrent(){ speak(current && current.ar); }
+function speak(text){
+  if(!text || !('speechSynthesis' in window)) return;
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'ar-SA'; u.rate = .85;
+  const ar = speechSynthesis.getVoices().find(v=>/ar/i.test(v.lang));
+  if(ar) u.voice = ar;
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+}
+
+/* ---- full list ---- */
+function renderList(){
+  const q = (document.getElementById('searchBox').value||'').trim().toLowerCase();
+  const rows = VOCAB.filter(w=>{
+    if(!q) return true;
+    return (w.ar.includes(q)||w.en.toLowerCase().includes(q)||w.tr.toLowerCase().includes(q));
+  }).map(w=>{
+    const st = statusOf(progress[w.id]);
+    const stLabel = st==='known'?'Known':st==='learning'?'Learning':'New';
+    return '<tr><td class="ar">'+w.ar+'</td><td>'+w.en+'</td><td class="tr">'+w.tr+
+           '</td><td><span class="status"><span class="dot '+st+'"></span>'+stLabel+'</span></td></tr>';
+  }).join('');
+  document.getElementById('listBody').innerHTML = rows || '<tr><td colspan="4" style="color:var(--ink-soft);padding:20px 12px">No matches.</td></tr>';
+}
+
+// warm up voices, then start
+if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged = ()=>{}; }
+startTest();
+renderList();
+</script>
+</body>
+</html>

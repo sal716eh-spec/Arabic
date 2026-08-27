@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — بين يديك</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+.hero{padding:44px 0 6px}
+.hero .label{margin-bottom:10px}
+.hero h1{font-size:clamp(24px,5vw,30px);font-weight:700}
+.hero p{color:var(--ink-soft);font-size:15px;margin-top:8px;max-width:52ch}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:28px 0 48px}
+.tile{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:28px;min-height:210px;position:relative;display:flex;flex-direction:column;transition:transform .18s,border-color .18s}
+.tile:hover{transform:translateY(-2px);border-color:var(--verdigris)}
+.tile .ar{font-family:var(--ar);direction:rtl;font-size:42px;color:var(--ink);line-height:1}
+.tile h2{font-size:20px;margin-top:14px}
+.tile p{color:var(--ink-soft);font-size:13px;margin-top:8px;flex:1}
+.tile .go{font-size:13px;color:var(--verdigris);font-weight:500;margin-top:12px}
+.tile.drills .ar{color:var(--rubric)}
+.corner{position:absolute;top:20px;right:22px}
+@media (max-width:640px){.tiles{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="dashboard.html">بَيْنَ <span>يَدَيْكَ</span></a>
+  <div class="navlinks">
+    <a class="active" href="dashboard.html">Dashboard</a>
+    <a href="vocab.html">Vocab</a>
+    <a href="drills.html">Drills</a>
+    <a href="login.html">Log out</a>
+  </div>
+</nav>
+<main class="wrap">
+  <section class="hero">
+    <div class="label">Welcome back</div>
+    <h1>How do you want to learn today?</h1>
+    <p>Pick a path below. Build your vocabulary with spaced repetition, or practise speaking with the drills.</p>
+  </section>
+  <section class="tiles">
+    <a class="tile" href="vocab.html">
+      <span class="corner tag">Spaced repetition</span>
+      <div class="ar">مُفْرَدَات</div>
+      <h2>Vocabulary</h2>
+      <p>A daily review that shows the words due today, plus the full word list with English translations.</p>
+      <div class="go">Open vocab →</div>
+    </a>
+    <a class="tile drills" href="drills.html">
+      <span class="corner tag">Speaking</span>
+      <div class="ar">تَدْرِيبَات</div>
+      <h2>Speaking drills</h2>
+      <p>Dialogue, substitution, build-a-sentence and a sixty-second speaking round — the drills app.</p>
+      <div class="go">Open drills →</div>
+    </a>
+  </section>
+</main>
+</body>
+</html>

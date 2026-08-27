@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in — بين يديك</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+.screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px}
+.word{font-family:var(--ar);direction:rtl;font-size:clamp(56px,12vw,88px);font-weight:700;line-height:1}
+.word span{color:var(--rubric)}
+.sub{font-family:var(--ar);direction:rtl;font-size:clamp(18px,4vw,24px);color:var(--verdigris);margin-top:12px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:32px 36px;margin-top:38px;width:min(380px,100%);text-align:left}
+.card .label{margin-bottom:20px;text-align:center}
+.field{margin-bottom:16px}
+.field label{font-size:11px;color:var(--ink-soft);display:block;margin-bottom:5px}
+.field input{width:100%;border:1px solid var(--rule);border-radius:3px;background:var(--paper);height:40px;padding:0 12px;font-family:var(--la);font-size:15px;color:var(--ink)}
+.card .btn{width:100%;margin-top:6px}
+.note{margin-top:16px;font-size:11px;color:var(--ink-soft);text-align:center;line-height:1.5}
+</style>
+</head>
+<body>
+<main class="screen">
+  <div class="word">بَيْنَ <span>يَدَيْكَ</span></div>
+  <div class="sub">تَعَلَّمِ الْعَرَبِيَّةَ</div>
+  <form class="card" id="loginForm">
+    <div class="label">Sign in to continue</div>
+    <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="you@example.com"></div>
+    <div class="field"><label for="pw">Password</label><input id="pw" type="password" placeholder="••••••••"></div>
+    <button class="btn" type="submit">Login</button>
+    <p class="note">Placeholder login — any details (or none) will take you straight to the dashboard for now.</p>
+  </form>
+</main>
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    try { localStorage.setItem('bay_loggedIn','1'); } catch(_){}
+    window.location.href = 'dashboard.html';
+  });
+</script>
+</body>
+</html>
