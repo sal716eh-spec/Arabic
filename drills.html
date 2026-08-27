@@ -59,6 +59,8 @@ select{max-width:180px}
 input[type=range]{accent-color:var(--verdigris);width:100px}
 .warn{font-size:12px;color:var(--rubric);max-width:46ch;line-height:1.5}
 .warn b{color:var(--ink)}
+.wdismiss{font-family:var(--la);font-size:11px;border:1px solid var(--rule);background:transparent;border-radius:2px;padding:3px 9px;margin-top:6px;cursor:pointer;color:var(--ink);display:inline-block}
+.wdismiss:hover{border-color:var(--verdigris);color:var(--verdigris)}
 
 /* stats strip */
 .stats{display:flex;gap:0;border-bottom:1px solid var(--rule);background:var(--paper-deep)}
@@ -342,6 +344,7 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
       <label class="label" for="rate">Speed</label>
       <input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="0.8">
       <span class="label" id="ratev">0.80×</span>
+      <button class="btn" id="testv">Test</button>
       <button class="btn" id="stop">Stop</button>
     </div>
     <div class="warn" id="warn" hidden></div>
@@ -1552,51 +1555,107 @@ function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math
 /* ── speech out ─────────────────────────────────────────── */
 let voices=[],chosen=null,rateV=0.8,queue=null;
 const sel=document.getElementById('voice'),warn=document.getElementById('warn');
-/* Device voices vary enormously. Rank them so the best available is picked by
-   default: enhanced/premium packs first, then Siri, then MSA locales over regional. */
+/* iOS reports quality in voiceURI, not name — a downloaded Enhanced voice is still
+   called "Majed". It also returns the same voice several times, hence the dedupe. */
+function vSig(v){ return ((v.voiceURI||'')+' '+(v.name||'')).toLowerCase(); }
+function quality(v){
+  const s=vSig(v);
+  if(/premium|neural|natural/.test(s)) return 'premium';
+  if(/enhanced/.test(s))               return 'enhanced';
+  if(/siri/.test(s))                   return 'siri';
+  if(/compact/.test(s))                return 'basic';
+  return 'standard';
+}
+const QRANK={premium:4,enhanced:3,siri:2,standard:1,basic:0};
 function voiceScore(v){
-  const n=(v.name||'').toLowerCase(), l=(v.lang||'').toLowerCase();
-  let s=0;
-  if(/enhanced|premium|neural|natural/.test(n)) s+=60;   // downloadable HQ packs
-  if(/siri/.test(n))                            s+=25;
-  if(v.localService===false)                    s+=15;   // server voices are usually better
-  if(/^ar-sa/.test(l))                          s+=10;   // MSA reference accent
-  else if(/^ar-(eg|ae|jo)/.test(l))             s+=6;
-  if(/compact/.test(n))                         s-=25;   // low-quality fallback pack
+  let s=QRANK[quality(v)]*100;
+  const l=(v.lang||'').toLowerCase();
+  if(/^ar-sa/.test(l)) s+=10;
+  else if(/^ar-(eg|ae|jo|kw|qa|bh)/.test(l)) s+=6;
+  else if(/^ar-001/.test(l)) s+=4;
+  if(v.localService===false) s+=3;
   return s;
 }
-function isBasic(v){ return /compact/i.test(v.name||'') || (voiceScore(v)<=10); }
+function dedupe(list){
+  // Only exact voiceURI repeats. iOS lists basic / Enhanced / Premium all as "Majed",
+  // so collapsing by name would silently discard the good ones.
+  const seen=new Map();
+  list.forEach(v=>{
+    const key=(v.voiceURI||v.name)+'|'+v.lang;
+    if(!seen.has(key)) seen.set(key,v);
+  });
+  return [...seen.values()];
+}
+function vLabel(v){
+  const q=quality(v);
+  return (v.name||'Arabic')+' ('+v.lang+')'+(q==='standard'?'':' — '+q);
+}
 
+const WARN_KEY='bay_voicewarn_dismissed';
+const VOICE_KEY='bay_voice_uri';
+function savedVoice(list){
+  let uri=null; try{uri=localStorage.getItem(VOICE_KEY)}catch(e){}
+  return uri? list.find(v=>(v.voiceURI||v.name)===uri) : null;
+}
 function loadVoices(){
-  voices=(speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang))
+  voices=dedupe((speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang)))
           .sort((a,b)=>voiceScore(b)-voiceScore(a));
   sel.innerHTML='';
   if(!voices.length){
-    sel.innerHTML='<option>No Arabic voice</option>';sel.disabled=true;warn.hidden=false;
-    warn.innerHTML="No Arabic voice on this device. Every drill still works except dictation.<br>"+
+    sel.innerHTML='<option>No Arabic voice</option>';sel.disabled=true;
+    showWarn("No Arabic voice on this device. Every drill still works except dictation.<br>"+
       "<b>iPhone:</b> Settings → Accessibility → Spoken Content → Voices → Arabic.<br>"+
-      "<b>Android:</b> Settings → Accessibility → Text-to-speech → install Arabic.";
+      "<b>Android:</b> Settings → Accessibility → Text-to-speech → install Arabic.");
     return;
   }
-  sel.disabled=false;
-  voices.forEach((v,i)=>{
-    const o=document.createElement('option');o.value=i;
-    o.textContent=v.name+' ('+v.lang+')'+(isBasic(v)?' — basic':'');
-    sel.appendChild(o);
-  });
-  chosen=voices[0];
-  if(isBasic(chosen)){
-    warn.hidden=false;
-    warn.innerHTML="This device only has the basic Arabic voice, which is rough. "+
-      "A far clearer one is a free download:<br><b>iPhone:</b> Settings → Accessibility → "+
-      "Spoken Content → Voices → Arabic → tap the ⤓ next to an <i>Enhanced</i> voice.<br>"+
-      "<b>Android:</b> Settings → Accessibility → Text-to-speech → Google TTS → install Arabic.";
+  chosen=savedVoice(voices)||voices[0];
+  // one voice and nothing to choose between: show it as text, not a dropdown
+  if(voices.length===1){
+    sel.style.display='none';
+    if(!document.getElementById('voiceOnly')){
+      const sp=document.createElement('span');
+      sp.id='voiceOnly';sp.className='label';sp.style.maxWidth='170px';
+      sel.parentNode.insertBefore(sp,sel);
+    }
+    document.getElementById('voiceOnly').textContent=vLabel(chosen);
+  } else {
+    sel.style.display='';sel.disabled=false;
+    const only=document.getElementById('voiceOnly'); if(only)only.remove();
+    const used={};
+    voices.forEach((v,i)=>{
+      let t=vLabel(v);
+      used[t]=(used[t]||0)+1;
+      if(used[t]>1) t+=' ('+used[t]+')';
+      const o=document.createElement('option');o.value=i;o.textContent=t;sel.appendChild(o);
+    });
+    sel.value=String(voices.indexOf(chosen));
+  }
+  // only nag if nothing better is installed
+  const best=quality(chosen);
+  if(best==='basic'||best==='standard'){
+    showWarn("Your device is using its default Arabic voice. A much clearer one is a free download:<br>"+
+      "<b>iPhone:</b> Settings → Accessibility → Spoken Content → Voices → Arabic → tap ⤓ beside an <i>Enhanced</i> voice, then reload this page.<br>"+
+      "<b>Android:</b> Settings → Accessibility → Text-to-speech → Google TTS → install Arabic.");
   } else { warn.hidden=true; }
 }
+function showWarn(html){
+  let dismissed=false;
+  try{dismissed=localStorage.getItem(WARN_KEY)==='1'}catch(e){}
+  if(dismissed){warn.hidden=true;return}
+  warn.hidden=false;
+  warn.innerHTML=html+' <button type="button" class="wdismiss" aria-label="Dismiss">Got it</button>';
+  const b=warn.querySelector('.wdismiss');
+  if(b)b.onclick=()=>{try{localStorage.setItem(WARN_KEY,'1')}catch(e){}warn.hidden=true};
+}
 speechSynthesis.onvoiceschanged=loadVoices;loadVoices();
-sel.onchange=()=>{chosen=voices[sel.value]};
+sel.onchange=()=>{
+  chosen=voices[sel.value];
+  try{localStorage.setItem(VOICE_KEY,chosen.voiceURI||chosen.name)}catch(e){}
+};
 const rEl=document.getElementById('rate'),rVal=document.getElementById('ratev');
 rEl.oninput=()=>{rateV=+rEl.value;rVal.textContent=rateV.toFixed(2)+'×'};
+document.getElementById('testv').onclick=()=>
+  say('السَّلامُ عَلَيْكُمْ، كَيْفَ حالُكَ؟ أَنا أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ.',null);
 document.getElementById('stop').onclick=()=>{queue=null;speechSynthesis.cancel();document.querySelectorAll('.speaking').forEach(e=>e.classList.remove('speaking'))};
 
 function say(text,el,after){
