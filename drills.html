@@ -61,6 +61,11 @@ input[type=range]{accent-color:var(--verdigris);width:100px}
 .warn b{color:var(--ink)}
 .wdismiss{font-family:var(--la);font-size:11px;border:1px solid var(--rule);background:transparent;border-radius:2px;padding:3px 9px;margin-top:6px;cursor:pointer;color:var(--ink);display:inline-block}
 .wdismiss:hover{border-color:var(--verdigris);color:var(--verdigris)}
+body.no-audio .say,body.no-audio .audio-only{display:none!important}
+body.no-audio .qar,body.no-audio .line .ar,body.no-audio .gcard .ex,
+body.no-audio .tf .src,body.no-audio .good{cursor:default}
+.nodict{border:1px dashed var(--rule);padding:22px 20px;color:var(--ink-soft);font-size:13.5px;line-height:1.6}
+.nodict b{color:var(--ink)}
 
 /* stats strip */
 .stats{display:flex;gap:0;border-bottom:1px solid var(--rule);background:var(--paper-deep)}
@@ -1553,7 +1558,7 @@ function scrollTo(el,opts){try{if(el&&typeof el.scrollIntoView==='function')el.s
 function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
 
 /* ── speech out ─────────────────────────────────────────── */
-let voices=[],chosen=null,rateV=0.8,queue=null;
+let voices=[],chosen=null,rateV=0.8,queue=null,AUDIO_OK=true;
 const sel=document.getElementById('voice'),warn=document.getElementById('warn');
 /* iOS reports quality in voiceURI, not name — a downloaded Enhanced voice is still
    called "Majed". It also returns the same voice several times, hence the dedupe. */
@@ -1601,13 +1606,17 @@ function loadVoices(){
   voices=dedupe((speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang)))
           .sort((a,b)=>voiceScore(b)-voiceScore(a));
   sel.innerHTML='';
+  AUDIO_OK = voices.length>0;
+  document.body.classList.toggle('no-audio', !AUDIO_OK);
   if(!voices.length){
     sel.innerHTML='<option>No Arabic voice</option>';sel.disabled=true;
+    const t=document.getElementById('testv'); if(t)t.disabled=true;
     showWarn("No Arabic voice on this device. Every drill still works except dictation.<br>"+
       "<b>iPhone:</b> Settings → Accessibility → Spoken Content → Voices → Arabic.<br>"+
       "<b>Android:</b> Settings → Accessibility → Text-to-speech → install Arabic.");
     return;
   }
+  const t=document.getElementById('testv'); if(t)t.disabled=false;
   chosen=savedVoice(voices)||voices[0];
   // one voice and nothing to choose between: show it as text, not a dropdown
   if(voices.length===1){
@@ -1656,18 +1665,52 @@ const rEl=document.getElementById('rate'),rVal=document.getElementById('ratev');
 rEl.oninput=()=>{rateV=+rEl.value;rVal.textContent=rateV.toFixed(2)+'×'};
 document.getElementById('testv').onclick=()=>
   say('السَّلامُ عَلَيْكُمْ، كَيْفَ حالُكَ؟ أَنا أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ.',null);
-document.getElementById('stop').onclick=()=>{queue=null;speechSynthesis.cancel();document.querySelectorAll('.speaking').forEach(e=>e.classList.remove('speaking'))};
+document.getElementById('stop').onclick=()=>{queue=null;stopAudio()};
 
-function say(text,el,after){
+/* Pre-rendered clips live in audio/<id>.mp3 and are listed in audio/index.json.
+   Same hash as tools/build-manifest.js, so text maps to the same filename. */
+function aid(s){let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36);}
+let CLIPS=null, curAudio=null;
+try{
+  if(typeof fetch==='function'){
+    fetch('audio/index.json').then(r=>r.ok?r.json():[]).then(a=>{
+      CLIPS=new Set(a);
+      if(CLIPS.size){AUDIO_OK=true;document.body.classList.remove('no-audio');warn.hidden=true;}
+    }).catch(()=>{CLIPS=new Set()});
+  } else { CLIPS=new Set(); }
+}catch(e){ CLIPS=new Set(); }
+
+function stopAudio(){
+  if(curAudio){curAudio.pause();curAudio=null;}
   speechSynthesis.cancel();
   document.querySelectorAll('.speaking').forEach(e=>e.classList.remove('speaking'));
+}
+
+function say(text,el,after){
+  stopAudio();
+  const done=()=>{if(el)el.classList.remove('speaking');if(after)after()};
+  if(el)el.classList.add('speaking');
+
+  const id=aid(text);
+  if(CLIPS&&CLIPS.has(id)){
+    const a=new Audio('audio/'+id+'.mp3');
+    a.playbackRate=Math.max(0.6,Math.min(1.3,rateV+0.15));  // clips are natural pace
+    curAudio=a;
+    a.onended=()=>{curAudio=null;done()};
+    a.onerror=()=>{curAudio=null;speakTTS(text,el,after,done)};
+    a.play().catch(()=>{curAudio=null;speakTTS(text,el,after,done)});
+    return;
+  }
+  speakTTS(text,el,after,done);
+}
+
+function speakTTS(text,el,after,done){
+  if(!voices.length){if(done)done();return;}
   const u=new SpeechSynthesisUtterance(text);
   u.lang=(chosen&&chosen.lang)||'ar-SA';
   u.rate=rateV;u.pitch=1;u.volume=1;
   if(chosen)u.voice=chosen;
-  if(el)el.classList.add('speaking');
-  u.onend=()=>{if(el)el.classList.remove('speaking');if(after)after()};
-  u.onerror=()=>{if(el)el.classList.remove('speaking')};
+  u.onend=done; u.onerror=()=>{if(el)el.classList.remove('speaking')};
   speechSynthesis.speak(u);
 }
 
@@ -1847,11 +1890,18 @@ const RENDER={
   },
   dictation(it){
     const t=it.d,c=document.createElement('div');c.className='card';
+    if(!AUDIO_OK){
+      c.innerHTML='<div class="nodict">Dictation needs an Arabic voice on this device, and there isn\'t one yet.<br>'+
+        '<b>iPhone:</b> Settings → Accessibility → Spoken Content → Voices → Arabic.<br>'+
+        '<b>Android:</b> Settings → Accessibility → Text-to-speech → install Arabic.<br>'+
+        'Every other drill works without it.</div>';
+      return c;
+    }
     c.innerHTML='<div class="tag">Listen, then write what you hear</div>';
     const bar=document.createElement('div');bar.className='toolbar';
     const play=document.createElement('button');play.className='btn lg';play.type='button';play.textContent='▶ Play';
     play.onclick=()=>say(t.ar,null);
-    const slow=document.createElement('button');slow.className='btn';slow.type='button';slow.textContent='Play slowly';
+    const slow=document.createElement('button');slow.className='btn audio-only';slow.type='button';slow.textContent='Play slowly';
     slow.onclick=()=>{const k=rateV;rateV=0.6;say(t.ar,null,()=>{rateV=k});};
     bar.appendChild(play);bar.appendChild(slow);c.appendChild(bar);
     c.appendChild(answerRow(t.ar));
@@ -1927,15 +1977,15 @@ function toolbar(items){
   const d=document.createElement('div');d.className='toolbar';
   items.forEach(it=>{
     if(it&&it.nodeType){d.appendChild(it);return}
-    const[l,f,on]=it;
-    const b=document.createElement('button');b.className='btn'+(on?' on':'');b.type='button';
+    const[l,f,on,cls]=it;
+    const b=document.createElement('button');b.className='btn'+(on?' on':'')+(cls?' '+cls:'');b.type='button';
     b.textContent=l;b.onclick=f;d.appendChild(b);
   });
   panel.appendChild(d);return d;
 }
 
 function render(){
-  speechSynthesis.cancel();queue=null;
+  stopAudio();queue=null;
   drawRail();
   [...modesEl.querySelectorAll('.mode')].forEach(b=>{
     const on=b.dataset.k===mode;
@@ -1973,7 +2023,7 @@ function vList(kind){
 /* ── dialogue + role-play ───────────────────────────────── */
 function vDialogue(u){
   toolbar([
-    ['Play the whole dialogue',()=>playAll(u),false],
+    ['Play the whole dialogue',()=>playAll(u),false,'audio-only'],
     [showEn?'Hide English':'Show English',()=>{showEn=!showEn;render()},!showEn],
     [showAr?'Hide Arabic':'Show Arabic',()=>{showAr=!showAr;render()},!showAr]
   ]);
@@ -2002,7 +2052,7 @@ function vRolePlay(u){
   if(!roles.includes(myRole))myRole=roles[0];
   const bar=[];
   roles.forEach(r=>bar.push(['Play '+r,()=>{myRole=r;render()},myRole===r]));
-  bar.push(['▶ Run the scene',()=>runScene(u),false]);
+  bar.push(['▶ Run the scene',()=>runScene(u),false,'audio-only']);
   toolbar(bar);
   const note=document.createElement('p');note.className='qen';
   note.textContent='Your lines are covered. Say each one aloud in the gap, then tap to check.';

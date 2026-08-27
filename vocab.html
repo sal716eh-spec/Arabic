@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=625">
+<link rel="stylesheet" href="site.css?v=627">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#F1ECE0">
@@ -154,7 +154,7 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
   </section>
 </main>
 
-<script src="vocab-data.js?v=625"></script>
+<script src="vocab-data.js?v=627"></script>
 <script>
 /* ---------- Leitner spaced repetition ----------
    Each word sits in a box (1..5). Higher box = longer gap.
@@ -235,6 +235,7 @@ function startTest(){
 }
 let total=0, doneCount=0;
 function nextCard(fresh){
+  setTimeout(syncAudioUI,0);
   if(fresh){ total = queue.length; doneCount = 0; }
   if(queue.length===0){
     document.getElementById('testActive').style.display='none';
@@ -302,8 +303,31 @@ function bestArabicVoice(){
   const list=(speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang));
   return list.sort((a,b)=>voiceScore(b)-voiceScore(a))[0]||null;
 }
+function hasArabicVoice(){
+  if(CLIPS&&CLIPS.size) return true;                       // pre-rendered clips work everywhere
+  return (speechSynthesis.getVoices()||[]).some(v=>/^ar/i.test(v.lang));
+}
+function syncAudioUI(){
+  const on=hasArabicVoice();
+  document.querySelectorAll('.speak').forEach(b=>b.style.display=on?'':'none');
+}
+function aid(s){let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36);}
+let CLIPS=null, curAudio=null;
+try{
+  if(typeof fetch==='function'){
+    fetch('audio/index.json').then(r=>r.ok?r.json():[]).then(a=>{CLIPS=new Set(a);syncAudioUI();}).catch(()=>{CLIPS=new Set()});
+  } else { CLIPS=new Set(); }
+}catch(e){ CLIPS=new Set(); }
 function speak(text){
   if(!text || !('speechSynthesis' in window)) return;
+  if(curAudio){curAudio.pause();curAudio=null;}
+  const id=aid(text);
+  if(CLIPS&&CLIPS.has(id)){
+    const a=new Audio('audio/'+id+'.mp3');curAudio=a;
+    a.onended=()=>{curAudio=null};
+    a.play().catch(()=>{curAudio=null});
+    return;
+  }
   const u = new SpeechSynthesisUtterance(text);
   const v = bestArabicVoice();
   u.lang = (v&&v.lang)||'ar-SA'; u.rate = .8; u.pitch = 1;
@@ -343,7 +367,7 @@ function renderList(){
 })();
 
 // warm up voices, then start
-if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged = ()=>{}; }
+if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged = syncAudioUI; syncAudioUI(); setTimeout(syncAudioUI,600); }
 startTest();
 renderList();
 </script>
