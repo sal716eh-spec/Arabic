@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بين يديك — Learn Arabic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+body{min-height:100vh;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 30px;border-bottom:1px solid var(--rule)}
+.top .brand{font-family:var(--ar);font-size:22px;font-weight:700;direction:rtl}
+.top .brand span{color:var(--rubric)}
+
+.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:64px 24px 48px}
+.eyebrow{margin-bottom:44px}
+.word{font-family:var(--ar);direction:rtl;font-weight:700;font-size:clamp(64px,15vw,132px);line-height:1;margin:0;
+  opacity:0;transform:translateY(16px);animation:rise .9s cubic-bezier(.2,.7,.2,1) .1s forwards}
+.word .dot{color:var(--rubric)}
+.gloss{font-family:var(--ar);direction:rtl;font-size:clamp(20px,4vw,30px);color:var(--verdigris);margin:18px 0 4px;
+  opacity:0;animation:fade .8s ease .5s forwards}
+.gloss-en{font-size:15px;color:var(--ink-soft);max-width:46ch;margin:6px auto 0;
+  opacity:0;animation:fade .8s ease .7s forwards}
+.orn{width:52px;height:1px;background:var(--gold);margin:34px auto 0;position:relative;opacity:0;animation:fade .8s ease .8s forwards}
+.orn::before{content:"";position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.cta-row{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fade .8s ease .95s forwards}
+
+.strip{border-top:1px solid var(--rule);padding:28px 26px 34px}
+.strip h2{font-size:13px;font-family:var(--ut);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0 0 18px;text-align:center}
+.modes{display:grid;gap:14px;max-width:920px;margin:0 auto;grid-template-columns:repeat(5,1fr)}
+.m{border:1px solid var(--rule);border-radius:3px;padding:16px 14px;background:var(--card)}
+.m .ar{font-family:var(--ar);direction:rtl;font-size:24px;line-height:1.3;color:var(--ink);display:block}
+.m .en{font-size:12px;color:var(--ink-soft);margin-top:8px;display:block}
+.m .n{font-family:var(--ut);font-size:10px;color:var(--gold);letter-spacing:.1em;display:block;margin-bottom:8px}
+
+.foot{padding:18px 30px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+@media (max-width:720px){.modes{grid-template-columns:repeat(2,1fr)}.hero{padding:48px 20px 40px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">بَيْنَ <span>يَدَيْكَ</span></div>
+  <div class="label">Speaking &amp; vocabulary · Units 1–4</div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow label">اِبْدَأِ الْكَلَامَ · start learning</div>
+  <h1 class="word">تَكَلَّمْ<span class="dot">.</span></h1>
+  <div class="gloss">تَعَلَّمِ الْعَرَبِيَّةَ بِصَوْتِكَ</div>
+  <p class="gloss-en">Build your vocabulary with spaced repetition, then get the words out of your mouth with speaking drills. Two ways to practise, one place to learn.</p>
+  <div class="orn"></div>
+  <div class="cta-row">
+    <a class="btn" href="login.html">Get started</a>
+    <a class="btn ghost" href="#modes">See what's inside</a>
+  </div>
+</section>
+
+<section class="strip" id="modes">
+  <h2>What's inside</h2>
+  <div class="modes">
+    <div class="m"><span class="n">01</span><span class="ar">مُفْرَدَات</span><span class="en">Vocabulary — daily spaced-repetition review.</span></div>
+    <div class="m"><span class="n">02</span><span class="ar">حِوَار</span><span class="en">Dialogue — hear a line, say it back.</span></div>
+    <div class="m"><span class="n">03</span><span class="ar">تَبْدِيل</span><span class="en">Substitution — swap words into a frame.</span></div>
+    <div class="m"><span class="n">04</span><span class="ar">تَرْكِيب</span><span class="en">Build — tap the pieces into order.</span></div>
+    <div class="m"><span class="n">05</span><span class="ar">كَلَام</span><span class="en">Speak — sixty seconds, model answers.</span></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="label">بين يديك · learn Arabic</div>
+  <div class="label">Read aloud · press the Arabic to hear it</div>
+</footer>
+</body>
+</html>
