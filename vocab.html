@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vocabulary — بين يديك</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#F1ECE0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <style>
 .head{padding:32px 0 0}
 .head h1{font-size:26px;font-weight:700}
@@ -51,6 +56,20 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
 .speak{background:none;border:1px solid var(--rule);border-radius:3px;padding:8px 14px;font-family:var(--la);font-size:13px;color:var(--ink-soft);cursor:pointer;margin-top:18px}
 .speak:hover{border-color:var(--verdigris);color:var(--verdigris)}
 .reset{margin-top:30px;text-align:center}
+@media (max-width:860px){
+  .head{padding:20px 0 0}
+  .tabs button{flex:1;padding:12px 8px;min-height:48px}
+  .tcard{padding:30px 18px;border-radius:8px}
+  .tcard .ar{font-size:clamp(40px,13vw,60px);line-height:1.25}
+  .actions{flex-direction:column}
+  .actions .btn{width:100%}
+  .speak{min-height:44px}
+  td.ar{font-size:20px;width:44%}
+  td.tr{display:none}
+  th:nth-child(3),td:nth-child(3){display:none}
+  td,th{padding:10px 8px;font-size:14px}
+  .panel{padding:18px 0 46px}
+}
 </style>
 </head>
 <body>
@@ -60,7 +79,7 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
     <a href="dashboard.html">Dashboard</a>
     <a class="active" href="vocab.html">Vocab</a>
     <a href="drills.html">Drills</a>
-    <a href="login.html">Log out</a>
+    <a href="index.html">Log out</a>
   </div>
 </nav>
 <main class="wrap">

@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dashboard — بين يديك</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#F1ECE0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <style>
 .hero{padding:44px 0 6px}
 .hero .label{margin-bottom:10px}
@@ -22,6 +27,9 @@
 .tile .go{font-size:13px;color:var(--verdigris);font-weight:500;margin-top:12px}
 .tile.drills .ar{color:var(--rubric)}
 .corner{position:absolute;top:20px;right:22px}
+.stat{font-family:var(--ut);font-size:11px;letter-spacing:.08em;color:var(--ink-soft);margin-top:10px;padding-top:10px;border-top:1px solid var(--rule)}
+.stat b{color:var(--rubric);font-weight:600}
+.stat.none{color:var(--ink-soft)}
 @media (max-width:640px){.tiles{grid-template-columns:1fr}}
 </style>
 </head>
@@ -32,7 +40,7 @@
     <a class="active" href="dashboard.html">Dashboard</a>
     <a href="vocab.html">Vocab</a>
     <a href="drills.html">Drills</a>
-    <a href="login.html">Log out</a>
+    <a href="index.html">Log out</a>
   </div>
 </nav>
 <main class="wrap">
@@ -47,16 +55,44 @@
       <div class="ar">مُفْرَدَات</div>
       <h2>Vocabulary</h2>
       <p>A daily review that shows the words due today, plus the full word list with English translations.</p>
+      <div class="stat" id="vocabStat">—</div>
       <div class="go">Open vocab →</div>
     </a>
     <a class="tile drills" href="drills.html">
       <span class="corner tag">Speaking</span>
       <div class="ar">تَدْرِيبَات</div>
       <h2>Speaking drills</h2>
-      <p>Dialogue, substitution, build-a-sentence and a sixty-second speaking round — the drills app.</p>
+      <p>Twelve drill modes across units 1–12: dialogue, role-play, ladders, gap-fill, error-correction, dictation and production.</p>
+      <div class="stat" id="drillStat">—</div>
       <div class="go">Open drills →</div>
     </a>
   </section>
 </main>
+<script src="vocab-data.js"></script>
+<script>
+/* Both apps keep their own schedule; the dashboard just reports on each. */
+const DAY=86400000, dayNow=Math.floor(Date.now()/DAY), iso=new Date().toISOString().slice(0,10);
+function read(k){try{return JSON.parse(localStorage.getItem(k))||null}catch(_){return null}}
+
+(function vocabStat(){
+  const el=document.getElementById('vocabStat');
+  const p=read('bay_vocab_progress_v1');
+  const total=(typeof VOCAB!=='undefined')?VOCAB.length:0;
+  if(!p){el.textContent=total?total+' words waiting — nothing started yet':'No word list loaded';return}
+  let due=0,known=0;
+  Object.values(p).forEach(r=>{if(r.due<=dayNow)due++;if(r.box>=4)known++});
+  el.innerHTML=`<b>${due}</b> due today · ${known} known of ${total}`;
+})();
+
+(function drillStat(){
+  const el=document.getElementById('drillStat');
+  const p=read('bay_drills_progress_v1');
+  if(!p||!p.items||!Object.keys(p.items).length){el.textContent='672 items ready — nothing started yet';return}
+  let due=0,known=0;
+  Object.values(p.items).forEach(r=>{if(r.due<=iso)due++;if(r.box>=3)known++});
+  const doneToday=(p.day===iso)?(p.today||0):0;
+  el.innerHTML=`<b>${due}</b> due today · ${known} known of 672 · ${doneToday} done today`;
+})();
+</script>
 </body>
 </html>
