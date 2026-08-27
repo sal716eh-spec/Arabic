@@ -1,0 +1,63 @@
+name: Render audio
+
+on:
+  workflow_dispatch:
+    inputs:
+      voice:
+        description: "ElevenLabs voice ID"
+        required: true
+      buckets:
+        description: "What to render: dialogue,vocab  (blank = everything)"
+        required: false
+        default: "dialogue,vocab"
+      limit:
+        description: "Max clips this run (5 to test, 0 = no limit)"
+        required: false
+        default: "5"
+      strip:
+        description: "Remove vowel marks before sending? (yes/no)"
+        required: false
+        default: "no"
+      model:
+        description: "ElevenLabs model"
+        required: false
+        default: "eleven_multilingual_v2"
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Rebuild the manifest
+        run: node tools/build-manifest.js
+
+      - name: Render clips
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: |
+          ARGS="--voice ${{ inputs.voice }} --model ${{ inputs.model }}"
+          if [ -n "${{ inputs.buckets }}" ]; then ARGS="$ARGS --only ${{ inputs.buckets }}"; fi
+          if [ "${{ inputs.limit }}" != "0" ]; then ARGS="$ARGS --limit ${{ inputs.limit }}"; fi
+          if [ "${{ inputs.strip }}" = "yes" ]; then ARGS="$ARGS --strip"; fi
+          node tools/render-elevenlabs.js $ARGS
+
+      - name: Commit the audio
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add audio audio-manifest.json
+          if git diff --staged --quiet; then
+            echo "Nothing new to commit."
+          else
+            git commit -m "Render audio clips"
+            git pull --rebase --autostash
+            git push
+          fi
