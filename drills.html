@@ -1673,7 +1673,7 @@ function aid(s){let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))
 let CLIPS=null, curAudio=null;
 try{
   if(typeof fetch==='function'){
-    fetch('audio/index.json').then(r=>r.ok?r.json():[]).then(a=>{
+    fetch('audio/index.json?t='+Math.floor(Date.now()/60000)).then(r=>r.ok?r.json():[]).then(a=>{
       CLIPS=new Set(a);
       if(CLIPS.size){AUDIO_OK=true;document.body.classList.remove('no-audio');warn.hidden=true;}
     }).catch(()=>{CLIPS=new Set()});
