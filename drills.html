@@ -10,13 +10,13 @@
 <title>Drills — بين يديك</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --paper:#F1ECE0; --paper-deep:#E4DCC9; --ink:#17262B; --ink-soft:#5C6E70;
   --rubric:#B4322A; --verdigris:#2E7263; --gold:#A8842C; --rule:rgba(23,38,43,.16);
-  --ar:"Amiri","Noto Naskh Arabic","Traditional Arabic",serif;
+  --ar:"IBM Plex Sans Arabic","Noto Sans Arabic",system-ui,sans-serif;
   --la:"Karla",system-ui,sans-serif;
   --ut:"JetBrains Mono",ui-monospace,monospace;
 }
@@ -29,7 +29,7 @@ button,.chip,.tile,.opt,.gluechip{touch-action:manipulation}
 .label{font-family:var(--ut);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 a{color:inherit;text-decoration:none}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-bottom:1px solid var(--rule);background:var(--paper);max-width:100%}
-.nav .brand{font-family:var(--ar);font-size:22px;font-weight:700;direction:rtl}
+.nav .brand{font-family:var(--ar);font-size:19px;font-weight:700;direction:rtl;line-height:1.7;padding:2px 0}
 .nav .brand span{color:var(--rubric)}
 .navlinks{display:flex;gap:20px;align-items:center;min-width:0}
 .navlinks a{font-size:13px;color:var(--ink-soft)}
@@ -45,7 +45,7 @@ a{color:inherit;text-decoration:none}
 
 /* masthead */
 .masthead{border-bottom:1px solid var(--rule);padding:18px 24px 14px;display:flex;gap:20px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
-.mast-l h1{font-family:var(--ar);font-size:34px;line-height:1;margin:6px 0 0;font-weight:700;direction:rtl}
+.mast-l h1{font-family:var(--ar);font-size:27px;line-height:1.55;margin:8px 0 0;font-weight:700;direction:rtl}
 .mast-l h1 span{color:var(--rubric)}
 .voicebox{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
 .voicerow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
@@ -57,7 +57,8 @@ select{max-width:180px}
 .btn.lg{padding:8px 16px;font-size:14px}
 .btn:disabled{opacity:.4;cursor:default}
 input[type=range]{accent-color:var(--verdigris);width:100px}
-.warn{font-size:12px;color:var(--rubric);max-width:34ch}
+.warn{font-size:12px;color:var(--rubric);max-width:46ch;line-height:1.5}
+.warn b{color:var(--ink)}
 
 /* stats strip */
 .stats{display:flex;gap:0;border-bottom:1px solid var(--rule);background:var(--paper-deep)}
@@ -76,14 +77,14 @@ input[type=range]{accent-color:var(--verdigris);width:100px}
 .unit[aria-current=true]{border-left-color:var(--rubric);background:rgba(180,50,42,.06)}
 .unit .n{font-family:var(--ut);font-size:10.5px;color:var(--gold);display:flex;justify-content:space-between;align-items:center}
 .unit .n em{font-style:normal;font-size:9px;color:var(--ink-soft)}
-.unit .ar{font-family:var(--ar);font-size:19px;direction:rtl;display:block;line-height:1.4}
+.unit .ar{font-family:var(--ar);font-size:17px;direction:rtl;display:block;line-height:1.6;padding:1px 0}
 .unit .en{font-size:10.5px;color:var(--ink-soft)}
 .bar{height:3px;background:var(--paper-deep);margin-top:5px;border-radius:2px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--verdigris)}
 .railsep{height:1px;background:var(--rule);margin:20px 22px}
 .glue{padding:0 22px}
 .gluelist{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.gluechip{font-family:var(--ar);font-size:16px;direction:rtl;border:1px solid var(--rule);border-radius:2px;padding:1px 7px;background:var(--paper-deep);cursor:pointer;line-height:1.7;color:var(--ink)}
+.gluechip{font-family:var(--ar);font-size:15px;direction:rtl;border:1px solid var(--rule);border-radius:2px;padding:1px 7px;background:var(--paper-deep);cursor:pointer;line-height:1.7;color:var(--ink)}
 .gluechip:hover{border-color:var(--rubric);color:var(--rubric)}
 .gluechip small{font-family:var(--la);font-size:9px;color:var(--ink-soft);display:block;direction:ltr;line-height:1.2;padding-bottom:2px}
 
@@ -93,7 +94,7 @@ main{padding:18px 28px 60px;min-width:0}
 .mode{background:none;border:0;border-bottom:2px solid transparent;padding:7px 12px 9px;cursor:pointer;font-family:var(--la);font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
 .mode:hover{color:var(--ink)}
 .mode[aria-selected=true]{color:var(--ink);border-bottom-color:var(--verdigris)}
-.mode .a{font-family:var(--ar);font-size:17px;margin-left:6px;direction:rtl;display:inline-block}
+.mode .a{font-family:var(--ar);font-size:15px;margin-left:6px;direction:rtl;display:inline-block;line-height:1.7;vertical-align:-2px}
 .modesep{width:1px;background:var(--rule);margin:6px 8px;flex:0 0 1px}
 .how{font-size:13px;color:var(--ink-soft);margin:0 0 18px;max-width:66ch;border-left:2px solid var(--gold);padding-left:12px}
 .how summary{cursor:pointer;font-family:var(--ut);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);list-style:none;padding:2px 0}
@@ -107,7 +108,7 @@ main{padding:18px 28px 60px;min-width:0}
 /* shared cards */
 .card{border:1px solid var(--rule);padding:18px 20px;margin-bottom:14px}
 .card.done{border-color:var(--verdigris);background:rgba(46,114,99,.05)}
-.qar{font-family:var(--ar);font-size:27px;direction:rtl;text-align:right;line-height:1.85}
+.qar{font-family:var(--ar);font-size:23px;direction:rtl;text-align:right;line-height:1.85}
 .qen{font-size:13px;color:var(--ink-soft);margin:4px 0 12px}
 .why{font-size:12.5px;color:var(--ink-soft);margin-top:10px;border-left:2px solid var(--gold);padding-left:10px}
 .tag{font-family:var(--ut);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
@@ -115,7 +116,7 @@ main{padding:18px 28px 60px;min-width:0}
 /* dialogue */
 .line{display:grid;grid-template-columns:32px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--rule);align-items:start}
 .who{font-family:var(--ut);font-size:10px;color:var(--gold);padding-top:9px}
-.line .ar{font-family:var(--ar);font-size:28px;direction:rtl;text-align:right;line-height:1.85;cursor:pointer}
+.line .ar{font-family:var(--ar);font-size:23px;direction:rtl;text-align:right;line-height:1.9;cursor:pointer}
 .line .ar:hover{color:var(--verdigris)}
 .line .en{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
 .hidden-txt{color:transparent;background:repeating-linear-gradient(90deg,var(--paper-deep) 0 14px,transparent 14px 22px);border-radius:2px}
@@ -125,7 +126,7 @@ main{padding:18px 28px 60px;min-width:0}
 
 /* ladder */
 .ladder{margin:0 0 30px;padding:0 18px 0 0;border-right:2px solid var(--paper-deep);direction:rtl}
-.rung{font-family:var(--ar);font-size:29px;line-height:1.95;direction:rtl;text-align:right;padding:4px 0;opacity:0;transform:translateX(14px);transition:opacity .38s ease,transform .38s ease;position:relative}
+.rung{font-family:var(--ar);font-size:24px;line-height:2;direction:rtl;text-align:right;padding:4px 0;opacity:0;transform:translateX(14px);transition:opacity .38s ease,transform .38s ease;position:relative}
 .rung.show{opacity:1;transform:none}
 .rung .new{color:var(--rubric)}
 .rung::before{content:"";position:absolute;right:-23px;top:1.05em;width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:0;transition:opacity .38s ease .15s}
@@ -136,19 +137,19 @@ main{padding:18px 28px 60px;min-width:0}
 
 /* substitution */
 .frame{border:1px solid var(--rule);background:var(--paper-deep);padding:18px 20px;margin-bottom:22px}
-.frame .sent{font-family:var(--ar);font-size:31px;direction:rtl;text-align:right;line-height:1.9;margin-bottom:14px}
+.frame .sent{font-family:var(--ar);font-size:25px;direction:rtl;text-align:right;line-height:1.9;margin-bottom:14px}
 .slot{color:var(--rubric);border-bottom:2px solid var(--rubric);padding:0 4px}
 .slotgroup{margin-bottom:10px}
 .slotnum{font-family:var(--ut);font-size:10px;color:var(--gold);letter-spacing:.1em;margin-bottom:4px}
 .chips{display:flex;gap:7px;flex-wrap:wrap;direction:rtl}
-.chip{font-family:var(--ar);font-size:20px;direction:rtl;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:2px 11px;cursor:pointer;line-height:1.8;color:var(--ink)}
+.chip{font-family:var(--ar);font-size:18px;direction:rtl;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:2px 11px;cursor:pointer;line-height:1.8;color:var(--ink)}
 .chip:hover{border-color:var(--verdigris)}
 .chip[aria-pressed=true]{background:var(--verdigris);border-color:var(--verdigris);color:var(--paper)}
 .frame .en{font-size:12.5px;color:var(--ink-soft);margin-top:12px}
 
 /* cloze */
 .opts{display:flex;gap:7px;flex-wrap:wrap;direction:rtl;margin-top:12px}
-.opt{font-family:var(--ar);font-size:22px;direction:rtl;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:3px 14px;cursor:pointer;line-height:1.8;color:var(--ink)}
+.opt{font-family:var(--ar);font-size:19px;direction:rtl;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:3px 14px;cursor:pointer;line-height:1.8;color:var(--ink)}
 .opt:hover{border-color:var(--verdigris)}
 .opt.right{background:var(--verdigris);border-color:var(--verdigris);color:var(--paper)}
 .opt.wrong{background:var(--rubric);border-color:var(--rubric);color:var(--paper)}
@@ -156,32 +157,32 @@ main{padding:18px 28px 60px;min-width:0}
 .gap.filled{border-bottom-color:var(--verdigris);color:var(--verdigris)}
 
 /* fix */
-.bad{font-family:var(--ar);font-size:26px;direction:rtl;text-align:right;line-height:1.85;color:var(--rubric);text-decoration:underline wavy rgba(180,50,42,.4);text-underline-offset:8px}
-.good{font-family:var(--ar);font-size:26px;direction:rtl;text-align:right;line-height:1.85;color:var(--verdigris)}
+.bad{font-family:var(--ar);font-size:22px;direction:rtl;text-align:right;line-height:1.85;color:var(--rubric);text-decoration:underline wavy rgba(180,50,42,.4);text-underline-offset:8px}
+.good{font-family:var(--ar);font-size:22px;direction:rtl;text-align:right;line-height:1.85;color:var(--verdigris)}
 
 /* transform */
 .tf .task{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:10px}
-.tf .task .ara{font-family:var(--ar);font-size:19px;direction:rtl;color:var(--rubric)}
+.tf .task .ara{font-family:var(--ar);font-size:17px;direction:rtl;color:var(--rubric);line-height:1.7}
 .tf .task .ena{font-size:11.5px;color:var(--ink-soft)}
 .arrow{font-family:var(--ut);font-size:10.5px;color:var(--gold);letter-spacing:.1em;margin:10px 0 8px}
 
 /* build */
 .drop{direction:rtl;min-height:60px;border-bottom:2px solid var(--rule);padding:8px 4px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:12px}
-.drop.empty::after{content:"اضْغَطِ الْقِطَعَ بِالتَّرْتِيبِ";font-family:var(--ar);font-size:18px;color:var(--ink-soft);opacity:.55}
+.drop.empty::after{content:"اضْغَطِ الْقِطَعَ بِالتَّرْتِيبِ";font-family:var(--ar);font-size:16px;line-height:1.8;color:var(--ink-soft);opacity:.55}
 .drop.right{border-bottom-color:var(--verdigris)}
 .drop.wrong{border-bottom-color:var(--rubric)}
-.tile{font-family:var(--ar);font-size:22px;direction:rtl;background:var(--paper-deep);border:1px solid var(--rule);border-radius:2px;padding:3px 12px;cursor:pointer;line-height:1.8;color:var(--ink)}
+.tile{font-family:var(--ar);font-size:19px;direction:rtl;background:var(--paper-deep);border:1px solid var(--rule);border-radius:2px;padding:3px 12px;cursor:pointer;line-height:1.8;color:var(--ink)}
 .tile:hover{border-color:var(--verdigris)}
 .tile.placed{background:var(--verdigris);border-color:var(--verdigris);color:var(--paper)}
 .pool{direction:rtl;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;min-height:36px}
 
 /* answer input + diff */
 .ansrow{display:flex;gap:8px;align-items:stretch;margin-top:12px;flex-wrap:wrap}
-input.ar-in{flex:1;min-width:240px;font-family:var(--ar);font-size:24px;direction:rtl;text-align:right;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:6px 12px;color:var(--ink)}
+input.ar-in{flex:1;min-width:240px;font-family:var(--ar);font-size:21px;line-height:1.7;direction:rtl;text-align:right;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:10px 12px;color:var(--ink)}
 input.ar-in:focus{border-color:var(--verdigris);outline:none}
 .mic{font-family:var(--la);font-size:13px;border:1px solid var(--rule);background:transparent;border-radius:2px;padding:6px 12px;cursor:pointer;color:var(--ink)}
 .mic.live{background:var(--rubric);border-color:var(--rubric);color:var(--paper)}
-.diff{font-family:var(--ar);font-size:25px;direction:rtl;text-align:right;line-height:1.9;margin-top:12px}
+.diff{font-family:var(--ar);font-size:21px;direction:rtl;text-align:right;line-height:1.9;margin-top:12px}
 .diff .ok{color:var(--verdigris)}
 .diff .no{color:var(--rubric);text-decoration:line-through;text-decoration-thickness:1px}
 .score{font-family:var(--ut);font-size:11px;letter-spacing:.1em;color:var(--ink-soft);margin-top:8px}
@@ -198,8 +199,8 @@ input.ar-in:focus{border-color:var(--verdigris);outline:none}
 
 /* grammar */
 .gcard{border:1px solid var(--rule);padding:16px 18px;margin-bottom:12px;background:var(--paper-deep)}
-.gcard h4{margin:0 0 6px;font-family:var(--ar);font-size:21px;direction:rtl;color:var(--rubric);font-weight:700}
-.gcard .ex{font-family:var(--ar);font-size:25px;direction:rtl;text-align:right;line-height:1.8;cursor:pointer;margin:6px 0}
+.gcard h4{margin:0 0 8px;font-family:var(--ar);font-size:18px;direction:rtl;color:var(--rubric);font-weight:700;line-height:1.65}
+.gcard .ex{font-family:var(--ar);font-size:21px;direction:rtl;text-align:right;line-height:1.8;cursor:pointer;margin:6px 0}
 .gcard .ex:hover{color:var(--verdigris)}
 .gcard p{margin:6px 0 0;font-size:13px;color:var(--ink-soft)}
 
@@ -223,7 +224,7 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
 
   /* masthead collapses; audio settings hide behind a toggle */
   .masthead{padding:12px 16px 10px;gap:10px;align-items:center}
-  .mast-l h1{font-size:27px}
+  .mast-l h1{font-size:23px}
   .mast-l .label{font-size:9px;letter-spacing:.12em}
   .setgear{display:block;align-self:center;min-height:40px}
   .voicebox{display:none;width:100%;order:3}
@@ -250,7 +251,7 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
   .units::-webkit-scrollbar{display:none}
   .unit{flex:0 0 auto;width:146px;border-left:0;border-bottom:2px solid transparent;scroll-snap-align:start;padding:8px 10px}
   .unit[aria-current=true]{border-bottom-color:var(--rubric)}
-  .unit .ar{font-size:18px}
+  .unit .ar{font-size:16px}
   .railsep{margin:14px 16px}
   .glue{padding:0 16px}
   .gluechip{min-height:40px;display:inline-flex;flex-direction:column;justify-content:center;font-size:17px;padding:2px 10px}
@@ -261,19 +262,19 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;box-shadow:0 6px 10px -8px rgba(23,38,43,.28)}
   .modes::-webkit-scrollbar{display:none}
   .mode{min-height:46px;padding:8px 12px;font-size:12px;scroll-snap-align:center}
-  .mode .a{font-size:16px}
+  .mode .a{font-size:14px}
   .modesep{margin:10px 5px}
   .how{margin-top:14px}
 
   /* readable Arabic: bigger, looser, so the harakat survive */
-  .line .ar{font-size:26px;line-height:2}
-  .rung{font-size:25px;line-height:2.05}
-  .frame .sent,.qar{font-size:26px;line-height:1.95}
-  .bad,.good,.diff{font-size:24px;line-height:1.95}
-  .gcard .ex{font-size:23px}
+  .line .ar{font-size:21px;line-height:2.05}
+  .rung{font-size:21px;line-height:2.1}
+  .frame .sent,.qar{font-size:21px;line-height:2}
+  .bad,.good,.diff{font-size:20px;line-height:2}
+  .gcard .ex{font-size:19px}
 
   /* everything tappable gets a real target */
-  .chip,.tile,.opt{min-height:44px;display:inline-flex;align-items:center;padding:4px 14px;font-size:21px}
+  .chip,.tile,.opt{min-height:44px;display:inline-flex;align-items:center;padding:4px 14px;font-size:18px}
   .btn{min-height:42px;padding:8px 14px}
   .say{min-height:34px;display:inline-flex;align-items:center;padding:2px 10px}
   .rb{min-height:44px;padding:6px 18px;font-size:13px}
@@ -287,7 +288,7 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
   /* cards + inputs */
   .card,.frame,.gcard{padding:14px 14px;margin-bottom:12px}
   .ansrow{flex-direction:column}
-  input.ar-in{width:100%;min-width:0;font-size:22px;min-height:50px}
+  input.ar-in{width:100%;min-width:0;font-size:20px;min-height:50px}
   .ansrow .btn,.ansrow .mic{width:100%;min-height:46px}
   .drop{min-height:66px}
   .line{grid-template-columns:26px 1fr;gap:9px}
@@ -298,11 +299,11 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
 
 /* ── small phone ────────────────────────────── */
 @media (max-width:400px){
-  .mast-l h1{font-size:24px}
-  .line .ar,.frame .sent,.qar{font-size:23px}
-  .rung{font-size:22px}
-  .bad,.good,.diff{font-size:21px}
-  .chip,.tile,.opt{font-size:19px}
+  .mast-l h1{font-size:21px}
+  .line .ar,.frame .sent,.qar{font-size:19px}
+  .rung{font-size:19px}
+  .bad,.good,.diff{font-size:18px}
+  .chip,.tile,.opt{font-size:17px}
   .unit{width:132px}
 }
 
@@ -339,8 +340,8 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     <div class="voicerow">
       <select id="voice" aria-label="Arabic voice"></select>
       <label class="label" for="rate">Speed</label>
-      <input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="0.85">
-      <span class="label" id="ratev">0.85×</span>
+      <input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="0.8">
+      <span class="label" id="ratev">0.80×</span>
       <button class="btn" id="stop">Stop</button>
     </div>
     <div class="warn" id="warn" hidden></div>
@@ -1549,19 +1550,48 @@ function scrollTo(el,opts){try{if(el&&typeof el.scrollIntoView==='function')el.s
 function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
 
 /* ── speech out ─────────────────────────────────────────── */
-let voices=[],chosen=null,rateV=0.85,queue=null;
+let voices=[],chosen=null,rateV=0.8,queue=null;
 const sel=document.getElementById('voice'),warn=document.getElementById('warn');
+/* Device voices vary enormously. Rank them so the best available is picked by
+   default: enhanced/premium packs first, then Siri, then MSA locales over regional. */
+function voiceScore(v){
+  const n=(v.name||'').toLowerCase(), l=(v.lang||'').toLowerCase();
+  let s=0;
+  if(/enhanced|premium|neural|natural/.test(n)) s+=60;   // downloadable HQ packs
+  if(/siri/.test(n))                            s+=25;
+  if(v.localService===false)                    s+=15;   // server voices are usually better
+  if(/^ar-sa/.test(l))                          s+=10;   // MSA reference accent
+  else if(/^ar-(eg|ae|jo)/.test(l))             s+=6;
+  if(/compact/.test(n))                         s-=25;   // low-quality fallback pack
+  return s;
+}
+function isBasic(v){ return /compact/i.test(v.name||'') || (voiceScore(v)<=10); }
+
 function loadVoices(){
-  voices=(speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang));
+  voices=(speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang))
+          .sort((a,b)=>voiceScore(b)-voiceScore(a));
   sel.innerHTML='';
   if(!voices.length){
     sel.innerHTML='<option>No Arabic voice</option>';sel.disabled=true;warn.hidden=false;
-    warn.textContent="No Arabic voice on this device. Every drill still works except dictation — add an Arabic voice in your system settings to turn audio on.";
+    warn.innerHTML="No Arabic voice on this device. Every drill still works except dictation.<br>"+
+      "<b>iPhone:</b> Settings → Accessibility → Spoken Content → Voices → Arabic.<br>"+
+      "<b>Android:</b> Settings → Accessibility → Text-to-speech → install Arabic.";
     return;
   }
-  warn.hidden=true;sel.disabled=false;
-  voices.forEach((v,i)=>{const o=document.createElement('option');o.value=i;o.textContent=v.name+' ('+v.lang+')';sel.appendChild(o)});
+  sel.disabled=false;
+  voices.forEach((v,i)=>{
+    const o=document.createElement('option');o.value=i;
+    o.textContent=v.name+' ('+v.lang+')'+(isBasic(v)?' — basic':'');
+    sel.appendChild(o);
+  });
   chosen=voices[0];
+  if(isBasic(chosen)){
+    warn.hidden=false;
+    warn.innerHTML="This device only has the basic Arabic voice, which is rough. "+
+      "A far clearer one is a free download:<br><b>iPhone:</b> Settings → Accessibility → "+
+      "Spoken Content → Voices → Arabic → tap the ⤓ next to an <i>Enhanced</i> voice.<br>"+
+      "<b>Android:</b> Settings → Accessibility → Text-to-speech → Google TTS → install Arabic.";
+  } else { warn.hidden=true; }
 }
 speechSynthesis.onvoiceschanged=loadVoices;loadVoices();
 sel.onchange=()=>{chosen=voices[sel.value]};
@@ -1573,7 +1603,8 @@ function say(text,el,after){
   speechSynthesis.cancel();
   document.querySelectorAll('.speaking').forEach(e=>e.classList.remove('speaking'));
   const u=new SpeechSynthesisUtterance(text);
-  u.lang='ar-SA';u.rate=rateV;
+  u.lang=(chosen&&chosen.lang)||'ar-SA';
+  u.rate=rateV;u.pitch=1;u.volume=1;
   if(chosen)u.voice=chosen;
   if(el)el.classList.add('speaking');
   u.onend=()=>{if(el)el.classList.remove('speaking');if(after)after()};

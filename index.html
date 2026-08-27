@@ -6,8 +6,8 @@
 <title>Sign in — بين يديك</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=622">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css?v=624">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#F1ECE0">
@@ -15,9 +15,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>
 .screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px}
-.word{font-family:var(--ar);direction:rtl;font-size:clamp(56px,12vw,88px);font-weight:700;line-height:1}
+.word{font-family:var(--ar);direction:rtl;font-size:clamp(40px,9vw,62px);font-weight:600;line-height:1.6;padding:6px 0}
 .word span{color:var(--rubric)}
-.sub{font-family:var(--ar);direction:rtl;font-size:clamp(18px,4vw,24px);color:var(--verdigris);margin-top:12px}
+.sub{font-family:var(--ar);direction:rtl;font-size:clamp(16px,3.4vw,21px);line-height:1.75;color:var(--verdigris);margin-top:12px}
 .card{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:32px 36px;margin-top:38px;width:min(380px,100%);text-align:left}
 .card .label{margin-bottom:20px;text-align:center}
 .field{margin-bottom:16px}
@@ -33,6 +33,7 @@
   <div class="sub">تَعَلَّمِ الْعَرَبِيَّةَ</div>
   <form class="card" id="loginForm">
     <div class="label">Sign in to continue</div>
+    <div class="field"><label for="nm">Your name</label><input id="nm" type="text" placeholder="What should we call you?" autocomplete="given-name"></div>
     <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="you@example.com"></div>
     <div class="field"><label for="pw">Password</label><input id="pw" type="password" placeholder="••••••••"></div>
     <button class="btn" type="submit">Login</button>
@@ -40,9 +41,14 @@
   </form>
 </main>
 <script>
+  try{ const n=localStorage.getItem('bay_name'); if(n) document.getElementById('nm').value=n; }catch(_){}
   document.getElementById('loginForm').addEventListener('submit', function(e){
     e.preventDefault();
-    try { localStorage.setItem('bay_loggedIn','1'); } catch(_){}
+    try {
+      localStorage.setItem('bay_loggedIn','1');
+      const nm=(document.getElementById('nm').value||'').trim();
+      if(nm) localStorage.setItem('bay_name', nm);
+    } catch(_){}
     window.location.href = 'dashboard.html';
   });
 </script>

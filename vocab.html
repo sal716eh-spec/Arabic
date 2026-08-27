@@ -6,8 +6,8 @@
 <title>Vocabulary — بين يديك</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=622">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css?v=624">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#F1ECE0">
@@ -35,7 +35,7 @@
 table{width:100%;border-collapse:collapse}
 th{text-align:left;font-family:var(--ut);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding:10px 12px;border-bottom:1px solid var(--rule)}
 td{padding:12px;border-bottom:1px solid var(--rule);font-size:15px;vertical-align:middle}
-td.ar{font-family:var(--ar);direction:rtl;font-size:22px;text-align:right;width:32%}
+td.ar{font-family:var(--ar);direction:rtl;font-size:20px;line-height:1.75;text-align:right;width:32%}
 td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
 .status{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-soft)}
 .dot{width:8px;height:8px;border-radius:50%;flex:none}
@@ -49,7 +49,7 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
 .stage{display:flex;justify-content:center}
 .tcard{background:var(--card);border:1px solid var(--rule);border-radius:10px;width:min(560px,100%);padding:48px 36px;text-align:center}
 .tcard .label{margin-bottom:22px}
-.tcard .ar{font-family:var(--ar);direction:rtl;font-size:clamp(48px,10vw,72px);font-weight:700;line-height:1.1}
+.tcard .ar{font-family:var(--ar);direction:rtl;font-size:clamp(36px,7.5vw,54px);font-weight:600;line-height:1.6;padding:8px 0}
 .reveal{margin-top:26px;padding-top:22px;border-top:1px solid var(--rule);display:none}
 .reveal.show{display:block}
 .reveal .en{font-size:22px}
@@ -57,7 +57,7 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
 .actions{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .hint{margin-top:16px;font-size:12px;color:var(--ink-soft)}
 .done{text-align:center;padding:50px 20px}
-.done .ar{font-family:var(--ar);direction:rtl;font-size:56px;color:var(--verdigris)}
+.done .ar{font-family:var(--ar);direction:rtl;font-size:42px;line-height:1.6;padding:4px 0;color:var(--verdigris)}
 .done h2{font-size:22px;margin-top:14px}
 .done p{color:var(--ink-soft);margin-top:8px}
 .speak{background:none;border:1px solid var(--rule);border-radius:3px;padding:8px 14px;font-family:var(--la);font-size:13px;color:var(--ink-soft);cursor:pointer;margin-top:18px}
@@ -154,7 +154,7 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
   </section>
 </main>
 
-<script src="vocab-data.js?v=622"></script>
+<script src="vocab-data.js?v=624"></script>
 <script>
 /* ---------- Leitner spaced repetition ----------
    Each word sits in a box (1..5). Higher box = longer gap.
@@ -282,12 +282,26 @@ function resetProgress(){
 
 /* ---- speech ---- */
 function speakCurrent(){ speak(current && current.ar); }
+function voiceScore(v){
+  const n=(v.name||'').toLowerCase(), l=(v.lang||'').toLowerCase();
+  let s=0;
+  if(/enhanced|premium|neural|natural/.test(n)) s+=60;
+  if(/siri/.test(n)) s+=25;
+  if(v.localService===false) s+=15;
+  if(/^ar-sa/.test(l)) s+=10; else if(/^ar-(eg|ae|jo)/.test(l)) s+=6;
+  if(/compact/.test(n)) s-=25;
+  return s;
+}
+function bestArabicVoice(){
+  const list=(speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang));
+  return list.sort((a,b)=>voiceScore(b)-voiceScore(a))[0]||null;
+}
 function speak(text){
   if(!text || !('speechSynthesis' in window)) return;
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'ar-SA'; u.rate = .85;
-  const ar = speechSynthesis.getVoices().find(v=>/ar/i.test(v.lang));
-  if(ar) u.voice = ar;
+  const v = bestArabicVoice();
+  u.lang = (v&&v.lang)||'ar-SA'; u.rate = .8; u.pitch = 1;
+  if(v) u.voice = v;
   speechSynthesis.cancel(); speechSynthesis.speak(u);
 }
 
