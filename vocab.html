@@ -25,6 +25,13 @@
 /* full list */
 .search{border:1px solid var(--rule);border-radius:3px;background:var(--card);height:40px;display:flex;align-items:center;padding:0 12px;margin-bottom:14px}
 .search input{border:none;background:none;width:100%;font-family:var(--la);font-size:14px;color:var(--ink);outline:none}
+.filters{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.filters .search{flex:1;min-width:180px;margin-bottom:0}
+#unitFilter{border:1px solid var(--rule);border-radius:3px;background:var(--card);height:40px;padding:0 10px;font-family:var(--la);font-size:14px;color:var(--ink);min-width:150px}
+.summary{font-family:var(--ut);font-size:11px;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:12px}
+.pace{margin-top:22px;text-align:center;font-size:13px;color:var(--ink-soft)}
+.pace select{border:1px solid var(--rule);border-radius:3px;background:var(--card);height:34px;padding:0 8px;font-family:var(--la);font-size:13px;color:var(--ink);margin:0 4px}
+@media (max-width:860px){ .filters{flex-direction:column} #unitFilter{width:100%} }
 table{width:100%;border-collapse:collapse}
 th{text-align:left;font-family:var(--ut);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding:10px 12px;border-bottom:1px solid var(--rule)}
 td{padding:12px;border-bottom:1px solid var(--rule);font-size:15px;vertical-align:middle}
@@ -32,7 +39,7 @@ td.ar{font-family:var(--ar);direction:rtl;font-size:22px;text-align:right;width:
 td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
 .status{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-soft)}
 .dot{width:8px;height:8px;border-radius:50%;flex:none}
-.dot.new{background:var(--rubric)}.dot.learning{background:var(--gold)}.dot.known{background:var(--verdigris)}
+.dot.new{background:var(--rule)}.dot.seen{background:var(--rubric)}.dot.learning{background:var(--gold)}.dot.known{background:var(--verdigris)}
 
 /* daily test */
 .progress{display:flex;align-items:center;gap:14px;margin-bottom:26px}
@@ -120,6 +127,14 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
       <h2>All done for today</h2>
       <p id="doneMsg">You've reviewed every word due today.</p>
     </div>
+    <div class="pace">
+      New words a day:
+      <select id="paceSel" onchange="setNewPerDay(this.value)">
+        <option value="5">5</option><option value="8">8</option><option value="12">12</option>
+        <option value="20">20</option><option value="30">30</option>
+      </select>
+      — reviews always come first
+    </div>
     <div class="reset">
       <button class="btn danger" onclick="resetProgress()">Reset all progress</button>
     </div>
@@ -127,7 +142,11 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
 
   <!-- FULL LIST -->
   <section id="panelList" class="panel">
-    <div class="search"><input id="searchBox" type="text" placeholder="Search Arabic, English or transliteration…" oninput="renderList()"></div>
+    <div class="filters">
+      <div class="search"><input id="searchBox" type="text" placeholder="Search Arabic, English or transliteration…" oninput="renderList()"></div>
+      <select id="unitFilter" onchange="renderList()"><option value="">All 16 units</option></select>
+    </div>
+    <div class="summary" id="listSummary"></div>
     <table>
       <thead><tr><th>Arabic</th><th>English</th><th>Transliteration</th><th>Status</th></tr></thead>
       <tbody id="listBody"></tbody>
@@ -156,19 +175,24 @@ function loadProgress(){
 function saveProgress(p){
   try { localStorage.setItem(STORE_KEY, JSON.stringify(p)); } catch(_){}
 }
-// ensure every word has a record; new words are due today (box 1, due now)
+// New words start unscheduled (box 0). buildQueue introduces them a few at a time —
+// with 600+ words, marking them all due on day one would serve an unusable pile.
 function ensure(p){
   let changed=false;
   VOCAB.forEach(w=>{
-    if(!p[w.id]){ p[w.id]={box:1, due:today()}; changed=true; }
+    if(!p[w.id]){ p[w.id]={box:0, due:null}; changed=true; }
   });
   if(changed) saveProgress(p);
   return p;
 }
+const NEW_KEY='bay_vocab_newperday';
+function newPerDay(){ const v=parseInt(localStorage.getItem(NEW_KEY),10); return (v>0&&v<=100)?v:12; }
+function setNewPerDay(n){ try{localStorage.setItem(NEW_KEY,n)}catch(_){} startTest(); }
 function statusOf(rec){
+  if(!rec || rec.box===0) return 'new';
   if(rec.box>=4) return 'known';
   if(rec.box>=2) return 'learning';
-  return 'new';
+  return 'seen';
 }
 
 let progress = ensure(loadProgress());
@@ -177,9 +201,20 @@ let current = null;
 
 function buildQueue(){
   const t = today();
-  queue = VOCAB.filter(w => progress[w.id].due <= t);
-  // stable-ish shuffle
-  queue.sort(()=>Math.random()-0.5);
+  // due reviews first, shuffled
+  const due = VOCAB.filter(w => progress[w.id].box>0 && progress[w.id].due <= t);
+  due.sort(()=>Math.random()-0.5);
+  // then a capped batch of new words, taken in book order so you work through the units
+  const fresh = VOCAB.filter(w => progress[w.id].box===0).slice(0, newPerDay());
+  queue = due.concat(fresh);
+}
+function counts(){
+  const t=today(); let due=0,fresh=0,learning=0,known=0;
+  VOCAB.forEach(w=>{const r=progress[w.id];
+    if(r.box===0){fresh++;return}
+    if(r.due<=t)due++;
+    if(r.box>=4)known++; else learning++;});
+  return {due,fresh,learning,known,total:VOCAB.length};
 }
 
 function showTab(which){
@@ -228,7 +263,7 @@ function revealCard(){
 }
 function grade(gotIt){
   const rec = progress[current.id];
-  if(gotIt){ rec.box = Math.min(5, rec.box+1); }
+  if(gotIt){ rec.box = Math.min(5, Math.max(1, rec.box)+ (rec.box?1:0)); }
   else { rec.box = 1; }
   rec.due = today() + GAPS[rec.box];
   saveProgress(progress);
@@ -239,7 +274,7 @@ function grade(gotIt){
 function resetProgress(){
   if(!confirm('Reset progress for all words? This clears every box and due date.')) return;
   progress = {};
-  VOCAB.forEach(w=> progress[w.id]={box:1, due:today()});
+  VOCAB.forEach(w=> progress[w.id]={box:0, due:null});
   saveProgress(progress);
   startTest();
   renderList();
@@ -259,17 +294,33 @@ function speak(text){
 /* ---- full list ---- */
 function renderList(){
   const q = (document.getElementById('searchBox').value||'').trim().toLowerCase();
-  const rows = VOCAB.filter(w=>{
+  const uf = document.getElementById('unitFilter').value;
+  const matched = VOCAB.filter(w=>{
+    if(uf && w.unit!==uf) return false;
     if(!q) return true;
     return (w.ar.includes(q)||w.en.toLowerCase().includes(q)||w.tr.toLowerCase().includes(q));
-  }).map(w=>{
+  });
+  const c=counts();
+  document.getElementById('listSummary').textContent =
+    matched.length+' shown · '+c.total+' words total · '+c.known+' known · '+c.learning+' learning · '+c.fresh+' not started';
+  const rows = matched.map(w=>{
     const st = statusOf(progress[w.id]);
-    const stLabel = st==='known'?'Known':st==='learning'?'Learning':'New';
+    const stLabel = st==='known'?'Known':st==='learning'?'Learning':st==='seen'?'Just started':'New';
     return '<tr><td class="ar">'+w.ar+'</td><td>'+w.en+'</td><td class="tr">'+w.tr+
            '</td><td><span class="status"><span class="dot '+st+'"></span>'+stLabel+'</span></td></tr>';
   }).join('');
   document.getElementById('listBody').innerHTML = rows || '<tr><td colspan="4" style="color:var(--ink-soft);padding:20px 12px">No matches.</td></tr>';
 }
+
+// populate the unit filter and the pace control
+(function initControls(){
+  const sel=document.getElementById('unitFilter');
+  [...new Set(VOCAB.map(w=>w.unit))].sort((a,b)=>a-b).forEach(u=>{
+    const n=VOCAB.filter(w=>w.unit===u).length;
+    const o=document.createElement('option'); o.value=u; o.textContent='Unit '+u+' ('+n+')'; sel.appendChild(o);
+  });
+  const p=document.getElementById('paceSel'); if(p) p.value=String(newPerDay());
+})();
 
 // warm up voices, then start
 if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged = ()=>{}; }

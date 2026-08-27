@@ -11,7 +11,7 @@ Two halves that work on the same problem from different ends: a **vocabulary** t
 | `index.html` | Sign-in screen. Placeholder — any details take you through. |
 | `dashboard.html` | Entry point; shows what's due in both halves |
 | `vocab.html` | Daily spaced-repetition review + searchable word list |
-| `vocab-data.js` | The word list. Add words here. |
+| `vocab-data.js` | 622 words, units 1–16, from the book's own printed lists |
 | `drills.html` | Twelve drill modes across units 1–12 |
 | `site.css` | Shared palette, nav and buttons |
 
@@ -27,7 +27,7 @@ The two halves keep separate schedules, on purpose — single words and whole se
 
 | | Store | Boxes |
 |---|---|---|
-| Vocab | `bay_vocab_progress_v1` | 1, 2, 4, 8, 16 days |
+| Vocab | `bay_vocab_progress_v1` | 1, 2, 4, 8, 16 days · 12 new words/day by default |
 | Drills | `bay_drills_progress_v1` | 1, 3, 7, 21, 60 days |
 
 Both use `localStorage`, so progress is per-device and per-browser. The dashboard reads both and reports them side by side.
@@ -43,7 +43,7 @@ Audio needs an Arabic voice on the device; microphone input needs Chrome or anot
 ## Known gaps
 
 - **The sign-in is cosmetic.** No accounts, no server, nothing checked — it sets a flag and moves on. Don't put anything private behind it.
-- **`vocab-data.js` is a 30-word demo set** covering units 1.1–1.2. Extending it is the obvious next job; the drills side already covers units 1–12.
+- **English glosses and transliteration in `vocab-data.js` are editorial** — the book prints Arabic only. Worth spot-checking with a teacher.
 - Units 13–16 are not in the drills yet.
 
 ## Caveats

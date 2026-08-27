@@ -79,9 +79,15 @@ function read(k){try{return JSON.parse(localStorage.getItem(k))||null}catch(_){r
   const p=read('bay_vocab_progress_v1');
   const total=(typeof VOCAB!=='undefined')?VOCAB.length:0;
   if(!p){el.textContent=total?total+' words waiting — nothing started yet':'No word list loaded';return}
-  let due=0,known=0;
-  Object.values(p).forEach(r=>{if(r.due<=dayNow)due++;if(r.box>=4)known++});
-  el.innerHTML=`<b>${due}</b> due today · ${known} known of ${total}`;
+  let due=0,known=0,started=0;
+  Object.values(p).forEach(r=>{
+    if(!r||!r.box)return;                       // box 0 = not introduced yet
+    started++;
+    if(r.due!=null&&r.due<=dayNow)due++;
+    if(r.box>=4)known++;
+  });
+  const fresh=total-started;
+  el.innerHTML=`<b>${due}</b> due today · ${known} known · ${fresh} not started of ${total}`;
 })();
 
 (function drillStat(){
