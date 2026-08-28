@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=627">
+<link rel="stylesheet" href="site.css?v=700">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#F1ECE0">
@@ -57,7 +57,12 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
 .actions{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .hint{margin-top:16px;font-size:12px;color:var(--ink-soft)}
 .done{text-align:center;padding:50px 20px}
-.done .ar{font-family:var(--ar);direction:rtl;font-size:42px;line-height:1.6;padding:4px 0;color:var(--verdigris)}
+.done .ar{font-family:var(--ar);direction:rtl;font-size:38px;line-height:1.6;padding:4px 0;color:var(--verdigris)}
+.done .next{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.done .next a{display:inline-block;padding:11px 18px;border:1px solid var(--rule);border-radius:4px;
+  text-decoration:none;color:var(--ink);font-size:14px;background:var(--card)}
+.done .next a.primary{background:var(--verdigris);border-color:var(--verdigris);color:#fff}
+@media (max-width:860px){ .done .next{flex-direction:column} .done .next a{width:100%} }
 .done h2{font-size:22px;margin-top:14px}
 .done p{color:var(--ink-soft);margin-top:8px}
 .speak{background:none;border:1px solid var(--rule);border-radius:3px;padding:8px 14px;font-family:var(--la);font-size:13px;color:var(--ink-soft);cursor:pointer;margin-top:18px}
@@ -101,10 +106,12 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
   <!-- DAILY TEST -->
   <section id="panelTest" class="panel on">
     <div id="testActive">
-      <div class="progress">
-        <span class="count" id="posLabel">—</span>
-        <div class="bar"><i id="barFill"></i></div>
-        <span class="count" id="leftLabel">—</span>
+      <div class="sessionbar">
+        <div class="ring" id="ring"><span id="ringPct">0%</span></div>
+        <div class="meta">
+          <b id="posLabel">—</b>
+          <span id="leftLabel">—</span>
+        </div>
       </div>
       <div class="stage">
         <div class="tcard">
@@ -126,6 +133,10 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
       <div class="ar">أَحْسَنْت</div>
       <h2>All done for today</h2>
       <p id="doneMsg">You've reviewed every word due today.</p>
+      <div class="next">
+        <a class="primary" href="drills.html">Practise speaking →</a>
+        <a href="#" onclick="showTab('list');return false;">Browse the word list</a>
+      </div>
     </div>
     <div class="pace">
       New words a day:
@@ -154,7 +165,7 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
   </section>
 </main>
 
-<script src="vocab-data.js?v=627"></script>
+<script src="vocab-data.js?v=700"></script>
 <script>
 /* ---------- Leitner spaced repetition ----------
    Each word sits in a box (1..5). Higher box = longer gap.
@@ -252,9 +263,11 @@ function nextCard(fresh){
   updateProgressUI();
 }
 function updateProgressUI(){
-  document.getElementById('posLabel').textContent = 'Word '+(doneCount+1)+' of '+total+' due today';
-  document.getElementById('leftLabel').textContent = queue.length+' left';
-  document.getElementById('barFill').style.width = (total? (doneCount/total*100):0)+'%';
+  const pct = total? (doneCount/total*100) : 0;
+  document.getElementById('posLabel').textContent = 'Word '+(doneCount+1)+' of '+total;
+  document.getElementById('leftLabel').textContent = queue.length+' left in today\u2019s session';
+  const ring=document.getElementById('ring');
+  if(ring){ ring.style.setProperty('--pct', pct); document.getElementById('ringPct').textContent = Math.round(pct)+'%'; }
 }
 function revealCard(){
   document.getElementById('reveal').classList.add('show');
@@ -371,5 +384,10 @@ if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged = syncAudioUI; 
 startTest();
 renderList();
 </script>
+<nav class="tabbar" aria-label="Sections">
+  <a class="" href="dashboard.html"><span class="ti">الرَّئِيسَة</span>Home</a>
+  <a class="on" href="vocab.html"><span class="ti">مُفْرَدات</span>Vocab</a>
+  <a class="" href="drills.html"><span class="ti">تَدْرِيبات</span>Drills</a>
+</nav>
 </body>
 </html>

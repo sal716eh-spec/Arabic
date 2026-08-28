@@ -97,12 +97,46 @@ body.no-audio .tf .src,body.no-audio .good{cursor:default}
 
 /* main */
 main{padding:18px 28px 60px;min-width:0}
-.modes{display:flex;gap:2px;border-bottom:1px solid var(--rule);margin-bottom:20px;overflow-x:auto;scrollbar-width:thin}
-.mode{background:none;border:0;border-bottom:2px solid transparent;padding:7px 12px 9px;cursor:pointer;font-family:var(--la);font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
-.mode:hover{color:var(--ink)}
-.mode[aria-selected=true]{color:var(--ink);border-bottom-color:var(--verdigris)}
-.mode .a{font-family:var(--ar);font-size:15px;margin-left:6px;direction:rtl;display:inline-block;line-height:1.7;vertical-align:-2px}
-.modesep{width:1px;background:var(--rule);margin:6px 8px;flex:0 0 1px}
+/* Ribbon: four categories on top, the drills inside one of them below.
+   Neither row exceeds the 4–5 item ceiling where tap targets start to crowd. */
+.ribbon{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule);margin-bottom:20px}
+.rgroups{display:flex;gap:6px;padding:4px 0 0}
+.rgroup{position:relative;flex:1 1 0;min-width:0;background:var(--paper-deep);border:1px solid var(--rule);border-bottom:none;
+  border-radius:6px 6px 0 0;padding:9px 8px 8px;cursor:pointer;font-family:var(--la);color:var(--ink-soft);
+  display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.2;transition:background .15s,color .15s}
+.rgroup:hover{color:var(--ink)}
+.rgroup[aria-selected=true]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.rgroup .ge{font-size:12.5px;font-weight:500}
+.rgroup .ga{font-family:var(--ar);font-size:13px;direction:rtl;line-height:1.6;opacity:.75}
+.rgroup .gdot{position:absolute;top:6px;right:8px;width:6px;height:6px;border-radius:50%;background:var(--rubric)}
+.rmodes{display:flex;gap:3px;padding:5px 0 0;overflow-x:auto;scrollbar-width:none;background:var(--ink);
+  border-radius:0 6px 0 0;padding:6px 6px}
+.rmodes::-webkit-scrollbar{display:none}
+.rmode{flex:0 0 auto;background:transparent;border:1px solid transparent;border-radius:4px;padding:6px 11px;
+  cursor:pointer;font-family:var(--la);font-size:12.5px;color:rgba(241,236,224,.62);white-space:nowrap;
+  display:flex;align-items:center;gap:7px}
+.rmode:hover{color:var(--paper);background:rgba(241,236,224,.08)}
+.rmode[aria-selected=true]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.rmode .ma{font-family:var(--ar);font-size:14px;direction:rtl;line-height:1.7;opacity:.8}
+.rmode .cnt{font-family:var(--ut);font-size:9.5px;padding:1px 5px;border-radius:8px;
+  background:rgba(241,236,224,.14);color:inherit}
+.rmode[aria-selected=true] .cnt{background:var(--paper-deep);color:var(--ink-soft)}
+.rmode .cnt.due{background:var(--rubric);color:var(--paper)}
+
+/* Bottom bar: three destinations, within thumb reach. Mobile only. */
+.tabbar{display:none}
+@media (max-width:860px){
+  .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--paper);
+    border-top:1px solid var(--rule);padding-bottom:env(safe-area-inset-bottom);
+    box-shadow:0 -6px 14px -10px rgba(23,38,43,.35)}
+  .tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 4px 8px;
+    font-size:11px;color:var(--ink-soft);text-decoration:none;min-height:52px;justify-content:center}
+  .tabbar a .ti{font-family:var(--ar);font-size:17px;line-height:1.5}
+  .tabbar a.on{color:var(--ink)}
+  .tabbar a.on .ti{color:var(--rubric)}
+  body{padding-bottom:60px}
+  .nav{display:none}
+}
 .how{font-size:13px;color:var(--ink-soft);margin:0 0 18px;max-width:66ch;border-left:2px solid var(--gold);padding-left:12px}
 .how summary{cursor:pointer;font-family:var(--ut);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);list-style:none;padding:2px 0}
 .how summary::-webkit-details-marker{display:none}
@@ -265,12 +299,13 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
 
   /* mode tabs stick to the top while you scroll a long drill list */
   main{padding:0 14px calc(60px + env(safe-area-inset-bottom));position:relative}
-  .modes{position:sticky;top:0;z-index:20;background:var(--paper);margin:0 -14px 16px;padding:0 14px;
-    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;box-shadow:0 6px 10px -8px rgba(23,38,43,.28)}
-  .modes::-webkit-scrollbar{display:none}
-  .mode{min-height:46px;padding:8px 12px;font-size:12px;scroll-snap-align:center}
-  .mode .a{font-size:14px}
-  .modesep{margin:10px 5px}
+  .ribbon{margin:0 -14px 16px;padding:0 14px;box-shadow:0 6px 10px -8px rgba(23,38,43,.28)}
+  .rgroup{padding:8px 4px 7px;min-height:50px}
+  .rgroup .ge{font-size:11.5px}
+  .rgroup .ga{font-size:12px}
+  .rmodes{margin:0 -14px;padding:6px 14px;border-radius:0}
+  .rmode{min-height:44px;font-size:12px;padding:6px 10px}
+  .rmode .ma{font-size:13px}
   .how{margin-top:14px}
 
   /* readable Arabic: bigger, looser, so the harakat survive */
@@ -375,11 +410,19 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     </div>
   </nav>
   <main>
-    <div class="modes" id="modes" role="tablist"></div>
+    <div class="ribbon">
+      <div class="rgroups" id="rgroups" role="tablist" aria-label="Drill category"></div>
+      <div class="rmodes"  id="rmodes"  role="tablist" aria-label="Drill"></div>
+    </div>
     <div id="panel"></div>
   </main>
 </div>
 
+<nav class="tabbar" aria-label="Sections">
+  <a href="dashboard.html"><span class="ti">الرَّئِيسَة</span>Home</a>
+  <a href="vocab.html"><span class="ti">مُفْرَدات</span>Vocab</a>
+  <a class="on" href="drills.html"><span class="ti">تَدْرِيبات</span>Drills</a>
+</nav>
 <footer>
   Built from the vocabulary lists printed at the back of your own books — Part 1 pp. 257–258, Part 2 pp. 259–260.
   Vowel marks, model answers and the grammar notes are a study aid: worth spot-checking against your teacher, especially case endings.
@@ -1435,11 +1478,18 @@ const GLUE=[["وَ","and"],["ثُمَّ","then"],["بَعْدَ ذَلِكَ","a
 ["دائِمًا","always"],["جِدًّا","very"],["قَلِيلًا","a little"],["مَثَلًا","for example"],
 ["أَوَّلًا","first"],["أَخِيرًا","finally"],["فِي الْحَقِيقَةِ","actually"],["إِلَّا","except"]];
 
-const MODES=[
- ["dialogue","الحِوار","Dialogue"],["roleplay","تَمْثِيلُ الدَّوْر","Role-play"],["dictation","الإِمْلاء","Dictation"],"|",
- ["ladder","سُلَّمُ التَّوْسِيع","Ladder"],["sub","الاسْتِبْدال","Substitution"],["build","التَّرْتِيب","Build it"],"|",
- ["transform","التَّحْوِيل","Transform"],["cloze","الفَراغات","Gap-fill"],["fix","التَّصْحِيح","Fix it"],["grammar","التَّراكِيب","Structures"],"|",
- ["produce","الإِنْتاج","Produce"],["review","المُراجَعَة","Review"]];
+const GROUPS=[
+ {k:'listen',  en:'Listen',  ar:'اسْتِماع', modes:[
+    ["dialogue","الحِوار","Dialogue"],["roleplay","تَمْثِيلُ الدَّوْر","Role-play"],["dictation","الإِمْلاء","Dictation"]]},
+ {k:'build',   en:'Build',   ar:'تَرْكِيب', modes:[
+    ["ladder","سُلَّمُ التَّوْسِيع","Ladder"],["sub","الاسْتِبْدال","Substitution"],["build","التَّرْتِيب","Build it"]]},
+ {k:'grammar', en:'Grammar', ar:'قَواعِد', modes:[
+    ["transform","التَّحْوِيل","Transform"],["cloze","الفَراغات","Gap-fill"],["fix","التَّصْحِيح","Fix it"],["grammar","التَّراكِيب","Structures"]]},
+ {k:'speak',   en:'Speak',   ar:'إِنْتاج', modes:[
+    ["produce","الإِنْتاج","Produce"],["review","المُراجَعَة","Review"]]},
+];
+const MODES=GROUPS.flatMap(g=>g.modes);
+const groupOf=m=>(GROUPS.find(g=>g.modes.some(x=>x[0]===m))||GROUPS[0]).k;
 
 const HOW={
  dialogue:"Listen through once with English hidden. Then play line by line and say each line after the voice, matching its rhythm rather than its individual words. Finally hide the Arabic and rebuild each line from the English.",
@@ -1918,7 +1968,7 @@ const RENDER={
 
 /* ── state + chrome ─────────────────────────────────────── */
 let unit=0,mode='dialogue',showEn=true,showAr=true,myRole=null;
-const railEl=document.getElementById('units'),panel=document.getElementById('panel'),modesEl=document.getElementById('modes');
+const railEl=document.getElementById('units'),panel=document.getElementById('panel');
 
 DATA.forEach((u,i)=>{
   const b=document.createElement('button');b.className='unit';b.type='button';
@@ -1939,12 +1989,46 @@ GLUE.forEach(([a,e])=>{
   const b=document.createElement('button');b.className='gluechip';b.type='button';
   b.innerHTML=`<small>${e}</small>${a}`;b.onclick=()=>say(a,null);glueEl.appendChild(b);
 });
-MODES.forEach(m=>{
-  if(m==='|'){const s=document.createElement('div');s.className='modesep';modesEl.appendChild(s);return}
-  const b=document.createElement('button');b.className='mode';b.type='button';b.setAttribute('role','tab');
-  b.dataset.k=m[0];b.innerHTML=`${m[2]}<span class="a">${m[1]}</span>`;
-  b.onclick=()=>{mode=m[0];render();focusDrill()};modesEl.appendChild(b);
-});
+const rgroupsEl=document.getElementById('rgroups'), rmodesEl=document.getElementById('rmodes');
+let group=groupOf(mode);
+
+function modeCount(m,u){
+  if(m==='review') return INDEX.filter(isDue).length;
+  if(!FIELD[m]) return (m==='dialogue'||m==='roleplay')?u.dialogue.length:
+                        (m==='sub'?u.subs.length:(m==='ladder'?u.ladders.length:
+                        (m==='grammar'?(u.grammar||[]).length:0)));
+  return (u[FIELD[m]]||[]).length;
+}
+function modeDue(m,u){
+  if(!FIELD[m]) return 0;
+  return INDEX.filter(it=>it.unit===u&&it.mode===m&&isDue(it)).length;
+}
+function drawRibbon(){
+  const u=DATA[unit];
+  rgroupsEl.innerHTML='';
+  GROUPS.forEach(g=>{
+    const b=document.createElement('button');
+    b.className='rgroup';b.type='button';b.setAttribute('role','tab');
+    b.setAttribute('aria-selected',g.k===group);
+    const due=g.modes.reduce((a,m)=>a+modeDue(m[0],u),0);
+    b.innerHTML=`<span class="ge">${g.en}</span><span class="ga">${g.ar}</span>`+
+                (due?`<span class="gdot" title="${due} due"></span>`:'');
+    b.onclick=()=>{group=g.k;if(!g.modes.some(m=>m[0]===mode))mode=g.modes[0][0];render();focusDrill()};
+    rgroupsEl.appendChild(b);
+  });
+  const g=GROUPS.find(x=>x.k===group)||GROUPS[0];
+  rmodesEl.innerHTML='';
+  g.modes.forEach(m=>{
+    const b=document.createElement('button');
+    b.className='rmode';b.type='button';b.setAttribute('role','tab');
+    b.dataset.k=m[0];b.setAttribute('aria-selected',m[0]===mode);
+    const n=modeCount(m[0],u), d=modeDue(m[0],u);
+    b.innerHTML=`<span class="me">${m[2]}</span><span class="ma">${m[1]}</span>`+
+                (n?`<span class="cnt${d?' due':''}">${d?d+' due':n}</span>`:'');
+    b.onclick=()=>{mode=m[0];render();focusDrill()};
+    rmodesEl.appendChild(b);
+  });
+}
 document.getElementById('go-review').onclick=()=>{mode='review';render();focusDrill()};
 
 const gear=document.getElementById('gear');
@@ -1956,7 +2040,7 @@ gear.onclick=()=>{
 function isPhone(){return mq('(max-width:860px)')}
 function focusDrill(){
   if(!isPhone())return;
-  requestAnimationFrame(()=>scrollTo(modesEl,{block:'start',behavior:'smooth'}));
+  requestAnimationFrame(()=>scrollTo(document.querySelector('.ribbon'),{block:'start',behavior:'smooth'}));
 }
 
 /* iOS will not speak until synthesis has been triggered inside a real gesture,
@@ -1987,11 +2071,8 @@ function toolbar(items){
 function render(){
   stopAudio();queue=null;
   drawRail();
-  [...modesEl.querySelectorAll('.mode')].forEach(b=>{
-    const on=b.dataset.k===mode;
-    b.setAttribute('aria-selected',on);
-    if(on)scrollTo(b,{inline:'center',block:'nearest',behavior:'smooth'});
-  });
+  group=groupOf(mode);
+  drawRibbon();
   const u=DATA[unit];
   const wide=mq('(min-width:861px)');
   panel.innerHTML=`<details class="how"${wide?' open':''}><summary>How to work this drill</summary><p>${HOW[mode]}</p></details>`;

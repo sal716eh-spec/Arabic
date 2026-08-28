@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=625">
+<link rel="stylesheet" href="site.css?v=700">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#F1ECE0">
@@ -75,7 +75,7 @@
     </a>
   </section>
 </main>
-<script src="vocab-data.js?v=625"></script>
+<script src="vocab-data.js?v=700"></script>
 <script>
 /* Both apps keep their own schedule; the dashboard just reports on each. */
 const DAY=86400000, dayNow=Math.floor(Date.now()/DAY), iso=new Date().toISOString().slice(0,10);
@@ -138,5 +138,10 @@ paintGreeting();
     : 'nothing scheduled yet — start either side below and it will build from there';
 })();
 </script>
+<nav class="tabbar" aria-label="Sections">
+  <a class="on" href="dashboard.html"><span class="ti">الرَّئِيسَة</span>Home</a>
+  <a class="" href="vocab.html"><span class="ti">مُفْرَدات</span>Vocab</a>
+  <a class="" href="drills.html"><span class="ti">تَدْرِيبات</span>Drills</a>
+</nav>
 </body>
 </html>
