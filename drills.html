@@ -97,6 +97,51 @@ body.no-audio .tf .src,body.no-audio .good{cursor:default}
 
 /* main */
 main{padding:18px 28px 60px;min-width:0}
+/* Session card — the single recommended action, above everything else */
+.sesscard{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  background:var(--ink);color:var(--paper);border-radius:8px;padding:16px 18px;margin:2px 0 18px}
+.sc-eyebrow{font-family:var(--ut);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+.sc-what{font-size:16px;margin-top:4px}
+.sc-what b{color:var(--gold)}
+.sc-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sc-len{display:flex;gap:3px;background:rgba(241,236,224,.1);border-radius:5px;padding:3px}
+.sc-len button{background:none;border:0;border-radius:3px;padding:6px 11px;cursor:pointer;
+  font-family:var(--ut);font-size:11px;color:rgba(241,236,224,.7)}
+.sc-len button[aria-pressed=true]{background:var(--paper);color:var(--ink)}
+.sc-go{background:var(--verdigris);color:var(--paper);border:0;border-radius:5px;padding:11px 20px;
+  font-family:var(--la);font-size:14.5px;font-weight:500;cursor:pointer;min-height:44px}
+.sc-go:hover{filter:brightness(1.1)}
+.sc-go:disabled{opacity:.45;cursor:default}
+
+/* Running session — one item, no choices, visible progress */
+.sess-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.sess-prog{flex:1;height:6px;background:var(--paper-deep);border-radius:3px;overflow:hidden}
+.sess-prog i{display:block;height:100%;background:var(--verdigris);transition:width .3s ease}
+.sess-n{font-family:var(--ut);font-size:11px;color:var(--ink-soft);white-space:nowrap}
+.sess-quit{font-family:var(--la);font-size:12px;background:none;border:1px solid var(--rule);
+  border-radius:3px;padding:5px 10px;cursor:pointer;color:var(--ink-soft)}
+.sess-from{font-family:var(--ut);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:10px}
+.sess-done{text-align:center;padding:34px 20px}
+.sess-done .big{font-family:var(--ar);font-size:34px;color:var(--verdigris);line-height:1.6;padding:4px 0}
+.sess-done h2{margin:8px 0 4px;font-size:20px}
+.sess-done p{color:var(--ink-soft);font-size:14px;margin:0 0 18px}
+.sess-tally{display:flex;justify-content:center;gap:22px;margin:18px 0 22px;flex-wrap:wrap}
+.sess-tally div{font-family:var(--ut);font-size:11px;color:var(--ink-soft)}
+.sess-tally b{display:block;font-size:20px;color:var(--ink);margin-bottom:2px}
+.sess-next{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.sess-next button,.sess-next a{padding:11px 18px;border:1px solid var(--rule);border-radius:4px;
+  background:var(--paper);color:var(--ink);font-family:var(--la);font-size:14px;cursor:pointer;text-decoration:none}
+.sess-next .primary{background:var(--verdigris);border-color:var(--verdigris);color:var(--paper)}
+@media (max-width:860px){
+  .sesscard{padding:14px;gap:12px}
+  .sc-l{width:100%}
+  .sc-r{width:100%;justify-content:space-between}
+  .sc-go{flex:1}
+  .sess-next{flex-direction:column}
+  .sess-next button,.sess-next a{width:100%}
+}
+
 /* Ribbon: four categories on top, the drills inside one of them below.
    Neither row exceeds the 4–5 item ceiling where tap targets start to crowd. */
 .ribbon{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule);margin-bottom:20px}
@@ -125,6 +170,9 @@ main{padding:18px 28px 60px;min-width:0}
 
 /* Bottom bar: three destinations, within thumb reach. Mobile only. */
 .tabbar{display:none}
+body.in-session .sesscard,body.in-session .ribbon,body.in-session .rail,
+body.in-session .how,body.in-session .stats{display:none!important}
+body.in-session .shell{grid-template-columns:minmax(0,1fr)}
 @media (max-width:860px){
   .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--paper);
     border-top:1px solid var(--rule);padding-bottom:env(safe-area-inset-bottom);
@@ -410,6 +458,16 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     </div>
   </nav>
   <main>
+    <div class="sesscard" id="sesscard">
+      <div class="sc-l">
+        <div class="sc-eyebrow">Today's session</div>
+        <div class="sc-what" id="scWhat">—</div>
+      </div>
+      <div class="sc-r">
+        <div class="sc-len" id="scLen" role="group" aria-label="Session length"></div>
+        <button class="sc-go" id="scGo" type="button">Start →</button>
+      </div>
+    </div>
     <div class="ribbon">
       <div class="rgroups" id="rgroups" role="tablist" aria-label="Drill category"></div>
       <div class="rmodes"  id="rmodes"  role="tablist" aria-label="Drill"></div>
@@ -2029,7 +2087,7 @@ function drawRibbon(){
     rmodesEl.appendChild(b);
   });
 }
-document.getElementById('go-review').onclick=()=>{mode='review';render();focusDrill()};
+document.getElementById('go-review').onclick=()=>{startSession()};
 
 const gear=document.getElementById('gear');
 gear.onclick=()=>{
@@ -2070,7 +2128,9 @@ function toolbar(items){
 
 function render(){
   stopAudio();queue=null;
+  if(sessOn){ vSession(); return; }
   drawRail();
+  drawSessionCard();
   group=groupOf(mode);
   drawRibbon();
   const u=DATA[unit];
@@ -2216,6 +2276,103 @@ function vGrammar(u){
     const p=document.createElement('p');p.textContent=g.en;c.appendChild(p);
     panel.appendChild(c);
   });
+}
+
+/* ── today's session ─────────────────────────────────────
+   Reviews first, then new material in book order — the same order the
+   vocab side uses. One item at a time, no navigation, ends in a summary. */
+const LEN_KEY='bay_session_len';
+let sessLen=12, sessQ=[], sessPos=0, sessOn=false, sessTally={again:0,good:0,easy:0};
+try{const v=parseInt(localStorage.getItem(LEN_KEY),10); if([8,12,20].includes(v)) sessLen=v;}catch(e){}
+
+function buildSession(n){
+  const due=shuffle(INDEX.filter(isDue));
+  let out=due.slice(0,n);
+  if(out.length<n) out=out.concat(INDEX.filter(isNew).slice(0,n-out.length));  // book order
+  return out;
+}
+function drawSessionCard(){
+  const card=document.getElementById('sesscard');
+  if(!card) return;
+  const dueN=INDEX.filter(isDue).length, newN=INDEX.filter(isNew).length;
+  const plan=buildSession(sessLen);
+  const mins=Math.max(1,Math.round(plan.length*0.5));
+  document.getElementById('scWhat').innerHTML = plan.length
+    ? `<b>${plan.length}</b> items · about ${mins} min` +
+      (dueN? ` · ${Math.min(dueN,plan.length)} due for review` : ' · all new material')
+    : 'Nothing left to practise — everything is scheduled for later.';
+  const len=document.getElementById('scLen');
+  len.innerHTML='';
+  [8,12,20].forEach(v=>{
+    const b=document.createElement('button');b.type='button';b.textContent=v;
+    b.setAttribute('aria-pressed',v===sessLen);
+    b.onclick=()=>{sessLen=v;try{localStorage.setItem(LEN_KEY,v)}catch(e){};drawSessionCard()};
+    len.appendChild(b);
+  });
+  const go=document.getElementById('scGo');
+  go.disabled=!plan.length;
+  go.onclick=()=>startSession();
+}
+function startSession(){
+  sessQ=buildSession(sessLen); sessPos=0; sessOn=true;
+  sessTally={again:0,good:0,easy:0};
+  document.body.classList.add('in-session');
+  render();
+}
+function endSession(){
+  sessOn=false;
+  document.body.classList.remove('in-session');
+  mode='dialogue'; render();
+}
+function vSession(){
+  const wrap=document.createElement('div');
+  panel.innerHTML='';
+  if(sessPos>=sessQ.length){
+    const done=sessTally.again+sessTally.good+sessTally.easy;
+    wrap.className='sess-done';
+    wrap.innerHTML=`<div class="big">أَحْسَنْت</div><h2>Session complete</h2>
+      <p>${done} item${done===1?'':'s'} practised.</p>
+      <div class="sess-tally">
+        <div><b>${sessTally.easy}</b>easy</div>
+        <div><b>${sessTally.good}</b>good</div>
+        <div><b>${sessTally.again}</b>again</div>
+      </div>`;
+    const next=document.createElement('div');next.className='sess-next';
+    const again=document.createElement('button');again.className='primary';again.textContent='Another session';
+    again.onclick=()=>startSession();
+    const vocab=document.createElement('a');vocab.href='vocab.html';vocab.textContent='Review vocabulary →';
+    const browse=document.createElement('button');browse.textContent='Browse the drills';
+    browse.onclick=()=>endSession();
+    next.appendChild(again);next.appendChild(vocab);next.appendChild(browse);
+    wrap.appendChild(next);
+    panel.appendChild(wrap);
+    return;
+  }
+  const it=sessQ[sessPos];
+  const head=document.createElement('div');head.className='sess-head';
+  head.innerHTML=`<div class="sess-prog"><i style="width:${Math.round(100*sessPos/sessQ.length)}%"></i></div>
+                  <span class="sess-n">${sessPos+1} / ${sessQ.length}</span>`;
+  const quit=document.createElement('button');quit.className='sess-quit';quit.type='button';quit.textContent='End';
+  quit.onclick=()=>{sessPos=sessQ.length;render()};
+  head.appendChild(quit);
+  panel.appendChild(head);
+  const from=document.createElement('div');from.className='sess-from';
+  from.textContent=`Unit ${it.unit.n} · ${it.unit.en} · ${it.mode}`;
+  panel.appendChild(from);
+  const card=RENDER[it.mode](it);
+  panel.appendChild(card);
+  const obs=new MutationObserver(()=>{
+    const rr=card.querySelector('.rate');
+    if(rr&&!rr.dataset.wired){
+      rr.dataset.wired='1';
+      [...rr.querySelectorAll('.rb')].forEach(b=>b.addEventListener('click',()=>{
+        const q=b.classList.contains('again')?'again':b.classList.contains('easy')?'easy':'good';
+        sessTally[q]++;
+        setTimeout(()=>{sessPos++;render();scrollTo(panel,{block:'start',behavior:'smooth'})},260);
+      }));
+    }
+  });
+  obs.observe(card,{childList:true,subtree:true});
 }
 
 /* ── review ─────────────────────────────────────────────── */
