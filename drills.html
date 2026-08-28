@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="بين يديك">
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2317262B'/%3E%3Ctext x='32' y='46' font-size='42' text-anchor='middle' fill='%23F1ECE0' font-family='serif'%3E%D8%B9%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317262B'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23F1ECE0' font-family='serif'%3E%D8%B1%3C/text%3E%3Ccircle cx='46' cy='19' r='4' fill='%23B4322A'/%3E%3C/svg%3E">
 <title>Sentences — Rafiq</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,13 +27,22 @@ body{background:var(--paper);color:var(--ink);font-family:var(--la);font-size:16
 button,.chip,.tile,.opt,.gluechip{touch-action:manipulation}
 :focus-visible{outline:2px solid var(--verdigris);outline-offset:2px;border-radius:2px}
 .label{font-family:var(--ut);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.pagehead{max-width:980px;margin:0 auto;padding:26px 24px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.head{min-width:0}
+.head .ar{font-family:var(--ar);direction:rtl;font-size:26px;line-height:1.65;color:var(--rubric);padding:2px 0}
+.head h1{font-size:clamp(21px,4.4vw,26px);margin:0}
+.head p{color:var(--ink-soft);font-size:14px;margin:6px 0 0;max-width:58ch}
+.headtools{flex:0 0 auto}
+@media (max-width:860px){ .pagehead{padding:18px 16px 0} .headtools{width:100%} }
 a{color:inherit;text-decoration:none}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-bottom:1px solid var(--rule);background:var(--paper);max-width:100%}
 .nav .brand{font-family:var(--ar);font-size:20px;font-weight:600;direction:rtl;line-height:1.7;padding:2px 0;
-  display:inline-flex;align-items:center;gap:9px}
-.nav .brand .bmark{width:34px;height:12px;flex:0 0 auto;position:relative}
-.nav .brand .bmark::before{content:'';position:absolute;left:0;right:0;top:5px;height:3px;border-radius:2px;background:var(--rubric)}
-.nav .brand .bmark::after{content:'';position:absolute;left:0;top:1px;width:11px;height:11px;border-radius:50%;background:var(--ink)}
+  display:inline-flex;align-items:center;gap:10px}
+.nav .brand .bmark{width:28px;height:28px;flex:0 0 auto;border-radius:7px;background:var(--ink);position:relative;
+  display:inline-block}
+.nav .brand .bmark::before{content:'ر';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--ar);font-size:19px;line-height:1;color:var(--paper);padding-bottom:3px}
+.nav .brand .bmark::after{content:'';position:absolute;top:5px;right:5px;width:5px;height:5px;border-radius:50%;background:var(--rubric)}
 
 .navlinks{display:flex;gap:20px;align-items:center;min-width:0}
 .navlinks a{font-size:13px;color:var(--ink-soft)}
@@ -53,7 +62,7 @@ a{color:inherit;text-decoration:none}
 .mast-l h1 span{color:var(--rubric)}
 .voicebox{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
 .voicerow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-select,.btn{font-family:var(--la);font-size:13px;background:transparent;color:var(--ink);border:1px solid var(--rule);border-radius:2px;padding:5px 10px;cursor:pointer}
+select,.btn{font-family:var(--la);font-size:13px;background:transparent;color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:5px 10px;cursor:pointer}
 select{max-width:180px}
 .btn:hover{border-color:var(--verdigris);color:var(--verdigris)}
 .btn.on{background:var(--verdigris);border-color:var(--verdigris);color:var(--paper)}
@@ -72,7 +81,7 @@ body.no-audio .tf .src,body.no-audio .good{cursor:default}
 .nodict b{color:var(--ink)}
 
 /* stats strip */
-.stats{display:flex;gap:0;border-bottom:1px solid var(--rule);background:var(--paper-deep)}
+.stats{display:flex;gap:0;border-bottom:1px solid var(--rule);border-top:1px solid var(--rule);background:var(--paper-deep);max-width:980px;margin:18px auto 0}
 .stat{padding:9px 22px;border-right:1px solid var(--rule);display:flex;gap:8px;align-items:baseline}
 .stat b{font-family:var(--ut);font-size:16px;font-weight:600;color:var(--ink)}
 .stat.due b{color:var(--rubric)}
@@ -80,7 +89,7 @@ body.no-audio .tf .src,body.no-audio .good{cursor:default}
 .stat.act{margin-left:auto;border-right:0;padding:6px 16px;display:flex;align-items:center}
 
 /* shell */
-.shell{display:grid;grid-template-columns:198px minmax(0,1fr);min-height:70vh}
+.shell{display:grid;grid-template-columns:198px minmax(0,1fr);min-height:70vh;max-width:980px;margin:0 auto}
 .rail{border-right:1px solid var(--rule);padding:20px 0 40px;min-width:0}
 .rail h2{margin:0 0 10px 22px}
 .unit{display:block;width:100%;text-align:left;background:none;border:0;padding:8px 22px;cursor:pointer;font-family:var(--la);border-left:2px solid transparent;color:var(--ink)}
@@ -269,7 +278,7 @@ body.in-session .shell{grid-template-columns:minmax(0,1fr)}
 }
 
 /* shared cards */
-.card{border:1px solid var(--rule);padding:18px 20px;margin-bottom:14px}
+.card{border:1px solid var(--rule);border-radius:6px;padding:18px 20px;margin-bottom:14px}
 .card.done{border-color:var(--verdigris);background:rgba(46,114,99,.05)}
 .qar{font-family:var(--ar);font-size:23px;direction:rtl;text-align:right;line-height:1.85}
 .qen{font-size:13px;color:var(--ink-soft);margin:4px 0 12px}
@@ -300,20 +309,20 @@ body.in-session .shell{grid-template-columns:minmax(0,1fr)}
 .ladder-en{font-family:var(--la);font-size:12.5px;color:var(--ink-soft);direction:ltr;text-align:left;margin-top:8px}
 
 /* substitution */
-.frame{border:1px solid var(--rule);background:var(--paper-deep);padding:18px 20px;margin-bottom:22px}
+.frame{border:1px solid var(--rule);border-radius:6px;background:var(--paper-deep);padding:18px 20px;margin-bottom:22px}
 .frame .sent{font-family:var(--ar);font-size:25px;direction:rtl;text-align:right;line-height:1.9;margin-bottom:14px}
 .slot{color:var(--rubric);border-bottom:2px solid var(--rubric);padding:0 4px}
 .slotgroup{margin-bottom:10px}
 .slotnum{font-family:var(--ut);font-size:10px;color:var(--gold);letter-spacing:.1em;margin-bottom:4px}
 .chips{display:flex;gap:7px;flex-wrap:wrap;direction:rtl}
-.chip{font-family:var(--ar);font-size:18px;direction:rtl;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:2px 11px;cursor:pointer;line-height:1.8;color:var(--ink)}
+.chip{font-family:var(--ar);font-size:18px;direction:rtl;background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:2px 11px;cursor:pointer;line-height:1.8;color:var(--ink)}
 .chip:hover{border-color:var(--verdigris)}
 .chip[aria-pressed=true]{background:var(--verdigris);border-color:var(--verdigris);color:var(--paper)}
 .frame .en{font-size:12.5px;color:var(--ink-soft);margin-top:12px}
 
 /* cloze */
 .opts{display:flex;gap:7px;flex-wrap:wrap;direction:rtl;margin-top:12px}
-.opt{font-family:var(--ar);font-size:19px;direction:rtl;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:3px 14px;cursor:pointer;line-height:1.8;color:var(--ink)}
+.opt{font-family:var(--ar);font-size:19px;direction:rtl;background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:3px 14px;cursor:pointer;line-height:1.8;color:var(--ink)}
 .opt:hover{border-color:var(--verdigris)}
 .opt.right{background:var(--verdigris);border-color:var(--verdigris);color:var(--paper)}
 .opt.wrong{background:var(--rubric);border-color:var(--rubric);color:var(--paper)}
@@ -342,7 +351,7 @@ body.in-session .shell{grid-template-columns:minmax(0,1fr)}
 
 /* answer input + diff */
 .ansrow{display:flex;gap:8px;align-items:stretch;margin-top:12px;flex-wrap:wrap}
-input.ar-in{flex:1;min-width:240px;font-family:var(--ar);font-size:21px;line-height:1.7;direction:rtl;text-align:right;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:10px 12px;color:var(--ink)}
+input.ar-in{flex:1;min-width:240px;font-family:var(--ar);font-size:21px;line-height:1.7;direction:rtl;text-align:right;background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:10px 12px;color:var(--ink)}
 input.ar-in:focus{border-color:var(--verdigris);outline:none}
 .mic{font-family:var(--la);font-size:13px;border:1px solid var(--rule);background:transparent;border-radius:2px;padding:6px 12px;cursor:pointer;color:var(--ink)}
 .mic.live{background:var(--rubric);border-color:var(--rubric);color:var(--paper)}
@@ -362,7 +371,7 @@ input.ar-in:focus{border-color:var(--verdigris);outline:none}
 .rb.good:hover,.rb.easy:hover{border-color:var(--verdigris);color:var(--verdigris)}
 
 /* grammar */
-.gcard{border:1px solid var(--rule);padding:16px 18px;margin-bottom:12px;background:var(--paper-deep)}
+.gcard{border:1px solid var(--rule);border-radius:6px;padding:16px 18px;margin-bottom:12px;background:var(--paper-deep)}
 .gcard h4{margin:0 0 8px;font-family:var(--ar);font-size:18px;direction:rtl;color:var(--rubric);font-weight:700;line-height:1.65}
 .gcard .ex{font-family:var(--ar);font-size:21px;direction:rtl;text-align:right;line-height:1.8;cursor:pointer;margin:6px 0}
 .gcard .ex:hover{color:var(--verdigris)}
@@ -487,31 +496,34 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
 </style>
 
 <nav class="nav">
-  <a class="brand" href="dashboard.html">رَفِيق<span class="bmark"></span></a>
+  <a class="brand" href="dashboard.html"><span class="bmark"></span>رَفِيق</a>
   <div class="navlinks">
     <a href="dashboard.html">Home</a><a href="vocab.html">Words</a>
     <a class="active" href="drills.html">Sentences</a><a href="verbs.html">Verbs</a>
     <a href="connectors.html">Connectors</a>
   </div>
 </nav>
-<header class="masthead">
-  <div class="mast-l">
-    <div class="label">Al-ʿArabiyyah Bayna Yadayk · Book 1 · Units 1–12 · Fuṣḥā</div>
-    <h1>مِنَ الكَلِمَةِ إِلَى <span>الجُمْلَةِ</span></h1>
+<main class="pagehead">
+  <div class="head">
+    <div class="ar">مِنَ الكَلِمَةِ إِلَى الجُمْلَةِ</div>
+    <h1>Sentences</h1>
+    <p>Twelve drills across units 1–12. Listen and shadow, build sentences a chunk at a time, then produce them from memory — the gap between knowing words and saying them.</p>
   </div>
-  <button class="btn setgear" id="gear" type="button" aria-expanded="false">Audio settings</button>
-  <div class="voicebox" id="voicebox">
-    <div class="voicerow">
-      <select id="voice" aria-label="Arabic voice"></select>
-      <label class="label" for="rate">Speed</label>
-      <input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="0.8">
-      <span class="label" id="ratev">0.80×</span>
-      <button class="btn" id="testv">Test</button>
-      <button class="btn" id="stop">Stop</button>
+  <div class="headtools">
+    <button class="btn setgear" id="gear" type="button" aria-expanded="false">Audio settings</button>
+    <div class="voicebox" id="voicebox">
+      <div class="voicerow">
+        <select id="voice" aria-label="Arabic voice"></select>
+        <label class="label" for="rate">Speed</label>
+        <input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="0.8">
+        <span class="label" id="ratev">0.80×</span>
+        <button class="btn" id="testv">Test</button>
+        <button class="btn" id="stop">Stop</button>
+      </div>
+      <div class="warn" id="warn" hidden></div>
     </div>
-    <div class="warn" id="warn" hidden></div>
   </div>
-</header>
+</main>
 
 <div class="stats">
   <div class="stat due"><b id="s-due">0</b><span>due now</span></div>
