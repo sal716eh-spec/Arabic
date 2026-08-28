@@ -1,0 +1,302 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Verbs — بين يديك</title>
+<link rel="stylesheet" href="site.css?v=800">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#F1ECE0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+.head{padding:26px 0 4px}
+.head h1{font-size:clamp(21px,4.4vw,26px);margin:0}
+.head .ar{font-family:var(--ar);direction:rtl;font-size:26px;line-height:1.65;color:var(--rubric);padding:2px 0}
+.head p{color:var(--ink-soft);font-size:14px;margin:6px 0 0;max-width:58ch}
+
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--rule);margin:20px 0 18px}
+.tabs button{flex:1;background:none;border:0;border-bottom:2px solid transparent;padding:12px 8px;
+  cursor:pointer;font-family:var(--la);font-size:13.5px;color:var(--ink-soft);min-height:48px}
+.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--verdigris);font-weight:500}
+
+.vpick{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;margin-bottom:16px;scrollbar-width:none}
+.vpick::-webkit-scrollbar{display:none}
+.vchip{flex:0 0 auto;background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:8px 13px;
+  cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px;min-height:54px;justify-content:center}
+.vchip.on{background:var(--ink);border-color:var(--ink)}
+.vchip .va{font-family:var(--ar);font-size:19px;direction:rtl;line-height:1.7;color:var(--ink)}
+.vchip .ve{font-size:10.5px;color:var(--ink-soft)}
+.vchip.on .va{color:var(--bg)}.vchip.on .ve{color:rgba(241,236,224,.7)}
+
+.vhead{margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+.vh-ar{font-family:var(--ar);font-size:27px;direction:rtl;line-height:1.7}
+.vh-en{font-size:14px;color:var(--ink-soft)}
+.vh-pat{font-family:var(--ut);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:3px}
+
+.vtable{width:100%;border-collapse:collapse;margin-bottom:14px}
+.vtable th{text-align:right;font-family:var(--ar);font-size:16px;direction:rtl;color:var(--rubric);font-weight:700;
+  padding:9px 10px;border-bottom:1px solid var(--rule);line-height:1.6}
+.vtable th span{display:block;font-family:var(--la);font-size:9.5px;color:var(--ink-soft);font-weight:400;letter-spacing:.1em;text-transform:uppercase}
+.vtable td{padding:10px;border-bottom:1px solid rgba(23,38,43,.07)}
+.vtable td.vp{font-family:var(--ar);font-size:17px;direction:rtl;line-height:1.7;color:var(--ink-soft);white-space:nowrap}
+.vtable td.vp span{display:block;font-family:var(--la);font-size:10px}
+.vtable td.vf{font-family:var(--ar);font-size:20px;direction:rtl;text-align:right;line-height:1.85;cursor:pointer}
+.vtable td.vf:hover{color:var(--verdigris)}
+.vnote{font-size:12.5px;color:var(--ink-soft);border-left:2px solid var(--gold);padding-left:11px}
+
+.card{border:1px solid var(--rule);border-radius:6px;padding:18px 20px;margin-bottom:14px;background:var(--card)}
+.taskbar{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;background:var(--bg);
+  border-left:3px solid var(--rubric);border-radius:0 4px 4px 0;padding:11px 14px;margin:-18px -20px 16px;
+  border-bottom:1px solid var(--rule)}
+.taskbar .t-en{font-size:15.5px;font-weight:700;line-height:1.35}
+.taskbar .t-ar{font-family:var(--ar);font-size:16px;direction:rtl;color:var(--rubric);line-height:1.7}
+.taskbar .t-hint{flex-basis:100%;font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+.vprompt,.vsent-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 10px}
+.vp-pron,.vp-verb{font-family:var(--ar);font-size:25px;direction:rtl;line-height:1.75}
+.vp-plus{color:var(--ink-soft)}
+.vp-tense{font-family:var(--ar);font-size:17px;direction:rtl;color:var(--rubric);background:var(--bg);
+  border-radius:4px;padding:3px 10px;line-height:1.7}
+.qar{font-family:var(--ar);font-size:23px;direction:rtl;text-align:right;line-height:1.95}
+.qen{font-size:13px;color:var(--ink-soft);margin:6px 0 0}
+.gap{color:var(--rubric);border-bottom:2px solid var(--rubric);padding:0 14px}
+.gap.filled{border-bottom-color:var(--verdigris);color:var(--verdigris)}
+.opts{display:flex;gap:7px;flex-wrap:wrap;direction:rtl;margin-top:14px}
+.opt{font-family:var(--ar);font-size:19px;direction:rtl;background:var(--bg);border:1px solid var(--rule);
+  border-radius:4px;padding:6px 14px;cursor:pointer;line-height:1.8;min-height:44px;display:inline-flex;align-items:center}
+.opt:hover{border-color:var(--verdigris)}
+.opt.right{background:var(--verdigris);border-color:var(--verdigris);color:#fff}
+.opt.wrong{background:var(--rubric);border-color:var(--rubric);color:#fff}
+.why{font-size:12.5px;color:var(--ink-soft);margin-top:12px;border-left:2px solid var(--gold);padding-left:11px}
+.ansrow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-height:1.7;direction:rtl;text-align:right;
+  background:var(--bg);border:1px solid var(--rule);border-radius:4px;padding:10px 12px;color:var(--ink)}
+.diff{font-family:var(--ar);font-size:21px;direction:rtl;text-align:right;line-height:1.95;margin-top:12px}
+.diff .ok{color:var(--verdigris)}.diff .no{color:var(--rubric);text-decoration:line-through}
+.score{font-family:var(--ut);font-size:11px;color:var(--ink-soft);margin-top:8px}
+.good{font-family:var(--ar);font-size:22px;direction:rtl;text-align:right;line-height:1.9;color:var(--verdigris);cursor:pointer}
+.counter{font-family:var(--ut);font-size:11px;color:var(--ink-soft);margin-bottom:10px}
+.done{text-align:center;padding:34px 20px}
+.done .big{font-family:var(--ar);font-size:34px;color:var(--verdigris);line-height:1.6}
+@media (max-width:860px){
+  .taskbar{margin:-14px -14px 14px;padding:10px 12px}
+  .card{padding:14px}
+  .vtable th,.vtable td{padding:8px 5px}
+  .vtable td.vf{font-size:18px}
+  .ansrow{flex-direction:column}.ansrow .btn,.ansrow input{width:100%}
+}
+</style>
+
+<nav class="nav">
+  <a class="brand" href="dashboard.html">بَيْنَ <span>يَدَيْكَ</span></a>
+  <div class="navlinks">
+    <a href="dashboard.html">Home</a><a href="vocab.html">Words</a>
+    <a href="drills.html">Sentences</a><a class="active" href="verbs.html">Verbs</a>
+    <a href="connectors.html">Connectors</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="head">
+    <div class="ar">تَصْرِيفُ الأَفْعال</div>
+    <h1>Verb forms</h1>
+    <p>Twenty-one verbs covering every pattern in Book 1. Learn ذَهَبَ and you have all the sound verbs; learn قالَ and you have the hollow ones. The future is just سَـ on the front of the present.</p>
+  </div>
+
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="vpick" id="pick"></div>
+  <div class="vhead" id="vhead"></div>
+  <div id="panel"></div>
+</main>
+
+<nav class="tabbar" aria-label="Sections">
+  <a href="dashboard.html"><span class="ti">الرَّئِيسَة</span>Home</a>
+  <a href="vocab.html"><span class="ti">مُفْرَدات</span>Words</a>
+  <a href="drills.html"><span class="ti">جُمَل</span>Sentences</a>
+  <a class="on" href="verbs.html"><span class="ti">أَفْعال</span>Verbs</a>
+  <a href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
+</nav>
+
+<script src="toolkit-data.js?v=800"></script>
+<script>
+/* ── speech: pre-rendered clip if we have one, else the device voice ── */
+function aid(s){let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36);}
+let CLIPS=null,curAudio=null;
+try{ if(typeof fetch==='function'){
+  fetch('audio/index.json?t='+Math.floor(Date.now()/60000)).then(r=>r.ok?r.json():[])
+    .then(a=>{CLIPS=new Set(a)}).catch(()=>{CLIPS=new Set()});
+} else CLIPS=new Set(); }catch(e){ CLIPS=new Set(); }
+function vSig(v){return ((v.voiceURI||'')+' '+(v.name||'')).toLowerCase()}
+function quality(v){const t=vSig(v);
+  if(/premium|neural|natural/.test(t))return 4; if(/enhanced/.test(t))return 3;
+  if(/siri/.test(t))return 2; if(/compact/.test(t))return 0; return 1}
+function bestVoice(){
+  const l=(speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang));
+  return l.sort((a,b)=>quality(b)-quality(a))[0]||null;
+}
+function say(text,el){
+  if(curAudio){curAudio.pause();curAudio=null}
+  speechSynthesis.cancel();
+  const id=aid(text);
+  if(CLIPS&&CLIPS.has(id)){
+    const a=new Audio('audio/'+id+'.mp3');curAudio=a;a.onended=()=>{curAudio=null};
+    a.play().catch(()=>{curAudio=null});return;
+  }
+  const v=bestVoice(); if(!v) return;
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang=v.lang||'ar-SA';u.rate=.8;u.voice=v;
+  speechSynthesis.speak(u);
+}
+let unlocked=false;
+['pointerdown','touchstart','keydown'].forEach(ev=>document.addEventListener(ev,()=>{
+  if(unlocked)return;unlocked=true;
+  try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u)}catch(e){}
+},{once:true,passive:true}));
+
+/* ── answer checking, vowel-insensitive ── */
+function norm(s){return (s||'').replace(/[\u064B-\u0652\u0670\u0640\u0653-\u0656]/g,'')
+  .replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/ؤ/g,'و').replace(/ئ/g,'ي').replace(/ة/g,'ه')
+  .replace(/[^\u0621-\u064A\s]/g,' ').replace(/\s+/g,' ').trim()}
+function lcsMark(t,s){const n=t.length,m=s.length;
+  const dp=Array.from({length:n+1},()=>new Array(m+1).fill(0));
+  for(let i=1;i<=n;i++)for(let j=1;j<=m;j++)dp[i][j]=t[i-1]===s[j-1]?dp[i-1][j-1]+1:Math.max(dp[i-1][j],dp[i][j-1]);
+  const mk=new Array(n).fill(false);let i=n,j=m;
+  while(i>0&&j>0){if(t[i-1]===s[j-1]){mk[i-1]=true;i--;j--}else if(dp[i-1][j]>=dp[i][j-1])i--;else j--}
+  return mk}
+function diffHTML(target,said){
+  const orig=target.split(/\s+/).filter(Boolean);
+  const pairs=orig.map(w=>[w,norm(w)]).filter(p=>p[1]);
+  const mk=lcsMark(pairs.map(p=>p[1]),norm(said).split(' ').filter(Boolean));
+  const hit=mk.filter(Boolean).length;
+  return{html:pairs.map((p,i)=>`<span class="${mk[i]?'ok':'no'}">${p[0]}</span>`).join(' '),
+         score:pairs.length?Math.round(100*hit/pairs.length):0}}
+function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+function tappable(el,text){el.style.cursor='pointer';el.tabIndex=0;el.setAttribute('role','button');
+  el.onclick=()=>say(text,el);
+  el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();say(text,el)}};return el}
+function taskBar(en,ar,hint){const d=document.createElement('div');d.className='taskbar';
+  d.innerHTML=`<span class="t-en">${en}</span>`+(ar?`<span class="t-ar">${ar}</span>`:'')+
+              (hint?`<span class="t-hint">${hint}</span>`:'');return d}
+function answerRow(target){
+  const wrap=document.createElement('div');
+  const row=document.createElement('div');row.className='ansrow';
+  const inp=document.createElement('input');inp.className='ar-in';inp.dir='rtl';inp.placeholder='اكْتُبِ الصِّيغَةَ';
+  const chk=document.createElement('button');chk.className='btn';chk.type='button';chk.textContent='Check';
+  const out=document.createElement('div');
+  const run=t=>{const{html,score}=diffHTML(target,t);
+    out.innerHTML=`<div class="diff">${html}</div><div class="score">${score}% matched</div>`};
+  chk.onclick=()=>run(inp.value);
+  inp.onkeydown=e=>{if(e.key==='Enter')run(inp.value)};
+  row.appendChild(inp);row.appendChild(chk);
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(SR){const m=document.createElement('button');m.className='btn';m.type='button';m.textContent='🎙 Say it';
+    m.onclick=()=>{const r=new SR();r.lang='ar-SA';r.interimResults=false;
+      r.onresult=e=>{inp.value=e.results[0][0].transcript;run(inp.value)};r.start()};
+    row.appendChild(m)}
+  wrap.appendChild(row);wrap.appendChild(out);return wrap}
+
+/* ── state ── */
+const TABS=[['table','Table','الجَدْوَل'],['drill','Drill me','التَّصْرِيف'],['sent','In a sentence','فِي جُمْلَة']];
+const qs=new URLSearchParams(location.search);
+let tab=TABS.some(t=>t[0]===qs.get('tab'))?qs.get('tab'):'table';
+let vi=0, qSet=[], qPos=0;
+const panel=document.getElementById('panel');
+const futureOf=p=>'سَ'+p;
+const formOf=(v,p,t)=>t==='past'?v.past[p]:t==='pr'?v.pr[p]:futureOf(v.pr[p]);
+function distractors(v,p,t){
+  const pool=[];['past','pr','fut'].forEach(tt=>{if(tt!==t)pool.push(formOf(v,p,tt))});
+  PRONOUNS.forEach((_,pi)=>{if(pi!==p)pool.push(formOf(v,pi,t))});
+  const right=formOf(v,p,t);
+  return shuffle([...new Set(pool.filter(x=>x!==right))]).slice(0,3)}
+
+function render(){
+  const tabsEl=document.getElementById('tabs');tabsEl.innerHTML='';
+  TABS.forEach(([k,en,ar])=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');
+    b.setAttribute('aria-selected',k===tab);b.textContent=en;
+    b.onclick=()=>{tab=k;if(k==='drill'){qSet=[];qPos=0}render()};tabsEl.appendChild(b)});
+  const pick=document.getElementById('pick');pick.innerHTML='';
+  VERBS.forEach((v,i)=>{const b=document.createElement('button');b.className='vchip'+(i===vi?' on':'');b.type='button';
+    b.innerHTML=`<span class="va">${v.ar}</span><span class="ve">${v.en}</span>`;
+    b.onclick=()=>{vi=i;qSet=[];qPos=0;render()};pick.appendChild(b)});
+  const v=VERBS[vi];
+  document.getElementById('vhead').innerHTML=
+    `<div class="vh-ar">${v.ar} · ${v.pres}</div><div class="vh-en">${v.en}</div><div class="vh-pat">${v.pat}</div>`;
+  panel.innerHTML='';
+  ({table:vTable,drill:vDrill,sent:vSent})[tab](v);
+}
+function vTable(v){
+  const t=document.createElement('table');t.className='vtable';
+  t.innerHTML='<thead><tr><th></th><th>الماضي<span>past</span></th><th>المضارع<span>present</span></th><th>المستقبل<span>future</span></th></tr></thead>';
+  const tb=document.createElement('tbody');
+  PRONOUNS.forEach((p,i)=>{const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="vp">${p.ar}<span>${p.en}</span></td>`;
+    [v.past[i],v.pr[i],futureOf(v.pr[i])].forEach(f=>{
+      const td=document.createElement('td');td.className='vf';td.textContent=f;tappable(td,f);tr.appendChild(td)});
+    tb.appendChild(tr)});
+  t.appendChild(tb);panel.appendChild(t);
+  const n=document.createElement('p');n.className='vnote';
+  n.textContent='Every cell is tappable. The future column is just سَـ added to the present — no other change.';
+  panel.appendChild(n);
+}
+function vDrill(v){
+  if(!qSet.length){const all=[];
+    PRONOUNS.forEach((p,i)=>{
+      all.push({p,t:'past',tAr:'الماضي',ans:v.past[i]});
+      all.push({p,t:'pr',tAr:'المضارع',ans:v.pr[i]});
+      all.push({p,t:'fut',tAr:'المستقبل',ans:futureOf(v.pr[i])})});
+    qSet=shuffle(all);qPos=0}
+  if(qPos>=qSet.length){
+    const d=document.createElement('div');d.className='done';
+    d.innerHTML='<div class="big">أَحْسَنْت</div><h2>All 18 forms covered</h2>';
+    const b=document.createElement('button');b.className='btn';b.textContent='Go again';
+    b.onclick=()=>{qSet=[];qPos=0;render()};d.appendChild(b);panel.appendChild(d);return}
+  const q=qSet[qPos],c=document.createElement('div');c.className='card';
+  c.appendChild(taskBar('Give the '+(q.t==='past'?'past':q.t==='pr'?'present':'future')+' form','صَرِّفِ الْفِعْلَ','Say it aloud first, then type it.'));
+  c.insertAdjacentHTML('beforeend',`<div class="counter">${qPos+1} / ${qSet.length}</div>
+    <div class="vprompt"><span class="vp-pron">${q.p.ar}</span><span class="vp-plus">+</span>
+    <span class="vp-verb">${VERBS[vi].ar}</span><span class="vp-tense">${q.tAr}</span></div>`);
+  c.appendChild(answerRow(q.ans));
+  const show=document.createElement('button');show.className='btn';show.type='button';show.textContent='Show the answer';
+  show.style.marginTop='12px';
+  const ansBox=document.createElement('div');ansBox.style.display='none';
+  const g=document.createElement('div');g.className='good';g.textContent=q.ans;ansBox.appendChild(tappable(g,q.ans));
+  show.onclick=()=>{ansBox.style.display='block';show.style.display='none';say(q.ans,g)};
+  const next=document.createElement('button');next.className='btn';next.type='button';next.textContent='Next →';
+  next.style.cssText='margin-top:12px;margin-left:8px';
+  next.onclick=()=>{qPos++;render()};
+  c.appendChild(show);c.appendChild(next);c.appendChild(ansBox);panel.appendChild(c);
+}
+function vSent(v){
+  const items=VERB_SENT.filter(x=>x.v===vi);
+  if(!items.length){const p=document.createElement('p');p.className='vnote';
+    p.textContent='No sentence items for this verb yet — the table and the drill cover it.';panel.appendChild(p);return}
+  items.forEach(it=>{
+    const right=formOf(v,it.p,it.t), opts=shuffle([right,...distractors(v,it.p,it.t)]);
+    const c=document.createElement('div');c.className='card';
+    c.appendChild(taskBar('Choose the right form','اخْتَرِ الصِّيغَةَ الصَّحِيحَةَ','The time word in the sentence tells you the tense.'));
+    c.insertAdjacentHTML('beforeend',`<div class="vsent-meta"><span class="vp-verb">${v.ar}</span>
+      <span class="vp-plus">+</span><span class="vp-pron">${PRONOUNS[it.p].ar}</span></div>`);
+    const q=document.createElement('div');q.className='qar';
+    const draw=f=>{q.innerHTML=it.s.replace('___',`<span class="gap${f?' filled':''}">${f||'___'}</span>`)};
+    draw(null);c.appendChild(q);
+    const en=document.createElement('div');en.className='qen';en.textContent=it.en;c.appendChild(en);
+    const ob=document.createElement('div');ob.className='opts';
+    const why=document.createElement('div');why.className='why';why.style.display='none';
+    opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.type='button';b.textContent=o;
+      b.onclick=()=>{if(c.dataset.done)return;c.dataset.done='1';
+        const ok=o===right;b.classList.add(ok?'right':'wrong');
+        if(!ok)[...ob.children].find(x=>x.textContent===right).classList.add('right');
+        draw(right);why.style.display='block';
+        const tn=it.t==='past'?'past':it.t==='pr'?'present':'future';
+        why.textContent=(it.cue!=='—'?'“'+it.cue+'” forces the '+tn+'. ':'This needs the '+tn+'. ')+
+          'With '+PRONOUNS[it.p].ar+' ('+PRONOUNS[it.p].en+') that is '+right+'.';
+        say(it.s.replace('___',right),q)};
+      ob.appendChild(b)});
+    c.appendChild(ob);c.appendChild(why);panel.appendChild(c)});
+}
+if('speechSynthesis' in window) speechSynthesis.onvoiceschanged=()=>{};
+render();
+</script>

@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=700">
+<link rel="stylesheet" href="site.css?v=800">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#F1ECE0">
@@ -33,6 +33,24 @@
 .tile .go{font-size:13px;color:var(--verdigris);font-weight:500;margin-top:12px}
 .tile.drills .ar{color:var(--rubric)}
 .corner{flex:0 0 auto}
+.pickhead{font-size:16px;font-weight:700;margin:26px 0 4px}
+.picksub{font-size:13.5px;color:var(--ink-soft);margin:0 0 16px}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.qcard{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--rule);
+  border-radius:8px;padding:16px 17px;transition:border-color .15s,transform .12s}
+.qcard:hover{border-color:var(--verdigris);transform:translateY(-1px)}
+.qcard .qa{font-family:var(--ar);font-size:20px;direction:rtl;line-height:1.7;color:var(--rubric)}
+.qcard .qt{font-size:15.5px;font-weight:600;margin-top:2px}
+.qcard .qd{font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.45}
+.qcard .qm{font-family:var(--ut);font-size:10.5px;color:var(--ink-soft);margin-top:9px;padding-top:8px;border-top:1px solid var(--rule)}
+.qcard .qm b{color:var(--rubric)}
+.bigcta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  background:var(--ink);color:var(--bg);border-radius:8px;padding:18px 20px;margin:22px 0 4px;text-decoration:none}
+.bigcta .bc-t{font-size:17px;font-weight:600}
+.bigcta .bc-d{font-size:13px;opacity:.72;margin-top:3px}
+.bigcta .bc-go{background:var(--verdigris);color:#fff;border-radius:5px;padding:11px 20px;font-size:14.5px;white-space:nowrap}
+@media (max-width:860px){ .qgrid{grid-template-columns:1fr} .bigcta{flex-direction:column;align-items:stretch}
+  .bigcta .bc-go{text-align:center} }
 .stat{font-family:var(--ut);font-size:11px;letter-spacing:.08em;color:var(--ink-soft);margin-top:10px;padding-top:10px;border-top:1px solid var(--rule)}
 .stat b{color:var(--rubric);font-weight:600}
 .stat.none{color:var(--ink-soft)}
@@ -44,8 +62,8 @@
   <a class="brand" href="dashboard.html">بَيْنَ <span>يَدَيْكَ</span></a>
   <div class="navlinks">
     <a class="active" href="dashboard.html">Dashboard</a>
-    <a href="vocab.html">Vocab</a>
-    <a href="drills.html">Drills</a>
+    <a href="vocab.html">Words</a>
+    <a href="drills.html">Sentences</a><a href="verbs.html">Verbs</a><a href="connectors.html">Connectors</a>
     <a href="index.html">Log out</a>
   </div>
 </nav>
@@ -57,25 +75,9 @@
     <p>Pick a path below. Build your vocabulary with spaced repetition, or practise speaking with the drills.</p>
     <div class="today" id="todayLine"></div>
   </section>
-  <section class="tiles">
-    <a class="tile" href="vocab.html">
-      <div class="tilehead"><span class="corner tag">Spaced repetition</span><div class="ar">مُفْرَدات</div></div>
-      <h2>Vocabulary</h2>
-      <p>A daily review that shows the words due today, plus the full word list with English translations.</p>
-      <div class="stat" id="vocabStat">—</div>
-      <div class="go">Open vocab →</div>
-    </a>
-    <a class="tile drills" href="drills.html">
-      <span class="corner tag">Speaking</span>
-      <div class="ar">تَدْرِيبَات</div>
-      <h2>Speaking drills</h2>
-      <p>Twelve drill modes across units 1–12: dialogue, role-play, ladders, gap-fill, error-correction, dictation and production.</p>
-      <div class="stat" id="drillStat">—</div>
-      <div class="go">Open drills →</div>
-    </a>
-  </section>
+  <div id="picker"></div>
 </main>
-<script src="vocab-data.js?v=700"></script>
+<script src="vocab-data.js?v=800"></script>
 <script>
 /* Both apps keep their own schedule; the dashboard just reports on each. */
 const DAY=86400000, dayNow=Math.floor(Date.now()/DAY), iso=new Date().toISOString().slice(0,10);
@@ -101,30 +103,44 @@ function paintGreeting(){
 }
 paintGreeting();
 
-(function vocabStat(){
-  const el=document.getElementById('vocabStat');
-  const p=read('bay_vocab_progress_v1');
-  const total=(typeof VOCAB!=='undefined')?VOCAB.length:0;
-  if(!p){el.textContent=total?total+' words waiting — nothing started yet':'No word list loaded';return}
-  let due=0,known=0,started=0;
-  Object.values(p).forEach(r=>{
-    if(!r||!r.box)return;                       // box 0 = not introduced yet
-    started++;
-    if(r.due!=null&&r.due<=dayNow)due++;
-    if(r.box>=4)known++;
-  });
-  const fresh=total-started;
-  el.innerHTML=`<b>${due}</b> due today · ${known} known · ${fresh} not started of ${total}`;
-})();
+(function picker(){
+  const el=document.getElementById('picker');
+  if(!el) return;
+  const dr=read('bay_drills_progress_v1'), vc=read('bay_vocab_progress_v1');
+  let drDue=0, drKnown=0;
+  if(dr&&dr.items) Object.values(dr.items).forEach(r=>{if(r.due<=iso)drDue++;if(r.box>=3)drKnown++});
+  let vcDue=0, vcNew=0;
+  const vTotal=(typeof VOCAB!=='undefined')?VOCAB.length:0;
+  if(vc) Object.values(vc).forEach(r=>{if(!r||!r.box){vcNew++;return}if(r.due!=null&&r.due<=dayNow)vcDue++});
+  else vcNew=vTotal;
 
-(function drillStat(){
-  const el=document.getElementById('drillStat');
-  const p=read('bay_drills_progress_v1');
-  if(!p||!p.items||!Object.keys(p.items).length){el.textContent='672 items ready — nothing started yet';return}
-  let due=0,known=0;
-  Object.values(p.items).forEach(r=>{if(r.due<=iso)due++;if(r.box>=3)known++});
-  const doneToday=(p.day===iso)?(p.today||0):0;
-  el.innerHTML=`<b>${due}</b> due today · ${known} known of 672 · ${doneToday} done today`;
+  const cards=[
+    {href:'vocab.html', ar:'مُفْرَدات', t:'Words',
+     d:'Daily spaced-repetition review of the book\u2019s 622 words.',
+     m: vcDue? `<b>${vcDue}</b> due today` : `${vTotal-vcNew} started of ${vTotal}`},
+    {href:'drills.html', ar:'جُمَل', t:'Sentences',
+     d:'Twelve drills across units 1\u201312 \u2014 dialogue, ladders, gap-fill, production.',
+     m: drDue? `<b>${drDue}</b> due today` : `${drKnown} known of 672`},
+    {href:'verbs.html?tab=drill', ar:'أَفْعال', t:'Practise your tenses',
+     d:'Past, present and future across 21 verbs \u2014 table, drill, then in a sentence.',
+     m:'21 verbs \u00b7 18 forms each'},
+    {href:'connectors.html?tab=ex', ar:'رَوابِط', t:'Joining words',
+     d:'\u062B\u064F\u0645\u0651 \u00b7 \u0644\u0623\u0646\u0651 \u00b7 \u0644\u0643\u0646\u0651 \u2014 plus question and opinion openers.',
+     m:'53 connectors \u00b7 24 exercises'}
+  ];
+  const total=drDue+vcDue;
+  el.innerHTML =
+    `<a class="bigcta" href="drills.html?start=1">
+       <div><div class="bc-t">Start today\u2019s session</div>
+       <div class="bc-d">${total? total+' item'+(total===1?'':'s')+' waiting across words and sentences' : 'A short mixed set, picked for you'}</div></div>
+       <span class="bc-go">Start →</span></a>
+     <div class="pickhead">Or pick something specific</div>
+     <p class="picksub">Each one is a self-contained way in — no need to work through them in order.</p>
+     <div class="qgrid">` +
+    cards.map(c=>`<a class="qcard" href="${c.href}">
+       <div class="qa">${c.ar}</div><div class="qt">${c.t}</div>
+       <div class="qd">${c.d}</div><div class="qm">${c.m}</div></a>`).join('') +
+    `</div>`;
 })();
 
 (function todayLine(){
@@ -138,10 +154,13 @@ paintGreeting();
     : 'nothing scheduled yet — start either side below and it will build from there';
 })();
 </script>
+
 <nav class="tabbar" aria-label="Sections">
   <a class="on" href="dashboard.html"><span class="ti">الرَّئِيسَة</span>Home</a>
-  <a class="" href="vocab.html"><span class="ti">مُفْرَدات</span>Vocab</a>
-  <a class="" href="drills.html"><span class="ti">تَدْرِيبات</span>Drills</a>
+  <a class="" href="vocab.html"><span class="ti">مُفْرَدات</span>Words</a>
+  <a class="" href="drills.html"><span class="ti">جُمَل</span>Sentences</a>
+  <a class="" href="verbs.html"><span class="ti">أَفْعال</span>Verbs</a>
+  <a class="" href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
 </nav>
 </body>
 </html>

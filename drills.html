@@ -177,9 +177,9 @@ body.in-session .shell{grid-template-columns:minmax(0,1fr)}
   .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--paper);
     border-top:1px solid var(--rule);padding-bottom:env(safe-area-inset-bottom);
     box-shadow:0 -6px 14px -10px rgba(23,38,43,.35)}
-  .tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 4px 8px;
-    font-size:11px;color:var(--ink-soft);text-decoration:none;min-height:52px;justify-content:center}
-  .tabbar a .ti{font-family:var(--ar);font-size:17px;line-height:1.5}
+  .tabbar a{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:1px;padding:8px 2px 7px;
+    font-size:10px;color:var(--ink-soft);text-decoration:none;min-height:52px;justify-content:center;text-align:center}
+  .tabbar a .ti{font-family:var(--ar);font-size:15px;line-height:1.5;white-space:nowrap}
   .tabbar a.on{color:var(--ink)}
   .tabbar a.on .ti{color:var(--rubric)}
   body{padding-bottom:60px}
@@ -485,10 +485,9 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
 <nav class="nav">
   <a class="brand" href="dashboard.html">بَيْنَ <span>يَدَيْكَ</span></a>
   <div class="navlinks">
-    <a href="dashboard.html">Dashboard</a>
-    <a href="vocab.html">Vocab</a>
-    <a class="active" href="drills.html">Drills</a>
-    <a href="index.html">Log out</a>
+    <a href="dashboard.html">Home</a><a href="vocab.html">Words</a>
+    <a class="active" href="drills.html">Sentences</a><a href="verbs.html">Verbs</a>
+    <a href="connectors.html">Connectors</a>
   </div>
 </nav>
 <header class="masthead">
@@ -525,8 +524,8 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     <div class="railsep"></div>
     <div class="glue">
       <h3 class="label">Joining words</h3>
-      <p class="gluenote">53 connectors, sentence starters and question openers — with exercises.</p>
-      <button class="btn" id="gotoConnect" type="button" style="width:100%">Open Toolkit →</button>
+      <p class="gluenote">53 connectors, sentence starters and question openers — now their own section.</p>
+      <a class="btn" href="connectors.html" style="width:100%;display:block;text-align:center;text-decoration:none">Open Connectors →</a>
     </div>
   </nav>
   <main>
@@ -550,8 +549,10 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
 
 <nav class="tabbar" aria-label="Sections">
   <a href="dashboard.html"><span class="ti">الرَّئِيسَة</span>Home</a>
-  <a href="vocab.html"><span class="ti">مُفْرَدات</span>Vocab</a>
-  <a class="on" href="drills.html"><span class="ti">تَدْرِيبات</span>Drills</a>
+  <a href="vocab.html"><span class="ti">مُفْرَدات</span>Words</a>
+  <a class="on" href="drills.html"><span class="ti">جُمَل</span>Sentences</a>
+  <a href="verbs.html"><span class="ti">أَفْعال</span>Verbs</a>
+  <a href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
 </nav>
 <footer>
   Built from the vocabulary lists printed at the back of your own books — Part 1 pp. 257–258, Part 2 pp. 259–260.
@@ -1819,8 +1820,6 @@ const GROUPS=[
     ["transform","التَّحْوِيل","Transform"],["cloze","الفَراغات","Gap-fill"],["fix","التَّصْحِيح","Fix it"],["grammar","التَّراكِيب","Structures"]]},
  {k:'speak',   en:'Speak',   ar:'إِنْتاج', modes:[
     ["produce","الإِنْتاج","Produce"],["review","المُراجَعَة","Review"]]},
- {k:'toolkit', en:'Toolkit', ar:'أَدَوات', modes:[
-    ["connect","الرَّوابِط","Joining words"],["verbs","تَصْرِيف","Verb forms"]]},
 ];
 const MODES=GROUPS.flatMap(g=>g.modes);
 const groupOf=m=>(GROUPS.find(g=>g.modes.some(x=>x[0]===m))||GROUPS[0]).k;
@@ -2333,16 +2332,12 @@ function drawRail(){
       <span class="bar"><i style="width:${p.total?Math.round(100*p.known/p.total):0}%"></i></span>`;
   });
 }
-document.getElementById('gotoConnect').onclick=()=>{
-  group='toolkit';mode='connect';connTab='ref';render();focusDrill();
-};
+
 const rgroupsEl=document.getElementById('rgroups'), rmodesEl=document.getElementById('rmodes');
 let group=groupOf(mode);
 
 function modeCount(m,u){
   if(m==='review') return INDEX.filter(isDue).length;
-  if(m==='connect') return CONNECTORS.reduce((a,c)=>a+c.items.length,0);
-  if(m==='verbs') return VERBS.length;
   if(!FIELD[m]) return (m==='dialogue'||m==='roleplay')?u.dialogue.length:
                         (m==='sub'?u.subs.length:(m==='ladder'?u.ladders.length:
                         (m==='grammar'?(u.grammar||[]).length:0)));
@@ -2430,7 +2425,7 @@ function render(){
   ({dialogue:vDialogue,roleplay:vRolePlay,dictation:vList('dictation'),ladder:vLadder,sub:vSub,
     build:vList('build'),transform:vList('transform'),cloze:vList('cloze'),fix:vList('fix'),
     grammar:vGrammar,produce:vList('produce'),review:vReview,
-    connect:vConnect,verbs:vVerbs})[mode](u);
+})[mode](u);
 }
 
 /* generic list view for tracked item types */
@@ -2893,6 +2888,10 @@ function vReview(){
 }
 
 /* ── go ─────────────────────────────────────────────────── */
-loadProg().then(()=>{drawStats();render()});
+loadProg().then(()=>{
+  drawStats();
+  if(new URLSearchParams(location.search).get('start')==='1'){ startSession(); }
+  else render();
+});
 
 </script>

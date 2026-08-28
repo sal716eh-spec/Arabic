@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=700">
+<link rel="stylesheet" href="site.css?v=800">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#F1ECE0">
@@ -88,9 +88,9 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
 <nav class="nav">
   <a class="brand" href="dashboard.html">بَيْنَ <span>يَدَيْكَ</span></a>
   <div class="navlinks">
-    <a href="dashboard.html">Dashboard</a>
-    <a class="active" href="vocab.html">Vocab</a>
-    <a href="drills.html">Drills</a>
+    <a href="dashboard.html">Home</a>
+    <a class="active" href="vocab.html">Words</a>
+    <a href="drills.html">Sentences</a><a href="verbs.html">Verbs</a><a href="connectors.html">Connectors</a>
     <a href="index.html">Log out</a>
   </div>
 </nav>
@@ -165,7 +165,7 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
   </section>
 </main>
 
-<script src="vocab-data.js?v=700"></script>
+<script src="vocab-data.js?v=800"></script>
 <script>
 /* ---------- Leitner spaced repetition ----------
    Each word sits in a box (1..5). Higher box = longer gap.
@@ -384,10 +384,13 @@ if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged = syncAudioUI; 
 startTest();
 renderList();
 </script>
+
 <nav class="tabbar" aria-label="Sections">
   <a class="" href="dashboard.html"><span class="ti">الرَّئِيسَة</span>Home</a>
-  <a class="on" href="vocab.html"><span class="ti">مُفْرَدات</span>Vocab</a>
-  <a class="" href="drills.html"><span class="ti">تَدْرِيبات</span>Drills</a>
+  <a class="on" href="vocab.html"><span class="ti">مُفْرَدات</span>Words</a>
+  <a class="" href="drills.html"><span class="ti">جُمَل</span>Sentences</a>
+  <a class="" href="verbs.html"><span class="ti">أَفْعال</span>Verbs</a>
+  <a class="" href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
 </nav>
 </body>
 </html>

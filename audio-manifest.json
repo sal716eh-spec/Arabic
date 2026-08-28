@@ -9798,5 +9798,3176 @@
   "bucket": "vocab",
   "unit": "16",
   "chars": 10
+ },
+ {
+  "id": "3hbk3",
+  "text": "وَ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 2
+ },
+ {
+  "id": "bzrynq",
+  "text": "أَدْرُسُ الْعَرَبِيَّةَ وَالتَّارِيخَ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 38
+ },
+ {
+  "id": "1azpup6",
+  "text": "أَيْضًا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "kunylr",
+  "text": "وَأَنا أَدْرُسُ الْعَرَبِيَّةَ أَيْضًا.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 39
+ },
+ {
+  "id": "16yk38v",
+  "text": "كَذَلِكَ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "gmew93",
+  "text": "وَأُخْتِي كَذَلِكَ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 19
+ },
+ {
+  "id": "16ja3as",
+  "text": "بِالإِضافَةِ إِلى",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 17
+ },
+ {
+  "id": "1gjmo6e",
+  "text": "بِالإِضافَةِ إِلى ذَلِكَ، الشَّقَّةُ قَرِيبَةٌ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 47
+ },
+ {
+  "id": "1qf1faz",
+  "text": "ثُمَّ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 5
+ },
+ {
+  "id": "sixbf9",
+  "text": "أُصَلِّي، ثُمَّ أَتَناوَلُ الْفَطُورَ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 38
+ },
+ {
+  "id": "4noq26",
+  "text": "بَعْدَ ذَلِكَ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "n4cjkw",
+  "text": "بَعْدَ ذَلِكَ أَذْهَبُ إِلى الْعَمَلِ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 38
+ },
+ {
+  "id": "1j6s0zb",
+  "text": "أَوَّلًا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1hqnapf",
+  "text": "أَوَّلًا أَتَوَضَّأُ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 21
+ },
+ {
+  "id": "cuu87t",
+  "text": "ثانِيًا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "c0r3rg",
+  "text": "ثانِيًا أَقْرَأُ الْقُرْآنَ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 28
+ },
+ {
+  "id": "6x7fnl",
+  "text": "أَخِيرًا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1nyfahb",
+  "text": "وَأَخِيرًا أَنامُ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 18
+ },
+ {
+  "id": "b0xso0",
+  "text": "قَبْلَ أَنْ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "17knkef",
+  "text": "أَقْرَأُ قَبْلَ أَنْ أَنامَ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 28
+ },
+ {
+  "id": "1vn684w",
+  "text": "بَعْدَ أَنْ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "tqnne1",
+  "text": "خَرَجْتُ بَعْدَ أَنْ أَكَلْتُ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 30
+ },
+ {
+  "id": "90zc4b",
+  "text": "عِنْدَما",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "814u92",
+  "text": "عِنْدَما يَكُونُ الْجَوُّ بارِدًا أَبْقى فِي الْبَيْتِ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 55
+ },
+ {
+  "id": "qdfo4o",
+  "text": "لَكِنْ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "kphltk",
+  "text": "أُحِبُّ الْقَهْوَةَ لَكِنْ لا أَشْرَبُها.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 41
+ },
+ {
+  "id": "138w1ku",
+  "text": "مَعَ ذَلِكَ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "196swrq",
+  "text": "الشَّقَّةُ غالِيَةٌ، وَمَعَ ذَلِكَ أُحِبُّها.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 45
+ },
+ {
+  "id": "y6fpdh",
+  "text": "بَلْ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "1mqabap",
+  "text": "لَسْتُ طالِبًا بَلْ مُدَرِّسٌ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 30
+ },
+ {
+  "id": "i4posl",
+  "text": "لِأَنَّ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "u2myb5",
+  "text": "لِأَنِّي",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1x0uo91",
+  "text": "لِأَنَّها",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1pzbqym",
+  "text": "بِسَبَبِ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "lqyvqi",
+  "text": "تَأَخَّرْتُ بِسَبَبِ الازْدِحامِ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 33
+ },
+ {
+  "id": "qbzn12",
+  "text": "لِذَلِكَ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "qbn8of",
+  "text": "لِهَذا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "18j55gv",
+  "text": "عَمَلِي بَعِيدٌ، لِهَذا أَسْتَيْقِظُ مُبَكِّرًا.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 48
+ },
+ {
+  "id": "y6u8cn",
+  "text": "إِذا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "1ylwzgz",
+  "text": "إِذا كانَ عِنْدِي وَقْتٌ أَقْرَأُ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 34
+ },
+ {
+  "id": "4ttipx",
+  "text": "إِنْ شاءَ اللهُ أَزُورُكَ غَدًا.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 32
+ },
+ {
+  "id": "y9n0ut",
+  "text": "لَوْ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "gaa8sk",
+  "text": "لَوْ كُنْتُ غَنِيًّا لَسافَرْتُ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 32
+ },
+ {
+  "id": "1trkloj",
+  "text": "مَثَلًا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "1cdv4ii",
+  "text": "أُحِبُّ الْفاكِهَةَ، مَثَلًا الْعِنَبَ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 39
+ },
+ {
+  "id": "ang8vs",
+  "text": "عَلى سَبِيلِ الْمِثالِ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 22
+ },
+ {
+  "id": "k172se",
+  "text": "عَلى سَبِيلِ الْمِثالِ، هَذا الْكِتابُ مُفِيدٌ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 47
+ },
+ {
+  "id": "w51z6r",
+  "text": "مِثْلَ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "3adixd",
+  "text": "أَهْوى الرِّياضَةَ مِثْلَ السِّباحَةِ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 38
+ },
+ {
+  "id": "17oamo0",
+  "text": "فِي رَأْيِي",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "vhwrt3",
+  "text": "فِي رَأْيِي الْقَرْيَةُ أَهْدَأُ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 33
+ },
+ {
+  "id": "wjpyb7",
+  "text": "أَظُنُّ أَنَّ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "mx9p1c",
+  "text": "أَظُنُّ أَنَّ الْجَوَّ سَيَكُونُ بارِدًا.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 41
+ },
+ {
+  "id": "yz00dd",
+  "text": "أَعْتَقِدُ أَنَّ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 16
+ },
+ {
+  "id": "qjaaak",
+  "text": "أَعْتَقِدُ أَنَّ هَذا صَحِيحٌ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 30
+ },
+ {
+  "id": "1lnvjs1",
+  "text": "فِي الْحَقِيقَةِ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 16
+ },
+ {
+  "id": "1lwln5x",
+  "text": "فِي الْحَقِيقَةِ لا أَعْرِفُ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 29
+ },
+ {
+  "id": "1fnwcnr",
+  "text": "بِصَراحَةٍ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "vu3yja",
+  "text": "بِصَراحَةٍ، الطَّعامُ لَذِيذٌ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 30
+ },
+ {
+  "id": "y9mw3e",
+  "text": "هَلْ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "3h8sn",
+  "text": "ما",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 2
+ },
+ {
+  "id": "y7jbrk",
+  "text": "ماذا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "z2c0qs",
+  "text": "ماذا تَفْعَلُ؟",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 14
+ },
+ {
+  "id": "y7h9bu",
+  "text": "مَنْ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "o2yn15",
+  "text": "مِنْ أَيْنَ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "tec03f",
+  "text": "مِنْ أَيْنَ أَنْتَ؟",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 19
+ },
+ {
+  "id": "fi6v3n",
+  "text": "لِماذا تَدْرُسُ الْعَرَبِيَّةَ؟",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 31
+ },
+ {
+  "id": "y9psf3",
+  "text": "كَمْ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "2bnrvr",
+  "text": "بِكَمْ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1q9o2f0",
+  "text": "أَيُّ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 5
+ },
+ {
+  "id": "1c6d8gq",
+  "text": "ما رَأْيُكَ فِي",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 15
+ },
+ {
+  "id": "1nf54i",
+  "text": "دائِمًا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "npyy1n",
+  "text": "أُصَلِّي الْفَجْرَ دائِمًا.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 27
+ },
+ {
+  "id": "1qkdt4o",
+  "text": "عادَةً",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "85tqt8",
+  "text": "أَذْهَبُ مَشْيًا عادَةً.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 24
+ },
+ {
+  "id": "10ozd80",
+  "text": "أَحْيانًا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "p6xu2m",
+  "text": "أَحْيانًا أَذْهَبُ بِالْحافِلَةِ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 33
+ },
+ {
+  "id": "8lrnae",
+  "text": "نادِرًا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "n53re8",
+  "text": "نادِرًا ما أَشْرَبُ الْقَهْوَةَ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 32
+ },
+ {
+  "id": "1bjgubx",
+  "text": "أَبَدًا",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "1d2romd",
+  "text": "لا أَتَكَلَّمُ الإِنْجِلِيزِيَّةَ أَبَدًا.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 42
+ },
+ {
+  "id": "1104ohw",
+  "text": "كُلَّ يَوْمٍ",
+  "bucket": "connector",
+  "unit": "-",
+  "chars": 12
+ },
+ {
+  "id": "rgh5x4",
+  "text": "أَدْرُسُ كُلَّ يَوْمٍ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 22
+ },
+ {
+  "id": "1i7ohcc",
+  "text": "أَخَذْتُ الْمِظَلَّةَ لِأَنَّ الْجَوَّ مُمْطِرٌ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 48
+ },
+ {
+  "id": "42nzg7",
+  "text": "أُحِبُّ الْقَهْوَةَ لَكِنْ لا أَشْرَبُها فِي اللَّيْلِ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 55
+ },
+ {
+  "id": "vyg30p",
+  "text": "أَضَعُ الْمُنَبِّهَ لِأَنِّي كَسْلانُ فِي الصَّباحِ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 52
+ },
+ {
+  "id": "ahsyl5",
+  "text": "أَوَّلًا أَتَوَضَّأُ، ثُمَّ أُصَلِّي.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 37
+ },
+ {
+  "id": "1pbnzi5",
+  "text": "أَقْرَأُ كِتابًا قَبْلَ أَنْ أَنامَ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 36
+ },
+ {
+  "id": "1c5pmpu",
+  "text": "أُحِبُّ الْفاكِهَةَ، مَثَلًا الْعِنَبَ وَالتَّمْرَ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 51
+ },
+ {
+  "id": "15wq1tw",
+  "text": "فِي رَأْيِي الْقَرْيَةُ أَهْدَأُ مِنَ الْمَدِينَةِ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 51
+ },
+ {
+  "id": "14vz0vi",
+  "text": "ماذا تَفْعَلُ فِي الْعُطْلَةِ؟",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 30
+ },
+ {
+  "id": "1hgpbr6",
+  "text": "أَذْهَبُ مَشْيًا عادَةً ، وَأَحْيانًا بِالْحافِلَةِ.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 52
+ },
+ {
+  "id": "1jcxg8d",
+  "text": "لا أَتَكَلَّمُ الإِنْجِلِيزِيَّةَ فِي الدَّرْسِ أَبَدًا .",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 57
+ },
+ {
+  "id": "wtmggw",
+  "text": "الشَّقَّةُ غالِيَةٌ، مَعَ ذَلِكَ أُحِبُّها.",
+  "bucket": "connector-ex",
+  "unit": "-",
+  "chars": 43
+ },
+ {
+  "id": "1cqlzm5",
+  "text": "ذَهَبْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1cqlzm4",
+  "text": "ذَهَبْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1cqlzma",
+  "text": "ذَهَبْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1kx6h10",
+  "text": "ذَهَبَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1cqlmdo",
+  "text": "ذَهَبَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1cqm361",
+  "text": "ذَهَبْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1ffmp0k",
+  "text": "أَذْهَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "60e6pl",
+  "text": "سَأَذْهَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "ksub7x",
+  "text": "تَذْهَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1hngaj4",
+  "text": "سَتَذْهَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "29p4b4",
+  "text": "تَذْهَبِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "9kndv1",
+  "text": "سَتَذْهَبِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "1d0awq5",
+  "text": "يَذْهَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "4ty968",
+  "text": "سَيَذْهَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "13nns0x",
+  "text": "نَذْهَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "3ozyws",
+  "text": "سَنَذْهَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "l2ygn3",
+  "text": "دَرَسْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "l2ygn2",
+  "text": "دَرَسْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "l2ygm8",
+  "text": "دَرَسْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1wfvu6e",
+  "text": "دَرَسَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "l2yqbi",
+  "text": "دَرَسَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "l2yc6z",
+  "text": "دَرَسْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1p1rnyv",
+  "text": "أَدْرُسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1hgtitm",
+  "text": "سَأَدْرُسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "jy7ozi",
+  "text": "تَدْرُسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1ix831f",
+  "text": "سَتَدْرُسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "15vsd4z",
+  "text": "تَدْرُسِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "snxoce",
+  "text": "سَتَدْرُسِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "19rcese",
+  "text": "يَدْرُسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "8q6seb",
+  "text": "سَيَدْرُسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1of4cia",
+  "text": "نَدْرُسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1hyngen",
+  "text": "سَنَدْرُسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "169lno3",
+  "text": "كَتَبْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "169lno2",
+  "text": "كَتَبْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "169lnnw",
+  "text": "كَتَبْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "so84ru",
+  "text": "كَتَبَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "169j7rm",
+  "text": "كَتَبَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "169llsn",
+  "text": "كَتَبْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1a0kurf",
+  "text": "أَكْتُبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "fnglba",
+  "text": "سَأَكْتُبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "7sbxle",
+  "text": "تَكْتُبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "2ukr0v",
+  "text": "سَتَكْتُبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1e6gyzz",
+  "text": "تَكْتُبِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "15cnz9u",
+  "text": "سَتَكْتُبِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "1on4cky",
+  "text": "يَكْتُبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "106a73j",
+  "text": "سَيَكْتُبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1io08u",
+  "text": "نَكْتُبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "18bqvvn",
+  "text": "سَنَكْتُبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1wyix41",
+  "text": "شَرِبْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1wyix40",
+  "text": "شَرِبْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1wyix4u",
+  "text": "شَرِبْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "4toy6w",
+  "text": "شَرِبَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1wyio80",
+  "text": "شَرِبَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1wyiwx1",
+  "text": "شَرِبْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1ju1ryu",
+  "text": "أَشْرَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "41js23",
+  "text": "سَأَشْرَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "bbqz27",
+  "text": "تَشْرَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1wey76",
+  "text": "سَتَشْرَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "sklu1u",
+  "text": "تَشْرَبِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "yw4ja7",
+  "text": "سَتَشْرَبِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "uecmjj",
+  "text": "يَشْرَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "2vu1aa",
+  "text": "سَيَشْرَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "113oy37",
+  "text": "نَشْرَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "5ongcu",
+  "text": "سَنَشْرَبُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "neqpms",
+  "text": "سَكَنْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "neqpmt",
+  "text": "سَكَنْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "neqpnf",
+  "text": "سَكَنْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1kb7jb1",
+  "text": "سَكَنَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "nesrb9",
+  "text": "سَكَنَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "nesr1n",
+  "text": "سَكَنَّا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1ih0e98",
+  "text": "أَسْكُنُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1nyusmp",
+  "text": "سَأَسْكُنُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "kora85",
+  "text": "تَسْكُنُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1ir8sns",
+  "text": "سَتَسْكُنُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "192vyl4",
+  "text": "تَسْكُنِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "peyvqd",
+  "text": "سَتَسْكُنِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "1aj95t1",
+  "text": "يَسْكُنُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "80h3lk",
+  "text": "سَيَسْكُنُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "10jk0mh",
+  "text": "نَسْكُنُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "4fn65w",
+  "text": "سَنَسْكُنُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1iq5ses",
+  "text": "عَمِلْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1iq5set",
+  "text": "عَمِلْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1iq5sej",
+  "text": "عَمِلْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1qgyvfx",
+  "text": "عَمِلَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1iq5pg5",
+  "text": "عَمِلَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1iq5rgw",
+  "text": "عَمِلْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1t07yub",
+  "text": "أَعْمَلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1otq0hq",
+  "text": "سَأَعْمَلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "by81vu",
+  "text": "تَعْمَلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1xpvkwn",
+  "text": "سَتَعْمَلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "hx7r07",
+  "text": "تَعْمَلِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "bt8dqi",
+  "text": "سَتَعْمَلِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "wx9ycq",
+  "text": "يَعْمَلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "4qg2gn",
+  "text": "سَيَعْمَلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "x9m6cm",
+  "text": "نَعْمَلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1pusgzf",
+  "text": "سَنَعْمَلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1aqfwvo",
+  "text": "فَتَحْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1aqfwvp",
+  "text": "فَتَحْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1aqfwvf",
+  "text": "فَتَحْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "oyj37x",
+  "text": "فَتَحَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1aqfrjp",
+  "text": "فَتَحَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1aqfxps",
+  "text": "فَتَحْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "14fvzdp",
+  "text": "أَفْتَحُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "gxf2rk",
+  "text": "سَأَفْتَحُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "92xfhw",
+  "text": "تَفْتَحُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "455otl",
+  "text": "سَتَفْتَحُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "14jbrk9",
+  "text": "تَفْتَحِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "g9qn90",
+  "text": "سَتَفْتَحِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "7sdc44",
+  "text": "يَفْتَحُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "11gvtzd",
+  "text": "سَيَفْتَحُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1wu5yqg",
+  "text": "نَفْتَحُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "19mbqx1",
+  "text": "سَنَفْتَحُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "m1cadf",
+  "text": "سَمِعْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "m1cade",
+  "text": "سَمِعْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "m1cae4",
+  "text": "سَمِعْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1kb5whm",
+  "text": "سَمِعَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "m1c1he",
+  "text": "سَمِعَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "m1cbnr",
+  "text": "سَمِعْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1ih4w50",
+  "text": "أَسْمَعُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1nytgq1",
+  "text": "سَأَسْمَعُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "kopsrh",
+  "text": "تَسْمَعُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1ir7bnk",
+  "text": "سَتَسْمَعُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "3vhksg",
+  "text": "تَسْمَعِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "1jo2hkt",
+  "text": "سَتَسْمَعِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "1aj7pvh",
+  "text": "يَسْمَعُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "80w3mo",
+  "text": "سَيَسْمَعُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "10k252p",
+  "text": "نَسْمَعُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "4fm8z0",
+  "text": "سَنَسْمَعُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "18fz47q",
+  "text": "أَكَلْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "18fz47r",
+  "text": "أَكَلْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "18fz47d",
+  "text": "أَكَلْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1tzfeen",
+  "text": "أَكَلَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "18fzpqv",
+  "text": "أَكَلَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "18fz3de",
+  "text": "أَكَلْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1q8xcww",
+  "text": "آكُلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 5
+ },
+ {
+  "id": "9kj4wt",
+  "text": "سَآكُلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "w7fg7r",
+  "text": "تَأْكُلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "175zxai",
+  "text": "سَتَأْكُلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "mjrw3u",
+  "text": "تَأْكُلِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "yfamk7",
+  "text": "سَتَأْكُلِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "1m4kxkn",
+  "text": "يَأْكُلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1vg9ei2",
+  "text": "سَيَأْكُلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1c4vse3",
+  "text": "نَأْكُلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1ub5b8m",
+  "text": "سَنَأْكُلُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1mdq0iq",
+  "text": "قَرَأْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1mdq0ir",
+  "text": "قَرَأْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1mdq0jh",
+  "text": "قَرَأْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "pme9zv",
+  "text": "قَرَأَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1mdprmr",
+  "text": "قَرَأَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1mdpyp2",
+  "text": "قَرَأْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "18ru1mz",
+  "text": "أَقْرَأُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1xqo91y",
+  "text": "سَأَقْرَأُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "778tuq",
+  "text": "تَقْرَأُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "5vzibj",
+  "text": "سَتَقْرَأُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "qirzbu",
+  "text": "تَقْرَئِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "ebqa1z",
+  "text": "سَتَقْرَئِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "1nylcoy",
+  "text": "يَقْرَأُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "10rxi8v",
+  "text": "سَيَقْرَأُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1xg0ob2",
+  "text": "نَقْرَأُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "16fgjyr",
+  "text": "سَنَقْرَأُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "po54qj",
+  "text": "قُلْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "po54qi",
+  "text": "قُلْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "po54pw",
+  "text": "قُلْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "y9pmju",
+  "text": "قالَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "sk1z9u",
+  "text": "قالَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "po541r",
+  "text": "قُلْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1akaa5i",
+  "text": "أَقُولُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "14ulkm3",
+  "text": "سَأَقُولُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "19f120f",
+  "text": "تَقُولُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "f92bgy",
+  "text": "سَتَقُولُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "jvughe",
+  "text": "تَقُولِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "t23sdr",
+  "text": "سَتَقُولِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 12
+ },
+ {
+  "id": "clijin",
+  "text": "يَقُولُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "khm9pu",
+  "text": "سَيَقُولُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1jxseo3",
+  "text": "نَقُولُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "ik6qwu",
+  "text": "سَنَقُولُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "s5zal4",
+  "text": "كُنْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "s5zal5",
+  "text": "كُنْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "s5zakn",
+  "text": "كُنْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "y9m07d",
+  "text": "كانَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "piizzl",
+  "text": "كانَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "s5x88n",
+  "text": "كُنَّا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1ajnvj9",
+  "text": "أَكُونُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "15d3vyw",
+  "text": "سَأَكُونُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "19fqhyk",
+  "text": "تَكُونُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "f5n4ep",
+  "text": "سَتَكُونُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "f1dor5",
+  "text": "تَكُونِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "mg5j2k",
+  "text": "سَتَكُونِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 12
+ },
+ {
+  "id": "cllljg",
+  "text": "يَكُونُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "kgxkq9",
+  "text": "سَيَكُونُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1jxvdj4",
+  "text": "نَكُونُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "ijha9p",
+  "text": "سَنَكُونُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1jmx0f2",
+  "text": "زُرْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1jmx0f3",
+  "text": "زُرْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1jmx0e9",
+  "text": "زُرْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "y5yv2n",
+  "text": "زارَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "1ldqanr",
+  "text": "زارَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1jmwzru",
+  "text": "زُرْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1as6g8z",
+  "text": "أَزُورُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "14jyrni",
+  "text": "سَأَزُورُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "19seitm",
+  "text": "تَزُورُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "cdc6if",
+  "text": "سَتَزُورُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "grahiv",
+  "text": "تَزُورِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1bkyi5m",
+  "text": "سَتَزُورِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 12
+ },
+ {
+  "id": "c7itre",
+  "text": "يَزُورُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "nyjslz",
+  "text": "سَيَزُورُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1iz5icm",
+  "text": "نَزُورُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "jlgm1n",
+  "text": "سَنَزُورُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "p3r43l",
+  "text": "نِمْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "p3r43k",
+  "text": "نِمْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "p3r44e",
+  "text": "نِمْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "y9mq33",
+  "text": "نامَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "q4bb1z",
+  "text": "نامَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "p3r5hh",
+  "text": "نِمْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "1tzg79f",
+  "text": "أَنامُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "xjg2qm",
+  "text": "سَأَنامُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1y98uay",
+  "text": "تَنامُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "19npp6f",
+  "text": "سَتَنامُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "pvbvtj",
+  "text": "تَنامِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "nflvoq",
+  "text": "سَتَنامِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "uio6iy",
+  "text": "يَنامُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "slpgyf",
+  "text": "سَيَنامُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "n7tuo6",
+  "text": "نَنامُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "qe7d7f",
+  "text": "سَنَنامُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "hjpt4a",
+  "text": "رَأَيْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "hjpt4b",
+  "text": "رَأَيْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "hjpt4l",
+  "text": "رَأَيْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "y5z24w",
+  "text": "رَأى",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "1ljmnqn",
+  "text": "رَأَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "hjpqwe",
+  "text": "رَأَيْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "y693ww",
+  "text": "أَرى",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "1k971ql",
+  "text": "سَأَرى",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "y6e721",
+  "text": "تَرى",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "1k9ldus",
+  "text": "سَتَرى",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "iomw4u",
+  "text": "تَرَيْنَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1hp7svn",
+  "text": "سَتَرَيْنَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "y9rxzt",
+  "text": "يَرى",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "1k91b2c",
+  "text": "سَيَرى",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "y9j8lx",
+  "text": "نَرى",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 4
+ },
+ {
+  "id": "1kbb4co",
+  "text": "سَنَرى",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "e5sajm",
+  "text": "اشْتَرَيْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "e5sajn",
+  "text": "اشْتَرَيْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "e5sakd",
+  "text": "اشْتَرَيْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "11utec8",
+  "text": "اشْتَرى",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "r9zh47",
+  "text": "اشْتَرَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "e5se92",
+  "text": "اشْتَرَيْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "1t42z1d",
+  "text": "أَشْتَرِي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1pm5mjg",
+  "text": "سَأَشْتَرِي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "iiazxk",
+  "text": "تَشْتَرِي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1qtnd1x",
+  "text": "سَتَشْتَرِي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "1hztqxs",
+  "text": "تَشْتَرِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "c4a1ul",
+  "text": "سَتَشْتَرِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "6r1ea0",
+  "text": "يَشْتَرِي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "o6mhx1",
+  "text": "سَيَشْتَرِي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "gyc39g",
+  "text": "نَشْتَرِي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "198j29l",
+  "text": "سَنَشْتَرِي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "1i3tut4",
+  "text": "صَلَّيْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1i3tut5",
+  "text": "صَلَّيْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1i3tusn",
+  "text": "صَلَّيْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "2yuwks",
+  "text": "صَلَّى",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "qx7r25",
+  "text": "صَلَّتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "1i3tvuk",
+  "text": "صَلَّيْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "4e0l19",
+  "text": "أُصَلِّي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1m24z6o",
+  "text": "سَأُصَلِّي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "12qpqs",
+  "text": "تُصَلِّي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "j3479l",
+  "text": "سَتُصَلِّي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "zgbg9o",
+  "text": "تُصَلِّينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1897etd",
+  "text": "سَتُصَلِّينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 12
+ },
+ {
+  "id": "ju2lis",
+  "text": "يُصَلِّي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "d8lrxl",
+  "text": "سَيُصَلِّي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "oltomw",
+  "text": "نُصَلِّي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "g5vw2t",
+  "text": "سَنُصَلِّي",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1l422a6",
+  "text": "دَرَّسْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1l422a7",
+  "text": "دَرَّسْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1l422a9",
+  "text": "دَرَّسْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1klprxz",
+  "text": "دَرَّسَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 7
+ },
+ {
+  "id": "1l42ebz",
+  "text": "دَرَّسَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1l424zu",
+  "text": "دَرَّسْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "a5ua1w",
+  "text": "أُدَرِّسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "10sr95l",
+  "text": "سَأُدَرِّسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "1vjf4fh",
+  "text": "تُدَرِّسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "b2kzm8",
+  "text": "سَتُدَرِّسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "131vhbk",
+  "text": "تُدَرِّسِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 12
+ },
+ {
+  "id": "15frnxp",
+  "text": "سَتُدَرِّسِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 14
+ },
+ {
+  "id": "v7fnm5",
+  "text": "يُدَرِّسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1qrvt0w",
+  "text": "سَيُدَرِّسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "8n0t35",
+  "text": "نُدَرِّسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "v3jhdo",
+  "text": "سَنُدَرِّسُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "6ypg6w",
+  "text": "سافَرْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "6ypg6x",
+  "text": "سافَرْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "6ypg6f",
+  "text": "سافَرْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1ktg83l",
+  "text": "سافَرَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 6
+ },
+ {
+  "id": "6ypjy1",
+  "text": "سافَرَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "6ypke4",
+  "text": "سافَرْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "w29w2",
+  "text": "أُسافِرُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "1e2h2dr",
+  "text": "سَأُسافِرُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1w8pou3",
+  "text": "تُسافِرُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "cteb52",
+  "text": "سَتُسافِرُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "18jjs6",
+  "text": "تُسافِرِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "pn6x23",
+  "text": "سَتُسافِرِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "j8l9cr",
+  "text": "يُسافِرُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "jjgp1i",
+  "text": "سَيُسافِرُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "skasd3",
+  "text": "نُسافِرُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 8
+ },
+ {
+  "id": "fj4d3e",
+  "text": "سَنُسافِرُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 10
+ },
+ {
+  "id": "1wt6mpx",
+  "text": "تَكَلَّمْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "1wt6mpw",
+  "text": "تَكَلَّمْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "1wt6mqi",
+  "text": "تَكَلَّمْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "15odpz0",
+  "text": "تَكَلَّمَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 9
+ },
+ {
+  "id": "1wt8qro",
+  "text": "تَكَلَّمَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "1wt6ni9",
+  "text": "تَكَلَّمْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "13y7kpc",
+  "text": "أَتَكَلَّمُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "sc9x0t",
+  "text": "سَأَتَكَلَّمُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "ptboyh",
+  "text": "تَتَكَلَّمُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "mwides",
+  "text": "سَتَتَكَلَّمُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "yu01j8",
+  "text": "تَتَكَلَّمِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 14
+ },
+ {
+  "id": "wd06mx",
+  "text": "سَتَتَكَلَّمِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 16
+ },
+ {
+  "id": "i3dneh",
+  "text": "يَتَكَلَّمُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "1v2eg90",
+  "text": "سَيَتَكَلَّمُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "1p8b35h",
+  "text": "نَتَكَلَّمُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "zalq6g",
+  "text": "سَنَتَكَلَّمُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "3b7u0s",
+  "text": "اسْتَيْقَظْتُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "3b7u0t",
+  "text": "اسْتَيْقَظْتَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "3b7u03",
+  "text": "اسْتَيْقَظْتِ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "1bvmwlh",
+  "text": "اسْتَيْقَظَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 11
+ },
+ {
+  "id": "3b83p9",
+  "text": "اسْتَيْقَظَتْ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "3b7xmg",
+  "text": "اسْتَيْقَظْنا",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 13
+ },
+ {
+  "id": "9tn09c",
+  "text": "أَسْتَيْقِظُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 12
+ },
+ {
+  "id": "1ulddot",
+  "text": "سَأَسْتَيْقِظُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 14
+ },
+ {
+  "id": "1m773nd",
+  "text": "تَسْتَيْقِظُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 12
+ },
+ {
+  "id": "19eysf8",
+  "text": "سَتَسْتَيْقِظُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 14
+ },
+ {
+  "id": "pmxh44",
+  "text": "تَسْتَيْقِظِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 15
+ },
+ {
+  "id": "s1q3dl",
+  "text": "سَتَسْتَيْقِظِينَ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 17
+ },
+ {
+  "id": "1pttvbt",
+  "text": "يَسْتَيْقِظُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 12
+ },
+ {
+  "id": "5fq5ok",
+  "text": "سَيَسْتَيْقِظُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 14
+ },
+ {
+  "id": "1wyoswl",
+  "text": "نَسْتَيْقِظُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 12
+ },
+ {
+  "id": "1c13u88",
+  "text": "سَنَسْتَيْقِظُ",
+  "bucket": "verb",
+  "unit": "-",
+  "chars": 14
+ },
+ {
+  "id": "1yhcogf",
+  "text": "أَمْسِ ذَهَبَ إِلى السُّوقِ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 28
+ },
+ {
+  "id": "osngy2",
+  "text": "أَذْهَبُ إِلى الْعَمَلِ كُلَّ يَوْمٍ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 37
+ },
+ {
+  "id": "d5drqd",
+  "text": "غَدًا سَنَذْهَبُ إِلى الْمَسْجِدِ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 34
+ },
+ {
+  "id": "1uqrs4q",
+  "text": "دَرَسْتُ اللُّغَةَ الْعَرَبِيَّةَ فِي الْعُطْلَةِ الْماضِيَةِ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 62
+ },
+ {
+  "id": "1if3wm3",
+  "text": "تَدْرُسُ فِي كُلِّيَّةِ الطِّبِّ الآنَ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 39
+ },
+ {
+  "id": "1beh0zq",
+  "text": "هَلْ كَتَبْتَ الدَّرْسَ أَمْسِ؟",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 31
+ },
+ {
+  "id": "1est9sg",
+  "text": "أَشْرَبُ الشَّايَ كُلَّ صَباحٍ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 31
+ },
+ {
+  "id": "1c0u4zf",
+  "text": "سَكَنَّا فِي بَيْتٍ قَدِيمٍ قَبْلَ سَنَةٍ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 42
+ },
+ {
+  "id": "1ethdft",
+  "text": "يَعْمَلُ فِي شَرِكَةٍ كَبِيرَةٍ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 32
+ },
+ {
+  "id": "m24p35",
+  "text": "فَتَحَتْ الْبابَ لِأَنَّ الْجَوَّ حارٌّ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 40
+ },
+ {
+  "id": "v2pylv",
+  "text": "سَمِعْتُ أَذانَ الْفَجْرِ، ثُمَّ تَوَضَّأْتُ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 45
+ },
+ {
+  "id": "1f4fbr0",
+  "text": "آكُلُ الْفَطُورَ فِي السَّاعَةِ السَّابِعَةِ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 45
+ },
+ {
+  "id": "hfpu1n",
+  "text": "بَعْدَ الصَّلاةِ سَيَقْرَأُ الْقُرْآنَ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 39
+ },
+ {
+  "id": "715dnq",
+  "text": "ماذا قالَتْ لَكَ أَمْسِ؟",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 24
+ },
+ {
+  "id": "rrzfzh",
+  "text": "زُرْنا جَدَّنا فِي الْعُطْلَةِ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 31
+ },
+ {
+  "id": "krntqw",
+  "text": "نِمْتُ مُتَأَخِّرًا لَيْلَةَ أَمْسِ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 36
+ },
+ {
+  "id": "ucwq34",
+  "text": "هَلْ رَأَيْتَ صَدِيقِي فِي الْمَعْرِضِ؟",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 39
+ },
+ {
+  "id": "1amp1r8",
+  "text": "اشْتَرَيْتُ قَمِيصًا أَبْيَضَ مِنَ السُّوقِ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 44
+ },
+ {
+  "id": "1c3c7wk",
+  "text": "صَلَّيْنا الْمَغْرِبَ فِي الْمَسْجِدِ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 38
+ },
+ {
+  "id": "1blb80w",
+  "text": "تُدَرِّسُ الأَطْفالَ فِي الْمَرْحَلَةِ الابْتِدائِيَّةِ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 56
+ },
+ {
+  "id": "1czok0d",
+  "text": "إِنْ شاءَ اللهُ سَأُسافِرُ إِلى مَكَّةَ فِي رَمَضانَ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 53
+ },
+ {
+  "id": "146p9om",
+  "text": "نَتَكَلَّمُ بِالْعَرَبِيَّةِ فِي الدَّرْسِ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 43
+ },
+ {
+  "id": "wpv7n0",
+  "text": "أَسْتَيْقِظُ مُبَكِّرًا كُلَّ يَوْمٍ.",
+  "bucket": "verb-sent",
+  "unit": "-",
+  "chars": 37
  }
 ]
