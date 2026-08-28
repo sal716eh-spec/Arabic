@@ -3,22 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dashboard — بين يديك</title>
+<title>Rafiq — your Arabic pal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=801">
+<link rel="stylesheet" href="site.css?v=810">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#F1ECE0">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>
-.hero{padding:38px 0 6px}
-.hero .greet{font-family:var(--ar);direction:rtl;font-size:clamp(24px,5.4vw,31px);font-weight:600;color:var(--ink);line-height:1.65;margin-bottom:6px;padding:2px 0}
-.hero .greet .nm{color:var(--rubric)}
-.hero .sub{font-size:14px;color:var(--ink-soft);margin-bottom:16px}
-.hero .sub button{background:none;border:0;padding:0 0 1px;margin:0;font:inherit;color:var(--verdigris);border-bottom:1px dotted var(--verdigris);cursor:pointer}
+.hero{padding:40px 0 6px;text-align:center}
+.hero .greet{font-family:var(--ar);direction:rtl;font-size:clamp(26px,6vw,36px);font-weight:600;color:var(--ink);
+  line-height:1.7;margin:0 0 10px;padding:4px 0}
+.hero .greet .nm{color:var(--rubric);cursor:pointer;border-bottom:1px dotted rgba(180,50,42,.4)}
+.hero h1{margin:0 auto}
+.hero p{margin-left:auto;margin-right:auto}
 .hero h1{font-size:clamp(21px,4.4vw,26px);font-weight:700}
 .hero p{color:var(--ink-soft);font-size:14.5px;margin-top:8px;max-width:52ch}
 .today{font-family:var(--ut);font-size:11px;letter-spacing:.08em;color:var(--ink-soft);margin-top:14px}
@@ -59,7 +60,7 @@
 </head>
 <body>
 <nav class="nav">
-  <a class="brand" href="dashboard.html">بَيْنَ <span>يَدَيْكَ</span></a>
+  <a class="brand" href="dashboard.html">رَفِيق<span class="bmark"></span></a>
   <div class="navlinks">
     <a class="active" href="dashboard.html">Dashboard</a>
     <a href="vocab.html">Words</a>
@@ -70,13 +71,12 @@
 <main class="wrap">
   <section class="hero">
     <div class="greet" id="greetAr">السَّلامُ عَلَيْكُم</div>
-    <div class="sub" id="greetEn"></div>
     <h1>How do you want to learn today?</h1>
-    <p>Pick a path below. Build your vocabulary with spaced repetition, or practise speaking with the drills.</p>
+    <p>Words, sentences, verbs or connectors — start wherever you like.</p>
   </section>
   <div id="picker"></div>
 </main>
-<script src="vocab-data.js?v=801"></script>
+<script src="vocab-data.js?v=810"></script>
 <script>
 /* Both apps keep their own schedule; the dashboard just reports on each. */
 const DAY=86400000, dayNow=Math.floor(Date.now()/DAY), iso=new Date().toISOString().slice(0,10);
@@ -90,15 +90,12 @@ function askName(){
   if(n!==null) setName(n);
 }
 function paintGreeting(){
-  const h=new Date().getHours(), name=getName();
-  // صباح الخير before noon, مساء الخير after — السلام عليكم works at any hour
-  const ar = h<12 ? 'صَباحُ الخَيْرِ' : 'مَساءُ الخَيْرِ';
-  const en = h<12 ? 'Good morning' : (h<18?'Good afternoon':'Good evening');
-  document.getElementById('greetAr').innerHTML =
-    'السَّلامُ عَلَيْكُم' + (name? ' يا <span class="nm">'+name+'</span>' : '');
-  document.getElementById('greetEn').innerHTML =
-    ar + ' · ' + en + (name? ', '+name : '') +
-    ' — <button type="button" onclick="askName()">' + (name?'change name':'set your name') + '</button>';
+  const name=getName();
+  const el=document.getElementById('greetAr');
+  el.innerHTML='السَّلامُ عَلَيْكُم' +
+    (name? ' يا <span class="nm" title="Tap to change">'+name+'</span>' : '');
+  const nm=el.querySelector('.nm');
+  if(nm) nm.onclick=askName;                 // the name itself is the control
 }
 paintGreeting();
 

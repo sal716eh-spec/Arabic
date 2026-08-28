@@ -1,7 +1,7 @@
 {
-  "name": "بين يديك — Arabic",
-  "short_name": "بين يديك",
-  "description": "Vocabulary review and speaking drills for Al-ʿArabiyyah Bayna Yadayk Book 1.",
+  "name": "رَفِيق — Rafiq",
+  "short_name": "رَفِيق",
+  "description": "Your Arabic pal — vocabulary, sentences, verbs and connectors for Modern Standard Arabic.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
