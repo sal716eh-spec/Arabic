@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=800">
+<link rel="stylesheet" href="site.css?v=801">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#F1ECE0">
@@ -45,7 +45,7 @@
 .qcard .qm{font-family:var(--ut);font-size:10.5px;color:var(--ink-soft);margin-top:9px;padding-top:8px;border-top:1px solid var(--rule)}
 .qcard .qm b{color:var(--rubric)}
 .bigcta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  background:var(--ink);color:var(--bg);border-radius:8px;padding:18px 20px;margin:22px 0 4px;text-decoration:none}
+  background:var(--ink);color:var(--paper);border-radius:8px;padding:18px 20px;margin:22px 0 4px;text-decoration:none}
 .bigcta .bc-t{font-size:17px;font-weight:600}
 .bigcta .bc-d{font-size:13px;opacity:.72;margin-top:3px}
 .bigcta .bc-go{background:var(--verdigris);color:#fff;border-radius:5px;padding:11px 20px;font-size:14.5px;white-space:nowrap}
@@ -73,11 +73,10 @@
     <div class="sub" id="greetEn"></div>
     <h1>How do you want to learn today?</h1>
     <p>Pick a path below. Build your vocabulary with spaced repetition, or practise speaking with the drills.</p>
-    <div class="today" id="todayLine"></div>
   </section>
   <div id="picker"></div>
 </main>
-<script src="vocab-data.js?v=800"></script>
+<script src="vocab-data.js?v=801"></script>
 <script>
 /* Both apps keep their own schedule; the dashboard just reports on each. */
 const DAY=86400000, dayNow=Math.floor(Date.now()/DAY), iso=new Date().toISOString().slice(0,10);
@@ -143,16 +142,7 @@ paintGreeting();
     `</div>`;
 })();
 
-(function todayLine(){
-  const el=document.getElementById('todayLine');
-  const v=read('bay_vocab_progress_v1'), d=read('bay_drills_progress_v1');
-  let words=0, drills=0;
-  if(v) Object.values(v).forEach(r=>{if(r&&r.box&&r.due!=null&&r.due<=dayNow)words++});
-  if(d&&d.items) Object.values(d.items).forEach(r=>{if(r.due<=iso)drills++});
-  el.innerHTML = (words+drills)
-    ? `waiting for you today · <b>${words}</b> word${words===1?'':'s'} · <b>${drills}</b> drill item${drills===1?'':'s'}`
-    : 'nothing scheduled yet — start either side below and it will build from there';
-})();
+
 </script>
 
 <nav class="tabbar" aria-label="Sections">

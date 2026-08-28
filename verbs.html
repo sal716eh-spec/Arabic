@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Verbs — بين يديك</title>
-<link rel="stylesheet" href="site.css?v=800">
+<link rel="stylesheet" href="site.css?v=801">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#F1ECE0">
@@ -30,7 +30,7 @@
 .vchip.on{background:var(--ink);border-color:var(--ink)}
 .vchip .va{font-family:var(--ar);font-size:19px;direction:rtl;line-height:1.7;color:var(--ink)}
 .vchip .ve{font-size:10.5px;color:var(--ink-soft)}
-.vchip.on .va{color:var(--bg)}.vchip.on .ve{color:rgba(241,236,224,.7)}
+.vchip.on .va{color:var(--paper)}.vchip.on .ve{color:rgba(241,236,224,.7)}
 
 .vhead{margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
 .vh-ar{font-family:var(--ar);font-size:27px;direction:rtl;line-height:1.7}
@@ -49,7 +49,7 @@
 .vnote{font-size:12.5px;color:var(--ink-soft);border-left:2px solid var(--gold);padding-left:11px}
 
 .card{border:1px solid var(--rule);border-radius:6px;padding:18px 20px;margin-bottom:14px;background:var(--card)}
-.taskbar{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;background:var(--bg);
+.taskbar{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;background:var(--paper);
   border-left:3px solid var(--rubric);border-radius:0 4px 4px 0;padding:11px 14px;margin:-18px -20px 16px;
   border-bottom:1px solid var(--rule)}
 .taskbar .t-en{font-size:15.5px;font-weight:700;line-height:1.35}
@@ -58,14 +58,14 @@
 .vprompt,.vsent-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 10px}
 .vp-pron,.vp-verb{font-family:var(--ar);font-size:25px;direction:rtl;line-height:1.75}
 .vp-plus{color:var(--ink-soft)}
-.vp-tense{font-family:var(--ar);font-size:17px;direction:rtl;color:var(--rubric);background:var(--bg);
+.vp-tense{font-family:var(--ar);font-size:17px;direction:rtl;color:var(--rubric);background:var(--paper);
   border-radius:4px;padding:3px 10px;line-height:1.7}
 .qar{font-family:var(--ar);font-size:23px;direction:rtl;text-align:right;line-height:1.95}
 .qen{font-size:13px;color:var(--ink-soft);margin:6px 0 0}
 .gap{color:var(--rubric);border-bottom:2px solid var(--rubric);padding:0 14px}
 .gap.filled{border-bottom-color:var(--verdigris);color:var(--verdigris)}
 .opts{display:flex;gap:7px;flex-wrap:wrap;direction:rtl;margin-top:14px}
-.opt{font-family:var(--ar);font-size:19px;direction:rtl;background:var(--bg);border:1px solid var(--rule);
+.opt{font-family:var(--ar);font-size:19px;direction:rtl;background:var(--paper);border:1px solid var(--rule);
   border-radius:4px;padding:6px 14px;cursor:pointer;line-height:1.8;min-height:44px;display:inline-flex;align-items:center}
 .opt:hover{border-color:var(--verdigris)}
 .opt.right{background:var(--verdigris);border-color:var(--verdigris);color:#fff}
@@ -73,7 +73,7 @@
 .why{font-size:12.5px;color:var(--ink-soft);margin-top:12px;border-left:2px solid var(--gold);padding-left:11px}
 .ansrow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
 input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-height:1.7;direction:rtl;text-align:right;
-  background:var(--bg);border:1px solid var(--rule);border-radius:4px;padding:10px 12px;color:var(--ink)}
+  background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:10px 12px;color:var(--ink)}
 .diff{font-family:var(--ar);font-size:21px;direction:rtl;text-align:right;line-height:1.95;margin-top:12px}
 .diff .ok{color:var(--verdigris)}.diff .no{color:var(--rubric);text-decoration:line-through}
 .score{font-family:var(--ut);font-size:11px;color:var(--ink-soft);margin-top:8px}
@@ -120,7 +120,7 @@ input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-hei
   <a href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
 </nav>
 
-<script src="toolkit-data.js?v=800"></script>
+<script src="toolkit-data.js?v=801"></script>
 <script>
 /* ── speech: pre-rendered clip if we have one, else the device voice ── */
 function aid(s){let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36);}
