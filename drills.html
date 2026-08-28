@@ -21,7 +21,8 @@
   --ut:"JetBrains Mono",ui-monospace,monospace;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden}
+html{overflow-x:hidden}
+html,body{margin:0;padding:0}
 body{background:var(--paper);color:var(--ink);font-family:var(--la);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent;overflow-x:hidden}
 button,.chip,.tile,.opt,.gluechip{touch-action:manipulation}
@@ -195,7 +196,7 @@ body.in-session .shell{grid-template-columns:minmax(0,1fr)}
   .tabbar a .ti{font-family:var(--ar);font-size:15px;line-height:1.5;white-space:nowrap}
   .tabbar a.on{color:var(--ink)}
   .tabbar a.on .ti{color:var(--rubric)}
-  body{padding-bottom:60px}
+  body{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
   .nav{display:none}
 }
 .how{font-size:13px;color:var(--ink-soft);margin:0 0 18px;max-width:66ch;border-left:2px solid var(--gold);padding-left:12px}
