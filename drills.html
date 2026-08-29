@@ -41,11 +41,12 @@ body.gear-open .voicebox{display:flex}
 .progrow b{display:block;font-size:17px;letter-spacing:0;color:var(--ink);margin-bottom:1px}
 .progrow .due b{color:var(--rubric)}
 
-/* Unit chip: sticks to the left of the drill row so it is reachable from anywhere */
-.unitchip{position:absolute;left:0;bottom:6px;z-index:3;display:none;align-items:center;gap:7px;
-  background:var(--paper);border:1px solid var(--paper);border-radius:4px;padding:7px 11px;cursor:pointer;
-  font-family:var(--la);font-size:12px;color:var(--ink);min-height:40px;max-width:52%;
-  box-shadow:6px 0 8px -4px rgba(23,38,43,.45)}
+/* Unit chip: sticky inside the scrolling drill row, so the tabs slide under it
+   while it stays reachable — and it still takes part in layout, so nothing overlaps. */
+.unitchip{position:sticky;left:0;z-index:3;flex:0 0 auto;display:none;align-items:center;gap:7px;
+  background:var(--paper);border:0;border-radius:4px;padding:7px 10px;cursor:pointer;margin-right:4px;
+  font-family:var(--la);font-size:12px;color:var(--ink);min-height:40px;max-width:180px;
+  box-shadow:5px 0 7px -4px rgba(23,38,43,.55)}
 .unitchip .uc-n{font-family:var(--ut);font-size:10px;color:var(--gold)}
 .unitchip .uc-ar{font-family:var(--ar);font-size:14px;direction:rtl;line-height:1.6;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis}
@@ -465,7 +466,6 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
   .mast-l h1{overflow-wrap:break-word}
   .rail{display:none}
   .unitchip{display:inline-flex}
-  .rmodes{padding-left:calc(52% + 12px)}
   .rail h2{margin-left:16px;margin-bottom:8px}
   .units{display:flex;overflow-x:auto;gap:0;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:0 10px}
   .units::-webkit-scrollbar{display:none}
@@ -599,7 +599,6 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     <div class="ribbon">
       <div class="rgroups" id="rgroups" role="tablist" aria-label="Drill category"></div>
       <div class="rmodes"  id="rmodes"  role="tablist" aria-label="Drill"></div>
-      <button class="unitchip" id="unitChip" type="button" aria-haspopup="dialog"></button>
     </div>
     <div id="panel"></div>
   </main>
@@ -2395,11 +2394,16 @@ function drawRail(){
 }
 
 const rgroupsEl=document.getElementById('rgroups'), rmodesEl=document.getElementById('rmodes');
-const unitChip=document.getElementById('unitChip'), unitSheet=document.getElementById('unitSheet');
+const unitSheet=document.getElementById('unitSheet');
+let unitChip=null;
 
-function drawUnitChip(){
+function makeUnitChip(){
   const u=DATA[unit];
-  unitChip.innerHTML=`<span class="uc-n">${u.n}</span><span class="uc-ar">${u.ar}</span><span class="uc-c">▾</span>`;
+  const b=document.createElement('button');
+  b.className='unitchip';b.type='button';b.setAttribute('aria-haspopup','dialog');
+  b.innerHTML=`<span class="uc-n">${u.n}</span><span class="uc-ar">${u.ar}</span><span class="uc-c">▾</span>`;
+  b.onclick=openSheet;
+  return b;
 }
 function openSheet(){
   const list=document.getElementById('sheetList');
@@ -2416,7 +2420,6 @@ function openSheet(){
   unitSheet.hidden=false;
 }
 function closeSheet(){unitSheet.hidden=true}
-unitChip.onclick=openSheet;
 document.getElementById('sheetBg').onclick=closeSheet;
 document.getElementById('sheetClose').onclick=closeSheet;
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
@@ -2448,6 +2451,7 @@ function drawRibbon(){
   });
   const g=GROUPS.find(x=>x.k===group)||GROUPS[0];
   rmodesEl.innerHTML='';
+  rmodesEl.appendChild(makeUnitChip());        // pinned first item
   g.modes.forEach(m=>{
     const b=document.createElement('button');
     b.className='rmode';b.type='button';b.setAttribute('role','tab');
@@ -2505,7 +2509,6 @@ function render(){
   drawSessionCard();
   group=groupOf(mode);
   drawRibbon();
-  drawUnitChip();
   const u=DATA[unit];
   const wide=mq('(min-width:861px)');
   panel.innerHTML=`<details class="how"${wide?' open':''}><summary>How to work this drill</summary><p>${HOW[mode]}</p></details>`;
