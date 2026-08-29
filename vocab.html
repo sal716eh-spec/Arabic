@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=870">
+<link rel="stylesheet" href="site.css?v=880">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317262B'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23F1ECE0' font-family='serif'%3E%D8%B1%3C/text%3E%3Ccircle cx='46' cy='19' r='4' fill='%23B4322A'/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -101,12 +101,13 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
   </div>
 </nav>
 <main class="wrap">
-  <div class="head">
-    <h1>Vocabulary</h1>
-    <div class="tabs">
-      <button id="tabTest" class="on" onclick="showTab('test')">Daily test</button>
-      <button id="tabList" onclick="showTab('list')">Full list</button>
-    </div>
+  <div class="headrow">
+    <div class="head"><h1>Vocabulary</h1></div>
+    <div id="rq-audio"></div>
+  </div>
+  <div class="tabs">
+    <button id="tabTest" class="on" onclick="showTab('test')">Daily test</button>
+    <button id="tabList" onclick="showTab('list')">Full list</button>
   </div>
 
   <!-- DAILY TEST -->
@@ -171,7 +172,8 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
   </section>
 </main>
 
-<script src="vocab-data.js?v=870"></script>
+<script src="vocab-data.js?v=880"></script>
+<script src="audio.js?v=880"></script>
 <script>
 /* ---------- Leitner spaced repetition ----------
    Each word sits in a box (1..5). Higher box = longer gap.
@@ -302,57 +304,11 @@ function resetProgress(){
 
 /* ---- speech ---- */
 function speakCurrent(){ speak(current && current.ar); }
-function vSig(v){ return ((v.voiceURI||'')+' '+(v.name||'')).toLowerCase(); }
-function quality(v){
-  const t=vSig(v);
-  if(/premium|neural|natural/.test(t)) return 'premium';
-  if(/enhanced/.test(t)) return 'enhanced';
-  if(/siri/.test(t)) return 'siri';
-  if(/compact/.test(t)) return 'basic';
-  return 'standard';
-}
-const QRANK={premium:4,enhanced:3,siri:2,standard:1,basic:0};
-function voiceScore(v){
-  let s=QRANK[quality(v)]*100; const l=(v.lang||'').toLowerCase();
-  if(/^ar-sa/.test(l)) s+=10; else if(/^ar-(eg|ae|jo)/.test(l)) s+=6; else if(/^ar-001/.test(l)) s+=4;
-  if(v.localService===false) s+=3;
-  return s;
-}
-function bestArabicVoice(){
-  const list=(speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang));
-  return list.sort((a,b)=>voiceScore(b)-voiceScore(a))[0]||null;
-}
-function hasArabicVoice(){
-  if(CLIPS&&CLIPS.size) return true;                       // pre-rendered clips work everywhere
-  return (speechSynthesis.getVoices()||[]).some(v=>/^ar/i.test(v.lang));
-}
-function syncAudioUI(){
-  const on=hasArabicVoice();
-  document.querySelectorAll('.speak').forEach(b=>b.style.display=on?'':'none');
-}
-function aid(s){let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36);}
-let CLIPS=null, curAudio=null;
-try{
-  if(typeof fetch==='function'){
-    fetch('audio/index.json?t='+Math.floor(Date.now()/60000)).then(r=>r.ok?r.json():[]).then(a=>{CLIPS=new Set(a);syncAudioUI();}).catch(()=>{CLIPS=new Set()});
-  } else { CLIPS=new Set(); }
-}catch(e){ CLIPS=new Set(); }
-function speak(text){
-  if(!text || !('speechSynthesis' in window)) return;
-  if(curAudio){curAudio.pause();curAudio=null;}
-  const id=aid(text);
-  if(CLIPS&&CLIPS.has(id)){
-    const a=new Audio('audio/'+id+'.mp3');curAudio=a;
-    a.onended=()=>{curAudio=null};
-    a.play().catch(()=>{curAudio=null});
-    return;
-  }
-  const u = new SpeechSynthesisUtterance(text);
-  const v = bestArabicVoice();
-  u.lang = (v&&v.lang)||'ar-SA'; u.rate = .8; u.pitch = 1;
-  if(v) u.voice = v;
-  speechSynthesis.cancel(); speechSynthesis.speak(u);
-}
+/* speech comes from audio.js (shared with every page) */
+function speak(text){ RQ.speak(text); }
+function hasArabicVoice(){ return RQ.available(); }
+function syncAudioUI(){ const on=hasArabicVoice(); document.querySelectorAll('.speak').forEach(b=>b.style.display=on?'':'none'); }
+RQ.mount(document.getElementById('rq-audio'));
 
 /* ---- full list ---- */
 function renderList(){

@@ -583,7 +583,7 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
         <select id="voice" aria-label="Arabic voice"></select>
         <label class="label" for="rate">Speed</label>
         <input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="0.8">
-        <span class="label" id="ratev">0.80×</span>
+        <span class="label" id="ratev"></span>
         <button class="btn" id="testv">Test</button>
         <button class="btn" id="stop">Stop</button>
       </div>
@@ -2016,7 +2016,8 @@ function scrollTo(el,opts){try{if(el&&typeof el.scrollIntoView==='function')el.s
 function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
 
 /* ── speech out ─────────────────────────────────────────── */
-let voices=[],chosen=null,rateV=0.8,queue=null,AUDIO_OK=true;
+let voices=[],chosen=null,queue=null,AUDIO_OK=true;
+let rateV=(()=>{try{const r=parseFloat(localStorage.getItem('bay_voice_rate'));return (r>=0.5&&r<=1.1)?r:0.8}catch(e){return 0.8}})();
 const sel=document.getElementById('voice'),warn=document.getElementById('warn');
 /* iOS reports quality in voiceURI, not name — a downloaded Enhanced voice is still
    called "Majed". It also returns the same voice several times, hence the dedupe. */
@@ -2056,6 +2057,7 @@ function vLabel(v){
 
 const WARN_KEY='bay_voicewarn_dismissed';
 const VOICE_KEY='bay_voice_uri';
+const RATE_KEY='bay_voice_rate';
 function savedVoice(list){
   let uri=null; try{uri=localStorage.getItem(VOICE_KEY)}catch(e){}
   return uri? list.find(v=>(v.voiceURI||v.name)===uri) : null;
@@ -2120,7 +2122,8 @@ sel.onchange=()=>{
   try{localStorage.setItem(VOICE_KEY,chosen.voiceURI||chosen.name)}catch(e){}
 };
 const rEl=document.getElementById('rate'),rVal=document.getElementById('ratev');
-rEl.oninput=()=>{rateV=+rEl.value;rVal.textContent=rateV.toFixed(2)+'×'};
+rEl.value=rateV;rVal.textContent=rateV.toFixed(2)+'×';
+rEl.oninput=()=>{rateV=+rEl.value;rVal.textContent=rateV.toFixed(2)+'×';try{localStorage.setItem(RATE_KEY,rateV)}catch(e){}};
 document.getElementById('testv').onclick=()=>
   say('السَّلامُ عَلَيْكُمْ، كَيْفَ حالُكَ؟ أَنا أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ.',null);
 document.getElementById('stop').onclick=()=>{queue=null;stopAudio()};
