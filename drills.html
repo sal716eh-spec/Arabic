@@ -562,14 +562,21 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
    Media queries add no specificity, so source order is what decides. */
 @media (max-width:860px){
   .shell{padding:0;grid-template-columns:minmax(0,1fr)}
-  main{padding:0 16px calc(68px + env(safe-area-inset-bottom));min-width:0;position:relative}
-  .pagehead{padding:16px 16px 14px}
+  main{padding:0 12px calc(68px + env(safe-area-inset-bottom));min-width:0;position:relative}
+  .pagehead{padding:14px 12px 12px}
   .headtools{width:100%;margin-top:8px}
-  .ribbon{top:0;z-index:30;margin:0 -16px 16px;padding:0 16px;
+
+  /* the ribbon and the drill row run edge to edge */
+  .ribbon{top:0;z-index:30;margin:0 -12px 14px;padding:0;
     box-shadow:0 6px 10px -8px rgba(23,38,43,.28)}
-  .rmodes{margin:0;padding:7px;border-radius:6px}
+  .rgroups{padding:2px 12px 0;margin-bottom:0}
+  .rmodes{margin:0;padding:7px 12px;border-radius:0}
+  .unitchip{left:12px}
+
+  .sesscard{padding:14px;gap:12px;margin-bottom:16px}
   .rail{display:none}
   .unitchip{display:inline-flex}
+  .toolbar{width:100%}
   .toolbar .btn{flex:1 1 auto;min-width:0}
 }
 </style>
