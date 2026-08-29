@@ -25,9 +25,49 @@ html{overflow-x:hidden}
 html,body{margin:0;padding:0}
 body{background:var(--paper);color:var(--ink);font-family:var(--la);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent;overflow-x:hidden}
-button,.chip,.tile,.opt,.gluechip{touch-action:manipulation}
+button,.chip,.tile,.opt,
 :focus-visible{outline:2px solid var(--verdigris);outline-offset:2px;border-radius:2px}
 .label{font-family:var(--ut);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+/* Settings cog: audio + progress, out of the way until wanted */
+.cog{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid var(--rule);
+  border-radius:6px;padding:8px 13px;cursor:pointer;color:var(--ink-soft);font-family:var(--la);font-size:13px;min-height:42px}
+.cog:hover{border-color:var(--verdigris);color:var(--verdigris)}
+.cog[aria-expanded=true]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.voicebox{display:none;background:var(--paper-deep);border:1px solid var(--rule);border-radius:8px;
+  padding:14px 16px;margin-top:10px;flex-direction:column;gap:10px;min-width:280px}
+body.gear-open .voicebox{display:flex}
+.progrow{display:flex;gap:18px;flex-wrap:wrap;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.progrow div{font-family:var(--ut);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.progrow b{display:block;font-size:17px;letter-spacing:0;color:var(--ink);margin-bottom:1px}
+.progrow .due b{color:var(--rubric)}
+
+/* Unit chip: sticks to the left of the drill row so it is reachable from anywhere */
+.unitchip{position:absolute;left:0;bottom:6px;z-index:3;display:none;align-items:center;gap:7px;
+  background:var(--paper);border:1px solid var(--paper);border-radius:4px;padding:7px 11px;cursor:pointer;
+  font-family:var(--la);font-size:12px;color:var(--ink);min-height:40px;max-width:52%;
+  box-shadow:6px 0 8px -4px rgba(23,38,43,.45)}
+.unitchip .uc-n{font-family:var(--ut);font-size:10px;color:var(--gold)}
+.unitchip .uc-ar{font-family:var(--ar);font-size:14px;direction:rtl;line-height:1.6;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.unitchip .uc-c{color:var(--ink-soft);font-size:13px}
+
+/* Unit sheet */
+.sheet{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-end}
+.sheet[hidden]{display:none}
+.sheet-bg{position:absolute;inset:0;background:rgba(23,38,43,.45)}
+.sheet-body{position:relative;width:100%;max-height:76vh;background:var(--paper);border-radius:14px 14px 0 0;
+  padding:14px 16px calc(16px + env(safe-area-inset-bottom));overflow-y:auto;
+  box-shadow:0 -10px 30px -12px rgba(23,38,43,.5)}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.sheet-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sheet-u{text-align:left;background:var(--paper-deep);border:1px solid var(--rule);border-radius:7px;
+  padding:10px 12px;cursor:pointer;min-height:64px}
+.sheet-u[aria-current=true]{border-color:var(--rubric);background:rgba(180,50,42,.07)}
+.sheet-u .n{font-family:var(--ut);font-size:10px;color:var(--gold);display:flex;justify-content:space-between}
+.sheet-u .ar{font-family:var(--ar);font-size:17px;direction:rtl;line-height:1.6;display:block}
+.sheet-u .en{font-size:10.5px;color:var(--ink-soft)}
+@media (min-width:861px){ .sheet-list{grid-template-columns:1fr 1fr 1fr} .sheet-body{max-width:720px;margin:0 auto;border-radius:14px} .sheet{align-items:center} }
+
 .pagehead{max-width:980px;margin:0 auto;padding:26px 24px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
 .head{min-width:0}
 .head .ar{font-family:var(--ar);direction:rtl;font-size:26px;line-height:1.65;color:var(--rubric);padding:2px 0}
@@ -92,6 +132,10 @@ body.no-audio .tf .src,body.no-audio .good{cursor:default}
 /* shell */
 .shell{display:grid;grid-template-columns:198px minmax(0,1fr);min-height:70vh;max-width:980px;margin:0 auto}
 .rail{border-right:1px solid var(--rule);padding:20px 0 40px;min-width:0}
+@media (min-width:861px){
+  .rail{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;scrollbar-width:thin}
+  .unitchip{display:none!important}
+}
 .rail h2{margin:0 0 10px 22px}
 .unit{display:block;width:100%;text-align:left;background:none;border:0;padding:8px 22px;cursor:pointer;font-family:var(--la);border-left:2px solid transparent;color:var(--ink)}
 .unit:hover{background:rgba(46,114,99,.07)}
@@ -102,12 +146,12 @@ body.no-audio .tf .src,body.no-audio .good{cursor:default}
 .unit .en{font-size:10.5px;color:var(--ink-soft)}
 .bar{height:3px;background:var(--paper-deep);margin-top:5px;border-radius:2px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--verdigris)}
-.railsep{height:1px;background:var(--rule);margin:20px 22px}
-.glue{padding:0 22px}
-.gluelist{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.gluechip{font-family:var(--ar);font-size:15px;direction:rtl;border:1px solid var(--rule);border-radius:2px;padding:1px 7px;background:var(--paper-deep);cursor:pointer;line-height:1.7;color:var(--ink)}
-.gluechip:hover{border-color:var(--rubric);color:var(--rubric)}
-.gluechip small{font-family:var(--la);font-size:9px;color:var(--ink-soft);display:block;direction:ltr;line-height:1.2;padding-bottom:2px}
+
+
+
+
+
+
 
 /* main */
 main{padding:18px 28px 60px;min-width:0}
@@ -158,7 +202,7 @@ main{padding:18px 28px 60px;min-width:0}
 
 /* Ribbon: four categories on top, the drills inside one of them below.
    Neither row exceeds the 4–5 item ceiling where tap targets start to crowd. */
-.ribbon{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule);margin-bottom:20px}
+.ribbon{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule);margin-bottom:20px;position:sticky}
 .rgroups{display:flex;gap:6px;padding:4px 0 0}
 .rgroup{position:relative;flex:1 1 0;min-width:0;background:var(--paper-deep);border:1px solid var(--rule);border-bottom:none;
   border-radius:6px 6px 0 0;padding:9px 8px 8px;cursor:pointer;font-family:var(--la);color:var(--ink-soft);
@@ -419,16 +463,18 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
   .rail,main,.masthead,.stats,.mast-l{min-width:0;max-width:100%}
   .units,.modes,.gluelist,.navlinks{max-width:100%}
   .mast-l h1{overflow-wrap:break-word}
-  .rail{border-right:0;border-bottom:1px solid var(--rule);padding:14px 0 12px}
+  .rail{display:none}
+  .unitchip{display:inline-flex}
+  .rmodes{padding-left:calc(52% + 12px)}
   .rail h2{margin-left:16px;margin-bottom:8px}
   .units{display:flex;overflow-x:auto;gap:0;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:0 10px}
   .units::-webkit-scrollbar{display:none}
   .unit{flex:0 0 auto;width:146px;border-left:0;border-bottom:2px solid transparent;scroll-snap-align:start;padding:8px 10px}
   .unit[aria-current=true]{border-bottom-color:var(--rubric)}
   .unit .ar{font-size:16px}
-  .railsep{margin:14px 16px}
-  .glue{padding:0 16px}
-  .gluechip{min-height:40px;display:inline-flex;flex-direction:column;justify-content:center;font-size:17px;padding:2px 10px}
+  
+  
+  
 
   /* mode tabs stick to the top while you scroll a long drill list */
   main{padding:0 14px calc(60px + env(safe-area-inset-bottom));position:relative}
@@ -511,8 +557,13 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     <p>Twelve drills across units 1–12. Listen and shadow, build sentences a chunk at a time, then produce them from memory — the gap between knowing words and saying them.</p>
   </div>
   <div class="headtools">
-    <button class="btn setgear" id="gear" type="button" aria-expanded="false">Audio settings</button>
+    <button class="cog" id="gear" type="button" aria-expanded="false" aria-controls="voicebox" title="Settings and progress">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3.2"/>
+        <path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 9 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 9a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/>
+      </svg><span>Settings</span></button>
     <div class="voicebox" id="voicebox">
+      <div class="progrow" id="progrow"></div>
       <div class="voicerow">
         <select id="voice" aria-label="Arabic voice"></select>
         <label class="label" for="rate">Speed</label>
@@ -526,24 +577,13 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
   </div>
 </main>
 
-<div class="stats">
-  <div class="stat due"><b id="s-due">0</b><span>due now</span></div>
-  <div class="stat"><b id="s-learn">0</b><span>learning</span></div>
-  <div class="stat"><b id="s-known">0</b><span>known</span></div>
-  <div class="stat"><b id="s-today">0</b><span>done today</span></div>
-  <div class="stat act"><button class="btn" id="go-review">Review due →</button></div>
-</div>
+
 
 <div class="shell">
   <nav class="rail">
     <h2 class="label">Unit</h2>
     <div class="units" id="units"></div>
-    <div class="railsep"></div>
-    <div class="glue">
-      <h3 class="label">Joining words</h3>
-      <p class="gluenote">53 connectors, sentence starters and question openers — now their own section.</p>
-      <a class="btn" href="connectors.html" style="width:100%;display:block;text-align:center;text-decoration:none">Open Connectors →</a>
-    </div>
+    
   </nav>
   <main>
     <div class="sesscard" id="sesscard">
@@ -559,6 +599,7 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     <div class="ribbon">
       <div class="rgroups" id="rgroups" role="tablist" aria-label="Drill category"></div>
       <div class="rmodes"  id="rmodes"  role="tablist" aria-label="Drill"></div>
+      <button class="unitchip" id="unitChip" type="button" aria-haspopup="dialog"></button>
     </div>
     <div id="panel"></div>
   </main>
@@ -571,6 +612,14 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
   <a href="verbs.html"><span class="ti">أَفْعال</span>Verbs</a>
   <a href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
 </nav>
+<div class="sheet" id="unitSheet" hidden>
+  <div class="sheet-bg" id="sheetBg"></div>
+  <div class="sheet-body">
+    <div class="sheet-head"><span class="label">Choose a unit</span>
+      <button class="btn" id="sheetClose" type="button">Close</button></div>
+    <div class="sheet-list" id="sheetList"></div>
+  </div>
+</div>
 <footer>
   Built from the vocabulary lists printed at the back of your own books — Part 1 pp. 257–258, Part 2 pp. 259–260.
   Vowel marks, model answers and the grammar notes are a study aid: worth spot-checking against your teacher, especially case endings.
@@ -1823,10 +1872,6 @@ DATA.forEach(u=>{
             .map(ar=>({ar}));
 });
 
-const GLUE=[["وَ","and"],["ثُمَّ","then"],["بَعْدَ ذَلِكَ","after that"],["لَكِنَّ","but"],["لِأَنَّ","because"],
-["لِذَلِكَ","so"],["عِنْدَما","when"],["أَيْضًا","also"],["عادَةً","usually"],["أَحْيانًا","sometimes"],
-["دائِمًا","always"],["جِدًّا","very"],["قَلِيلًا","a little"],["مَثَلًا","for example"],
-["أَوَّلًا","first"],["أَخِيرًا","finally"],["فِي الْحَقِيقَةِ","actually"],["إِلَّا","except"]];
 
 const GROUPS=[
  {k:'listen',  en:'Listen',  ar:'اسْتِماع', modes:[
@@ -1916,10 +1961,9 @@ function drawStats(){
   const due=INDEX.filter(isDue).length;
   let learn=0,known=0;
   INDEX.forEach(it=>{const r=rec(it.id);if(!r)return;r.box>=3?known++:learn++});
-  document.getElementById('s-due').textContent=due;
-  document.getElementById('s-learn').textContent=learn;
-  document.getElementById('s-known').textContent=known;
-  document.getElementById('s-today').textContent=PROG.today||0;
+  const el=document.getElementById('progrow');
+  if(el) el.innerHTML=`<div class="due"><b>${due}</b>due now</div><div><b>${learn}</b>learning</div>`+
+                      `<div><b>${known}</b>known</div><div><b>${PROG.today||0}</b>done today</div>`;
 }
 
 /* ── text handling ──────────────────────────────────────── */
@@ -2351,6 +2395,31 @@ function drawRail(){
 }
 
 const rgroupsEl=document.getElementById('rgroups'), rmodesEl=document.getElementById('rmodes');
+const unitChip=document.getElementById('unitChip'), unitSheet=document.getElementById('unitSheet');
+
+function drawUnitChip(){
+  const u=DATA[unit];
+  unitChip.innerHTML=`<span class="uc-n">${u.n}</span><span class="uc-ar">${u.ar}</span><span class="uc-c">▾</span>`;
+}
+function openSheet(){
+  const list=document.getElementById('sheetList');
+  list.innerHTML='';
+  DATA.forEach((u,i)=>{
+    const p=unitProgress(u);
+    const b=document.createElement('button');
+    b.className='sheet-u';b.type='button';b.setAttribute('aria-current',i===unit);
+    b.innerHTML=`<span class="n">Unit ${u.n}<em style="font-style:normal;color:var(--ink-soft)">${p.known}/${p.total}</em></span>
+                 <span class="ar">${u.ar}</span><span class="en">${u.en}</span>`;
+    b.onclick=()=>{unit=i;closeSheet();render();scrollTo(document.querySelector('.ribbon'),{block:'start',behavior:'smooth'})};
+    list.appendChild(b);
+  });
+  unitSheet.hidden=false;
+}
+function closeSheet(){unitSheet.hidden=true}
+unitChip.onclick=openSheet;
+document.getElementById('sheetBg').onclick=closeSheet;
+document.getElementById('sheetClose').onclick=closeSheet;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
 let group=groupOf(mode);
 
 function modeCount(m,u){
@@ -2390,7 +2459,7 @@ function drawRibbon(){
     rmodesEl.appendChild(b);
   });
 }
-document.getElementById('go-review').onclick=()=>{startSession()};
+
 
 const gear=document.getElementById('gear');
 gear.onclick=()=>{
@@ -2436,6 +2505,7 @@ function render(){
   drawSessionCard();
   group=groupOf(mode);
   drawRibbon();
+  drawUnitChip();
   const u=DATA[unit];
   const wide=mq('(min-width:861px)');
   panel.innerHTML=`<details class="how"${wide?' open':''}><summary>How to work this drill</summary><p>${HOW[mode]}</p></details>`;
