@@ -1,0 +1,349 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Today's session — Rafiq</title>
+<link rel="stylesheet" href="site.css?v=900">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#F1ECE0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+.sess-head{display:flex;align-items:center;gap:14px;margin:22px 0 18px}
+.sess-prog{flex:1;height:6px;background:var(--paper-deep);border-radius:3px;overflow:hidden}
+.sess-prog i{display:block;height:100%;background:var(--verdigris);transition:width .3s ease}
+.sess-n{font-family:var(--ut);font-size:11px;color:var(--ink-soft);white-space:nowrap}
+.sess-from{font-family:var(--ut);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:10px;display:flex;gap:8px;align-items:center}
+.pill{background:var(--paper-deep);border-radius:10px;padding:2px 9px;letter-spacing:.08em}
+.pill.words{color:var(--verdigris)} .pill.sentences{color:var(--rubric)}
+.pill.verbs{color:var(--gold)} .pill.links{color:var(--ink-soft)}
+
+.card{border:1px solid var(--rule);border-radius:8px;padding:20px;background:var(--card);margin-bottom:14px}
+.taskbar{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;background:var(--bg);
+  border-left:3px solid var(--rubric);border-radius:0 4px 4px 0;padding:11px 14px;margin:-20px -20px 16px;
+  border-bottom:1px solid var(--rule)}
+.taskbar .t-en{font-size:15.5px;font-weight:700}
+.taskbar .t-ar{font-family:var(--ar);font-size:16px;direction:rtl;color:var(--rubric);line-height:1.7}
+.qar{font-family:var(--ar);font-size:26px;direction:rtl;text-align:right;line-height:1.95}
+.qen{font-size:15px;margin:6px 0 0}
+.big-ar{font-family:var(--ar);font-size:clamp(30px,7vw,44px);direction:rtl;text-align:center;line-height:1.7;padding:10px 0}
+.reveal{border-top:1px dashed var(--rule);margin-top:14px;padding-top:14px;text-align:center}
+.reveal .en{font-size:17px}
+.reveal .tr{font-family:var(--ut);font-size:12px;color:var(--ink-soft);margin-top:4px}
+.gap{color:var(--rubric);border-bottom:2px solid var(--rubric);padding:0 14px}
+.gap.filled{border-bottom-color:var(--verdigris);color:var(--verdigris)}
+.opts{display:flex;gap:7px;flex-wrap:wrap;direction:rtl;margin-top:14px}
+.opt{font-family:var(--ar);font-size:19px;direction:rtl;background:var(--bg);border:1px solid var(--rule);
+  border-radius:5px;padding:6px 14px;cursor:pointer;line-height:1.8;min-height:44px;display:inline-flex;align-items:center}
+.opt.right{background:var(--verdigris);border-color:var(--verdigris);color:#fff}
+.opt.wrong{background:var(--rubric);border-color:var(--rubric);color:#fff}
+.why{font-size:12.5px;color:var(--ink-soft);margin-top:12px;border-left:2px solid var(--gold);padding-left:11px}
+.good{font-family:var(--ar);font-size:24px;direction:rtl;text-align:right;line-height:1.9;color:var(--verdigris);cursor:pointer}
+.vprompt{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 10px;justify-content:center}
+.vp-pron,.vp-verb{font-family:var(--ar);font-size:26px;direction:rtl;line-height:1.75}
+.vp-tense{font-family:var(--ar);font-size:17px;direction:rtl;color:var(--rubric);background:var(--bg);
+  border-radius:4px;padding:3px 10px;line-height:1.7}
+.ansrow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-height:1.7;direction:rtl;text-align:right;
+  background:var(--bg);border:1px solid var(--rule);border-radius:4px;padding:10px 12px;color:var(--ink)}
+.diff{font-family:var(--ar);font-size:21px;direction:rtl;text-align:right;line-height:1.95;margin-top:12px}
+.diff .ok{color:var(--verdigris)} .diff .no{color:var(--rubric);text-decoration:line-through}
+.score{font-family:var(--ut);font-size:11px;color:var(--ink-soft);margin-top:8px}
+.rate{display:flex;gap:6px;margin-top:16px;align-items:center;flex-wrap:wrap}
+.rb{font-family:var(--la);font-size:13px;border:1px solid var(--rule);background:var(--bg);border-radius:5px;
+  padding:9px 18px;cursor:pointer;color:var(--ink);min-height:44px;flex:1 1 auto}
+.done{text-align:center;padding:40px 20px}
+.done .big{font-family:var(--ar);font-size:36px;color:var(--verdigris);line-height:1.6}
+.done h2{margin:10px 0 4px}
+.done p{color:var(--ink-soft);margin:0 0 20px}
+.tally{display:flex;justify-content:center;gap:26px;margin:20px 0 24px;flex-wrap:wrap}
+.tally div{font-family:var(--ut);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.tally b{display:block;font-size:22px;color:var(--ink);letter-spacing:0;margin-bottom:2px}
+.nextrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.nextrow a,.nextrow button{padding:12px 20px;border:1px solid var(--rule);border-radius:5px;background:var(--card);
+  color:var(--ink);text-decoration:none;font-family:var(--la);font-size:14px;cursor:pointer}
+.nextrow .primary{background:var(--verdigris);border-color:var(--verdigris);color:#fff}
+@media (max-width:860px){
+  .card{padding:16px}.taskbar{margin:-16px -16px 14px;padding:10px 12px}
+  .ansrow{flex-direction:column}.ansrow .btn,.ansrow input{width:100%}
+  .nextrow{flex-direction:column}.nextrow a,.nextrow button{width:100%;text-align:center}
+}
+</style>
+
+<nav class="nav">
+  <a class="brand" href="dashboard.html"><span class="bmark"></span>رَفِيق</a>
+  <div class="navlinks">
+    <a href="dashboard.html">Home</a><a href="vocab.html">Words</a>
+    <a href="drills.html">Sentences</a><a href="verbs.html">Verbs</a>
+    <a href="connectors.html">Connectors</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="sess-head">
+    <div class="sess-prog"><i id="bar" style="width:0"></i></div>
+    <span class="sess-n" id="count">—</span>
+    <button class="btn" id="quit" type="button">End</button>
+  </div>
+  <div id="panel"></div>
+</main>
+
+<nav class="tabbar" aria-label="Sections">
+  <a class="on" href="dashboard.html"><span class="ti">الرَّئِيسَة</span>Home</a>
+  <a href="vocab.html"><span class="ti">مُفْرَدات</span>Words</a>
+  <a href="drills.html"><span class="ti">جُمَل</span>Sentences</a>
+  <a href="verbs.html"><span class="ti">أَفْعال</span>Verbs</a>
+  <a href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
+</nav>
+
+<script src="vocab-data.js?v=900"></script>
+<script src="toolkit-data.js?v=900"></script>
+<script src="drills-data.js?v=900"></script>
+<script src="audio.js?v=900"></script>
+<script>
+DATA.forEach(u=>Object.assign(u,EXTRA[u.n]||{}));
+const glue=(a,s)=>a+(s.startsWith('،')?'':' ')+s, joinAr=a=>a.reduce(glue);
+const say=(t,el)=>RQ.speak(t,el);
+
+/* ── the two progress stores, untouched in shape ── */
+const DAY=86400000, dayNow=()=>Math.floor(Date.now()/DAY), iso=()=>new Date().toISOString().slice(0,10);
+const VK='bay_vocab_progress_v1', DK='bay_drills_progress_v1';
+const read=k=>{try{return JSON.parse(localStorage.getItem(k))||null}catch(e){return null}};
+const write=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const VGAP={1:1,2:2,3:4,4:8,5:16}, DGAP=[0,1,3,7,21,60];
+
+let vProg=read(VK)||{}, dProg=read(DK)||{items:{},day:iso(),today:0};
+if(!dProg.items)dProg.items={};
+if(dProg.day!==iso()){dProg.day=iso();dProg.today=0}
+
+function gradeWord(id,ok){
+  const r=vProg[id]||{box:0,due:null};
+  r.box = ok? Math.min(5,Math.max(1,r.box)+(r.box?1:0)) : 1;
+  r.due = dayNow()+VGAP[r.box];
+  vProg[id]=r; write(VK,vProg);
+}
+function gradeDrill(id,q){
+  const r=dProg.items[id]||{box:0,due:iso()};
+  r.box = q==='again'?0 : q==='easy'?Math.min(r.box+2,5) : Math.min(r.box+1,5);
+  const d=new Date(); d.setDate(d.getDate()+DGAP[r.box]);
+  r.due=d.toISOString().slice(0,10); r.seen=(r.seen||0)+1;
+  dProg.items[id]=r; dProg.today=(dProg.today||0)+1; write(DK,dProg);
+}
+
+/* ── build a mixed queue across all four sections ── */
+function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+const FIELD={transform:'transforms',cloze:'cloze',fix:'fix',build:'builds'};
+function drillPool(){
+  const out=[];
+  DATA.forEach(u=>Object.keys(FIELD).forEach(m=>(u[FIELD[m]]||[]).forEach((d,i)=>
+    out.push({kind:'sentences',mode:m,id:u.n+'|'+m+'|'+i,unit:u,d}))));
+  DATA.forEach(u=>u.dialogue.forEach((line,i)=>
+    out.push({kind:'sentences',mode:'produce',id:u.n+'|produce|'+i,unit:u,d:{ar:line[1],en:line[2]}})));
+  return out;
+}
+function build(n){
+  const today=dayNow(), todayIso=iso();
+  // words that are due, then unseen ones in book order
+  const wDue=VOCAB.filter(w=>{const r=vProg[w.id];return r&&r.box>0&&r.due<=today});
+  const wNew=VOCAB.filter(w=>{const r=vProg[w.id];return !r||!r.box});
+  const words=shuffle(wDue).slice(0,Math.ceil(n*0.35))
+    .concat(wNew.slice(0,Math.max(0,Math.ceil(n*0.35)-wDue.length)))
+    .map(w=>({kind:'words',mode:'word',id:'v'+w.id,w}));
+
+  const dp=drillPool();
+  const dDue=dp.filter(x=>{const r=dProg.items[x.id];return r&&r.due<=todayIso});
+  const dNew=dp.filter(x=>!dProg.items[x.id]);
+  const sentences=shuffle(dDue).slice(0,Math.ceil(n*0.35))
+    .concat(shuffle(dNew).slice(0,Math.max(0,Math.ceil(n*0.35)-dDue.length)));
+
+  const verbs=shuffle(VERBS).slice(0,Math.max(1,Math.round(n*0.15))).map(v=>{
+    const p=Math.floor(Math.random()*PRONOUNS.length);
+    const t=['past','pr','fut'][Math.floor(Math.random()*3)];
+    const ans=t==='past'?v.past[p]:t==='pr'?v.pr[p]:'سَ'+v.pr[p];
+    return {kind:'verbs',mode:'verb',v,p,t,ans};
+  });
+  const links=shuffle(CONNECT_EX).slice(0,Math.max(1,Math.round(n*0.15)))
+    .map(t=>({kind:'links',mode:'link',d:t}));
+
+  return shuffle(words.concat(sentences,verbs,links)).slice(0,n);
+}
+
+/* ── shared bits ── */
+function norm(s){return (s||'').replace(/[\u064B-\u0652\u0670\u0640\u0653-\u0656]/g,'')
+  .replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/ؤ/g,'و').replace(/ئ/g,'ي').replace(/ة/g,'ه')
+  .replace(/[^\u0621-\u064A\s]/g,' ').replace(/\s+/g,' ').trim()}
+function lcs(t,s){const n=t.length,m=s.length;const dp=Array.from({length:n+1},()=>new Array(m+1).fill(0));
+  for(let i=1;i<=n;i++)for(let j=1;j<=m;j++)dp[i][j]=t[i-1]===s[j-1]?dp[i-1][j-1]+1:Math.max(dp[i-1][j],dp[i][j-1]);
+  const mk=new Array(n).fill(false);let i=n,j=m;
+  while(i>0&&j>0){if(t[i-1]===s[j-1]){mk[i-1]=true;i--;j--}else if(dp[i-1][j]>=dp[i][j-1])i--;else j--}return mk}
+function diffHTML(target,said){
+  const orig=target.split(/\s+/).filter(Boolean), pairs=orig.map(w=>[w,norm(w)]).filter(p=>p[1]);
+  const mk=lcs(pairs.map(p=>p[1]),norm(said).split(' ').filter(Boolean));
+  return{html:pairs.map((p,i)=>`<span class="${mk[i]?'ok':'no'}">${p[0]}</span>`).join(' '),
+         score:pairs.length?Math.round(100*mk.filter(Boolean).length/pairs.length):0}}
+function tappable(el,t){el.style.cursor='pointer';el.onclick=()=>say(t,el);return el}
+function taskBar(en,ar){const d=document.createElement('div');d.className='taskbar';
+  d.innerHTML=`<span class="t-en">${en}</span>`+(ar?`<span class="t-ar">${ar}</span>`:'');return d}
+function answerRow(target){
+  const w=document.createElement('div'), row=document.createElement('div');row.className='ansrow';
+  const inp=document.createElement('input');inp.className='ar-in';inp.dir='rtl';inp.placeholder='اكْتُبْ هُنا';
+  const b=document.createElement('button');b.className='btn';b.textContent='Check';
+  const out=document.createElement('div');
+  const run=t=>{const{html,score}=diffHTML(target,t);
+    out.innerHTML=`<div class="diff">${html}</div><div class="score">${score}% matched</div>`};
+  b.onclick=()=>run(inp.value); inp.onkeydown=e=>{if(e.key==='Enter')run(inp.value)};
+  row.appendChild(inp);row.appendChild(b);w.appendChild(row);w.appendChild(out);return w}
+
+/* ── session ── */
+const LEN=(()=>{const v=parseInt(new URLSearchParams(location.search).get('n'),10);return [8,12,20].includes(v)?v:12})();
+let Q=build(LEN), pos=0, tally={again:0,good:0,easy:0};
+const panel=document.getElementById('panel');
+document.getElementById('quit').onclick=()=>{pos=Q.length;render()};
+
+function rateRow(onPick){
+  const d=document.createElement('div');d.className='rate';
+  [['again','Again'],['good','Good'],['easy','Easy']].forEach(([q,l])=>{
+    const b=document.createElement('button');b.className='rb';b.textContent=l;
+    b.onclick=()=>{tally[q]++;onPick(q);setTimeout(()=>{pos++;render();window.scrollTo(0,0)},220)};
+    d.appendChild(b)});
+  return d}
+
+const LABEL={words:'Words',sentences:'Sentences',verbs:'Verbs',links:'Joining words'};
+function render(){
+  RQ.stop(); panel.innerHTML='';
+  document.getElementById('bar').style.width=Math.round(100*pos/Q.length)+'%';
+  document.getElementById('count').textContent=Math.min(pos+1,Q.length)+' / '+Q.length;
+  if(pos>=Q.length) return finish();
+  const it=Q[pos];
+  const from=document.createElement('div');from.className='sess-from';
+  from.innerHTML=`<span class="pill ${it.kind}">${LABEL[it.kind]}</span>`+
+                 (it.unit?`<span>Unit ${it.unit.n} · ${it.unit.en}</span>`:'');
+  panel.appendChild(from);
+  ({word:vWord,verb:vVerb,link:vLink}[it.mode]||vDrill)(it);
+}
+function finish(){
+  document.getElementById('count').textContent=Q.length+' / '+Q.length;
+  document.getElementById('bar').style.width='100%';
+  const n=tally.again+tally.good+tally.easy;
+  panel.innerHTML=`<div class="done"><div class="big">أَحْسَنْت</div><h2>Session complete</h2>
+    <p>${n} item${n===1?'':'s'} practised across the four sections.</p>
+    <div class="tally"><div><b>${tally.easy}</b>easy</div><div><b>${tally.good}</b>good</div><div><b>${tally.again}</b>again</div></div>
+    <div class="nextrow"><a class="primary" href="session.html?n=${LEN}">Another session</a>
+    <a href="dashboard.html">Back to home</a></div></div>`;
+}
+
+function vWord(it){
+  const c=document.createElement('div');c.className='card';
+  c.appendChild(taskBar('Say the meaning, then reveal','قُلِ الْمَعْنى ثُمَّ اكْشِفْ'));
+  const ar=document.createElement('div');ar.className='big-ar';ar.textContent=it.w.ar;
+  c.appendChild(tappable(ar,it.w.ar));
+  const btn=document.createElement('button');btn.className='btn';btn.textContent='Reveal';btn.style.width='100%';
+  const rev=document.createElement('div');rev.className='reveal';rev.style.display='none';
+  rev.innerHTML=`<div class="en">${it.w.en}</div><div class="tr">${it.w.tr}</div>`;
+  btn.onclick=()=>{rev.style.display='block';btn.style.display='none';say(it.w.ar,ar);
+    c.appendChild(rateRow(q=>gradeWord(it.w.id,q!=='again')))};
+  c.appendChild(btn);c.appendChild(rev);panel.appendChild(c);
+}
+function vVerb(it){
+  const c=document.createElement('div');c.className='card';
+  c.appendChild(taskBar('Give the '+(it.t==='past'?'past':it.t==='pr'?'present':'future')+' form','صَرِّفِ الْفِعْلَ'));
+  c.insertAdjacentHTML('beforeend',`<div class="vprompt"><span class="vp-pron">${PRONOUNS[it.p].ar}</span>
+    <span>+</span><span class="vp-verb">${it.v.ar}</span>
+    <span class="vp-tense">${it.t==='past'?'الماضي':it.t==='pr'?'المضارع':'المستقبل'}</span></div>`);
+  c.appendChild(answerRow(it.ans));
+  const btn=document.createElement('button');btn.className='btn';btn.textContent='Show the answer';
+  btn.style.cssText='width:100%;margin-top:12px';
+  const box=document.createElement('div');box.style.display='none';
+  const g=document.createElement('div');g.className='good';g.style.textAlign='center';g.textContent=it.ans;
+  box.appendChild(tappable(g,it.ans));
+  btn.onclick=()=>{box.style.display='block';btn.style.display='none';say(it.ans,g);
+    c.appendChild(rateRow(()=>{}))};
+  c.appendChild(btn);c.appendChild(box);panel.appendChild(c);
+}
+function vLink(it){
+  const t=it.d,c=document.createElement('div');c.className='card';
+  c.appendChild(taskBar('Choose the joining word','اخْتَرِ الرَّابِطَ الْمُناسِبَ'));
+  const q=document.createElement('div');q.className='qar';
+  const draw=f=>{q.innerHTML=t.q.replace('___',`<span class="gap${f?' filled':''}">${f||'___'}</span>`)};
+  draw(null);c.appendChild(q);
+  const ob=document.createElement('div');ob.className='opts';
+  const why=document.createElement('div');why.className='why';why.style.display='none';why.textContent=t.w;
+  t.o.forEach((o,j)=>{const b=document.createElement('button');b.className='opt';b.textContent=o;
+    b.onclick=()=>{if(c.dataset.done)return;c.dataset.done='1';
+      const ok=j===t.a;b.classList.add(ok?'right':'wrong');
+      if(!ok)ob.children[t.a].classList.add('right');
+      draw(t.o[t.a]);why.style.display='block';say(t.q.replace('___',t.o[t.a]),q);
+      c.appendChild(rateRow(()=>{}))};
+    ob.appendChild(b)});
+  c.appendChild(ob);c.appendChild(why);panel.appendChild(c);
+}
+function vDrill(it){
+  const c=document.createElement('div');c.className='card';
+  const d=it.d;
+  if(it.mode==='cloze'){
+    c.appendChild(taskBar('Choose the word that fits','اخْتَرِ الْكَلِمَةَ الْمُناسِبَةَ'));
+    const q=document.createElement('div');q.className='qar';
+    const draw=f=>{q.innerHTML=d.q.replace('___',`<span class="gap${f?' filled':''}">${f||'___'}</span>`)};
+    draw(null);c.appendChild(q);
+    const ob=document.createElement('div');ob.className='opts';
+    const why=document.createElement('div');why.className='why';why.style.display='none';why.textContent=d.w;
+    d.o.forEach((o,j)=>{const b=document.createElement('button');b.className='opt';b.textContent=o;
+      b.onclick=()=>{if(c.dataset.done)return;c.dataset.done='1';
+        const ok=j===d.a;b.classList.add(ok?'right':'wrong');
+        if(!ok)ob.children[d.a].classList.add('right');
+        draw(d.o[d.a]);why.style.display='block';say(d.q.replace('___',d.o[d.a]),q);
+        c.appendChild(rateRow(q2=>gradeDrill(it.id,q2)))};
+      ob.appendChild(b)});
+    c.appendChild(ob);c.appendChild(why);
+  } else if(it.mode==='fix'){
+    c.appendChild(taskBar('Find the mistake and correct it','صَحِّحِ الْخَطَأَ'));
+    const bad=document.createElement('div');bad.className='qar';bad.style.color='var(--rubric)';bad.textContent=d.bad;
+    c.appendChild(bad);
+    const btn=document.createElement('button');btn.className='btn';btn.textContent='Check';btn.style.cssText='width:100%;margin-top:14px';
+    const box=document.createElement('div');box.style.display='none';
+    const g=document.createElement('div');g.className='good';g.textContent=d.good;box.appendChild(tappable(g,d.good));
+    const w=document.createElement('div');w.className='why';w.textContent=d.w;box.appendChild(w);
+    btn.onclick=()=>{box.style.display='block';btn.style.display='none';say(d.good,g);
+      c.appendChild(rateRow(q=>gradeDrill(it.id,q)))};
+    c.appendChild(btn);c.appendChild(box);
+  } else if(it.mode==='transform'){
+    c.appendChild(taskBar(d.task[1],d.task[0]));
+    const src=document.createElement('div');src.className='qar';src.textContent=d.src;
+    c.appendChild(tappable(src,d.src));
+    const btn=document.createElement('button');btn.className='btn';btn.textContent='Check';btn.style.cssText='width:100%;margin-top:14px';
+    const box=document.createElement('div');box.style.display='none';
+    const g=document.createElement('div');g.className='good';g.textContent=d.ans;box.appendChild(tappable(g,d.ans));
+    btn.onclick=()=>{box.style.display='block';btn.style.display='none';say(d.ans,g);
+      c.appendChild(rateRow(q=>gradeDrill(it.id,q)))};
+    c.appendChild(btn);c.appendChild(box);
+  } else if(it.mode==='build'){
+    c.appendChild(taskBar('Say this in Arabic','قُلْها بِالْعَرَبِيَّةِ'));
+    c.insertAdjacentHTML('beforeend',`<div class="qen">${d.en}</div>`);
+    const target=joinAr(d.parts);
+    c.appendChild(answerRow(target));
+    const btn=document.createElement('button');btn.className='btn';btn.textContent='Show the answer';btn.style.cssText='width:100%;margin-top:12px';
+    const box=document.createElement('div');box.style.display='none';
+    const g=document.createElement('div');g.className='good';g.textContent=target;box.appendChild(tappable(g,target));
+    btn.onclick=()=>{box.style.display='block';btn.style.display='none';say(target,g);
+      c.appendChild(rateRow(q=>gradeDrill(it.id,q)))};
+    c.appendChild(btn);c.appendChild(box);
+  } else {                                   // produce
+    c.appendChild(taskBar('Say this in Arabic','قُلْها بِالْعَرَبِيَّةِ'));
+    c.insertAdjacentHTML('beforeend',`<div class="qen">${d.en}</div>`);
+    c.appendChild(answerRow(d.ar));
+    const btn=document.createElement('button');btn.className='btn';btn.textContent='Show the answer';btn.style.cssText='width:100%;margin-top:12px';
+    const box=document.createElement('div');box.style.display='none';
+    const g=document.createElement('div');g.className='good';g.textContent=d.ar;box.appendChild(tappable(g,d.ar));
+    btn.onclick=()=>{box.style.display='block';btn.style.display='none';say(d.ar,g);
+      c.appendChild(rateRow(q=>gradeDrill(it.id,q)))};
+    c.appendChild(btn);c.appendChild(box);
+  }
+  panel.appendChild(c);
+}
+render();
+</script>
