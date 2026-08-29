@@ -31,16 +31,12 @@ a{color:inherit;text-decoration:none}
 .brand span{color:var(--rubric)}
 .navlinks{display:flex;gap:22px;align-items:center}
 .navlinks a{font-size:13px;color:var(--ink-soft)}
-.navlinks a:hover{color:var(--ink)}
 .navlinks a.active{color:var(--ink);border-bottom:2px solid var(--verdigris);padding-bottom:2px}
 
 /* buttons */
 .btn{font-family:var(--la);font-size:15px;font-weight:500;border-radius:3px;border:1px solid var(--verdigris);background:var(--verdigris);color:var(--paper);padding:12px 26px;cursor:pointer;transition:background .18s,transform .18s}
-.btn:hover{background:#265f52;transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:var(--verdigris)}
-.btn.ghost:hover{background:rgba(46,114,99,.08)}
 .btn.danger{border-color:var(--rubric);background:transparent;color:var(--rubric)}
-.btn.danger:hover{background:rgba(180,50,42,.08)}
 
 .wrap{max-width:1000px;margin:0 auto;padding:0 30px}
 
@@ -85,3 +81,12 @@ a{color:inherit;text-decoration:none}
 .sessionbar .meta{min-width:0}
 .sessionbar .meta b{display:block;font-size:15px}
 .sessionbar .meta span{font-size:12.5px;color:var(--ink-soft)}
+
+/* Pointer devices only — :hover sticks after a tap on touchscreens. */
+@media (hover:hover) and (pointer:fine){
+
+.navlinks a:hover{color:var(--ink)}
+.btn:hover{background:#265f52;transform:translateY(-1px)}
+.btn.ghost:hover{background:rgba(46,114,99,.08)}
+.btn.danger:hover{background:rgba(180,50,42,.08)}
+}

@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Connectors — Rafiq</title>
-<link rel="stylesheet" href="site.css?v=830">
+<link rel="stylesheet" href="site.css?v=840">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317262B'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23F1ECE0' font-family='serif'%3E%D8%B1%3C/text%3E%3Ccircle cx='46' cy='19' r='4' fill='%23B4322A'/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -46,7 +46,6 @@
 .vtable td.vp{font-family:var(--ar);font-size:17px;direction:rtl;line-height:1.7;color:var(--ink-soft);white-space:nowrap}
 .vtable td.vp span{display:block;font-family:var(--la);font-size:10px}
 .vtable td.vf{font-family:var(--ar);font-size:20px;direction:rtl;text-align:right;line-height:1.85;cursor:pointer}
-.vtable td.vf:hover{color:var(--verdigris)}
 .vnote{font-size:12.5px;color:var(--ink-soft);border-left:2px solid var(--gold);padding-left:11px}
 
 .card{border:1px solid var(--rule);border-radius:6px;padding:18px 20px;margin-bottom:14px;background:var(--card)}
@@ -68,7 +67,6 @@
 .opts{display:flex;gap:7px;flex-wrap:wrap;direction:rtl;margin-top:14px}
 .opt{font-family:var(--ar);font-size:19px;direction:rtl;background:var(--paper);border:1px solid var(--rule);
   border-radius:4px;padding:6px 14px;cursor:pointer;line-height:1.8;min-height:44px;display:inline-flex;align-items:center}
-.opt:hover{border-color:var(--verdigris)}
 .opt.right{background:var(--verdigris);border-color:var(--verdigris);color:#fff}
 .opt.wrong{background:var(--rubric);border-color:var(--rubric);color:#fff}
 .why{font-size:12.5px;color:var(--ink-soft);margin-top:12px;border-left:2px solid var(--gold);padding-left:11px}
@@ -98,12 +96,19 @@ input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-hei
 .crow{display:grid;grid-template-columns:140px 1fr;gap:14px;padding:10px 0;
   border-bottom:1px solid rgba(23,38,43,.07);align-items:baseline}
 .c-word{font-family:var(--ar);font-size:20px;direction:rtl;text-align:right;line-height:1.75;cursor:pointer}
-.c-word:hover{color:var(--verdigris)}
 .c-en{font-size:13px;font-weight:500}
 .c-ex{font-family:var(--ar);font-size:19px;direction:rtl;text-align:right;line-height:1.85;margin-top:3px;cursor:pointer}
-.c-ex:hover{color:var(--verdigris)}
 .c-exen{font-size:12px;color:var(--ink-soft)}
 @media (max-width:860px){ .crow{grid-template-columns:1fr;gap:2px} .c-ex{font-size:18px} }
+
+/* Pointer devices only — :hover sticks after a tap on touchscreens. */
+@media (hover:hover) and (pointer:fine){
+
+.vtable td.vf:hover{color:var(--verdigris)}
+.opt:hover{border-color:var(--verdigris)}
+.c-word:hover{color:var(--verdigris)}
+.c-ex:hover{color:var(--verdigris)}
+}
 </style>
 <nav class="nav">
   <a class="brand" href="dashboard.html"><span class="bmark"></span>رَفِيق</a>
@@ -132,7 +137,7 @@ input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-hei
   <a class="on" href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
 </nav>
 
-<script src="toolkit-data.js?v=830"></script>
+<script src="toolkit-data.js?v=840"></script>
 <script>
 /* ── speech: pre-rendered clip if we have one, else the device voice ── */
 function aid(s){let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36);}

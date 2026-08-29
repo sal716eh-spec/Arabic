@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=830">
+<link rel="stylesheet" href="site.css?v=840">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317262B'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23F1ECE0' font-family='serif'%3E%D8%B1%3C/text%3E%3Ccircle cx='46' cy='19' r='4' fill='%23B4322A'/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -27,7 +27,6 @@
 .today b{color:var(--rubric)}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:28px 0 48px}
 .tile{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:28px;min-height:210px;position:relative;display:flex;flex-direction:column;transition:transform .18s,border-color .18s}
-.tile:hover{transform:translateY(-2px);border-color:var(--verdigris)}
 .tilehead{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:4px}
 .tile .ar{font-family:var(--ar);direction:rtl;font-size:25px;font-weight:600;color:var(--ink);line-height:1.65;padding:2px 0}
 .tile h2{font-size:20px;margin-top:14px}
@@ -40,7 +39,6 @@
 .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
 .qcard{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--rule);
   border-radius:8px;padding:16px 17px;transition:border-color .15s,transform .12s}
-.qcard:hover{border-color:var(--verdigris);transform:translateY(-1px)}
 .qcard .qa{font-family:var(--ar);font-size:20px;direction:rtl;line-height:1.7;color:var(--rubric)}
 .qcard .qt{font-size:15.5px;font-weight:600;margin-top:2px}
 .qcard .qd{font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.45}
@@ -57,6 +55,13 @@
 .stat b{color:var(--rubric);font-weight:600}
 .stat.none{color:var(--ink-soft)}
 @media (max-width:640px){.tiles{grid-template-columns:1fr}}
+
+/* Pointer devices only — :hover sticks after a tap on touchscreens. */
+@media (hover:hover) and (pointer:fine){
+
+.tile:hover{transform:translateY(-2px);border-color:var(--verdigris)}
+.qcard:hover{border-color:var(--verdigris);transform:translateY(-1px)}
+}
 </style>
 </head>
 <body>
@@ -77,7 +82,7 @@
   </section>
   <div id="picker"></div>
 </main>
-<script src="vocab-data.js?v=830"></script>
+<script src="vocab-data.js?v=840"></script>
 <script>
 /* Both apps keep their own schedule; the dashboard just reports on each. */
 const DAY=86400000, dayNow=Math.floor(Date.now()/DAY), iso=new Date().toISOString().slice(0,10);
