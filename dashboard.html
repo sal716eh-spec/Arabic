@@ -69,7 +69,7 @@
     <a class="active" href="dashboard.html">Dashboard</a>
     <a href="vocab.html">Words</a>
     <a href="drills.html">Sentences</a><a href="verbs.html">Verbs</a><a href="connectors.html">Connectors</a>
-    <a href="index.html">Log out</a>
+    <a href="index.html" class="logout-link" onclick="logout();return false;">Log out</a>
   </div>
 </nav>
 <main class="wrap">
@@ -153,5 +153,8 @@ paintGreeting();
   <a class="" href="verbs.html"><span class="ti">أَفْعال</span>Verbs</a>
   <a class="" href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
 </nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js?v=1"></script>
+<script>requireLogin();</script>
 </body>
 </html>
