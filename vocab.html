@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=900">
+<link rel="stylesheet" href="site.css?v=830">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317262B'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23F1ECE0' font-family='serif'%3E%D8%B1%3C/text%3E%3Ccircle cx='46' cy='19' r='4' fill='%23B4322A'/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -67,7 +67,25 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
 .done h2{font-size:22px;margin-top:14px}
 .done p{color:var(--ink-soft);margin-top:8px}
 .speak{background:none;border:1px solid var(--rule);border-radius:3px;padding:8px 14px;font-family:var(--la);font-size:13px;color:var(--ink-soft);cursor:pointer;margin-top:18px}
+.speak:hover{border-color:var(--verdigris);color:var(--verdigris)}
 .reset{margin-top:30px;text-align:center}
+
+/* daily test — multiple choice */
+.qword{font-size:clamp(28px,6vw,44px);font-weight:600;line-height:1.5;padding:14px 0 6px;min-height:1.4em}
+.qword.ar-q{font-family:var(--ar);direction:rtl}
+.qopts{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+.qopt{border:1px solid var(--rule);border-radius:6px;background:var(--paper);padding:15px 18px;
+  font-family:var(--la);font-size:17px;color:var(--ink);cursor:pointer;text-align:center;
+  transition:border-color .15s,background .15s;min-height:52px}
+.qopt.ar-opt{font-family:var(--ar);direction:rtl;font-size:24px}
+.qopt:hover:not(:disabled){border-color:var(--verdigris)}
+.qopt:disabled{cursor:default}
+.qopt.correct{border-color:var(--verdigris);background:rgba(46,114,99,.12);color:var(--verdigris);font-weight:600}
+.qopt.wrong{border-color:var(--rubric);background:rgba(180,50,42,.10);color:var(--rubric)}
+.qfeedback{margin-top:20px;font-size:14px;min-height:24px;font-weight:500}
+.qfeedback.right{color:var(--verdigris)}
+.qfeedback.wrong{color:var(--rubric)}
+@media (max-width:860px){ .qopt{font-size:16px} .qopt.ar-opt{font-size:22px} }
 @media (max-width:860px){
   .head{padding:20px 0 0}
   .tabs button{flex:1;padding:12px 8px;min-height:48px}
@@ -82,12 +100,6 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
   td,th{padding:10px 8px;font-size:14px}
   .panel{padding:18px 0 46px}
 }
-
-/* Pointer devices only — :hover sticks after a tap on touchscreens. */
-@media (hover:hover) and (pointer:fine){
-
-.speak:hover{border-color:var(--verdigris);color:var(--verdigris)}
-}
 </style>
 </head>
 <body>
@@ -101,13 +113,13 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
   </div>
 </nav>
 <main class="wrap">
-  <div class="headrow">
-    <div class="head"><h1>Vocabulary</h1></div>
-    <div id="rq-audio"></div>
-  </div>
-  <div class="tabs">
-    <button id="tabTest" class="on" onclick="showTab('test')">Daily test</button>
-    <button id="tabList" onclick="showTab('list')">Full list</button>
+  <div class="head">
+    <h1>Vocabulary</h1>
+    <div class="tabs">
+      <button id="tabTest" class="on" onclick="showTab('test')">Daily practise</button>
+      <button id="tabQuiz" onclick="showTab('quiz')">Daily test</button>
+      <button id="tabList" onclick="showTab('list')">Full list</button>
+    </div>
   </div>
 
   <!-- DAILY TEST -->
@@ -132,7 +144,6 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
           <div class="actions" id="actions">
             <button class="btn ghost" onclick="revealCard()" id="revealBtn">Reveal answer</button>
           </div>
-          <div class="hint">Got it → longer gap before it returns · Missed → comes back soon</div>
         </div>
       </div>
     </div>
@@ -158,6 +169,36 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
     </div>
   </section>
 
+  <!-- DAILY TEST (multiple choice) -->
+  <section id="panelQuiz" class="panel">
+    <div id="quizActive">
+      <div class="sessionbar">
+        <div class="ring" id="qRing"><span id="qRingPct">0%</span></div>
+        <div class="meta">
+          <b id="qPosLabel">—</b>
+          <span id="qLeftLabel">—</span>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="tcard">
+          <div class="label" id="qPrompt">Choose the correct answer</div>
+          <div class="qword" id="qWord">—</div>
+          <div class="qopts" id="qOpts"></div>
+          <div class="qfeedback" id="qFeedback"></div>
+        </div>
+      </div>
+    </div>
+    <div id="quizDone" class="done" style="display:none">
+      <div class="ar">أَحْسَنْت</div>
+      <h2>Test complete</h2>
+      <p id="qScoreMsg">—</p>
+      <div class="next">
+        <a class="primary" href="#" onclick="startQuiz();return false;">Test again</a>
+        <a href="#" onclick="showTab('test');return false;">Back to practise</a>
+      </div>
+    </div>
+  </section>
+
   <!-- FULL LIST -->
   <section id="panelList" class="panel">
     <div class="filters">
@@ -172,8 +213,7 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
   </section>
 </main>
 
-<script src="vocab-data.js?v=900"></script>
-<script src="audio.js?v=900"></script>
+<script src="vocab-data.js?v=830"></script>
 <script>
 /* ---------- Leitner spaced repetition ----------
    Each word sits in a box (1..5). Higher box = longer gap.
@@ -237,12 +277,14 @@ function counts(){
 }
 
 function showTab(which){
-  const test = which==='test';
-  document.getElementById('tabTest').classList.toggle('on', test);
-  document.getElementById('tabList').classList.toggle('on', !test);
-  document.getElementById('panelTest').classList.toggle('on', test);
-  document.getElementById('panelList').classList.toggle('on', !test);
-  if(!test) renderList();
+  document.getElementById('tabTest').classList.toggle('on', which==='test');
+  document.getElementById('tabQuiz').classList.toggle('on', which==='quiz');
+  document.getElementById('tabList').classList.toggle('on', which==='list');
+  document.getElementById('panelTest').classList.toggle('on', which==='test');
+  document.getElementById('panelQuiz').classList.toggle('on', which==='quiz');
+  document.getElementById('panelList').classList.toggle('on', which==='list');
+  if(which==='list') renderList();
+  if(which==='quiz') startQuiz();
 }
 
 /* ---- daily test flow ---- */
@@ -283,12 +325,17 @@ function revealCard(){
     '<button class="btn danger" onclick="grade(false)">Missed it</button>'+
     '<button class="btn" onclick="grade(true)">Got it</button>';
 }
-function grade(gotIt){
-  const rec = progress[current.id];
+// scoring only — updates the shared spaced repetition for one word.
+// used by both the practise cards and the multiple-choice test.
+function scoreWord(id, gotIt){
+  const rec = progress[id];
   if(gotIt){ rec.box = Math.min(5, Math.max(1, rec.box)+ (rec.box?1:0)); }
   else { rec.box = 1; }
   rec.due = today() + GAPS[rec.box];
   saveProgress(progress);
+}
+function grade(gotIt){
+  scoreWord(current.id, gotIt);
   queue.shift();
   doneCount++;
   nextCard(false);
@@ -304,11 +351,150 @@ function resetProgress(){
 
 /* ---- speech ---- */
 function speakCurrent(){ speak(current && current.ar); }
-/* speech comes from audio.js (shared with every page) */
-function speak(text){ RQ.speak(text); }
-function hasArabicVoice(){ return RQ.available(); }
-function syncAudioUI(){ const on=hasArabicVoice(); document.querySelectorAll('.speak').forEach(b=>b.style.display=on?'':'none'); }
-RQ.mount(document.getElementById('rq-audio'));
+function vSig(v){ return ((v.voiceURI||'')+' '+(v.name||'')).toLowerCase(); }
+function quality(v){
+  const t=vSig(v);
+  if(/premium|neural|natural/.test(t)) return 'premium';
+  if(/enhanced/.test(t)) return 'enhanced';
+  if(/siri/.test(t)) return 'siri';
+  if(/compact/.test(t)) return 'basic';
+  return 'standard';
+}
+const QRANK={premium:4,enhanced:3,siri:2,standard:1,basic:0};
+function voiceScore(v){
+  let s=QRANK[quality(v)]*100; const l=(v.lang||'').toLowerCase();
+  if(/^ar-sa/.test(l)) s+=10; else if(/^ar-(eg|ae|jo)/.test(l)) s+=6; else if(/^ar-001/.test(l)) s+=4;
+  if(v.localService===false) s+=3;
+  return s;
+}
+function bestArabicVoice(){
+  const list=(speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang));
+  return list.sort((a,b)=>voiceScore(b)-voiceScore(a))[0]||null;
+}
+function hasArabicVoice(){
+  if(CLIPS&&CLIPS.size) return true;                       // pre-rendered clips work everywhere
+  return (speechSynthesis.getVoices()||[]).some(v=>/^ar/i.test(v.lang));
+}
+function syncAudioUI(){
+  const on=hasArabicVoice();
+  document.querySelectorAll('.speak').forEach(b=>b.style.display=on?'':'none');
+}
+function aid(s){let h=5381;for(let i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return h.toString(36);}
+let CLIPS=null, curAudio=null;
+try{
+  if(typeof fetch==='function'){
+    fetch('audio/index.json?t='+Math.floor(Date.now()/60000)).then(r=>r.ok?r.json():[]).then(a=>{CLIPS=new Set(a);syncAudioUI();}).catch(()=>{CLIPS=new Set()});
+  } else { CLIPS=new Set(); }
+}catch(e){ CLIPS=new Set(); }
+function speak(text){
+  if(!text || !('speechSynthesis' in window)) return;
+  if(curAudio){curAudio.pause();curAudio=null;}
+  const id=aid(text);
+  if(CLIPS&&CLIPS.has(id)){
+    const a=new Audio('audio/'+id+'.mp3');curAudio=a;
+    a.onended=()=>{curAudio=null};
+    a.play().catch(()=>{curAudio=null});
+    return;
+  }
+  const u = new SpeechSynthesisUtterance(text);
+  const v = bestArabicVoice();
+  u.lang = (v&&v.lang)||'ar-SA'; u.rate = .8; u.pitch = 1;
+  if(v) u.voice = v;
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+}
+
+/* ---- daily test: multiple choice, shares the same spaced repetition ---- */
+let qQueue=[], qCurrent=null, qTotal=0, qDone=0, qCorrect=0, qLocked=false;
+
+// use the primary sense only (strip "/ alternative" so options stay clean)
+function primary(s){ return (s||'').split('/')[0].trim(); }
+
+function startQuiz(){
+  buildQueue();                 // same due-first + new-word logic as practise
+  qQueue = queue.slice();       // copy so we don't disturb the practise queue
+  qTotal = qQueue.length; qDone = 0; qCorrect = 0; qLocked=false;
+  const active=document.getElementById('quizActive'), done=document.getElementById('quizDone');
+  if(qQueue.length===0){ active.style.display='none'; done.style.display='block';
+    document.getElementById('qScoreMsg').textContent='Nothing due right now — come back later or add new words.'; return; }
+  active.style.display='block'; done.style.display='none';
+  nextQuestion();
+}
+
+function nextQuestion(){
+  if(qQueue.length===0){ finishQuiz(); return; }
+  qLocked=false;
+  qCurrent = qQueue[0];
+  // random direction: ar->en (show Arabic, pick English) or en->ar
+  const dir = Math.random()<0.5 ? 'ar2en' : 'en2ar';
+  qCurrent._dir = dir;
+  const promptEl=document.getElementById('qPrompt');
+  const wordEl=document.getElementById('qWord');
+  const optsEl=document.getElementById('qOpts');
+  const fb=document.getElementById('qFeedback'); fb.textContent=''; fb.className='qfeedback';
+
+  // build 3 distractors from other words, matching the answer's language
+  const others = VOCAB.filter(w=>w.id!==qCurrent.id);
+  shuffle(others);
+  let answer, options;
+  if(dir==='ar2en'){
+    promptEl.textContent='What does this mean?';
+    wordEl.textContent=qCurrent.ar; wordEl.className='qword ar-q';
+    answer=primary(qCurrent.en);
+    options=[answer, ...others.slice(0,3).map(w=>primary(w.en))];
+  } else {
+    promptEl.textContent='Which word is this?';
+    wordEl.textContent=primary(qCurrent.en); wordEl.className='qword';
+    answer=qCurrent.ar;
+    options=[answer, ...others.slice(0,3).map(w=>w.ar)];
+  }
+  shuffle(options);
+  optsEl.innerHTML = options.map(o=>{
+    const cls = dir==='en2ar' ? 'qopt ar-opt' : 'qopt';
+    return '<button class="'+cls+'" onclick="answerQuiz(this)">'+o+'</button>';
+  }).join('');
+  optsEl.dataset.answer = answer;
+  updateQuizUI();
+}
+
+function answerQuiz(btn){
+  if(qLocked) return; qLocked=true;
+  const optsEl=document.getElementById('qOpts');
+  const answer=optsEl.dataset.answer;
+  const chosen=btn.textContent;
+  const correct = chosen===answer;
+  // mark buttons
+  [...optsEl.querySelectorAll('.qopt')].forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===answer) b.classList.add('correct');
+    else if(b===btn) b.classList.add('wrong');
+  });
+  const fb=document.getElementById('qFeedback');
+  fb.textContent = correct ? 'Correct' : 'Answer: '+answer;
+  fb.className = 'qfeedback '+(correct?'right':'wrong');
+  if(correct) qCorrect++;
+  // feed the SAME spaced repetition as practise, without disturbing its queue
+  scoreWord(qCurrent.id, correct);
+  qQueue.shift(); qDone++;
+  setTimeout(nextQuestion, correct?750:1400);
+}
+
+function updateQuizUI(){
+  const pct = qTotal? (qDone/qTotal*100) : 0;
+  document.getElementById('qPosLabel').textContent = 'Question '+(qDone+1)+' of '+qTotal;
+  document.getElementById('qLeftLabel').textContent = qQueue.length+' left in today\u2019s test';
+  const ring=document.getElementById('qRing');
+  if(ring){ ring.style.setProperty('--pct', pct); document.getElementById('qRingPct').textContent=Math.round(pct)+'%'; }
+}
+
+function finishQuiz(){
+  document.getElementById('quizActive').style.display='none';
+  document.getElementById('quizDone').style.display='block';
+  const pct = qTotal? Math.round(qCorrect/qTotal*100) : 0;
+  document.getElementById('qScoreMsg').textContent =
+    'You scored '+qCorrect+' out of '+qTotal+' ('+pct+'%).';
+}
+
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 
 /* ---- full list ---- */
 function renderList(){
