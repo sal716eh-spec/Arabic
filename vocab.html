@@ -57,6 +57,21 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
 .reveal .trl{font-family:var(--ut);font-size:12px;color:var(--ink-soft);margin-top:6px}
 .actions{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .hint{margin-top:16px;font-size:12px;color:var(--ink-soft)}
+
+/* daily test — multiple choice */
+.qword{font-size:clamp(28px,6vw,44px);font-weight:600;line-height:1.5;padding:14px 0 6px;min-height:1.4em}
+.qword.ar-q{font-family:var(--ar);direction:rtl}
+.qopts{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+.qopt{border:1px solid var(--rule);border-radius:6px;background:var(--paper);padding:15px 18px;font-family:var(--la);font-size:17px;color:var(--ink);cursor:pointer;text-align:center;transition:border-color .15s,background .15s;min-height:52px}
+.qopt.ar-opt{font-family:var(--ar);direction:rtl;font-size:24px}
+.qopt:hover:not(:disabled){border-color:var(--verdigris)}
+.qopt:disabled{cursor:default}
+.qopt.correct{border-color:var(--verdigris);background:rgba(46,114,99,.12);color:var(--verdigris);font-weight:600}
+.qopt.wrong{border-color:var(--rubric);background:rgba(180,50,42,.10);color:var(--rubric)}
+.qfeedback{margin-top:20px;font-size:14px;min-height:24px;font-weight:500}
+.qfeedback.right{color:var(--verdigris)}
+.qfeedback.wrong{color:var(--rubric)}
+@media (max-width:860px){ .qopt{font-size:16px} .qopt.ar-opt{font-size:22px} }
 .done{text-align:center;padding:50px 20px}
 .done .ar{font-family:var(--ar);direction:rtl;font-size:38px;line-height:1.6;padding:4px 0;color:var(--verdigris)}
 .done .next{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
@@ -106,7 +121,8 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
     <div id="rq-audio"></div>
   </div>
   <div class="tabs">
-    <button id="tabTest" class="on" onclick="showTab('test')">Daily test</button>
+    <button id="tabTest" class="on" onclick="showTab('test')">Daily practise</button>
+    <button id="tabQuiz" onclick="showTab('quiz')">Daily test</button>
     <button id="tabList" onclick="showTab('list')">Full list</button>
   </div>
 
@@ -132,7 +148,6 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
           <div class="actions" id="actions">
             <button class="btn ghost" onclick="revealCard()" id="revealBtn">Reveal answer</button>
           </div>
-          <div class="hint">Got it → longer gap before it returns · Missed → comes back soon</div>
         </div>
       </div>
     </div>
@@ -155,6 +170,36 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
     </div>
     <div class="reset">
       <button class="btn danger" onclick="resetProgress()">Reset all progress</button>
+    </div>
+  </section>
+
+  <!-- DAILY TEST (multiple choice) -->
+  <section id="panelQuiz" class="panel">
+    <div id="quizActive">
+      <div class="sessionbar">
+        <div class="ring" id="qRing"><span id="qRingPct">0%</span></div>
+        <div class="meta">
+          <b id="qPosLabel">—</b>
+          <span id="qLeftLabel">—</span>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="tcard">
+          <div class="label" id="qPrompt">Choose the correct answer</div>
+          <div class="qword" id="qWord">—</div>
+          <div class="qopts" id="qOpts"></div>
+          <div class="qfeedback" id="qFeedback"></div>
+        </div>
+      </div>
+    </div>
+    <div id="quizDone" class="done" style="display:none">
+      <div class="ar">أَحْسَنْت</div>
+      <h2>Test complete</h2>
+      <p id="qScoreMsg">—</p>
+      <div class="next">
+        <a class="primary" href="#" onclick="startQuiz();return false;">Test again</a>
+        <a href="#" onclick="showTab('test');return false;">Back to practise</a>
+      </div>
     </div>
   </section>
 
@@ -237,12 +282,14 @@ function counts(){
 }
 
 function showTab(which){
-  const test = which==='test';
-  document.getElementById('tabTest').classList.toggle('on', test);
-  document.getElementById('tabList').classList.toggle('on', !test);
-  document.getElementById('panelTest').classList.toggle('on', test);
-  document.getElementById('panelList').classList.toggle('on', !test);
-  if(!test) renderList();
+  document.getElementById('tabTest').classList.toggle('on', which==='test');
+  document.getElementById('tabQuiz').classList.toggle('on', which==='quiz');
+  document.getElementById('tabList').classList.toggle('on', which==='list');
+  document.getElementById('panelTest').classList.toggle('on', which==='test');
+  document.getElementById('panelQuiz').classList.toggle('on', which==='quiz');
+  document.getElementById('panelList').classList.toggle('on', which==='list');
+  if(which==='list') renderList();
+  if(which==='quiz') startQuiz();
 }
 
 /* ---- daily test flow ---- */
@@ -283,12 +330,15 @@ function revealCard(){
     '<button class="btn danger" onclick="grade(false)">Missed it</button>'+
     '<button class="btn" onclick="grade(true)">Got it</button>';
 }
-function grade(gotIt){
-  const rec = progress[current.id];
+function scoreWord(id, gotIt){
+  const rec = progress[id];
   if(gotIt){ rec.box = Math.min(5, Math.max(1, rec.box)+ (rec.box?1:0)); }
   else { rec.box = 1; }
   rec.due = today() + GAPS[rec.box];
   saveProgress(progress);
+}
+function grade(gotIt){
+  scoreWord(current.id, gotIt);
   queue.shift();
   doneCount++;
   nextCard(false);
@@ -309,6 +359,83 @@ function speak(text){ RQ.speak(text); }
 function hasArabicVoice(){ return RQ.available(); }
 function syncAudioUI(){ const on=hasArabicVoice(); document.querySelectorAll('.speak').forEach(b=>b.style.display=on?'':'none'); }
 RQ.mount(document.getElementById('rq-audio'));
+
+/* ---- daily test: multiple choice, shares the same spaced repetition ---- */
+let qQueue=[], qCurrent=null, qTotal=0, qDone=0, qCorrect=0, qLocked=false;
+function primary(s){ return (s||'').split('/')[0].trim(); }
+function qShuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+function startQuiz(){
+  buildQueue();
+  qQueue = queue.slice();
+  qTotal = qQueue.length; qDone = 0; qCorrect = 0; qLocked=false;
+  const active=document.getElementById('quizActive'), done=document.getElementById('quizDone');
+  if(qQueue.length===0){ active.style.display='none'; done.style.display='block';
+    document.getElementById('qScoreMsg').textContent='Nothing due right now — come back later or add new words.'; return; }
+  active.style.display='block'; done.style.display='none';
+  nextQuestion();
+}
+function nextQuestion(){
+  if(qQueue.length===0){ finishQuiz(); return; }
+  qLocked=false;
+  qCurrent = qQueue[0];
+  const dir = Math.random()<0.5 ? 'ar2en' : 'en2ar';
+  const promptEl=document.getElementById('qPrompt');
+  const wordEl=document.getElementById('qWord');
+  const optsEl=document.getElementById('qOpts');
+  const fb=document.getElementById('qFeedback'); fb.textContent=''; fb.className='qfeedback';
+  const others = VOCAB.filter(w=>w.id!==qCurrent.id); qShuffle(others);
+  let answer, options;
+  if(dir==='ar2en'){
+    promptEl.textContent='What does this mean?';
+    wordEl.textContent=qCurrent.ar; wordEl.className='qword ar-q';
+    answer=primary(qCurrent.en);
+    options=[answer, ...others.slice(0,3).map(w=>primary(w.en))];
+  } else {
+    promptEl.textContent='Which word is this?';
+    wordEl.textContent=primary(qCurrent.en); wordEl.className='qword';
+    answer=qCurrent.ar;
+    options=[answer, ...others.slice(0,3).map(w=>w.ar)];
+  }
+  qShuffle(options);
+  optsEl.innerHTML = options.map(o=>{
+    const cls = dir==='en2ar' ? 'qopt ar-opt' : 'qopt';
+    return '<button class="'+cls+'" onclick="answerQuiz(this)">'+o+'</button>';
+  }).join('');
+  optsEl.dataset.answer = answer;
+  updateQuizUI();
+}
+function answerQuiz(btn){
+  if(qLocked) return; qLocked=true;
+  const optsEl=document.getElementById('qOpts');
+  const answer=optsEl.dataset.answer;
+  const correct = btn.textContent===answer;
+  [...optsEl.querySelectorAll('.qopt')].forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===answer) b.classList.add('correct');
+    else if(b===btn) b.classList.add('wrong');
+  });
+  const fb=document.getElementById('qFeedback');
+  fb.textContent = correct ? 'Correct' : 'Answer: '+answer;
+  fb.className = 'qfeedback '+(correct?'right':'wrong');
+  if(correct) qCorrect++;
+  scoreWord(qCurrent.id, correct);
+  qQueue.shift(); qDone++;
+  setTimeout(nextQuestion, correct?750:1400);
+}
+function updateQuizUI(){
+  const pct = qTotal? (qDone/qTotal*100) : 0;
+  document.getElementById('qPosLabel').textContent = 'Question '+(qDone+1)+' of '+qTotal;
+  document.getElementById('qLeftLabel').textContent = qQueue.length+' left in today\u2019s test';
+  const ring=document.getElementById('qRing');
+  if(ring){ ring.style.setProperty('--pct', pct); document.getElementById('qRingPct').textContent=Math.round(pct)+'%'; }
+}
+function finishQuiz(){
+  document.getElementById('quizActive').style.display='none';
+  document.getElementById('quizDone').style.display='block';
+  const pct = qTotal? Math.round(qCorrect/qTotal*100) : 0;
+  document.getElementById('qScoreMsg').textContent = 'You scored '+qCorrect+' out of '+qTotal+' ('+pct+'%).';
+}
 
 /* ---- full list ---- */
 function renderList(){
