@@ -71,6 +71,10 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
 .qfeedback{margin-top:20px;font-size:14px;min-height:24px;font-weight:500}
 .qfeedback.right{color:var(--verdigris)}
 .qfeedback.wrong{color:var(--rubric)}
+.qinput{width:100%;border:1px solid var(--rule);border-radius:6px;background:var(--paper);height:52px;padding:0 16px;font-family:var(--la);font-size:18px;color:var(--ink);text-align:center}
+.qinput:focus{outline:none;border-color:var(--verdigris)}
+.qinput.ok{border-color:var(--verdigris);background:rgba(46,114,99,.10);color:var(--verdigris);font-weight:600}
+.qinput.bad{border-color:var(--rubric);background:rgba(180,50,42,.08);color:var(--rubric)}
 @media (max-width:860px){ .qopt{font-size:16px} .qopt.ar-opt{font-size:22px} }
 .done{text-align:center;padding:50px 20px}
 .done .ar{font-family:var(--ar);direction:rtl;font-size:38px;line-height:1.6;padding:4px 0;color:var(--verdigris)}
@@ -360,10 +364,37 @@ function hasArabicVoice(){ return RQ.available(); }
 function syncAudioUI(){ const on=hasArabicVoice(); document.querySelectorAll('.speak').forEach(b=>b.style.display=on?'':'none'); }
 RQ.mount(document.getElementById('rq-audio'));
 
-/* ---- daily test: multiple choice, shares the same spaced repetition ---- */
+/* ---- daily test: multiple choice + typed English, shares the same spaced repetition ---- */
 let qQueue=[], qCurrent=null, qTotal=0, qDone=0, qCorrect=0, qLocked=false;
 function primary(s){ return (s||'').split('/')[0].trim(); }
 function qShuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+// A word qualifies for TYPING when the learner knows it (box >= 3) AND the
+// English answer is short enough to type fairly (one or two words, no phrase).
+function isTypable(w){
+  const box = (progress[w.id] && progress[w.id].box) || 0;
+  const en = primary(w.en);
+  const wordCount = en.split(/\s+/).length;
+  const short = wordCount <= 2 && en.length <= 14 && !/[?/]/.test(en);
+  return box >= 3 && short;
+}
+
+// Forgiving comparison for typed English: lowercase, trim, drop leading a/an/the,
+// strip punctuation, collapse spaces. Accepts "a friend" == "friend" etc.
+function normEn(s){
+  return (s||'').toLowerCase().trim()
+    .replace(/^(a|an|the)\s+/, '')
+    .replace(/[.,!?;:()"']/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+// accept any of the slash-separated glosses ("teacher" from "teacher/instructor")
+function answerMatches(typed, w){
+  const t = normEn(typed);
+  if(!t) return false;
+  const accepted = (w.en||'').split('/').map(normEn).filter(Boolean);
+  return accepted.includes(t);
+}
 
 function startQuiz(){
   buildQueue();
@@ -379,32 +410,51 @@ function nextQuestion(){
   if(qQueue.length===0){ finishQuiz(); return; }
   qLocked=false;
   qCurrent = qQueue[0];
-  const dir = Math.random()<0.5 ? 'ar2en' : 'en2ar';
   const promptEl=document.getElementById('qPrompt');
   const wordEl=document.getElementById('qWord');
   const optsEl=document.getElementById('qOpts');
   const fb=document.getElementById('qFeedback'); fb.textContent=''; fb.className='qfeedback';
-  const others = VOCAB.filter(w=>w.id!==qCurrent.id); qShuffle(others);
-  let answer, options;
-  if(dir==='ar2en'){
-    promptEl.textContent='What does this mean?';
+
+  if(isTypable(qCurrent)){
+    // TYPED question — show Arabic, type the English
+    promptEl.textContent='Type the meaning in English';
     wordEl.textContent=qCurrent.ar; wordEl.className='qword ar-q';
-    answer=primary(qCurrent.en);
-    options=[answer, ...others.slice(0,3).map(w=>primary(w.en))];
+    optsEl.innerHTML =
+      '<input class="qinput" id="qInput" type="text" autocomplete="off" '+
+      'autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="your answer">'+
+      '<button class="qopt" onclick="submitTyped()">Check</button>';
+    optsEl.dataset.mode='typed';
+    const inp=document.getElementById('qInput');
+    inp.focus();
+    inp.addEventListener('keydown', e=>{ if(e.key==='Enter') submitTyped(); });
   } else {
-    promptEl.textContent='Which word is this?';
-    wordEl.textContent=primary(qCurrent.en); wordEl.className='qword';
-    answer=qCurrent.ar;
-    options=[answer, ...others.slice(0,3).map(w=>w.ar)];
+    // MULTIPLE CHOICE — as before, mixed direction
+    const dir = Math.random()<0.5 ? 'ar2en' : 'en2ar';
+    const others = VOCAB.filter(w=>w.id!==qCurrent.id); qShuffle(others);
+    let answer, options;
+    if(dir==='ar2en'){
+      promptEl.textContent='What does this mean?';
+      wordEl.textContent=qCurrent.ar; wordEl.className='qword ar-q';
+      answer=primary(qCurrent.en);
+      options=[answer, ...others.slice(0,3).map(w=>primary(w.en))];
+    } else {
+      promptEl.textContent='Which word is this?';
+      wordEl.textContent=primary(qCurrent.en); wordEl.className='qword';
+      answer=qCurrent.ar;
+      options=[answer, ...others.slice(0,3).map(w=>w.ar)];
+    }
+    qShuffle(options);
+    optsEl.innerHTML = options.map(o=>{
+      const cls = dir==='en2ar' ? 'qopt ar-opt' : 'qopt';
+      return '<button class="'+cls+'" onclick="answerQuiz(this)">'+o+'</button>';
+    }).join('');
+    optsEl.dataset.mode='mc';
+    optsEl.dataset.answer = answer;
   }
-  qShuffle(options);
-  optsEl.innerHTML = options.map(o=>{
-    const cls = dir==='en2ar' ? 'qopt ar-opt' : 'qopt';
-    return '<button class="'+cls+'" onclick="answerQuiz(this)">'+o+'</button>';
-  }).join('');
-  optsEl.dataset.answer = answer;
   updateQuizUI();
 }
+
+// grade a multiple-choice answer
 function answerQuiz(btn){
   if(qLocked) return; qLocked=true;
   const optsEl=document.getElementById('qOpts');
@@ -415,14 +465,38 @@ function answerQuiz(btn){
     if(b.textContent===answer) b.classList.add('correct');
     else if(b===btn) b.classList.add('wrong');
   });
+  finishAnswer(correct, answer);
+}
+
+// grade a typed answer
+function submitTyped(){
+  if(qLocked) return;
+  const inp=document.getElementById('qInput');
+  if(!inp) return;
+  if(!inp.value.trim()){
+    const fb=document.getElementById('qFeedback');
+    fb.textContent='Type an answer first.'; fb.className='qfeedback wrong';
+    return;
+  }
+  qLocked=true;
+  const correct = answerMatches(inp.value, qCurrent);
+  inp.disabled=true;
+  inp.classList.add(correct?'ok':'bad');
+  const btn=document.querySelector('#qOpts .qopt'); if(btn) btn.disabled=true;
+  finishAnswer(correct, primary(qCurrent.en));
+}
+
+// shared: show feedback, update spaced repetition, move on
+function finishAnswer(correct, answer){
   const fb=document.getElementById('qFeedback');
   fb.textContent = correct ? 'Correct' : 'Answer: '+answer;
   fb.className = 'qfeedback '+(correct?'right':'wrong');
   if(correct) qCorrect++;
   scoreWord(qCurrent.id, correct);
   qQueue.shift(); qDone++;
-  setTimeout(nextQuestion, correct?750:1400);
+  setTimeout(nextQuestion, correct?800:1600);
 }
+
 function updateQuizUI(){
   const pct = qTotal? (qDone/qTotal*100) : 0;
   document.getElementById('qPosLabel').textContent = 'Question '+(qDone+1)+' of '+qTotal;
