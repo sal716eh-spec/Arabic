@@ -286,6 +286,11 @@ let progress = ensure(loadProgressLocal());
 let queue = [];
 let current = null;
 
+// Daily done-status (loaded from cloud in initCloud)
+let dailyStatus = { test_done_date:null, practise_done_date:null, test_score_correct:null, test_score_total:null };
+function todayISO(){ return new Date().toISOString().slice(0,10); }
+function isDoneToday(dateStr){ return dateStr === todayISO(); }
+
 // ---- Cloud startup: load this user's progress, migrate local on first login ----
 const MIGRATED_KEY = 'bay_migrated_v1';
 async function initCloud(){
@@ -320,6 +325,12 @@ async function initCloud(){
     const npd = await cloudLoadNewPerDay();
     if(npd && npd>0 && npd<=100){ _newPerDay = npd; }
     else if(typeof cloudSaveNewPerDay==='function'){ cloudSaveNewPerDay(newPerDay()); }
+  } catch(_){}
+
+  // load daily done-status
+  try {
+    const d = await cloudLoadDaily();
+    if(d) dailyStatus = Object.assign(dailyStatus, d);
   } catch(_){}
 
   // refresh the UI now that real data is in
@@ -357,20 +368,69 @@ function showTab(which){
   if(which==='quiz') startQuiz();
 }
 
-/* ---- daily test flow ---- */
+/* ---- daily practise flow ---- */
 function startTest(){
   buildQueue();
-  document.getElementById('testDone').style.display = queue.length? 'none':'block';
-  document.getElementById('testActive').style.display = queue.length? 'block':'none';
+  const active=document.getElementById('testActive');
+  const done=document.getElementById('testDone');
+  // Already finished practise today? show the keep-practising screen.
+  if(isDoneToday(dailyStatus.practise_done_date) && queue.length===0){
+    showPractiseDone(false);
+    return;
+  }
+  done.style.display = queue.length? 'none':'block';
+  active.style.display = queue.length? 'block':'none';
   if(queue.length){ nextCard(true); }
+  else { showPractiseDone(false); }
 }
+
+// Build a gentle top-up set: 2 new + 3 already-seen for review.
+function buildTopUp(){
+  const seen = VOCAB.filter(w => progress[w.id] && progress[w.id].box>0);
+  const fresh = VOCAB.filter(w => !progress[w.id] || progress[w.id].box===0);
+  qShuffle(seen); qShuffle(fresh);
+  const pick = [...fresh.slice(0,2), ...seen.slice(0,3)];
+  qShuffle(pick);
+  return pick;
+}
+
+function showPractiseDone(justFinished){
+  const active=document.getElementById('testActive');
+  const done=document.getElementById('testDone');
+  active.style.display='none';
+  done.style.display='block';
+  // mark done in cloud the first time we finish today
+  if(justFinished && !isDoneToday(dailyStatus.practise_done_date)){
+    dailyStatus.practise_done_date = todayISO();
+    if(cloudOn && typeof cloudMarkPractiseDone==='function') cloudMarkPractiseDone(todayISO());
+  }
+  const hasTopUp = VOCAB.some(w=>true); // always can top up
+  done.innerHTML =
+    '<div class="ar">أَحْسَنْت</div>'+
+    '<h2>'+(isDoneToday(dailyStatus.practise_done_date)?'Practise done for today':'All caught up')+'</h2>'+
+    '<p>You\u2019ve finished everything due. Keep the momentum going with a few more \u2014 a mix of new words and review.</p>'+
+    '<div class="next">'+
+      '<a class="primary" href="#" onclick="startTopUp();return false;">Keep practising \u2014 next 5</a>'+
+      '<a href="#" onclick="showTab(\'quiz\');return false;">Take the daily test</a>'+
+    '</div>';
+}
+
+function startTopUp(){
+  queue = buildTopUp();
+  const active=document.getElementById('testActive');
+  const done=document.getElementById('testDone');
+  if(queue.length===0){ showPractiseDone(false); return; }
+  done.style.display='none';
+  active.style.display='block';
+  nextCard(true);
+}
+
 let total=0, doneCount=0;
 function nextCard(fresh){
   setTimeout(syncAudioUI,0);
   if(fresh){ total = queue.length; doneCount = 0; }
   if(queue.length===0){
-    document.getElementById('testActive').style.display='none';
-    document.getElementById('testDone').style.display='block';
+    showPractiseDone(true);
     return;
   }
   current = queue[0];
@@ -461,6 +521,11 @@ function answerMatches(typed, w){
 }
 
 function startQuiz(){
+  // Already did today's test? show the saved results instead of re-running.
+  if(isDoneToday(dailyStatus.test_done_date)){
+    showTestResults();
+    return;
+  }
   buildQueue();
   qQueue = queue.slice();
   qTotal = qQueue.length; qDone = 0; qCorrect = 0; qLocked=false;
@@ -469,6 +534,16 @@ function startQuiz(){
     document.getElementById('qScoreMsg').textContent='Nothing due right now — come back later or add new words.'; return; }
   active.style.display='block'; done.style.display='none';
   nextQuestion();
+}
+
+// show the results page for a test already completed today
+function showTestResults(){
+  const active=document.getElementById('quizActive'), done=document.getElementById('quizDone');
+  active.style.display='none'; done.style.display='block';
+  const c=dailyStatus.test_score_correct, t=dailyStatus.test_score_total;
+  const pct = (t && t>0)? Math.round(c/t*100) : 0;
+  done.querySelector('#qScoreMsg').textContent =
+    (t? 'Today\u2019s test: you scored '+c+' out of '+t+' ('+pct+'%).' : 'You\u2019ve finished today\u2019s test.');
 }
 function nextQuestion(){
   if(qQueue.length===0){ finishQuiz(); return; }
@@ -573,6 +648,13 @@ function finishQuiz(){
   document.getElementById('quizDone').style.display='block';
   const pct = qTotal? Math.round(qCorrect/qTotal*100) : 0;
   document.getElementById('qScoreMsg').textContent = 'You scored '+qCorrect+' out of '+qTotal+' ('+pct+'%).';
+  // mark today's test done + save the score (so revisiting shows results)
+  if(!isDoneToday(dailyStatus.test_done_date)){
+    dailyStatus.test_done_date = todayISO();
+    dailyStatus.test_score_correct = qCorrect;
+    dailyStatus.test_score_total = qTotal;
+    if(cloudOn && typeof cloudMarkTestDone==='function') cloudMarkTestDone(todayISO(), qCorrect, qTotal);
+  }
 }
 
 /* ---- full list ---- */
