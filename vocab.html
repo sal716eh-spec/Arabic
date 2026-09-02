@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css?v=900">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js?v=2"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317262B'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23F1ECE0' font-family='serif'%3E%D8%B1%3C/text%3E%3Ccircle cx='46' cy='19' r='4' fill='%23B4322A'/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -236,13 +238,20 @@ const GAPS = {1:1, 2:2, 3:4, 4:8, 5:16};
 const DAY = 86400000;
 const today = () => Math.floor(Date.now()/DAY);
 
-function loadProgress(){
+// Are we running with a real cloud connection? Set true once cloud load succeeds.
+let cloudOn = false;
+
+// --- local fallback (also used before cloud loads / when logged out) ---
+function loadProgressLocal(){
   try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
   catch(_){ return {}; }
 }
-function saveProgress(p){
+function saveProgressLocal(p){
   try { localStorage.setItem(STORE_KEY, JSON.stringify(p)); } catch(_){}
 }
+// Keep a local mirror always (offline safety), and push to cloud when on.
+function saveProgress(p){ saveProgressLocal(p); }
+
 // New words start unscheduled (box 0). buildQueue introduces them a few at a time —
 // with 600+ words, marking them all due on day one would serve an unusable pile.
 function ensure(p){
@@ -250,12 +259,22 @@ function ensure(p){
   VOCAB.forEach(w=>{
     if(!p[w.id]){ p[w.id]={box:0, due:null}; changed=true; }
   });
-  if(changed) saveProgress(p);
+  if(changed) saveProgressLocal(p);
   return p;
 }
+
 const NEW_KEY='bay_vocab_newperday';
-function newPerDay(){ const v=parseInt(localStorage.getItem(NEW_KEY),10); return (v>0&&v<=100)?v:12; }
-function setNewPerDay(n){ try{localStorage.setItem(NEW_KEY,n)}catch(_){} startTest(); }
+let _newPerDay = null; // cached, filled from cloud or local at startup
+function newPerDay(){
+  if(_newPerDay && _newPerDay>0 && _newPerDay<=100) return _newPerDay;
+  const v=parseInt(localStorage.getItem(NEW_KEY),10); return (v>0&&v<=100)?v:12;
+}
+function setNewPerDay(n){
+  _newPerDay = n;
+  try{localStorage.setItem(NEW_KEY,n)}catch(_){}
+  if(cloudOn && typeof cloudSaveNewPerDay==='function') cloudSaveNewPerDay(n);
+  startTest();
+}
 function statusOf(rec){
   if(!rec || rec.box===0) return 'new';
   if(rec.box>=4) return 'known';
@@ -263,9 +282,51 @@ function statusOf(rec){
   return 'seen';
 }
 
-let progress = ensure(loadProgress());
+let progress = ensure(loadProgressLocal());
 let queue = [];
 let current = null;
+
+// ---- Cloud startup: load this user's progress, migrate local on first login ----
+const MIGRATED_KEY = 'bay_migrated_v1';
+async function initCloud(){
+  if(typeof cloudLoadProgress !== 'function') return; // auth.js not present
+  let cloud = null;
+  try { cloud = await cloudLoadProgress(); } catch(_){ cloud = null; }
+  if(cloud === null){ return; } // not logged in or load failed → stay on local
+
+  cloudOn = true;
+  const cloudEmpty = Object.keys(cloud).length === 0;
+  const localHasProgress = Object.keys(loadProgressLocal())
+      .some(id => { const r = progress[id]; return r && r.box>0; });
+  const migrated = localStorage.getItem(MIGRATED_KEY);
+
+  if(cloudEmpty && localHasProgress && !migrated){
+    // First login on a browser that already has local progress → lift it up.
+    // Only push words actually started (box>0); box-0 skeletons don't need rows.
+    const started = {};
+    Object.keys(progress).forEach(id => { if(progress[id] && progress[id].box>0) started[id]=progress[id]; });
+    try { await cloudSaveMany(started); } catch(_){}
+    try { localStorage.setItem(MIGRATED_KEY,'1'); } catch(_){}
+    // progress already holds the local data; keep it.
+  } else {
+    // Use the cloud as the source of truth; merge onto the ensured skeleton.
+    Object.keys(cloud).forEach(id => { progress[id] = cloud[id]; });
+    ensure(progress);
+    try { localStorage.setItem(MIGRATED_KEY,'1'); } catch(_){}
+  }
+
+  // load settings (new-words-per-day) from cloud
+  try {
+    const npd = await cloudLoadNewPerDay();
+    if(npd && npd>0 && npd<=100){ _newPerDay = npd; }
+    else if(typeof cloudSaveNewPerDay==='function'){ cloudSaveNewPerDay(newPerDay()); }
+  } catch(_){}
+
+  // refresh the UI now that real data is in
+  startTest();
+  renderList();
+  const p=document.getElementById('paceSel'); if(p) p.value=String(newPerDay());
+}
 
 function buildQueue(){
   const t = today();
@@ -340,6 +401,8 @@ function scoreWord(id, gotIt){
   else { rec.box = 1; }
   rec.due = today() + GAPS[rec.box];
   saveProgress(progress);
+  // push this one word to the cloud immediately (save-each-answer)
+  if(cloudOn && typeof cloudSaveWord==='function') cloudSaveWord(id, rec);
 }
 function grade(gotIt){
   scoreWord(current.id, gotIt);
@@ -352,6 +415,7 @@ function resetProgress(){
   progress = {};
   VOCAB.forEach(w=> progress[w.id]={box:0, due:null});
   saveProgress(progress);
+  if(cloudOn && typeof cloudSaveMany==='function') cloudSaveMany(progress);
   startTest();
   renderList();
 }
@@ -546,6 +610,8 @@ function renderList(){
 if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged = syncAudioUI; syncAudioUI(); setTimeout(syncAudioUI,600); }
 startTest();
 renderList();
+// then load from the cloud (async) — refreshes the UI when real data arrives
+initCloud();
 </script>
 
 <nav class="tabbar" aria-label="Sections">
@@ -555,8 +621,6 @@ renderList();
   <a class="" href="verbs.html"><span class="ti">أَفْعال</span>Verbs</a>
   <a class="" href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
 </nav>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="auth.js?v=1"></script>
 <script>requireLogin();</script>
 </body>
 </html>
