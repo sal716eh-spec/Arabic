@@ -2,6 +2,48 @@
 const DATA=[
 {
   n:"01",ar:"التَّحِيَّةُ وَالتَّعارُفُ",en:"Greetings & introductions",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["خ","السَّلامُ عَلَيْكُمْ.","Peace be upon you."],
+      ["ع","وَعَلَيْكُمُ السَّلامُ. كَيْفَ حالُكَ؟","And upon you. How are you?"],
+      ["خ","بِخَيْرٍ، الْحَمْدُ لِلَّهِ. ما اسْمُكَ؟","Fine, praise God. What's your name?"],
+      ["ع","اسْمِي عُمَرُ. وَما اسْمُكَ أَنْتَ؟","My name is Umar. And what's yours?"],
+      ["خ","اسْمِي خالِدٌ. أَهْلًا وَسَهْلًا.","My name is Khalid. Welcome."],
+      ["ع","ما جِنْسِيَّتُكَ يا خالِدُ؟","What's your nationality, Khalid?"],
+      ["خ","أَنا باكِسْتانِيٌّ. وَأَنْتَ، مِنْ أَيْنَ أَنْتَ؟","I'm Pakistani. And you, where are you from?"],
+      ["ع","أَنا مِنْ مِصْرَ. هَلْ أَنْتَ طالِبٌ؟","I'm from Egypt. Are you a student?"],
+      ["خ","لا، أَنا مُهَنْدِسٌ. وَهَذِهِ أُخْتِي، هِيَ طَبِيبَةٌ.","No, I'm an engineer. And this is my sister — she's a doctor."],
+      ["ع","أَهْلًا وَسَهْلًا. مَعَ السَّلامَةِ.","Welcome. Goodbye."]
+    ]},
+    {title:"Conversation 2",sub:"Two students meet",lines:[
+      ["س","السَّلامُ عَلَيْكُم.","Peace be upon you."],
+      ["ل","وَعَلَيْكُمُ السَّلام. كَيْفَ حالُكِ؟","And peace be upon you. How are you?"],
+      ["س","أَنا بِخَيْرٍ، الحَمْدُ لِلَّهِ. ما اسْمُكِ؟","I'm fine, praise God. What's your name?"],
+      ["ل","اسْمِي لَيْلى. وَما اسْمُكِ أَنْتِ؟","My name is Layla. And what's yours?"],
+      ["س","اسْمِي سارَة. هَلْ أَنْتِ طالِبَةٌ؟","My name is Sara. Are you a student?"],
+      ["ل","نَعَمْ، أَنا طالِبَةٌ. وَأَنْتِ؟","Yes, I'm a student. And you?"],
+      ["س","أَنا طالِبَةٌ أَيْضاً. مِنْ أَيْنَ أَنْتِ؟","I'm a student too. Where are you from?"],
+      ["ل","أَنا باكِسْتانِيَّةٌ. وَأَنْتِ، ما جِنْسِيَّتُكِ؟","I'm Pakistani. And you, what's your nationality?"],
+      ["س","أَنا باكِسْتانِيَّةٌ أَيْضاً!","I'm Pakistani too!"],
+      ["ل","أَهْلاً وَسَهْلاً يا سارَة.","Welcome, Sara."],
+      ["س","أَهْلاً بِكِ. مَعَ السَّلامَةِ.","Welcome to you. Goodbye."],
+      ["ل","مَعَ السَّلامَةِ.","Goodbye."]
+    ]},
+    {title:"Conversation 3",sub:"Introducing a friend",lines:[
+      ["أ","السَّلامُ عَلَيْكُم يا عُمَر.","Peace be upon you, Omar."],
+      ["ع","وَعَلَيْكُمُ السَّلام يا أَحْمَد. كَيْفَ حالُكَ؟","And peace be upon you, Ahmad. How are you?"],
+      ["أ","بِخَيْرٍ، الحَمْدُ لِلَّهِ. هَذا صَدِيقِي.","Fine, praise God. This is my friend."],
+      ["ع","أَهْلاً وَسَهْلاً. ما اسْمُكَ؟","Welcome. What's your name?"],
+      ["ص","اسْمِي يُوسُف.","My name is Yusuf."],
+      ["ع","مِنْ أَيْنَ أَنْتَ يا يُوسُف؟","Where are you from, Yusuf?"],
+      ["ص","أَنا باكِسْتانِيٌّ.","I'm Pakistani."],
+      ["ع","هَلْ أَنْتَ طالِبٌ؟","Are you a student?"],
+      ["ص","لا، أَنا مُهَنْدِسٌ.","No, I'm an engineer."],
+      ["ع","وَأَنْتَ يا أَحْمَد، هَلْ أَنْتَ مُهَنْدِسٌ؟","And you, Ahmad, are you an engineer?"],
+      ["أ","لا، أَنا مُدَرِّسٌ.","No, I'm a teacher."],
+      ["ع","مَعَ السَّلامَةِ يا صَدِيقِي.","Goodbye, my friend."]
+    ]}
+  ],
   dialogue:[
     ["خ","السَّلامُ عَلَيْكُمْ.","Peace be upon you."],
     ["ع","وَعَلَيْكُمُ السَّلامُ. كَيْفَ حالُكَ؟","And upon you. How are you?"],
@@ -65,6 +107,46 @@ const DATA=[
 },
 {
   n:"02",ar:"الأُسْرَةُ",en:"The family",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["خ","مَنْ هَذا فِي الصُّورَةِ؟","Who's this in the photo?"],
+      ["ع","هَذا وَالِدِي، وَهَذِهِ وَالِدَتِي.","This is my father, and this is my mother."],
+      ["خ","ما شاءَ اللهُ! وَمَنْ هَذا؟","Mashallah! And who's this?"],
+      ["ع","هَذا جَدِّي، وَهَذِهِ جَدَّتِي، وَهَذا عَمِّي.","This is my grandfather, this is my grandmother, and this is my uncle."],
+      ["خ","أُسْرَتُكَ كَبِيرَةٌ، ما شاءَ اللهُ.","Your family is big, mashallah."],
+      ["ع","نَعَمْ، فِيها تِسْعَةُ أَوْلادٍ.","Yes, there are nine children in it."],
+      ["خ","اللهُ أَكْبَرُ... هَذا أَذانُ الْفَجْرِ.","Allahu akbar… that's the call to Fajr prayer."],
+      ["ع","هَيَّا بِنا إِلى الْمَسْجِدِ.","Let's go to the mosque."],
+      ["خ","أَتَوَضَّأُ أَوَّلًا، ثُمَّ نَذْهَبُ.","I'll do wudu first, then we'll go."],
+      ["ع","وَبَعْدَ الصَّلاةِ نَقْرَأُ الْقُرْآنَ فِي الْمُصَلَّى.","And after the prayer we'll read Qur'an in the prayer room."]
+    ]},
+    {title:"Conversation 2",sub:"A family photo",lines:[
+      ["م","هَذِهِ صُورَةُ أُسْرَتِي يا هَناء.","This is a photo of my family, Hana."],
+      ["هـ","ما شاءَ اللهُ! مَنْ هَذا؟","Mashallah! Who is this?"],
+      ["م","هَذا أَبِي. هُوَ مُهَنْدِسٌ.","This is my father. He's an engineer."],
+      ["هـ","وَمَنْ هَذِهِ؟","And who is this?"],
+      ["م","هَذِهِ أُمِّي. هِيَ مُعَلِّمَةٌ.","This is my mother. She's a teacher."],
+      ["هـ","وَهَذا؟ هَلْ هَذا أَخُوكِ؟","And this? Is this your brother?"],
+      ["م","نَعَمْ، هَذا أَخِي. وَهَذِهِ أُخْتِي.","Yes, this is my brother. And this is my sister."],
+      ["هـ","أَيْنَ جَدُّكِ؟","Where is your grandfather?"],
+      ["م","جَدِّي فِي المَسْجِدِ. هُوَ يُصَلِّي.","My grandfather is in the mosque. He's praying."],
+      ["هـ","وَجَدَّتُكِ؟","And your grandmother?"],
+      ["م","جَدَّتِي فِي الغُرْفَةِ. هِيَ تَقْرَأُ القُرْآنَ.","My grandmother is in the room. She's reading the Qur'an."],
+      ["هـ","ما شاءَ اللهُ، أُسْرَةٌ جَمِيلَةٌ!","Mashallah, a beautiful family!"]
+    ]},
+    {title:"Conversation 3",sub:"Going to the mosque",lines:[
+      ["ب","يا خالِد، هَذا أَذانُ الفَجْرِ.","Khalid, this is the call to Fajr prayer."],
+      ["خ","نَعَمْ يا أَبِي. هَيَّا بِنا إِلى المَسْجِدِ.","Yes, father. Let's go to the mosque."],
+      ["ب","أَيْنَ أَخُوكَ؟","Where is your brother?"],
+      ["خ","أَخِي فِي الحَمَّامِ. هُوَ يَتَوَضَّأُ.","My brother is in the bathroom. He's doing wudu."],
+      ["ب","وَأَيْنَ أُمُّكَ؟","And where is your mother?"],
+      ["خ","أُمِّي فِي غُرْفَتِها. هِيَ تُصَلِّي فِي البَيْتِ.","My mother is in her room. She prays at home."],
+      ["ب","وَجَدُّكَ؟","And your grandfather?"],
+      ["خ","جَدِّي فِي المَسْجِدِ. هُوَ يَقْرَأُ القُرْآنَ.","My grandfather is in the mosque. He's reading the Qur'an."],
+      ["ب","ما شاءَ اللهُ. هَيَّا بِنا.","Mashallah. Let's go."],
+      ["خ","اللهُ أَكْبَرُ. هَيَّا يا أَبِي.","God is greatest. Let's go, father."]
+    ]}
+  ],
   dialogue:[
     ["خ","مَنْ هَذا فِي الصُّورَةِ؟","Who's this in the photo?"],
     ["ع","هَذا وَالِدِي، وَهَذِهِ وَالِدَتِي.","This is my father, and this is my mother."],
@@ -128,6 +210,48 @@ const DATA=[
 },
 {
   n:"03",ar:"السَّكَنُ",en:"Housing",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["خ","أَيْنَ تَسْكُنُ؟","Where do you live?"],
+      ["ع","أَسْكُنُ فِي شَقَّةٍ فِي حَيِّ الْجامِعَةِ.","I live in a flat in the university district."],
+      ["خ","فِي أَيِّ دَوْرٍ؟","On which floor?"],
+      ["ع","فِي الدَّوْرِ الْخامِسِ، الشَّقَّةُ رَقْمُ خَمْسَةٍ.","On the fifth floor, flat number five."],
+      ["خ","كَمْ غُرْفَةً فِيها؟","How many rooms does it have?"],
+      ["ع","فِيها خَمْسُ غُرَفٍ، مِنْها غُرْفَةُ نَوْمٍ وَغُرْفَةُ جُلُوسٍ.","It has five rooms, including a bedroom and a sitting room."],
+      ["خ","وَماذا فِي غُرْفَةِ النَّوْمِ؟","And what's in the bedroom?"],
+      ["ع","فِيها سَرِيرٌ وَسِتارَةٌ وَمِرْآةٌ وَسَجَّادَةٌ.","There's a bed, a curtain, a mirror and a rug."],
+      ["خ","هَلْ أَنْتَ الْمُؤَجِّرُ؟","Are you the landlord?"],
+      ["ع","لا، أَنا الْمُسْتَأْجِرُ. تَفَضَّلْ، ادْخُلْ مِنْ فَضْلِكَ.","No, I'm the tenant. Please, come in."]
+    ]},
+    {title:"Conversation 2",sub:"Visiting a new flat",lines:[
+      ["ن","السَّلامُ عَلَيْكُم يا دِينا.","Peace be upon you, Dina."],
+      ["د","وَعَلَيْكُمُ السَّلام. تَفَضَّلِي، ادْخُلِي.","And peace be upon you. Please, come in."],
+      ["ن","شُكْراً. ما شاءَ اللهُ، شَقَّةٌ جَمِيلَةٌ!","Thank you. Mashallah, a beautiful flat!"],
+      ["د","الحَمْدُ لِلَّهِ. هَذِهِ غُرْفَةُ الجُلُوسِ.","Praise God. This is the sitting room."],
+      ["ن","كَمْ غُرْفَةً فِي الشَّقَّةِ؟","How many rooms are in the flat?"],
+      ["د","خَمْسُ غُرَفٍ.","Five rooms."],
+      ["ن","وَأَيْنَ غُرْفَةُ النَّوْمِ؟","And where is the bedroom?"],
+      ["د","هَذِهِ غُرْفَةُ النَّوْمِ. فِيها سَرِيرٌ وَمِرْآةٌ.","This is the bedroom. There's a bed and a mirror in it."],
+      ["ن","فِي أَيِّ دَوْرٍ الشَّقَّةُ؟","On which floor is the flat?"],
+      ["د","فِي الدَّوْرِ الخامِسِ.","On the fifth floor."],
+      ["ن","وَفِي أَيِّ حَيٍّ تَسْكُنِينَ؟","And in which district do you live?"],
+      ["د","أَسْكُنُ فِي حَيِّ الجامِعَةِ.","I live in the university district."]
+    ]},
+    {title:"Conversation 3",sub:"Renting a flat",lines:[
+      ["م","السَّلامُ عَلَيْكُم. هَلْ أَنْتَ المُؤَجِّرُ؟","Peace be upon you. Are you the landlord?"],
+      ["ؤ","وَعَلَيْكُمُ السَّلام. نَعَمْ، أَنا المُؤَجِّرُ. تَفَضَّلْ.","And peace be upon you. Yes, I'm the landlord. Please, come in."],
+      ["م","شُكْراً. كَمْ غُرْفَةً فِي البَيْتِ؟","Thank you. How many rooms are in the house?"],
+      ["ؤ","فِي البَيْتِ ثَلاثُ غُرَفٍ.","There are three rooms in the house."],
+      ["م","هَلْ فِيهِ سَخَّانٌ؟","Is there a water heater in it?"],
+      ["ؤ","نَعَمْ، فِيهِ سَخَّانٌ وَثَلَّاجَةٌ وَفُرْنٌ.","Yes, there's a water heater, a fridge and an oven."],
+      ["م","وَفِي غُرْفَةِ الجُلُوسِ سَجَّادَةٌ؟","And is there a rug in the sitting room?"],
+      ["ؤ","نَعَمْ، سَجَّادَةٌ جَمِيلَةٌ وَسِتارَةٌ.","Yes, a beautiful rug and a curtain."],
+      ["م","فِي أَيِّ حَيٍّ البَيْتُ؟","In which district is the house?"],
+      ["ؤ","فِي حَيِّ الجامِعَةِ، قَرِيبٌ مِنَ المَسْجِدِ.","In the university district, near the mosque."],
+      ["م","ما رَقْمُ البَيْتِ؟","What's the house number?"],
+      ["ؤ","رَقْمُ البَيْتِ خَمْسَةٌ.","The house number is five."]
+    ]}
+  ],
   dialogue:[
     ["خ","أَيْنَ تَسْكُنُ؟","Where do you live?"],
     ["ع","أَسْكُنُ فِي شَقَّةٍ فِي حَيِّ الْجامِعَةِ.","I live in a flat in the university district."],
@@ -191,6 +315,46 @@ const DATA=[
 },
 {
   n:"04",ar:"الحَياةُ اليَوْمِيَّةُ",en:"Daily life",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["خ","مَتى تَسْتَيْقِظُ؟","When do you wake up?"],
+      ["ع","أَسْتَيْقِظُ مُبَكِّرًا، فِي السَّاعَةِ السَّابِعَةِ صَباحًا.","I wake up early, at seven in the morning."],
+      ["خ","وَماذا تَفْعَلُ بَعْدَ ذَلِكَ؟","And what do you do after that?"],
+      ["ع","أُصَلِّي، ثُمَّ أَقْرَأُ الصَّحِيفَةَ.","I pray, then I read the newspaper."],
+      ["خ","وَكَيْفَ تَذْهَبُ إِلى الْعَمَلِ؟","And how do you get to work?"],
+      ["ع","أَذْهَبُ بِالْحافِلَةِ أَوْ بِالسَّيَّارَةِ.","I go by bus or by car."],
+      ["خ","وَفِي يَوْمِ الْعُطْلَةِ؟","And on your day off?"],
+      ["ع","أَغْسِلُ الْمَلابِسَ، وَأَكْنُسُ الْبَيْتَ، وَأَغْسِلُ الأَطْباقَ.","I wash the clothes, sweep the house and wash the dishes."],
+      ["خ","وَبَعْدَ ذَلِكَ؟","And after that?"],
+      ["ع","أُشاهِدُ التِّلْفازَ، ثُمَّ أَنامُ مُتَأَخِّرًا.","I watch television, then I go to sleep late."]
+    ]},
+    {title:"Conversation 2",sub:"A school morning",lines:[
+      ["ف","مَتى تَسْتَيْقِظُ يا كَرِيم؟","When do you wake up, Karim?"],
+      ["ك","أَسْتَيْقِظُ مُبَكِّراً، فِي السَّاعَةِ السَّابِعَةِ.","I wake up early, at seven o'clock."],
+      ["ف","وَماذا تَفْعَلُ بَعْدَ ذَلِكَ؟","And what do you do after that?"],
+      ["ك","أُصَلِّي الفَجْرَ، ثُمَّ أَغْسِلُ وَجْهِي.","I pray Fajr, then I wash my face."],
+      ["ف","هَلْ تَذْهَبُ إِلى المَدْرَسَةِ بِالحافِلَةِ؟","Do you go to school by bus?"],
+      ["ك","لا، أَذْهَبُ بِالسَّيَّارَةِ مَعَ أَبِي.","No, I go by car with my father."],
+      ["ف","وَأُمُّكَ؟ ماذا تَفْعَلُ فِي الصَّباحِ؟","And your mother? What does she do in the morning?"],
+      ["ك","أُمِّي تَكْنُسُ البَيْتَ وَتَغْسِلُ الأَطْباقَ.","My mother sweeps the house and washes the dishes."],
+      ["ف","هَلْ تُشاهِدُ التِّلْفازَ؟","Does she watch television?"],
+      ["ك","لا، هِيَ تَقْرَأُ الصَّحِيفَةَ.","No, she reads the newspaper."],
+      ["ف","وَمَتى تَنامُ أَنْتَ؟","And when do you sleep?"],
+      ["ك","أَنامُ مُبَكِّراً أَيْضاً.","I sleep early too."]
+    ]},
+    {title:"Conversation 3",sub:"A day off",lines:[
+      ["ر","يا سامِي، هَلْ اليَوْمُ يَوْمُ عَمَلٍ؟","Sami, is today a working day?"],
+      ["س","لا، اليَوْمُ يَوْمُ عُطْلَةٍ.","No, today is a day off."],
+      ["ر","ماذا تَفْعَلُ فِي يَوْمِ العُطْلَةِ؟","What do you do on a day off?"],
+      ["س","أَسْتَيْقِظُ مُتَأَخِّراً وَأَقْرَأُ كِتاباً.","I wake up late and read a book."],
+      ["ر","وَبَعْدَ ذَلِكَ؟","And after that?"],
+      ["س","أُشاهِدُ التِّلْفازَ أَوْ أَذْهَبُ إِلى صَدِيقِي.","I watch television or go to my friend's."],
+      ["ر","هَلْ تَكْوِي مَلابِسَكَ؟","Do you iron your clothes?"],
+      ["س","نَعَمْ، أَكْوِي المَلابِسَ فِي يَوْمِ العُطْلَةِ.","Yes, I iron the clothes on the day off."],
+      ["ر","وَأَنا أَذْهَبُ إِلى المَسْجِدِ لِلصَّلاةِ.","And I go to the mosque for prayer."],
+      ["س","فِكْرَةٌ طَيِّبَةٌ! هَيَّا بِنا.","A good idea! Let's go."]
+    ]}
+  ],
   dialogue:[
     ["خ","مَتى تَسْتَيْقِظُ؟","When do you wake up?"],
     ["ع","أَسْتَيْقِظُ مُبَكِّرًا، فِي السَّاعَةِ السَّابِعَةِ صَباحًا.","I wake up early, at seven in the morning."],
@@ -254,6 +418,48 @@ const DATA=[
 },
 {
   n:"05",ar:"الطَّعامُ وَالشَّرابُ",en:"Food & drink",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["خ","أَنا جَوْعانُ. ماذا نَأْكُلُ؟","I'm hungry. What shall we eat?"],
+      ["ع","عِنْدَنا أَرُزٌّ وَدَجاجٌ وَسَلَطَةٌ.","We have rice, chicken and salad."],
+      ["خ","وَهَلْ عِنْدَنا سَمَكٌ؟","And do we have fish?"],
+      ["ع","لا، لَكِنْ عِنْدَنا لَحْمٌ وَخُبْزٌ.","No, but we have meat and bread."],
+      ["خ","وَماذا تُفَضِّلُ لِلْفُطُورِ؟","And what do you prefer for breakfast?"],
+      ["ع","أُفَضِّلُ الشَّايَ بِالْحَلِيبِ وَالتَّمْرَ.","I prefer tea with milk, and dates."],
+      ["خ","وَلِلْعَشاءِ؟","And for dinner?"],
+      ["ع","أَشْرَبُ الْماءَ، وَآكُلُ قَلِيلًا.","I drink water and eat a little."],
+      ["خ","لِماذا؟","Why?"],
+      ["ع","لِأَنَّ وَزْنِي كَثِيرٌ، وَلا أُرِيدُ أَنْ أَكُونَ سَمِينًا.","Because my weight is high, and I don't want to be overweight."]
+    ]},
+    {title:"Conversation 2",sub:"At the restaurant",lines:[
+      ["ح","السَّلامُ عَلَيْكُم. أَنا جَوْعانُ جِدّاً.","Peace be upon you. I'm very hungry."],
+      ["م","وَعَلَيْكُمُ السَّلام. تَفَضَّلْ، اجْلِسْ. ماذا تَطْلُبُ؟","And peace be upon you. Please, sit. What would you like to order?"],
+      ["ح","أَطْلُبُ دَجاجاً وَأَرُزّاً.","I'd like chicken and rice."],
+      ["م","وَماذا تَشْرَبُ؟ شاياً أَوْ قَهْوَةً؟","And what will you drink? Tea or coffee?"],
+      ["ح","أُفَضِّلُ الماءَ، مِنْ فَضْلِكَ.","I prefer water, please."],
+      ["م","هَلْ تَطْلُبُ سَلَطَةً؟","Would you like a salad?"],
+      ["ح","نَعَمْ، سَلَطَةً قَلِيلَةً.","Yes, a small salad."],
+      ["م","وَفاكِهَةً؟","And fruit?"],
+      ["ح","نَعَمْ، عِنَباً وَتَمْراً.","Yes, grapes and dates."],
+      ["م","تَفَضَّلْ، هَذا طَعامُكَ.","Here you are, this is your food."],
+      ["ح","شُكْراً جَزِيلاً.","Thank you very much."],
+      ["م","عَفْواً.","You're welcome."]
+    ]},
+    {title:"Conversation 3",sub:"Breakfast at home",lines:[
+      ["أ","يا لَيْلى، هَلْ أَكَلْتِ الفُطُورَ؟","Layla, have you eaten breakfast?"],
+      ["ل","لا يا أُمِّي. أَنا جَوْعانَةٌ.","No, mother. I'm hungry."],
+      ["أ","ماذا تُفَضِّلِينَ؟ خُبْزاً وَحَلِيباً؟","What do you prefer? Bread and milk?"],
+      ["ل","نَعَمْ، وَبَيْضاً مِنْ فَضْلِكِ.","Yes, and eggs please."],
+      ["أ","تَفَضَّلِي. الطَّعامُ عَلى المائِدَةِ.","Here you are. The food is on the table."],
+      ["ل","شُكْراً يا أُمِّي.","Thank you, mother."],
+      ["أ","هَلْ تَشْرَبِينَ شاياً؟","Do you drink tea?"],
+      ["ل","لا، أَشْرَبُ حَلِيباً. أَنا لا أُحِبُّ الشَّايَ.","No, I drink milk. I don't like tea."],
+      ["أ","وَبَعْدَ الفُطُورِ؟","And after breakfast?"],
+      ["ل","أَذْهَبُ إِلى المَدْرَسَةِ.","I go to school."],
+      ["أ","لا تَتَأَخَّرِي!","Don't be late!"],
+      ["ل","إِنْ شاءَ اللهُ يا أُمِّي.","God willing, mother."]
+    ]}
+  ],
   dialogue:[
     ["خ","أَنا جَوْعانُ. ماذا نَأْكُلُ؟","I'm hungry. What shall we eat?"],
     ["ع","عِنْدَنا أَرُزٌّ وَدَجاجٌ وَسَلَطَةٌ.","We have rice, chicken and salad."],
@@ -317,6 +523,47 @@ const DATA=[
 },
 {
   n:"06",ar:"الصَّلاةُ",en:"Prayer",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["خ","إِلى أَيْنَ أَنْتَ ذاهِبٌ؟","Where are you going?"],
+      ["ع","أَنا ذاهِبٌ إِلى الْمَسْجِدِ لِصَلاةِ الظُّهْرِ.","I'm going to the mosque for the Dhuhr prayer."],
+      ["خ","هَلِ الْمَسْجِدُ قَرِيبٌ؟","Is the mosque near?"],
+      ["ع","نَعَمْ، هُوَ بِجانِبِ الْبَيْتِ.","Yes, it's next to the house."],
+      ["خ","وَمَتى تُصَلِّي الْفَجْرَ؟","And when do you pray Fajr?"],
+      ["ع","أَضَعُ الْمُنَبِّهَ فِي اللَّيْلِ، ثُمَّ أَسْتَيْقِظُ وَأُصَلِّي.","I set the alarm at night, then I wake up and pray."],
+      ["خ","فِكْرَةٌ طَيِّبَةٌ! أَنا كَسْلانُ فِي الصَّباحِ.","Good idea! I'm lazy in the morning."],
+      ["ع","هَلْ صَلَّيْتَ فِي الْمَسْجِدِ الْحَرامِ؟","Have you prayed in the Sacred Mosque?"],
+      ["خ","نَعَمْ، ذَهَبْتُ إِلى مَكَّةَ بِالطَّائِرَةِ، ثُمَّ إِلى الْمَدِينَةِ.","Yes, I went to Mecca by plane, then to Medina."],
+      ["ع","جَزاكَ اللهُ خَيْرًا. إِنْ شاءَ اللهُ أَذْهَبُ أَنا أَيْضًا.","May God reward you. God willing I'll go too."]
+    ]},
+    {title:"Conversation 2",sub:"Praying together",lines:[
+      ["إ","يا مُحَمَّد، اسْتَيْقِظْ! هَذا أَذانُ الفَجْرِ.","Muhammad, wake up! This is the call to Fajr."],
+      ["م","آسِفٌ، أَنا كَسْلانُ. كَمِ السَّاعَةُ؟","Sorry, I'm lazy. What time is it?"],
+      ["إ","السَّاعَةُ الخامِسَةُ. هَيَّا بِنا إِلى المَسْجِدِ.","It's five o'clock. Let's go to the mosque."],
+      ["م","هَلْ المَسْجِدُ قَرِيبٌ؟","Is the mosque near?"],
+      ["إ","نَعَمْ، قَرِيبٌ جِدّاً، بِجانِبِ البَيْتِ.","Yes, very near, next to the house."],
+      ["م","أَنا مَرِيضٌ قَلِيلاً.","I'm a little ill."],
+      ["إ","لا تَنَمْ! الصَّلاةُ أَفْضَلُ.","Don't sleep! Prayer is better."],
+      ["م","صَحِيحٌ. أَتَوَضَّأُ الآنَ.","True. I'll do wudu now."],
+      ["إ","وَبَعْدَ الصَّلاةِ نَقْرَأُ القُرْآنَ.","And after the prayer we read the Qur'an."],
+      ["م","فِكْرَةٌ طَيِّبَةٌ. جَزاكَ اللهُ خَيْراً.","A good idea. May God reward you."],
+      ["إ","إِنْ شاءَ اللهُ. هَيَّا.","God willing. Let's go."]
+    ]},
+    {title:"Conversation 3",sub:"Travelling to Mecca",lines:[
+      ["ع","السَّلامُ عَلَيْكُم. إِلى أَيْنَ أَنْتَ ذاهِبٌ؟","Peace be upon you. Where are you going?"],
+      ["ي","وَعَلَيْكُمُ السَّلام. أَنا ذاهِبٌ إِلى مَكَّةَ.","And peace be upon you. I'm going to Mecca."],
+      ["ع","ما شاءَ اللهُ! وَأَنا ذاهِبٌ إِلى المَدِينَةِ.","Mashallah! And I'm going to Medina."],
+      ["ي","هَلْ تَذْهَبُ بِالطَّائِرَةِ؟","Are you going by plane?"],
+      ["ع","نَعَمْ، بِالطَّائِرَةِ. وَأَنْتَ؟","Yes, by plane. And you?"],
+      ["ي","أَنا أَيْضاً. أَنْتَظِرُ الطَّائِرَةَ الآنَ.","Me too. I'm waiting for the plane now."],
+      ["ع","هَلْ مَكَّةُ بَعِيدَةٌ؟","Is Mecca far?"],
+      ["ي","لا، لَيْسَتْ بَعِيدَةً.","No, it's not far."],
+      ["ع","أُصَلِّي فِي المَسْجِدِ الحَرامِ إِنْ شاءَ اللهُ.","I'll pray in the Sacred Mosque, God willing."],
+      ["ي","وَأَنا أُصَلِّي فِي المَسْجِدِ النَّبَوِيِّ.","And I'll pray in the Prophet's Mosque."],
+      ["ع","جَزاكَ اللهُ خَيْراً. مَعَ السَّلامَةِ.","May God reward you. Goodbye."],
+      ["ي","مَعَ السَّلامَةِ.","Goodbye."]
+    ]}
+  ],
   dialogue:[
     ["خ","إِلى أَيْنَ أَنْتَ ذاهِبٌ؟","Where are you going?"],
     ["ع","أَنا ذاهِبٌ إِلى الْمَسْجِدِ لِصَلاةِ الظُّهْرِ.","I'm going to the mosque for the Dhuhr prayer."],
@@ -380,6 +627,48 @@ const DATA=[
 },
 {
   n:"07",ar:"الدِّراسَةُ",en:"Study",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["خ","ماذا تَدْرُسُ فِي الْجامِعَةِ؟","What do you study at university?"],
+      ["ع","أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ فِي كُلِّيَّةِ التَّرْبِيَةِ.","I study Arabic at the College of Education."],
+      ["خ","وَما مَوادُّكَ الدِّراسِيَّةُ؟","And what are your subjects?"],
+      ["ع","اللُّغَةُ الْعَرَبِيَّةُ، وَالتَّارِيخُ، وَالْعُلُومُ، وَالثَّقافَةُ الإِسْلامِيَّةُ.","Arabic, history, science and Islamic culture."],
+      ["خ","كَمْ حِصَّةً فِي الْيَوْمِ الدِّراسِيِّ؟","How many periods are there in a school day?"],
+      ["ع","أَرْبَعُ حِصَصٍ. وَهَذا جَدْوَلِي الدِّراسِيُّ.","Four periods. And this is my timetable."],
+      ["خ","مَتى يَبْدَأُ الْيَوْمُ الدِّراسِيُّ؟","When does the school day start?"],
+      ["ع","يَبْدَأُ فِي السَّاعَةِ السَّابِعَةِ، وَيَنْتَهِي فِي الظُّهْرِ.","It starts at seven and finishes at noon."],
+      ["خ","وَأَيْنَ تَدْرُسُ بَعْدَ الْحِصَصِ؟","And where do you study after the periods?"],
+      ["ع","أَذْهَبُ إِلى الْمَكْتَبَةِ أَوِ الْمُخْتَبَرِ، وَأَكْتُبُ عَلَى الْحاسُوبِ.","I go to the library or the lab, and write on the computer."]
+    ]},
+    {title:"Conversation 2",sub:"The timetable",lines:[
+      ["ز","يا سَلْمى، ماذا تَدْرُسِينَ اليَوْمَ؟","Salma, what are you studying today?"],
+      ["س","أَدْرُسُ اللُّغَةَ العَرَبِيَّةَ وَالرِّياضِيَّاتِ.","I'm studying Arabic and mathematics."],
+      ["ز","كَمْ حِصَّةً فِي اليَوْمِ الدِّراسِيِّ؟","How many lessons are in the school day?"],
+      ["س","خَمْسُ حِصَصٍ.","Five lessons."],
+      ["ز","مَتى تَبْدَأُ الحِصَّةُ الأُولى؟","When does the first lesson begin?"],
+      ["س","تَبْدَأُ فِي السَّاعَةِ السَّابِعَةِ.","It begins at seven o'clock."],
+      ["ز","وَمَتى يَنْتَهِي اليَوْمُ الدِّراسِيُّ؟","And when does the school day end?"],
+      ["س","يَنْتَهِي بَعْدَ صَلاةِ الظُّهْرِ.","It ends after the Dhuhr prayer."],
+      ["ز","هَلْ عِنْدَكِ اخْتِبارٌ هَذا الأُسْبُوعَ؟","Do you have an exam this week?"],
+      ["س","نَعَمْ، اخْتِبارُ العُلُومِ.","Yes, the science exam."],
+      ["ز","أَيْنَ تَدْرُسِينَ؟ فِي المَكْتَبَةِ؟","Where do you study? In the library?"],
+      ["س","نَعَمْ، فِي المَكْتَبَةِ أَوْ فِي المُخْتَبَرِ.","Yes, in the library or in the laboratory."]
+    ]},
+    {title:"Conversation 3",sub:"Choosing a college",lines:[
+      ["ي","أَيْنَ تَدْرُسِينَ يا نُور؟","Where do you study, Nour?"],
+      ["ن","أَدْرُسُ فِي كُلِّيَّةِ الطِّبِّ.","I study at the College of Medicine."],
+      ["ي","ما شاءَ اللهُ! وَأَنا فِي كُلِّيَّةِ التَّرْبِيَةِ.","Mashallah! And I'm at the College of Education."],
+      ["ن","ماذا تَدْرُسِينَ؟","What do you study?"],
+      ["ي","أَدْرُسُ التَّارِيخَ وَالثَّقافَةَ الإِسْلامِيَّةَ.","I study history and Islamic culture."],
+      ["ن","هَلْ الدِّراسَةُ فِي الكُلِّيَّةِ كَثِيرَةٌ؟","Is there a lot of study at the college?"],
+      ["ي","نَعَمْ، كَثِيرَةٌ جِدّاً. أَكْتُبُ كُلَّ يَوْمٍ.","Yes, a great deal. I write every day."],
+      ["ن","مَتى بَدَأْتِ الدِّراسَةَ؟","When did you begin studying?"],
+      ["ي","بَدَأْتُ قَبْلَ سَنَةٍ.","I began a year ago."],
+      ["ن","وَمَتى تَنْتَهِي؟","And when do you finish?"],
+      ["ي","بَعْدَ أَرْبَعِ سَنَواتٍ إِنْ شاءَ اللهُ.","After four years, God willing."],
+      ["ن","اللهُ يُوَفِّقُكِ.","May God grant you success."]
+    ]}
+  ],
   dialogue:[
     ["خ","ماذا تَدْرُسُ فِي الْجامِعَةِ؟","What do you study at university?"],
     ["ع","أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ فِي كُلِّيَّةِ التَّرْبِيَةِ.","I study Arabic at the College of Education."],
@@ -443,6 +732,48 @@ const DATA=[
 },
 {
   n:"08",ar:"العَمَلُ",en:"Work",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["خ","ما مِهْنَتُكَ؟","What's your profession?"],
+      ["ع","أَنا مُعَلِّمٌ، أُدَرِّسُ فِي الْمَرْحَلَةِ الابْتِدائِيَّةِ.","I'm a teacher; I teach at primary level."],
+      ["خ","ما شاءَ اللهُ! هَلْ تُحِبُّ عَمَلَكَ؟","Mashallah! Do you like your work?"],
+      ["ع","نَعَمْ، أُحِبُّ الأَطْفالَ كَثِيرًا.","Yes, I love children very much."],
+      ["خ","كَمْ ساعَةً تَعْمَلُ فِي الْيَوْمِ؟","How many hours do you work a day?"],
+      ["ع","سِتَّ ساعاتٍ، وَأَرْجِعُ فِي السَّاعَةِ الْحادِيَةَ عَشْرَةَ.","Six hours, and I get back at eleven o'clock."],
+      ["خ","وَما مِهْنَةُ أَخِيكَ؟","And what does your brother do?"],
+      ["ع","أَخِي طَبِيبٌ، يَعْمَلُ فِي الْمُسْتَشْفى.","My brother is a doctor; he works at the hospital."],
+      ["خ","وَأُخْتُكَ؟","And your sister?"],
+      ["ع","أُخْتِي مُمَرِّضَةٌ، دَرَسَتْ فِي كُلِّيَّةِ التَّمْرِيضِ.","My sister is a nurse; she studied at the College of Nursing."]
+    ]},
+    {title:"Conversation 2",sub:"What's your job?",lines:[
+      ["آ","ما مِهْنَتُكِ يا رانِيا؟","What's your profession, Rania?"],
+      ["ر","أَنا مُمَرِّضَةٌ. أَعْمَلُ فِي المُسْتَشْفى.","I'm a nurse. I work at the hospital."],
+      ["آ","ما شاءَ اللهُ. كَمْ ساعَةً تَعْمَلِينَ؟","Mashallah. How many hours do you work?"],
+      ["ر","أَعْمَلُ ثَمانِيَ ساعاتٍ فِي اليَوْمِ.","I work eight hours a day."],
+      ["آ","هَلْ تُحِبِّينَ عَمَلَكِ؟","Do you like your work?"],
+      ["ر","نَعَمْ، أُحِبُّهُ جِدّاً. وَأَنْتَ، ما مِهْنَتُكَ؟","Yes, I love it very much. And you, what's your profession?"],
+      ["آ","أَنا طَيَّارٌ. دَرَسْتُ فِي كُلِّيَّةِ الطَّيَرانِ.","I'm a pilot. I studied at the College of Aviation."],
+      ["ر","وَأَيْنَ تَعْمَلُ؟","And where do you work?"],
+      ["آ","أَعْمَلُ فِي شَرِكَةِ طَيَرانٍ كَبِيرَةٍ.","I work at a big airline company."],
+      ["ر","هَلْ العَمَلُ كَثِيرٌ؟","Is there a lot of work?"],
+      ["آ","نَعَمْ، لَكِنْ أُحِبُّ الطَّيَرانَ.","Yes, but I love flying."],
+      ["ر","بارَكَ اللهُ فِيكَ.","God bless you."]
+    ]},
+    {title:"Conversation 3",sub:"A doctor's day",lines:[
+      ["ط","يا أَبِي، هَلْ أَنْتَ طَبِيبٌ؟","Father, are you a doctor?"],
+      ["أ","نَعَمْ يا حَبِيبَتِي، أَنا طَبِيبٌ.","Yes, my dear, I'm a doctor."],
+      ["ط","أَيْنَ تَعْمَلُ؟","Where do you work?"],
+      ["أ","أَعْمَلُ فِي المُسْتَشْفى مَعَ الأَطْفالِ.","I work at the hospital with children."],
+      ["ط","هَلْ دَرَسْتَ الطِّبَّ؟","Did you study medicine?"],
+      ["أ","نَعَمْ، دَرَسْتُ فِي كُلِّيَّةِ الطِّبِّ.","Yes, I studied at the College of Medicine."],
+      ["ط","وَأُمِّي؟ ما مِهْنَتُها؟","And my mother? What's her profession?"],
+      ["أ","أُمُّكِ صَيْدَلِيَّةٌ. تَعْمَلُ فِي الصَّيْدَلِيَّةِ.","Your mother is a pharmacist. She works at the pharmacy."],
+      ["ط","وَأَنا؟ ماذا أَدْرُسُ؟","And me? What will I study?"],
+      ["أ","تَدْرُسِينَ ما تُحِبِّينَ، إِنْ شاءَ اللهُ.","You'll study what you love, God willing."],
+      ["ط","أُحِبُّ الهَنْدَسَةَ!","I love engineering!"],
+      ["أ","ما شاءَ اللهُ! مُهَنْدِسَةٌ صَغِيرَةٌ.","Mashallah! A little engineer."]
+    ]}
+  ],
   dialogue:[
     ["خ","ما مِهْنَتُكَ؟","What's your profession?"],
     ["ع","أَنا مُعَلِّمٌ، أُدَرِّسُ فِي الْمَرْحَلَةِ الابْتِدائِيَّةِ.","I'm a teacher; I teach at primary level."],
@@ -507,6 +838,48 @@ const DATA=[
 ,
 {
   n:"09",ar:"التَّسَوُّقُ",en:"Shopping",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["ب","السَّلامُ عَلَيْكُمْ، أَيَّ خِدْمَةٍ؟","Peace be upon you — how can I help?"],
+      ["م","وَعَلَيْكُمُ السَّلامُ. لَوْ سَمَحْتَ، أَيْنَ قِسْمُ الْقُمْصانِ؟","And upon you. Excuse me, where's the shirt section?"],
+      ["ب","هُنا، أَمامَكَ. أَيَّ لَوْنٍ تُرِيدُ؟","Here, in front of you. Which colour do you want?"],
+      ["م","أُرِيدُ قَمِيصًا أَبْيَضَ، وَثَوْبًا أَزْرَقَ.","I want a white shirt and a blue thobe."],
+      ["ب","هَذا قَمِيصٌ جَمِيلٌ جِدًّا.","This is a very nice shirt."],
+      ["م","بِكَمْ هَذا الْقَمِيصُ؟","How much is this shirt?"],
+      ["ب","بِخَمْسِينَ رِيالًا.","Fifty riyals."],
+      ["م","وَالثَّوْبُ؟","And the thobe?"],
+      ["ب","بِثَمانِينَ رِيالًا. الْمَطْلُوبُ مِائَةٌ وَثَلاثُونَ رِيالًا.","Eighty riyals. That comes to a hundred and thirty."],
+      ["م","تَفَضَّلْ. شُكْرًا لَكَ.","Here you are. Thank you."]
+    ]},
+    {title:"Conversation 2",sub:"At the market",lines:[
+      ["أ","لَوْ سَمَحْتَ، كَمِ الطَّماطِمُ؟","Excuse me, how much are the tomatoes?"],
+      ["ب","الكِيلُو بِثَلاثَةِ رِيالاتٍ.","A kilo is three riyals."],
+      ["أ","أَعْطِنِي كِيلُو طَماطِمَ وَكِيلُو خِيارٍ.","Give me a kilo of tomatoes and a kilo of cucumbers."],
+      ["ب","تَفَضَّلِي. وَهَلْ تُرِيدِينَ بَصَلاً؟","Here you are. And do you want onions?"],
+      ["أ","نَعَمْ، قَلِيلاً مِنَ البَصَلِ.","Yes, a little onion."],
+      ["ب","وَبَيْضاً؟ عِنْدَنا طَبَقُ بَيْضٍ.","And eggs? We have a tray of eggs."],
+      ["أ","نَعَمْ، طَبَقَ بَيْضٍ وَعُلْبَةَ مِلْحٍ.","Yes, a tray of eggs and a packet of salt."],
+      ["ب","هَلْ تُرِيدِينَ سُكَّراً؟","Do you want sugar?"],
+      ["أ","لا، شُكْراً. كَمِ المَطْلُوبُ؟","No, thank you. How much is the total?"],
+      ["ب","المَطْلُوبُ ثَلاثُونَ رِيالاً.","The total is thirty riyals."],
+      ["أ","تَفَضَّلْ. شُكْراً.","Here you are. Thank you."],
+      ["ب","عَفْواً. مَعَ السَّلامَةِ.","You're welcome. Goodbye."]
+    ]},
+    {title:"Conversation 3",sub:"Buying clothes and books",lines:[
+      ["خ","السَّلامُ عَلَيْكُم. أَيْنَ قِسْمُ المَلابِسِ؟","Peace be upon you. Where is the clothes section?"],
+      ["ب","وَعَلَيْكُمُ السَّلام. هُنا، تَفَضَّلْ.","And peace be upon you. Here, please."],
+      ["خ","أُرِيدُ ثَوْباً أَبْيَضَ.","I want a white thobe."],
+      ["ب","هَذا ثَوْبٌ أَبْيَضُ جَمِيلٌ.","This is a beautiful white thobe."],
+      ["خ","وَهَلْ عِنْدَكَ قَمِيصٌ أَزْرَقُ؟","And do you have a blue shirt?"],
+      ["ب","نَعَمْ، قُمْصانٌ زَرْقاءُ وَحَمْراءُ.","Yes, blue and red shirts."],
+      ["خ","القَمِيصُ الأَزْرَقُ مِنْ فَضْلِكَ.","The blue shirt please."],
+      ["ب","وَهَلْ تَشْتَرِي شَيْئاً آخَرَ؟","And are you buying anything else?"],
+      ["خ","نَعَمْ، مُعْجَماً عَرَبِيّاً وَكِتابَ قَواعِدَ.","Yes, an Arabic dictionary and a grammar book."],
+      ["ب","هَذا المُعْجَمُ العَرَبِيُّ بِخَمْسِينَ رِيالاً.","This Arabic dictionary is fifty riyals."],
+      ["خ","وَكَمِ المَطْلُوبُ؟","And how much is the total?"],
+      ["ب","المَطْلُوبُ ثَمانُونَ رِيالاً.","The total is eighty riyals."]
+    ]}
+  ],
   dialogue:[
     ["ب","السَّلامُ عَلَيْكُمْ، أَيَّ خِدْمَةٍ؟","Peace be upon you — how can I help?"],
     ["م","وَعَلَيْكُمُ السَّلامُ. لَوْ سَمَحْتَ، أَيْنَ قِسْمُ الْقُمْصانِ؟","And upon you. Excuse me, where's the shirt section?"],
@@ -570,6 +943,48 @@ const DATA=[
 },
 {
   n:"10",ar:"الجَوُّ",en:"The weather",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["خ","كَيْفَ الْجَوُّ الْيَوْمَ؟","How's the weather today?"],
+      ["ج","الْجَوُّ بارِدٌ جِدًّا، وَتُمْطِرُ فِي الْخارِجِ.","It's very cold, and it's raining outside."],
+      ["خ","كَمْ دَرَجَةُ الْحَرارَةِ؟","What's the temperature?"],
+      ["ج","خَمْسُ دَرَجاتٍ فَوْقَ الصِّفْرِ.","Five degrees above zero."],
+      ["خ","وَكَيْفَ كانَ الْجَوُّ أَمْسِ؟","And how was the weather yesterday?"],
+      ["ج","كانَ أَبْرَدَ، تَحْتَ الصِّفْرِ.","It was colder — below zero."],
+      ["خ","أَيُّ فَصْلٍ تُحِبُّ؟","Which season do you like?"],
+      ["ج","أُحِبُّ فَصْلَ الرَّبِيعِ، لِأَنَّ الْجَوَّ فِيهِ مُعْتَدِلٌ.","I like spring, because the weather is mild then."],
+      ["خ","وَأَنا أُحِبُّ الصَّيْفَ، وَأَقْضِي عُطْلَةَ الأُسْبُوعِ عَلَى الشَّاطِئِ.","I like summer, and I spend the weekend at the beach."],
+      ["ج","بارَكَ اللهُ فِيكَ! نَذْهَبُ مَعًا غَدًا.","Bless you! Let's go together tomorrow."]
+    ]},
+    {title:"Conversation 2",sub:"How's the weather?",lines:[
+      ["م","السَّلامُ عَلَيْكُم يا فارِس. كَيْفَ الجَوُّ عِنْدَكُمْ؟","Peace be upon you, Faris. How's the weather where you are?"],
+      ["ف","وَعَلَيْكُمُ السَّلام. الجَوُّ بارِدٌ جِدّاً.","And peace be upon you. The weather is very cold."],
+      ["م","كَمْ دَرَجَةُ الحَرارَةِ؟","What's the temperature?"],
+      ["ف","تَحْتَ الصِّفْرِ! وَعِنْدَكُمْ؟","Below zero! And where you are?"],
+      ["م","الجَوُّ حارٌّ هُنا. هَذا الصَّيْفُ.","The weather is hot here. It's summer."],
+      ["ف","هَلْ تُمْطِرُ السَّماءُ؟","Is it raining?"],
+      ["م","لا، السَّماءُ لا تُمْطِرُ فِي الصَّيْفِ.","No, it doesn't rain in the summer."],
+      ["ف","وَماذا تَفْعَلُ فِي عُطْلَةِ الأُسْبُوعِ؟","And what do you do at the weekend?"],
+      ["م","أَذْهَبُ إِلى الشَّاطِئِ.","I go to the beach."],
+      ["ف","وَأَنا أَبْقى فِي البَيْتِ. الجَوُّ بارِدٌ خارِجَ البَيْتِ.","And I stay at home. It's cold outside the house."],
+      ["م","إِنْ شاءَ اللهُ يَكُونُ الجَوُّ دافِئاً غَداً.","God willing the weather will be warm tomorrow."],
+      ["ف","إِنْ شاءَ اللهُ. مَعَ السَّلامَةِ.","God willing. Goodbye."]
+    ]},
+    {title:"Conversation 3",sub:"A trip to the desert",lines:[
+      ["س","يا طارِق، هَلْ نَذْهَبُ إِلى البَرِّ فِي عُطْلَةِ الأُسْبُوعِ؟","Tariq, shall we go to the desert at the weekend?"],
+      ["ط","فِكْرَةٌ طَيِّبَةٌ! كَيْفَ الجَوُّ هُناكَ؟","A good idea! How's the weather there?"],
+      ["س","الجَوُّ مُعْتَدِلٌ. هَذا فَصْلُ الرَّبِيعِ.","The weather is mild. It's spring."],
+      ["ط","هَلْ نَأْخُذُ خَيْمَةً؟","Shall we take a tent?"],
+      ["س","نَعَمْ، الخَيْمَةُ فِي السَّيَّارَةِ.","Yes, the tent is in the car."],
+      ["ط","وَفِي اللَّيْلِ؟ هَلْ الجَوُّ بارِدٌ؟","And at night? Is it cold?"],
+      ["س","نَعَمْ، بارِدٌ قَلِيلاً فِي اللَّيْلِ.","Yes, a little cold at night."],
+      ["ط","أَتْرُكُ المِظَلَّةَ فِي البَيْتِ؟","Shall I leave the umbrella at home?"],
+      ["س","نَعَمْ، السَّماءُ لا تُمْطِرُ.","Yes, it's not going to rain."],
+      ["ط","كَمْ لَيْلَةً نَقْضِي هُناكَ؟","How many nights do we spend there?"],
+      ["س","لَيْلَةً واحِدَةً فَقَطْ.","Just one night."],
+      ["ط","بارَكَ اللهُ فِيكَ. هَيَّا بِنا.","God bless you. Let's go."]
+    ]}
+  ],
   dialogue:[
     ["خ","كَيْفَ الْجَوُّ الْيَوْمَ؟","How's the weather today?"],
     ["ج","الْجَوُّ بارِدٌ جِدًّا، وَتُمْطِرُ فِي الْخارِجِ.","It's very cold, and it's raining outside."],
@@ -633,6 +1048,48 @@ const DATA=[
 },
 {
   n:"11",ar:"النَّاسُ وَالأَماكِنُ",en:"People & places",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["خ","مِنْ أَيْنَ أَنْتَ يا صَدِيقِي؟","Where are you from, my friend?"],
+      ["ج","أَنا مِنْ قَرْيَةٍ صَغِيرَةٍ قَرِيبَةٍ مِنَ الْبَحْرِ.","I'm from a small village near the sea."],
+      ["خ","وَمُنْذُ مَتَى تَسْكُنُ فِي هَذِهِ الْمَدِينَةِ؟","And how long have you lived in this city?"],
+      ["ج","انْتَقَلْتُ إِلَيْها قَبْلَ ثَلاثِ سَنَواتٍ تَقْرِيبًا.","I moved here about three years ago."],
+      ["خ","ما رَأْيُكَ فِي الْمَدِينَةِ؟","What do you think of the city?"],
+      ["ج","فِيها شَرِكاتٌ كَثِيرَةٌ وَأَسْواقٌ كَبِيرَةٌ، لَكِنَّ فِيها ازْدِحامًا وَضَوْضاءَ.","It has many companies and big markets, but there's crowding and noise."],
+      ["خ","وَالْهَواءُ؟","And the air?"],
+      ["ج","فِي الْهَواءِ تَلَوُّثٌ، وَهَذِهِ مُشْكِلَةٌ كَبِيرَةٌ.","There's pollution in the air, and that's a big problem."],
+      ["خ","هَلْ تُرِيدُ الرُّجُوعَ إِلَى الْقَرْيَةِ؟","Do you want to go back to the village?"],
+      ["ج","الْقَرْيَةُ هادِئَةٌ وَجَمِيلَةٌ، لَكِنَّ عَمَلِي هُنا.","The village is quiet and beautiful, but my work is here."]
+    ]},
+    {title:"Conversation 2",sub:"City or village?",lines:[
+      ["ل","يا رِيما، أَيْنَ تَسْكُنِينَ الآنَ؟","Rima, where do you live now?"],
+      ["ر","أَسْكُنُ فِي المَدِينَةِ. وَأَنْتِ؟","I live in the city. And you?"],
+      ["ل","أَنا أَسْكُنُ فِي القَرْيَةِ.","I live in the village."],
+      ["ر","ما شاءَ اللهُ! كَيْفَ الجَوُّ هُناكَ؟","Mashallah! How's the weather there?"],
+      ["ل","الهَواءُ جَمِيلٌ وَالقَرْيَةُ هادِئَةٌ.","The air is lovely and the village is quiet."],
+      ["ر","المَدِينَةُ لَيْسَتْ هادِئَةً. فِيها ازْدِحامٌ وَضَوْضاءُ.","The city isn't quiet. There's congestion and noise in it."],
+      ["ل","وَهَلْ فِيها تَلَوُّثٌ؟","And is there pollution in it?"],
+      ["ر","نَعَمْ، لَكِنَّ فِيها أَسْواقاً كَثِيرَةً.","Yes, but there are many markets in it."],
+      ["ل","ما رَأْيُكِ فِي القَرْيَةِ؟","What do you think of the village?"],
+      ["ر","القَرْيَةُ جَمِيلَةٌ، لَكِنَّها بَعِيدَةٌ عَنِ العَمَلِ.","The village is beautiful, but it's far from work."],
+      ["ل","هَلْ تَنْتَقِلِينَ إِلى القَرْيَةِ؟","Will you move to the village?"],
+      ["ر","لا، لا أَسْتَطِيعُ. عَمَلِي فِي المَدِينَةِ.","No, I can't. My work is in the city."]
+    ]},
+    {title:"Conversation 3",sub:"A journey by train",lines:[
+      ["ك","السَّلامُ عَلَيْكُم. إِلى أَيْنَ أَنْتَ ذاهِبٌ؟","Peace be upon you. Where are you going?"],
+      ["ن","وَعَلَيْكُمُ السَّلام. أَنا ذاهِبٌ إِلى المَدِينَةِ.","And peace be upon you. I'm going to the city."],
+      ["ك","هَلْ تَزُورُ أَصْدِقاءَكَ؟","Are you visiting your friends?"],
+      ["ن","لا، أَزُورُ عَمِّي. هُوَ مُدِيرُ شَرِكَةٍ هُناكَ.","No, I'm visiting my uncle. He's a company manager there."],
+      ["ك","كَمْ سَنَةً تَسْكُنُ فِي هَذا البَلَدِ؟","How many years have you lived in this country?"],
+      ["ن","خَمْسَ سَنَواتٍ تَقْرِيباً.","About five years."],
+      ["ك","وَكَمْ تَسْتَغْرِقُ الرِّحْلَةُ بِالقِطارِ؟","And how long does the journey take by train?"],
+      ["ن","ثَلاثَ ساعاتٍ تَقْرِيباً.","About three hours."],
+      ["ك","القِطارُ هادِئٌ، لَيْسَ فِيهِ ضَوْضاءُ.","The train is quiet, there's no noise in it."],
+      ["ن","صَحِيحٌ. وَالبَحْرُ بِجانِبِ القِطارِ جَمِيلٌ.","True. And the sea beside the train is beautiful."],
+      ["ك","ما رَأْيُكَ فِي السَّفَرِ بِالقِطارِ؟","What do you think of travelling by train?"],
+      ["ن","أَفْضَلُ مِنَ السَّيَّارَةِ.","Better than by car."]
+    ]}
+  ],
   dialogue:[
     ["خ","مِنْ أَيْنَ أَنْتَ يا صَدِيقِي؟","Where are you from, my friend?"],
     ["ج","أَنا مِنْ قَرْيَةٍ صَغِيرَةٍ قَرِيبَةٍ مِنَ الْبَحْرِ.","I'm from a small village near the sea."],
@@ -696,6 +1153,48 @@ const DATA=[
 },
 {
   n:"12",ar:"الهِوايَاتُ",en:"Hobbies",src:"book",
+  convos:[
+    {title:"Conversation 1",sub:"From the book",lines:[
+      ["خ","ما هِوايَتُكَ يا أَحْمَدُ؟","What's your hobby, Ahmad?"],
+      ["ج","هِوايَتِي الْقِراءَةُ. وَأَنْتَ؟","My hobby is reading. And you?"],
+      ["خ","أَنا أَهْوى جَمْعَ الطَّوابِعِ وَالسِّباحَةَ.","I'm into stamp collecting and swimming."],
+      ["ج","كَمْ ساعَةً تَقْرَأُ فِي الْيَوْمِ؟","How many hours do you read a day?"],
+      ["خ","أَقْرَأُ ساعَتَيْنِ تَقْرِيبًا.","I read about two hours."],
+      ["ج","وَماذا تَقْرَأُ؟","And what do you read?"],
+      ["خ","أَقْرَأُ كُتُبًا إِسْلامِيَّةً وَمَجَلَّاتٍ عِلْمِيَّةً وَالصُّحُفَ الْعَرَبِيَّةَ.","I read Islamic books, scientific magazines and the Arabic newspapers."],
+      ["ج","هَلْ لَدَيْكَ مَكْتَبَةٌ فِي الْبَيْتِ؟","Do you have a library at home?"],
+      ["خ","نَعَمْ، لَدَيَّ مَكْتَبَةٌ كَبِيرَةٌ فِيها كُتُبٌ كَثِيرَةٌ.","Yes, I have a big one with a lot of books in it."],
+      ["ج","هَذا مُفِيدٌ جِدًّا. وَأَنا أُحِبُّ الْخَطَّ الْعَرَبِيَّ أَيْضًا.","That's very useful. I like Arabic calligraphy too."]
+    ]},
+    {title:"Conversation 2",sub:"What's your hobby?",lines:[
+      ["ع","يا زَيْن، ما هِوايَتُكَ؟","Zain, what's your hobby?"],
+      ["ز","هِوايَتِي القِراءَةُ. أَقْرَأُ كُتُباً إِسْلامِيَّةً.","My hobby is reading. I read Islamic books."],
+      ["ع","ما شاءَ اللهُ. وَأَنا أَهْوى كُرَةَ القَدَمِ.","Mashallah. And I'm keen on football."],
+      ["ز","هَلْ تُحِبُّ السِّباحَةَ أَيْضاً؟","Do you like swimming too?"],
+      ["ع","نَعَمْ، أُحِبُّ الرِّياضَةَ كَثِيراً.","Yes, I like sport a lot."],
+      ["ز","أَنا لا أُحِبُّ الرِّياضَةَ. أُفَضِّلُ الكُتُبَ.","I don't like sport. I prefer books."],
+      ["ع","هَلْ تَقْرَأُ المَجَلَّاتِ؟","Do you read magazines?"],
+      ["ز","نَعَمْ، مَجَلَّاتٍ عِلْمِيَّةً. هِيَ مُفِيدَةٌ جِدّاً.","Yes, scientific magazines. They're very useful."],
+      ["ع","وَهَلْ عِنْدَكَ هِوايَةٌ أُخْرى؟","And do you have another hobby?"],
+      ["ز","نَعَمْ، جَمْعُ الطَّوابِعِ. لَدَيَّ طَوابِعُ كَثِيرَةٌ.","Yes, stamp collecting. I have many stamps."],
+      ["ع","مِنْ جَمِيعِ البُلْدانِ؟","From all countries?"],
+      ["ز","نَعَمْ، مِنْ جَمِيعِ البُلْدانِ.","Yes, from all countries."]
+    ]},
+    {title:"Conversation 3",sub:"At the exhibition",lines:[
+      ["هـ","يا مَها، هَيَّا بِنا إِلى المَعْرِضِ.","Maha, let's go to the exhibition."],
+      ["م","أَيُّ مَعْرِضٍ؟","Which exhibition?"],
+      ["هـ","مَعْرِضُ الخَطِّ العَرَبِيِّ.","The Arabic calligraphy exhibition."],
+      ["م","فِكْرَةٌ طَيِّبَةٌ! أَنا أُحِبُّ الخَطَّ العَرَبِيَّ.","A good idea! I love Arabic calligraphy."],
+      ["هـ","هَذا جَناحُ خَطِّ النَّسْخِ.","This is the Naskh script hall."],
+      ["م","ما شاءَ اللهُ، جَمِيلٌ جِدّاً! وَتِلْكَ؟","Mashallah, very beautiful! And that one?"],
+      ["هـ","تِلْكَ لَوْحَةٌ بِخَطِّ الرُّقْعَةِ.","That's a painting in Ruqʿa script."],
+      ["م","هَلْ هَذِهِ آياتٌ مِنَ القُرْآنِ؟","Are these verses from the Qur'an?"],
+      ["هـ","نَعَمْ، آياتٌ وَأَحادِيثُ.","Yes, verses and hadiths."],
+      ["م","أَهْوى الخَطَّ العَرَبِيَّ. هَلْ أَخْتارُ لَوْحَةً؟","I'm keen on Arabic calligraphy. Shall I choose a painting?"],
+      ["هـ","نَعَمْ، اخْتارِي لَوْحَةً قَصِيرَةً وَمُفِيدَةً.","Yes, choose a short and useful one."],
+      ["م","شُكْراً يا هُدى. هِوايَةٌ جَمِيلَةٌ!","Thank you, Huda. A beautiful hobby!"]
+    ]}
+  ],
   dialogue:[
     ["خ","ما هِوايَتُكَ يا أَحْمَدُ؟","What's your hobby, Ahmad?"],
     ["ج","هِوايَتِي الْقِراءَةُ. وَأَنْتَ؟","My hobby is reading. And you?"],
