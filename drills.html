@@ -516,7 +516,9 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
 /* Phone layout — placed last so it wins over the desktop rules above.
    Media queries add no specificity, so source order is what decides. */
 @media (max-width:860px){
-  .shell{padding:0;grid-template-columns:minmax(0,1fr)}
+  .shell{padding:0;width:100%;max-width:100%;grid-template-columns:minmax(0,1fr)}
+  #picker{padding:8px 14px 40px;width:100%;max-width:100%}
+  .pagehead{width:100%;max-width:100%}
   main{padding:0 12px calc(68px + env(safe-area-inset-bottom));min-width:0;position:relative}
   .pagehead{padding:14px 12px 12px}
   .headtools{width:100%;margin-top:8px}
