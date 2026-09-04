@@ -1494,14 +1494,6 @@ const shellEl  = document.querySelector('.shell');
 const backUnitsEl = document.getElementById('backUnits');
 const convosEl = document.getElementById('convos');
 
-// Conversation slots per unit. Conversation 1 = the real existing dialogue.
-// 2 and 3 are placeholders until content is written.
-const CONVOS = [
-  { t:'Conversation 1', s:'From the book', ready:true },
-  { t:'Conversation 2', s:'Coming soon',   ready:false },
-  { t:'Conversation 3', s:'Coming soon',   ready:false }
-];
-
 function showPicker(){
   drawPicker();
   pickerEl.classList.add('on');
@@ -1511,6 +1503,8 @@ function showPicker(){
 }
 function openUnit(i){
   unit = i;
+  convoIdx = 0;                  // start each unit on its first conversation
+  applyConvo();
   if(mode==='review') mode='dialogue';
   pickerEl.classList.remove('on');
   shellEl.classList.remove('hidden');
@@ -1542,18 +1536,43 @@ function drawPicker(){
   });
 }
 
+// Which conversation is being viewed in the current unit (0 = first)
+let convoIdx = 0;
+
+// Point the unit's `dialogue` at whichever conversation is selected.
+// Every existing drill renderer reads u.dialogue, so swapping it here
+// makes them all follow the chosen conversation with no other changes.
+function applyConvo(){
+  const u = DATA[unit];
+  if(!u || !u.convos || !u.convos.length) return;
+  const c = u.convos[Math.min(convoIdx, u.convos.length-1)];
+  if(c && c.lines){
+    u.dialogue = c.lines;
+    // these two are derived from the dialogue, so refresh them too
+    u.produce  = u.dialogue.map(d=>({ar:d[1],en:d[2]}));
+    u.dictation= u.dialogue.map(d=>d[1]);
+  }
+}
+
 function drawConvos(){
   if(!convosEl) return;
+  const u = DATA[unit];
+  const list = (u && u.convos) ? u.convos : [];
   convosEl.innerHTML = '<h2 class="label">Conversations</h2>';
-  CONVOS.forEach((c,idx)=>{
+  if(!list.length){ return; }
+  list.forEach((c,idx)=>{
     const b=document.createElement('button');
     b.type='button';
-    b.className='convo'+(idx===0?' on':'')+(c.ready?'':' soon');
-    b.innerHTML = (c.ready?'':'<span class="tag">Coming soon</span>')+
-      '<div class="t">'+c.t+'</div><div class="s">'+c.s+'</div>';
-    if(c.ready){
-      b.onclick=()=>{ [...convosEl.querySelectorAll('.convo')].forEach(x=>x.classList.remove('on')); b.classList.add('on'); };
-    }
+    b.className='convo'+(idx===convoIdx?' on':'');
+    b.innerHTML = '<div class="t">'+(c.title||('Conversation '+(idx+1)))+'</div>'+
+                  '<div class="s">'+(c.sub||'')+'</div>';
+    b.onclick=()=>{
+      convoIdx = idx;
+      applyConvo();
+      drawConvos();
+      render();
+      try{ focusDrill(); }catch(_){}
+    };
     convosEl.appendChild(b);
   });
 }
