@@ -95,6 +95,8 @@
           '<button class="btn" id="rq-test" type="button">Test</button>'+
           '<button class="btn" id="rq-stop" type="button">Stop</button>'+
         '</div><div class="warn" id="rq-warn" hidden></div>'+
+        '<div class="acctrow"><span class="label" id="rq-who">Signed in</span>'+
+        '<button class="btn logout-link" type="button">Sign out</button></div>'+
       '</div>';
     const cog=host.querySelector('#rq-cog');
     cog.onclick=()=>{
@@ -110,7 +112,18 @@
     host.querySelector('#rq-voice').onchange=e=>{
       const l=list(); const v=l[e.target.value]; if(v) setVoice(v.voiceURI||v.name);
     };
+    showWho();
     sync();
+  }
+  /* auth.js handles the click via .logout-link; this just shows who you are */
+  async function showWho(){
+    const el=document.getElementById('rq-who'); if(!el) return;
+    let name=''; try{name=localStorage.getItem('bay_name')||''}catch(e){}
+    if(typeof sb!=='undefined' && sb){
+      try{const {data}=await sb.auth.getUser();
+        if(data&&data.user) name=name||data.user.email||'';}catch(e){}
+    }
+    el.textContent = name? ('Signed in as '+name) : 'Account';
   }
   function sync(){
     const sel=document.getElementById('rq-voice'), warn=document.getElementById('rq-warn');

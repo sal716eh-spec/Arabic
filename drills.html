@@ -4,7 +4,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="بين يديك">
+<meta name="apple-mobile-web-app-title" content="رَفِيق">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317262B'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23F1ECE0' font-family='serif'%3E%D8%B1%3C/text%3E%3Ccircle cx='46' cy='19' r='4' fill='%23B4322A'/%3E%3C/svg%3E">
 <title>Sentences — Rafiq</title>
@@ -63,6 +63,13 @@ body.gear-open .voicebox{display:flex}
   padding:14px 16px calc(16px + env(safe-area-inset-bottom));overflow-y:auto;
   box-shadow:0 -10px 30px -12px rgba(23,38,43,.5)}
 .sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.sheet-convos{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule)}
+.sheet-convos .label{display:block;margin-bottom:9px}
+.sheet-convos .convo{display:block;width:100%;text-align:left;background:var(--paper-deep);
+  border:1px solid var(--rule);border-radius:7px;padding:11px 13px;cursor:pointer;margin-bottom:7px;min-height:52px}
+.sheet-convos .convo.on{border-color:var(--rubric);background:rgba(180,50,42,.07)}
+.sheet-convos .convo .t{font-size:14px;font-weight:600;color:var(--ink)}
+.sheet-convos .convo .s{font-size:12px;color:var(--ink-soft);margin-top:1px}
 .sheet-list{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
 .sheet-u{text-align:left;background:var(--paper-deep);border:1px solid var(--rule);border-radius:7px;
   padding:10px 12px;cursor:pointer;min-height:64px}
@@ -114,6 +121,9 @@ select{max-width:180px}
 .btn:disabled{opacity:.4;cursor:default}
 input[type=range]{accent-color:var(--verdigris);width:100px}
 .warn{font-size:12px;color:var(--rubric);max-width:46ch;line-height:1.5}
+.acctrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding-top:10px;border-top:1px solid var(--rule)}
+.acctrow .btn{min-height:40px}
 .warn b{color:var(--ink)}
 .wdismiss{font-family:var(--la);font-size:11px;border:1px solid var(--rule);background:transparent;border-radius:2px;padding:3px 9px;margin-top:6px;cursor:pointer;color:var(--ink);display:inline-block}
 body.no-audio .say,body.no-audio .audio-only{display:none!important}
@@ -603,6 +613,8 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
         <button class="btn" id="stop">Stop</button>
       </div>
       <div class="warn" id="warn" hidden></div>
+      <div class="acctrow"><span class="label" id="whoami">Account</span>
+        <button class="btn logout-link" type="button">Sign out</button></div>
     </div>
   </div>
 </main>
@@ -640,6 +652,7 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     <div class="sheet-head"><span class="label">Choose a unit</span>
       <button class="btn" id="sheetClose" type="button">Close</button></div>
     <div class="sheet-list" id="sheetList"></div>
+    <div class="sheet-convos" id="sheetConvos"></div>
   </div>
 </div>
 <footer>
@@ -1197,7 +1210,9 @@ function makeUnitChip(){
   const u=DATA[unit];
   const b=document.createElement('button');
   b.className='unitchip';b.type='button';b.setAttribute('aria-haspopup','dialog');
-  b.innerHTML=`<span class="uc-n">${u.n}</span><span class="uc-ar">${u.ar}</span><span class="uc-c">▾</span>`;
+  const nc=(u.convos||[]).length;
+  b.innerHTML=`<span class="uc-n">${u.n}</span><span class="uc-ar">${u.ar}</span>`+
+              (nc>1?`<span class="uc-n">${convoIdx+1}/${nc}</span>`:'')+`<span class="uc-c">▾</span>`;
   b.onclick=openSheet;
   return b;
 }
@@ -1210,10 +1225,34 @@ function openSheet(){
     b.className='sheet-u';b.type='button';b.setAttribute('aria-current',i===unit);
     b.innerHTML=`<span class="n">Unit ${u.n}<em style="font-style:normal;color:var(--ink-soft)">${p.known}/${p.total}</em></span>
                  <span class="ar">${u.ar}</span><span class="en">${u.en}</span>`;
-    b.onclick=()=>{unit=i;closeSheet();render();scrollTo(document.querySelector('.ribbon'),{block:'start',behavior:'smooth'})};
+    b.onclick=()=>{unit=i;convoIdx=0;applyConvo();drawConvos();drawSheetConvos();
+      renderSheetUnits();render();scrollTo(document.querySelector('.ribbon'),{block:'start',behavior:'smooth'})};
     list.appendChild(b);
   });
+  drawSheetConvos();
   unitSheet.hidden=false;
+}
+function renderSheetUnits(){
+  const list=document.getElementById('sheetList');
+  [...list.children].forEach((b,i)=>b.setAttribute('aria-current',i===unit));
+}
+/* The rail is hidden on phones, so the conversation picker also lives here. */
+function drawSheetConvos(){
+  const host=document.getElementById('sheetConvos');
+  if(!host) return;
+  const u=DATA[unit], list=(u&&u.convos)?u.convos:[];
+  host.innerHTML='';
+  if(list.length<2) return;
+  host.innerHTML='<span class="label">Conversation in this unit</span>';
+  list.forEach((c,idx)=>{
+    const b=document.createElement('button');
+    b.type='button';b.className='convo'+(idx===convoIdx?' on':'');
+    b.innerHTML='<div class="t">'+(c.title||('Conversation '+(idx+1)))+'</div>'+
+                '<div class="s">'+(c.sub||'')+'</div>';
+    b.onclick=()=>{convoIdx=idx;applyConvo();drawConvos();drawSheetConvos();
+      closeSheet();render();scrollTo(document.querySelector('.ribbon'),{block:'start',behavior:'smooth'})};
+    host.appendChild(b);
+  });
 }
 function closeSheet(){unitSheet.hidden=true}
 document.getElementById('sheetBg').onclick=closeSheet;
@@ -1580,6 +1619,15 @@ function drawConvos(){
 backUnitsEl.addEventListener('click', showPicker);
 
 /* ── go ─────────────────────────────────────────────────── */
+(async function whoAmI(){
+  const el=document.getElementById('whoami'); if(!el) return;
+  let name=''; try{name=localStorage.getItem('bay_name')||''}catch(e){}
+  if(typeof sb!=='undefined' && sb){
+    try{const {data}=await sb.auth.getUser(); if(data&&data.user) name=name||data.user.email||''}catch(e){}
+  }
+  el.textContent = name? ('Signed in as '+name) : 'Account';
+})();
+
 loadProg().then(()=>{
   drawStats();
   if(new URLSearchParams(location.search).get('start')==='1'){

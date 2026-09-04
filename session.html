@@ -69,6 +69,7 @@ input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-hei
   color:var(--ink);text-decoration:none;font-family:var(--la);font-size:14px;cursor:pointer}
 .nextrow .primary{background:var(--verdigris);border-color:var(--verdigris);color:#fff}
 @media (max-width:860px){
+  #signout{font-size:12px;padding:8px 10px}
   .card{padding:16px}.taskbar{margin:-16px -16px 14px;padding:10px 12px}
   .ansrow{flex-direction:column}.ansrow .btn,.ansrow input{width:100%}
   .nextrow{flex-direction:column}.nextrow a,.nextrow button{width:100%;text-align:center}
@@ -89,6 +90,7 @@ input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-hei
     <div class="sess-prog"><i id="bar" style="width:0"></i></div>
     <span class="sess-n" id="count">—</span>
     <button class="btn" id="quit" type="button">End</button>
+    <button class="btn logout-link" id="signout" type="button" title="Sign out">Sign out</button>
   </div>
   <div id="panel"></div>
 </main>
@@ -101,6 +103,9 @@ input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-hei
   <a href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
 </nav>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js?v=1"></script>
+<script>requireLogin();</script>
 <script src="vocab-data.js?v=900"></script>
 <script src="toolkit-data.js?v=900"></script>
 <script src="drills-data.js?v=900"></script>
@@ -234,7 +239,8 @@ function finish(){
     <p>${n} item${n===1?'':'s'} practised across the four sections.</p>
     <div class="tally"><div><b>${tally.easy}</b>easy</div><div><b>${tally.good}</b>good</div><div><b>${tally.again}</b>again</div></div>
     <div class="nextrow"><a class="primary" href="session.html?n=${LEN}">Another session</a>
-    <a href="dashboard.html">Back to home</a></div></div>`;
+    <a href="dashboard.html">Back to home</a>
+    <button class="logout-link" type="button">Sign out</button></div></div>`;
 }
 
 function vWord(it){
