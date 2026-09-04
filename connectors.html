@@ -100,6 +100,7 @@ input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-hei
 .c-en{font-size:13px;font-weight:500}
 .c-ex{font-family:var(--ar);font-size:19px;direction:rtl;text-align:right;line-height:1.85;margin-top:3px;cursor:pointer}
 .c-exen{font-size:12px;color:var(--ink-soft)}
+.hl{color:var(--rubric);font-weight:600}
 @media (max-width:860px){ .crow{grid-template-columns:minmax(0,1fr);gap:2px} .c-ex{font-size:18px} }
 
 /* Pointer devices only — :hover sticks after a tap on touchscreens. */
@@ -117,6 +118,7 @@ input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-hei
     <a href="dashboard.html">Home</a><a href="vocab.html">Words</a>
     <a href="drills.html">Sentences</a><a href="verbs.html">Verbs</a>
     <a class="active" href="connectors.html">Connectors</a>
+    <a href="index.html" class="logout-link" onclick="logout();return false;">Log out</a>
   </div>
 </nav>
 
@@ -201,6 +203,43 @@ function render(){
   panel.innerHTML='';
   (tab==='ref'?vRef:vEx)();
 }
+// Wrap the connector word in red inside its example sentence.
+// Fails gracefully: if no confident match is found, returns the sentence unchanged
+// rather than colouring the wrong word.
+function escapeHtml(s){ return s.replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function escapeReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+// strip Arabic vowel marks so و matches وَ, etc.
+function stripHarakat(s){ return s.replace(/[\u064B-\u0652\u0670\u0640]/g,''); }
+
+function highlightEn(sentence, word){
+  if(!sentence||!word) return escapeHtml(sentence);
+  // try the whole phrase first, then the first word of a multi-word gloss
+  const tries=[word, word.split(/[ ,(]/)[0]].filter(Boolean);
+  for(const t of tries){
+    const re=new RegExp('\\b('+escapeReg(t)+')\\b','i');
+    if(re.test(sentence)){
+      return escapeHtml(sentence).replace(new RegExp('\\b('+escapeReg(t)+')\\b','i'), '<span class="hl">$1</span>');
+    }
+  }
+  return escapeHtml(sentence);
+}
+
+function highlightAr(sentence, word){
+  if(!sentence||!word) return escapeHtml(sentence);
+  const bare=stripHarakat(word).trim();
+  if(!bare) return escapeHtml(sentence);
+  // match the connector allowing for missing/extra harakat around each letter
+  const pattern=bare.split('').map(ch=>escapeReg(ch)+'[\\u064B-\\u0652\\u0670\\u0640]*').join('');
+  try{
+    const re=new RegExp('('+pattern+')');
+    if(re.test(sentence)){
+      return escapeHtml(sentence).replace(re, '<span class="hl">$1</span>');
+    }
+  }catch(_){}
+  return escapeHtml(sentence);
+}
+
 function vRef(){
   CONNECTORS.forEach(cat=>{
     const box=document.createElement('div');box.className='ccat';
@@ -208,8 +247,8 @@ function vRef(){
     cat.items.forEach(it=>{
       const r=document.createElement('div');r.className='crow';
       r.innerHTML=`<div class="c-word">${it.ar}</div><div class="c-body">
-        <div class="c-en">${it.en}</div><div class="c-ex">${it.ex}</div>
-        <div class="c-exen">${it.exEn}</div></div>`;
+        <div class="c-en">${it.en}</div><div class="c-ex">${highlightAr(it.ex, it.ar)}</div>
+        <div class="c-exen">${highlightEn(it.exEn, it.en)}</div></div>`;
       tappable(r.querySelector('.c-word'),it.ar);
       tappable(r.querySelector('.c-ex'),it.ex);
       box.appendChild(r)});
@@ -237,3 +276,7 @@ function vEx(){
 if('speechSynthesis' in window) speechSynthesis.onvoiceschanged=()=>{};
 render();
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js?v=1"></script>
+<script>requireLogin();</script>

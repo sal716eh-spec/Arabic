@@ -542,13 +542,14 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     <a href="dashboard.html">Home</a><a href="vocab.html">Words</a>
     <a class="active" href="drills.html">Sentences</a><a href="verbs.html">Verbs</a>
     <a href="connectors.html">Connectors</a>
+    <a href="index.html" class="logout-link" onclick="logout();return false;">Log out</a>
   </div>
 </nav>
 <header class="pagehead">
   <div class="head">
     <div class="ar">مِنَ الكَلِمَةِ إِلَى الجُمْلَةِ</div>
     <h1>Sentences</h1>
-    <p>Twelve drills across units 1–12. Listen and shadow, build sentences a chunk at a time, then produce them from memory — the gap between knowing words and saying them.</p>
+    <p>Practise speaking full Arabic sentences, not just single words. Each drill plays a sentence for you to listen to and repeat out loud, then helps you build it up piece by piece until you can say the whole thing from memory.</p>
   </div>
   <div class="headtools">
     <button class="cog" id="gear" type="button" aria-expanded="false" aria-controls="voicebox" title="Settings and progress">
@@ -604,10 +605,7 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
   </div>
 </div>
 <footer>
-  Built from the vocabulary lists printed at the back of your own books — Part 1 pp. 257–258, Part 2 pp. 259–260.
-  Vowel marks, model answers and the grammar notes are a study aid: worth spot-checking against your teacher, especially case endings.
-  Answer checking ignores vowel marks, so you are never penalised for a missing fatḥa you did in fact say.
-  Progress is saved on this device where the browser allows it; otherwise it lasts for the session.
+ 
 </footer>
 
 <script src="drills-data.js?v=900"></script>
@@ -1459,3 +1457,7 @@ loadProg().then(()=>{
 });
 
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js?v=1"></script>
+<script>requireLogin();</script>

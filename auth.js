@@ -1,0 +1,144 @@
+/* auth.js — shared login/logout/guard for every page.
+   Loaded on each page via:
+     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+     <script src="auth.js?v=1"></script>
+   Safe public values only. The publishable key is meant to be public. */
+
+const SUPABASE_URL = 'https://gaajfahtrbdybjuunfhe.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_nFs-UJyKpTsCtHRn4WZJGg_c14-cM4e';
+
+// create one shared client the whole page can use
+const sb = (window.supabase && window.supabase.createClient)
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+  : null;
+
+/* Log the user out: end the Supabase session, clear the cached name,
+   then send them to the login page. Works from any page. */
+async function logout(){
+  try { if (sb) await sb.auth.signOut(); } catch(_) {}
+  try { localStorage.removeItem('bay_name'); } catch(_) {}
+  window.location.href = 'index.html';
+}
+
+/* Guard a page: if nobody is logged in, bounce to the login page.
+   Call this near the top of a protected page. Returns the session (or null). */
+async function requireLogin(){
+  if (!sb) return null;                       // library failed to load; don't lock people out
+  try {
+    const { data } = await sb.auth.getSession();
+    if (!data || !data.session) {
+      window.location.href = 'index.html';
+      return null;
+    }
+    return data.session;
+  } catch(_) {
+    return null;                              // on error, fail open rather than trap the user
+  }
+}
+
+// let any "Log out" link work just by adding onclick="logout()" OR class="logout-link"
+document.addEventListener('click', function(e){
+  const t = e.target.closest('.logout-link, [data-logout]');
+  if (t){ e.preventDefault(); logout(); }
+});
+
+/* ---------- Cloud vocab progress (Stage 2) ----------
+   These let a page store per-user progress in Supabase instead of the browser.
+   Shapes:
+     progress row  = { word_id, box, due_date }   (due_date is 'YYYY-MM-DD' or null)
+     in-app record = { box, due }                 (due is a day-number or null)
+   We translate between them here so the vocab page barely changes. */
+
+// day-number <-> ISO date helpers (matches vocab.html's `today()` = days since epoch)
+function _dayToISO(dayNum){
+  if (dayNum === null || dayNum === undefined) return null;
+  return new Date(dayNum * 86400000).toISOString().slice(0,10);
+}
+function _isoToDay(iso){
+  if (!iso) return null;
+  return Math.floor(new Date(iso + 'T00:00:00Z').getTime() / 86400000);
+}
+
+// current user's id, or null if not logged in
+async function currentUserId(){
+  if (!sb) return null;
+  try { const { data } = await sb.auth.getUser(); return data && data.user ? data.user.id : null; }
+  catch(_) { return null; }
+}
+
+// Load this user's whole progress map: { [word_id]: {box, due} }
+async function cloudLoadProgress(){
+  if (!sb) return null;
+  const uid = await currentUserId(); if (!uid) return null;
+  const { data, error } = await sb.from('progress').select('word_id, box, due_date').eq('user_id', uid);
+  if (error) { console.warn('progress load failed', error.message); return null; }
+  const map = {};
+  (data || []).forEach(r => { map[r.word_id] = { box: r.box, due: _isoToDay(r.due_date) }; });
+  return map;
+}
+
+// Save ONE word's progress immediately (called after each answer)
+async function cloudSaveWord(wordId, rec){
+  if (!sb) return;
+  const uid = await currentUserId(); if (!uid) return;
+  const row = { user_id: uid, word_id: Number(wordId), box: rec.box,
+                due_date: _dayToISO(rec.due), last_seen: new Date().toISOString() };
+  const { error } = await sb.from('progress').upsert(row, { onConflict: 'user_id,word_id' });
+  if (error) console.warn('progress save failed', error.message);
+}
+
+// Save many words at once (used by the one-time migration)
+async function cloudSaveMany(progressMap){
+  if (!sb) return;
+  const uid = await currentUserId(); if (!uid) return;
+  const rows = Object.keys(progressMap).map(id => ({
+    user_id: uid, word_id: Number(id), box: progressMap[id].box,
+    due_date: _dayToISO(progressMap[id].due), last_seen: new Date().toISOString()
+  }));
+  if (!rows.length) return;
+  const { error } = await sb.from('progress').upsert(rows, { onConflict: 'user_id,word_id' });
+  if (error) console.warn('bulk progress save failed', error.message);
+}
+
+// Settings: new-words-per-day
+async function cloudLoadNewPerDay(){
+  if (!sb) return null;
+  const uid = await currentUserId(); if (!uid) return null;
+  const { data, error } = await sb.from('settings').select('new_per_day').eq('user_id', uid).maybeSingle();
+  if (error) { console.warn('settings load failed', error.message); return null; }
+  return data ? data.new_per_day : null;
+}
+async function cloudSaveNewPerDay(n){
+  if (!sb) return;
+  const uid = await currentUserId(); if (!uid) return;
+  const { error } = await sb.from('settings')
+    .upsert({ user_id: uid, new_per_day: n, updated_at: new Date().toISOString() }, { onConflict: 'user_id' });
+  if (error) console.warn('settings save failed', error.message);
+}
+
+// Daily status: whether test/practise were finished today, and today's test score.
+async function cloudLoadDaily(){
+  if (!sb) return null;
+  const uid = await currentUserId(); if (!uid) return null;
+  const { data, error } = await sb.from('settings')
+    .select('test_done_date, practise_done_date, test_score_correct, test_score_total')
+    .eq('user_id', uid).maybeSingle();
+  if (error) { console.warn('daily load failed', error.message); return null; }
+  return data || {};
+}
+async function cloudMarkTestDone(dateISO, correct, total){
+  if (!sb) return;
+  const uid = await currentUserId(); if (!uid) return;
+  const { error } = await sb.from('settings').upsert(
+    { user_id: uid, test_done_date: dateISO, test_score_correct: correct, test_score_total: total,
+      updated_at: new Date().toISOString() }, { onConflict: 'user_id' });
+  if (error) console.warn('mark test done failed', error.message);
+}
+async function cloudMarkPractiseDone(dateISO){
+  if (!sb) return;
+  const uid = await currentUserId(); if (!uid) return;
+  const { error } = await sb.from('settings').upsert(
+    { user_id: uid, practise_done_date: dateISO, updated_at: new Date().toISOString() },
+    { onConflict: 'user_id' });
+  if (error) console.warn('mark practise done failed', error.message);
+}
