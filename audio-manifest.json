@@ -70,6 +70,174 @@
   "chars": 36
  },
  {
+  "id": "1bhxev5",
+  "text": "السَّلامُ عَلَيْكُم.",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 20
+ },
+ {
+  "id": "15zcprk",
+  "text": "وَعَلَيْكُمُ السَّلام. كَيْفَ حالُكِ؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 37
+ },
+ {
+  "id": "11k0bx6",
+  "text": "أَنا بِخَيْرٍ، الحَمْدُ لِلَّهِ. ما اسْمُكِ؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 44
+ },
+ {
+  "id": "qq3uy2",
+  "text": "اسْمِي لَيْلى. وَما اسْمُكِ أَنْتِ؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 35
+ },
+ {
+  "id": "147lyd0",
+  "text": "اسْمِي سارَة. هَلْ أَنْتِ طالِبَةٌ؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 35
+ },
+ {
+  "id": "1h7fmta",
+  "text": "نَعَمْ، أَنا طالِبَةٌ. وَأَنْتِ؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 32
+ },
+ {
+  "id": "iag6r3",
+  "text": "أَنا طالِبَةٌ أَيْضاً. مِنْ أَيْنَ أَنْتِ؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 42
+ },
+ {
+  "id": "112kcb1",
+  "text": "أَنا باكِسْتانِيَّةٌ. وَأَنْتِ، ما جِنْسِيَّتُكِ؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 49
+ },
+ {
+  "id": "nt5o4x",
+  "text": "أَنا باكِسْتانِيَّةٌ أَيْضاً!",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 29
+ },
+ {
+  "id": "1xotgia",
+  "text": "أَهْلاً وَسَهْلاً يا سارَة.",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 27
+ },
+ {
+  "id": "mzm4fw",
+  "text": "أَهْلاً بِكِ. مَعَ السَّلامَةِ.",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 31
+ },
+ {
+  "id": "18dbe15",
+  "text": "مَعَ السَّلامَةِ.",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 17
+ },
+ {
+  "id": "81b4jk",
+  "text": "السَّلامُ عَلَيْكُم يا عُمَر.",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 29
+ },
+ {
+  "id": "mt8ml1",
+  "text": "وَعَلَيْكُمُ السَّلام يا أَحْمَد. كَيْفَ حالُكَ؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 48
+ },
+ {
+  "id": "1bszjhu",
+  "text": "بِخَيْرٍ، الحَمْدُ لِلَّهِ. هَذا صَدِيقِي.",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 42
+ },
+ {
+  "id": "14bmry9",
+  "text": "أَهْلاً وَسَهْلاً. ما اسْمُكَ؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 30
+ },
+ {
+  "id": "1gqvkbm",
+  "text": "اسْمِي يُوسُف.",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 14
+ },
+ {
+  "id": "1390see",
+  "text": "مِنْ أَيْنَ أَنْتَ يا يُوسُف؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 29
+ },
+ {
+  "id": "1cvybpy",
+  "text": "أَنا باكِسْتانِيٌّ.",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 19
+ },
+ {
+  "id": "dylza0",
+  "text": "هَلْ أَنْتَ طالِبٌ؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 19
+ },
+ {
+  "id": "1y1h6sf",
+  "text": "لا، أَنا مُهَنْدِسٌ.",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 20
+ },
+ {
+  "id": "1yi123n",
+  "text": "وَأَنْتَ يا أَحْمَد، هَلْ أَنْتَ مُهَنْدِسٌ؟",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 44
+ },
+ {
+  "id": "xn2wp8",
+  "text": "لا، أَنا مُدَرِّسٌ.",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 19
+ },
+ {
+  "id": "18mqjw2",
+  "text": "مَعَ السَّلامَةِ يا صَدِيقِي.",
+  "bucket": "dialogue",
+  "unit": "01",
+  "chars": 29
+ },
+ {
   "id": "1sctign",
   "text": "أَنا خالِدٌ",
   "bucket": "ladder",
@@ -252,13 +420,6 @@
   "chars": 23
  },
  {
-  "id": "1cvybpy",
-  "text": "أَنا باكِسْتانِيٌّ.",
-  "bucket": "transform",
-  "unit": "01",
-  "chars": 19
- },
- {
   "id": "1dt23ny",
   "text": "ما جِنْسِيَّتُكَ؟",
   "bucket": "transform",
@@ -278,20 +439,6 @@
   "bucket": "transform",
   "unit": "01",
   "chars": 15
- },
- {
-  "id": "dylza0",
-  "text": "هَلْ أَنْتَ طالِبٌ؟",
-  "bucket": "transform",
-  "unit": "01",
-  "chars": 19
- },
- {
-  "id": "xn2wp8",
-  "text": "لا، أَنا مُدَرِّسٌ.",
-  "bucket": "transform",
-  "unit": "01",
-  "chars": 19
  },
  {
   "id": "frbllw",
@@ -551,6 +698,160 @@
   "bucket": "dialogue",
   "unit": "02",
   "chars": 55
+ },
+ {
+  "id": "j6367s",
+  "text": "هَذِهِ صُورَةُ أُسْرَتِي يا هَناء.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 34
+ },
+ {
+  "id": "zot3u3",
+  "text": "ما شاءَ اللهُ! مَنْ هَذا؟",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 25
+ },
+ {
+  "id": "16l9knx",
+  "text": "هَذا أَبِي. هُوَ مُهَنْدِسٌ.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 28
+ },
+ {
+  "id": "1q71np9",
+  "text": "وَمَنْ هَذِهِ؟",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 14
+ },
+ {
+  "id": "twairg",
+  "text": "هَذِهِ أُمِّي. هِيَ مُعَلِّمَةٌ.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 32
+ },
+ {
+  "id": "19yqle3",
+  "text": "وَهَذا؟ هَلْ هَذا أَخُوكِ؟",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 26
+ },
+ {
+  "id": "1k3czem",
+  "text": "نَعَمْ، هَذا أَخِي. وَهَذِهِ أُخْتِي.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 37
+ },
+ {
+  "id": "1t6okn",
+  "text": "أَيْنَ جَدُّكِ؟",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 15
+ },
+ {
+  "id": "1lhuyul",
+  "text": "جَدِّي فِي المَسْجِدِ. هُوَ يُصَلِّي.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 37
+ },
+ {
+  "id": "o4e9js",
+  "text": "وَجَدَّتُكِ؟",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 12
+ },
+ {
+  "id": "1etrcy4",
+  "text": "جَدَّتِي فِي الغُرْفَةِ. هِيَ تَقْرَأُ القُرْآنَ.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 49
+ },
+ {
+  "id": "1arbw64",
+  "text": "ما شاءَ اللهُ، أُسْرَةٌ جَمِيلَةٌ!",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 34
+ },
+ {
+  "id": "1xa0qbq",
+  "text": "يا خالِد، هَذا أَذانُ الفَجْرِ.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 31
+ },
+ {
+  "id": "ufe0xb",
+  "text": "نَعَمْ يا أَبِي. هَيَّا بِنا إِلى المَسْجِدِ.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 45
+ },
+ {
+  "id": "b2ocem",
+  "text": "أَيْنَ أَخُوكَ؟",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 15
+ },
+ {
+  "id": "5dm1nm",
+  "text": "أَخِي فِي الحَمَّامِ. هُوَ يَتَوَضَّأُ.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 39
+ },
+ {
+  "id": "1sijpff",
+  "text": "وَأَيْنَ أُمُّكَ؟",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 17
+ },
+ {
+  "id": "k4qr35",
+  "text": "أُمِّي فِي غُرْفَتِها. هِيَ تُصَلِّي فِي البَيْتِ.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 50
+ },
+ {
+  "id": "1dikq82",
+  "text": "وَجَدُّكَ؟",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 10
+ },
+ {
+  "id": "wjew9o",
+  "text": "جَدِّي فِي المَسْجِدِ. هُوَ يَقْرَأُ القُرْآنَ.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 47
+ },
+ {
+  "id": "1ynp8ty",
+  "text": "ما شاءَ اللهُ. هَيَّا بِنا.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 27
+ },
+ {
+  "id": "17fs7hj",
+  "text": "اللهُ أَكْبَرُ. هَيَّا يا أَبِي.",
+  "bucket": "dialogue",
+  "unit": "02",
+  "chars": 32
  },
  {
   "id": "rnhzrm",
@@ -1043,6 +1344,174 @@
   "chars": 59
  },
  {
+  "id": "kq5tx4",
+  "text": "السَّلامُ عَلَيْكُم يا دِينا.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 29
+ },
+ {
+  "id": "18f62f0",
+  "text": "وَعَلَيْكُمُ السَّلام. تَفَضَّلِي، ادْخُلِي.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 44
+ },
+ {
+  "id": "wo17hs",
+  "text": "شُكْراً. ما شاءَ اللهُ، شَقَّةٌ جَمِيلَةٌ!",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 42
+ },
+ {
+  "id": "1e6z9u3",
+  "text": "الحَمْدُ لِلَّهِ. هَذِهِ غُرْفَةُ الجُلُوسِ.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 44
+ },
+ {
+  "id": "1469eoc",
+  "text": "كَمْ غُرْفَةً فِي الشَّقَّةِ؟",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 29
+ },
+ {
+  "id": "18zr7k6",
+  "text": "خَمْسُ غُرَفٍ.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 14
+ },
+ {
+  "id": "hoo4nf",
+  "text": "وَأَيْنَ غُرْفَةُ النَّوْمِ؟",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 28
+ },
+ {
+  "id": "1ccjcwm",
+  "text": "هَذِهِ غُرْفَةُ النَّوْمِ. فِيها سَرِيرٌ وَمِرْآةٌ.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 51
+ },
+ {
+  "id": "6niaoj",
+  "text": "فِي أَيِّ دَوْرٍ الشَّقَّةُ؟",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 28
+ },
+ {
+  "id": "evcois",
+  "text": "فِي الدَّوْرِ الخامِسِ.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 23
+ },
+ {
+  "id": "1f1e30p",
+  "text": "وَفِي أَيِّ حَيٍّ تَسْكُنِينَ؟",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 30
+ },
+ {
+  "id": "cxdiyq",
+  "text": "أَسْكُنُ فِي حَيِّ الجامِعَةِ.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 30
+ },
+ {
+  "id": "w6ysoc",
+  "text": "السَّلامُ عَلَيْكُم. هَلْ أَنْتَ المُؤَجِّرُ؟",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 45
+ },
+ {
+  "id": "1qejtwr",
+  "text": "وَعَلَيْكُمُ السَّلام. نَعَمْ، أَنا المُؤَجِّرُ. تَفَضَّلْ.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 59
+ },
+ {
+  "id": "1ykbnha",
+  "text": "شُكْراً. كَمْ غُرْفَةً فِي البَيْتِ؟",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 36
+ },
+ {
+  "id": "1afcqgj",
+  "text": "فِي البَيْتِ ثَلاثُ غُرَفٍ.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 27
+ },
+ {
+  "id": "1t8djwo",
+  "text": "هَلْ فِيهِ سَخَّانٌ؟",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 20
+ },
+ {
+  "id": "1r34x17",
+  "text": "نَعَمْ، فِيهِ سَخَّانٌ وَثَلَّاجَةٌ وَفُرْنٌ.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 45
+ },
+ {
+  "id": "aeo2ru",
+  "text": "وَفِي غُرْفَةِ الجُلُوسِ سَجَّادَةٌ؟",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 36
+ },
+ {
+  "id": "1t02o82",
+  "text": "نَعَمْ، سَجَّادَةٌ جَمِيلَةٌ وَسِتارَةٌ.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 40
+ },
+ {
+  "id": "wa4zxm",
+  "text": "فِي أَيِّ حَيٍّ البَيْتُ؟",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 25
+ },
+ {
+  "id": "grq4s3",
+  "text": "فِي حَيِّ الجامِعَةِ، قَرِيبٌ مِنَ المَسْجِدِ.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 46
+ },
+ {
+  "id": "1opcxdm",
+  "text": "ما رَقْمُ البَيْتِ؟",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 19
+ },
+ {
+  "id": "1997jty",
+  "text": "رَقْمُ البَيْتِ خَمْسَةٌ.",
+  "bucket": "dialogue",
+  "unit": "03",
+  "chars": 25
+ },
+ {
   "id": "u7um50",
   "text": "أَسْكُنُ فِي شَقَّةٍ",
   "bucket": "ladder",
@@ -1197,13 +1666,6 @@
   "chars": 29
  },
  {
-  "id": "1469eoc",
-  "text": "كَمْ غُرْفَةً فِي الشَّقَّةِ؟",
-  "bucket": "transform",
-  "unit": "03",
-  "chars": 29
- },
- {
   "id": "vyxk77",
   "text": "أَسْكُنُ فِي بَيْتٍ كَبِيرٍ.",
   "bucket": "transform",
@@ -1244,13 +1706,6 @@
   "bucket": "transform",
   "unit": "03",
   "chars": 35
- },
- {
-  "id": "6niaoj",
-  "text": "فِي أَيِّ دَوْرٍ الشَّقَّةُ؟",
-  "bucket": "transform",
-  "unit": "03",
-  "chars": 28
  },
  {
   "id": "xk1e0h",
@@ -1496,6 +1951,146 @@
   "bucket": "dialogue",
   "unit": "04",
   "chars": 48
+ },
+ {
+  "id": "1r144io",
+  "text": "مَتى تَسْتَيْقِظُ يا كَرِيم؟",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 28
+ },
+ {
+  "id": "1u1t6yq",
+  "text": "أَسْتَيْقِظُ مُبَكِّراً، فِي السَّاعَةِ السَّابِعَةِ.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 53
+ },
+ {
+  "id": "1vri5b8",
+  "text": "أُصَلِّي الفَجْرَ، ثُمَّ أَغْسِلُ وَجْهِي.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 42
+ },
+ {
+  "id": "8rphag",
+  "text": "هَلْ تَذْهَبُ إِلى المَدْرَسَةِ بِالحافِلَةِ؟",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 45
+ },
+ {
+  "id": "rtfwsl",
+  "text": "لا، أَذْهَبُ بِالسَّيَّارَةِ مَعَ أَبِي.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 40
+ },
+ {
+  "id": "l0y9rb",
+  "text": "وَأُمُّكَ؟ ماذا تَفْعَلُ فِي الصَّباحِ؟",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 39
+ },
+ {
+  "id": "bbm16i",
+  "text": "أُمِّي تَكْنُسُ البَيْتَ وَتَغْسِلُ الأَطْباقَ.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 47
+ },
+ {
+  "id": "1enjdr4",
+  "text": "هَلْ تُشاهِدُ التِّلْفازَ؟",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 26
+ },
+ {
+  "id": "vxmrja",
+  "text": "لا، هِيَ تَقْرَأُ الصَّحِيفَةَ.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 31
+ },
+ {
+  "id": "1r2ew1y",
+  "text": "وَمَتى تَنامُ أَنْتَ؟",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 21
+ },
+ {
+  "id": "52ctg1",
+  "text": "أَنامُ مُبَكِّراً أَيْضاً.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 26
+ },
+ {
+  "id": "s48bg9",
+  "text": "يا سامِي، هَلْ اليَوْمُ يَوْمُ عَمَلٍ؟",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 38
+ },
+ {
+  "id": "1j6fgvu",
+  "text": "لا، اليَوْمُ يَوْمُ عُطْلَةٍ.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 29
+ },
+ {
+  "id": "di7f6f",
+  "text": "ماذا تَفْعَلُ فِي يَوْمِ العُطْلَةِ؟",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 36
+ },
+ {
+  "id": "wbb7r1",
+  "text": "أَسْتَيْقِظُ مُتَأَخِّراً وَأَقْرَأُ كِتاباً.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 45
+ },
+ {
+  "id": "xg2agv",
+  "text": "أُشاهِدُ التِّلْفازَ أَوْ أَذْهَبُ إِلى صَدِيقِي.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 49
+ },
+ {
+  "id": "rgcapu",
+  "text": "هَلْ تَكْوِي مَلابِسَكَ؟",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 24
+ },
+ {
+  "id": "11qgaik",
+  "text": "نَعَمْ، أَكْوِي المَلابِسَ فِي يَوْمِ العُطْلَةِ.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 49
+ },
+ {
+  "id": "rqd39u",
+  "text": "وَأَنا أَذْهَبُ إِلى المَسْجِدِ لِلصَّلاةِ.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 43
+ },
+ {
+  "id": "105aryb",
+  "text": "فِكْرَةٌ طَيِّبَةٌ! هَيَّا بِنا.",
+  "bucket": "dialogue",
+  "unit": "04",
+  "chars": 32
  },
  {
   "id": "1qle2mb",
@@ -1923,6 +2518,174 @@
   "bucket": "dialogue",
   "unit": "05",
   "chars": 60
+ },
+ {
+  "id": "oz7pe",
+  "text": "السَّلامُ عَلَيْكُم. أَنا جَوْعانُ جِدّاً.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 42
+ },
+ {
+  "id": "70m322",
+  "text": "وَعَلَيْكُمُ السَّلام. تَفَضَّلْ، اجْلِسْ. ماذا تَطْلُبُ؟",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 57
+ },
+ {
+  "id": "1hho2n3",
+  "text": "أَطْلُبُ دَجاجاً وَأَرُزّاً.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 28
+ },
+ {
+  "id": "uqf2qb",
+  "text": "وَماذا تَشْرَبُ؟ شاياً أَوْ قَهْوَةً؟",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 37
+ },
+ {
+  "id": "tej285",
+  "text": "أُفَضِّلُ الماءَ، مِنْ فَضْلِكَ.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 32
+ },
+ {
+  "id": "cla884",
+  "text": "هَلْ تَطْلُبُ سَلَطَةً؟",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 23
+ },
+ {
+  "id": "161p0ft",
+  "text": "نَعَمْ، سَلَطَةً قَلِيلَةً.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 27
+ },
+ {
+  "id": "o7s3he",
+  "text": "وَفاكِهَةً؟",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 11
+ },
+ {
+  "id": "1csob6q",
+  "text": "نَعَمْ، عِنَباً وَتَمْراً.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 26
+ },
+ {
+  "id": "1xhl3pp",
+  "text": "تَفَضَّلْ، هَذا طَعامُكَ.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 25
+ },
+ {
+  "id": "tnrlb2",
+  "text": "شُكْراً جَزِيلاً.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 17
+ },
+ {
+  "id": "1g6iouj",
+  "text": "عَفْواً.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 8
+ },
+ {
+  "id": "1ntqpcl",
+  "text": "يا لَيْلى، هَلْ أَكَلْتِ الفُطُورَ؟",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 35
+ },
+ {
+  "id": "iuehim",
+  "text": "لا يا أُمِّي. أَنا جَوْعانَةٌ.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 30
+ },
+ {
+  "id": "agl4w1",
+  "text": "ماذا تُفَضِّلِينَ؟ خُبْزاً وَحَلِيباً؟",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 38
+ },
+ {
+  "id": "77sc68",
+  "text": "نَعَمْ، وَبَيْضاً مِنْ فَضْلِكِ.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 32
+ },
+ {
+  "id": "kb7gk3",
+  "text": "تَفَضَّلِي. الطَّعامُ عَلى المائِدَةِ.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 38
+ },
+ {
+  "id": "1mis07n",
+  "text": "شُكْراً يا أُمِّي.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 18
+ },
+ {
+  "id": "1ygq907",
+  "text": "هَلْ تَشْرَبِينَ شاياً؟",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 23
+ },
+ {
+  "id": "9zxts3",
+  "text": "لا، أَشْرَبُ حَلِيباً. أَنا لا أُحِبُّ الشَّايَ.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 48
+ },
+ {
+  "id": "12ezsc",
+  "text": "وَبَعْدَ الفُطُورِ؟",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 19
+ },
+ {
+  "id": "1nu0d18",
+  "text": "أَذْهَبُ إِلى المَدْرَسَةِ.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 27
+ },
+ {
+  "id": "kdv4mo",
+  "text": "لا تَتَأَخَّرِي!",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 16
+ },
+ {
+  "id": "ipmwja",
+  "text": "إِنْ شاءَ اللهُ يا أُمِّي.",
+  "bucket": "dialogue",
+  "unit": "05",
+  "chars": 26
  },
  {
   "id": "s0qc4m",
@@ -2387,6 +3150,160 @@
   "chars": 60
  },
  {
+  "id": "1mdw82z",
+  "text": "يا مُحَمَّد، اسْتَيْقِظْ! هَذا أَذانُ الفَجْرِ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 47
+ },
+ {
+  "id": "1h6oofz",
+  "text": "آسِفٌ، أَنا كَسْلانُ. كَمِ السَّاعَةُ؟",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 38
+ },
+ {
+  "id": "lmbnk8",
+  "text": "السَّاعَةُ الخامِسَةُ. هَيَّا بِنا إِلى المَسْجِدِ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 51
+ },
+ {
+  "id": "1ys4o37",
+  "text": "هَلْ المَسْجِدُ قَرِيبٌ؟",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 24
+ },
+ {
+  "id": "meh8l0",
+  "text": "نَعَمْ، قَرِيبٌ جِدّاً، بِجانِبِ البَيْتِ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 42
+ },
+ {
+  "id": "10n0rrb",
+  "text": "أَنا مَرِيضٌ قَلِيلاً.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 22
+ },
+ {
+  "id": "js5z8z",
+  "text": "لا تَنَمْ! الصَّلاةُ أَفْضَلُ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 30
+ },
+ {
+  "id": "1lm36qz",
+  "text": "صَحِيحٌ. أَتَوَضَّأُ الآنَ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 27
+ },
+ {
+  "id": "jwrfq6",
+  "text": "وَبَعْدَ الصَّلاةِ نَقْرَأُ القُرْآنَ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 38
+ },
+ {
+  "id": "1xk2e72",
+  "text": "فِكْرَةٌ طَيِّبَةٌ. جَزاكَ اللهُ خَيْراً.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 41
+ },
+ {
+  "id": "1fh987g",
+  "text": "إِنْ شاءَ اللهُ. هَيَّا.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 24
+ },
+ {
+  "id": "94wvky",
+  "text": "السَّلامُ عَلَيْكُم. إِلى أَيْنَ أَنْتَ ذاهِبٌ؟",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 47
+ },
+ {
+  "id": "de9zih",
+  "text": "وَعَلَيْكُمُ السَّلام. أَنا ذاهِبٌ إِلى مَكَّةَ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 48
+ },
+ {
+  "id": "cipcap",
+  "text": "ما شاءَ اللهُ! وَأَنا ذاهِبٌ إِلى المَدِينَةِ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 46
+ },
+ {
+  "id": "1qu9gtl",
+  "text": "هَلْ تَذْهَبُ بِالطَّائِرَةِ؟",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 29
+ },
+ {
+  "id": "6pnxyn",
+  "text": "نَعَمْ، بِالطَّائِرَةِ. وَأَنْتَ؟",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 33
+ },
+ {
+  "id": "j10dk6",
+  "text": "أَنا أَيْضاً. أَنْتَظِرُ الطَّائِرَةَ الآنَ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 44
+ },
+ {
+  "id": "e1md",
+  "text": "هَلْ مَكَّةُ بَعِيدَةٌ؟",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 23
+ },
+ {
+  "id": "qyk8b9",
+  "text": "لا، لَيْسَتْ بَعِيدَةً.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 23
+ },
+ {
+  "id": "7g7h8z",
+  "text": "أُصَلِّي فِي المَسْجِدِ الحَرامِ إِنْ شاءَ اللهُ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 49
+ },
+ {
+  "id": "gfdk6f",
+  "text": "وَأَنا أُصَلِّي فِي المَسْجِدِ النَّبَوِيِّ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 44
+ },
+ {
+  "id": "tj9as7",
+  "text": "جَزاكَ اللهُ خَيْراً. مَعَ السَّلامَةِ.",
+  "bucket": "dialogue",
+  "unit": "06",
+  "chars": 39
+ },
+ {
   "id": "1jiz8dp",
   "text": "أَنا ذاهِبٌ",
   "bucket": "ladder",
@@ -2828,6 +3745,174 @@
   "chars": 76
  },
  {
+  "id": "o6655",
+  "text": "يا سَلْمى، ماذا تَدْرُسِينَ اليَوْمَ؟",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 37
+ },
+ {
+  "id": "1uqo6kk",
+  "text": "أَدْرُسُ اللُّغَةَ العَرَبِيَّةَ وَالرِّياضِيَّاتِ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 51
+ },
+ {
+  "id": "1aukd1x",
+  "text": "كَمْ حِصَّةً فِي اليَوْمِ الدِّراسِيِّ؟",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 39
+ },
+ {
+  "id": "p22b4u",
+  "text": "خَمْسُ حِصَصٍ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 14
+ },
+ {
+  "id": "1y1zd5l",
+  "text": "مَتى تَبْدَأُ الحِصَّةُ الأُولى؟",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 32
+ },
+ {
+  "id": "1evcyaj",
+  "text": "تَبْدَأُ فِي السَّاعَةِ السَّابِعَةِ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 37
+ },
+ {
+  "id": "v85rc6",
+  "text": "وَمَتى يَنْتَهِي اليَوْمُ الدِّراسِيُّ؟",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 39
+ },
+ {
+  "id": "qekzoe",
+  "text": "يَنْتَهِي بَعْدَ صَلاةِ الظُّهْرِ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 34
+ },
+ {
+  "id": "va11w1",
+  "text": "هَلْ عِنْدَكِ اخْتِبارٌ هَذا الأُسْبُوعَ؟",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 41
+ },
+ {
+  "id": "1qt8gos",
+  "text": "نَعَمْ، اخْتِبارُ العُلُومِ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 28
+ },
+ {
+  "id": "1b3n3bb",
+  "text": "أَيْنَ تَدْرُسِينَ؟ فِي المَكْتَبَةِ؟",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 37
+ },
+ {
+  "id": "17r79cc",
+  "text": "نَعَمْ، فِي المَكْتَبَةِ أَوْ فِي المُخْتَبَرِ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 47
+ },
+ {
+  "id": "10vj8f0",
+  "text": "أَيْنَ تَدْرُسِينَ يا نُور؟",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 27
+ },
+ {
+  "id": "e7rqor",
+  "text": "أَدْرُسُ فِي كُلِّيَّةِ الطِّبِّ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 33
+ },
+ {
+  "id": "vrt56n",
+  "text": "ما شاءَ اللهُ! وَأَنا فِي كُلِّيَّةِ التَّرْبِيَةِ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 51
+ },
+ {
+  "id": "1mk28zt",
+  "text": "ماذا تَدْرُسِينَ؟",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 17
+ },
+ {
+  "id": "18ximwc",
+  "text": "أَدْرُسُ التَّارِيخَ وَالثَّقافَةَ الإِسْلامِيَّةَ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 51
+ },
+ {
+  "id": "8agg1q",
+  "text": "هَلْ الدِّراسَةُ فِي الكُلِّيَّةِ كَثِيرَةٌ؟",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 44
+ },
+ {
+  "id": "1yewr7a",
+  "text": "نَعَمْ، كَثِيرَةٌ جِدّاً. أَكْتُبُ كُلَّ يَوْمٍ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 48
+ },
+ {
+  "id": "117zafz",
+  "text": "مَتى بَدَأْتِ الدِّراسَةَ؟",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 26
+ },
+ {
+  "id": "6fnjg5",
+  "text": "بَدَأْتُ قَبْلَ سَنَةٍ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 23
+ },
+ {
+  "id": "14t4t",
+  "text": "وَمَتى تَنْتَهِي؟",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 17
+ },
+ {
+  "id": "1cqjfqh",
+  "text": "بَعْدَ أَرْبَعِ سَنَواتٍ إِنْ شاءَ اللهُ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 41
+ },
+ {
+  "id": "17e3cm1",
+  "text": "اللهُ يُوَفِّقُكِ.",
+  "bucket": "dialogue",
+  "unit": "07",
+  "chars": 18
+ },
+ {
   "id": "wme4fi",
   "text": "أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ",
   "bucket": "ladder",
@@ -3094,13 +4179,6 @@
   "chars": 39
  },
  {
-  "id": "e7rqor",
-  "text": "أَدْرُسُ فِي كُلِّيَّةِ الطِّبِّ.",
-  "bucket": "fix",
-  "unit": "07",
-  "chars": 33
- },
- {
   "id": "cbz5dq",
   "text": "الطُّلَّابُ يَدْرُسُونَ فِي الْمُخْتَبَرِ.",
   "bucket": "fix",
@@ -3309,6 +4387,174 @@
   "bucket": "dialogue",
   "unit": "08",
   "chars": 58
+ },
+ {
+  "id": "12mt0m",
+  "text": "ما مِهْنَتُكِ يا رانِيا؟",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 24
+ },
+ {
+  "id": "9qyud6",
+  "text": "أَنا مُمَرِّضَةٌ. أَعْمَلُ فِي المُسْتَشْفى.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 44
+ },
+ {
+  "id": "1qe6bqk",
+  "text": "ما شاءَ اللهُ. كَمْ ساعَةً تَعْمَلِينَ؟",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 39
+ },
+ {
+  "id": "24utba",
+  "text": "أَعْمَلُ ثَمانِيَ ساعاتٍ فِي اليَوْمِ.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 38
+ },
+ {
+  "id": "90asc3",
+  "text": "هَلْ تُحِبِّينَ عَمَلَكِ؟",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 25
+ },
+ {
+  "id": "ltukec",
+  "text": "نَعَمْ، أُحِبُّهُ جِدّاً. وَأَنْتَ، ما مِهْنَتُكَ؟",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 50
+ },
+ {
+  "id": "p2yttg",
+  "text": "أَنا طَيَّارٌ. دَرَسْتُ فِي كُلِّيَّةِ الطَّيَرانِ.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 51
+ },
+ {
+  "id": "o3dwb2",
+  "text": "وَأَيْنَ تَعْمَلُ؟",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 18
+ },
+ {
+  "id": "1bbhjbx",
+  "text": "أَعْمَلُ فِي شَرِكَةِ طَيَرانٍ كَبِيرَةٍ.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 41
+ },
+ {
+  "id": "o5eeq8",
+  "text": "هَلْ العَمَلُ كَثِيرٌ؟",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 22
+ },
+ {
+  "id": "1yex8no",
+  "text": "نَعَمْ، لَكِنْ أُحِبُّ الطَّيَرانَ.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 35
+ },
+ {
+  "id": "lzsqxb",
+  "text": "بارَكَ اللهُ فِيكَ.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 19
+ },
+ {
+  "id": "vg7wqx",
+  "text": "يا أَبِي، هَلْ أَنْتَ طَبِيبٌ؟",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 30
+ },
+ {
+  "id": "2vstpi",
+  "text": "نَعَمْ يا حَبِيبَتِي، أَنا طَبِيبٌ.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 35
+ },
+ {
+  "id": "1sjhkaw",
+  "text": "أَيْنَ تَعْمَلُ؟",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 16
+ },
+ {
+  "id": "t1xnv5",
+  "text": "أَعْمَلُ فِي المُسْتَشْفى مَعَ الأَطْفالِ.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 42
+ },
+ {
+  "id": "19oh4f0",
+  "text": "هَلْ دَرَسْتَ الطِّبَّ؟",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 23
+ },
+ {
+  "id": "vo3eyf",
+  "text": "نَعَمْ، دَرَسْتُ فِي كُلِّيَّةِ الطِّبِّ.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 41
+ },
+ {
+  "id": "1o7i12m",
+  "text": "وَأُمِّي؟ ما مِهْنَتُها؟",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 24
+ },
+ {
+  "id": "1l5gojf",
+  "text": "أُمُّكِ صَيْدَلِيَّةٌ. تَعْمَلُ فِي الصَّيْدَلِيَّةِ.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 53
+ },
+ {
+  "id": "198kebs",
+  "text": "وَأَنا؟ ماذا أَدْرُسُ؟",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 22
+ },
+ {
+  "id": "wu164i",
+  "text": "تَدْرُسِينَ ما تُحِبِّينَ، إِنْ شاءَ اللهُ.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 43
+ },
+ {
+  "id": "1yno7k6",
+  "text": "أُحِبُّ الهَنْدَسَةَ!",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 21
+ },
+ {
+  "id": "17f4osq",
+  "text": "ما شاءَ اللهُ! مُهَنْدِسَةٌ صَغِيرَةٌ.",
+  "bucket": "dialogue",
+  "unit": "08",
+  "chars": 38
  },
  {
   "id": "133jsu0",
@@ -3736,6 +4982,174 @@
   "bucket": "dialogue",
   "unit": "09",
   "chars": 24
+ },
+ {
+  "id": "1dda1fb",
+  "text": "لَوْ سَمَحْتَ، كَمِ الطَّماطِمُ؟",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 32
+ },
+ {
+  "id": "hd7kns",
+  "text": "الكِيلُو بِثَلاثَةِ رِيالاتٍ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 29
+ },
+ {
+  "id": "69bc20",
+  "text": "أَعْطِنِي كِيلُو طَماطِمَ وَكِيلُو خِيارٍ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 42
+ },
+ {
+  "id": "z0fsxj",
+  "text": "تَفَضَّلِي. وَهَلْ تُرِيدِينَ بَصَلاً؟",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 38
+ },
+ {
+  "id": "dpfgn6",
+  "text": "نَعَمْ، قَلِيلاً مِنَ البَصَلِ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 31
+ },
+ {
+  "id": "49wk9o",
+  "text": "وَبَيْضاً؟ عِنْدَنا طَبَقُ بَيْضٍ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 34
+ },
+ {
+  "id": "malurh",
+  "text": "نَعَمْ، طَبَقَ بَيْضٍ وَعُلْبَةَ مِلْحٍ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 40
+ },
+ {
+  "id": "36ou23",
+  "text": "هَلْ تُرِيدِينَ سُكَّراً؟",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 25
+ },
+ {
+  "id": "1gqjkt",
+  "text": "لا، شُكْراً. كَمِ المَطْلُوبُ؟",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 30
+ },
+ {
+  "id": "xgh0ck",
+  "text": "المَطْلُوبُ ثَلاثُونَ رِيالاً.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 30
+ },
+ {
+  "id": "19cfix2",
+  "text": "تَفَضَّلْ. شُكْراً.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 19
+ },
+ {
+  "id": "p91thj",
+  "text": "عَفْواً. مَعَ السَّلامَةِ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 26
+ },
+ {
+  "id": "1yj2n0q",
+  "text": "السَّلامُ عَلَيْكُم. أَيْنَ قِسْمُ المَلابِسِ؟",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 46
+ },
+ {
+  "id": "1yfxteg",
+  "text": "وَعَلَيْكُمُ السَّلام. هُنا، تَفَضَّلْ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 39
+ },
+ {
+  "id": "dntixo",
+  "text": "أُرِيدُ ثَوْباً أَبْيَضَ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 25
+ },
+ {
+  "id": "uqf7ch",
+  "text": "هَذا ثَوْبٌ أَبْيَضُ جَمِيلٌ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 29
+ },
+ {
+  "id": "1ygbuzr",
+  "text": "وَهَلْ عِنْدَكَ قَمِيصٌ أَزْرَقُ؟",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 33
+ },
+ {
+  "id": "nvmiz7",
+  "text": "نَعَمْ، قُمْصانٌ زَرْقاءُ وَحَمْراءُ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 37
+ },
+ {
+  "id": "5m6d7y",
+  "text": "القَمِيصُ الأَزْرَقُ مِنْ فَضْلِكَ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 35
+ },
+ {
+  "id": "1vmjh7",
+  "text": "وَهَلْ تَشْتَرِي شَيْئاً آخَرَ؟",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 31
+ },
+ {
+  "id": "1j5xytz",
+  "text": "نَعَمْ، مُعْجَماً عَرَبِيّاً وَكِتابَ قَواعِدَ.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 47
+ },
+ {
+  "id": "1fut78y",
+  "text": "هَذا المُعْجَمُ العَرَبِيُّ بِخَمْسِينَ رِيالاً.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 48
+ },
+ {
+  "id": "1kma1kd",
+  "text": "وَكَمِ المَطْلُوبُ؟",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 19
+ },
+ {
+  "id": "4hcb8o",
+  "text": "المَطْلُوبُ ثَمانُونَ رِيالاً.",
+  "bucket": "dialogue",
+  "unit": "09",
+  "chars": 30
  },
  {
   "id": "kjg1ig",
@@ -4207,6 +5621,174 @@
   "chars": 41
  },
  {
+  "id": "wplbm5",
+  "text": "السَّلامُ عَلَيْكُم يا فارِس. كَيْفَ الجَوُّ عِنْدَكُمْ؟",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 56
+ },
+ {
+  "id": "1peqyot",
+  "text": "وَعَلَيْكُمُ السَّلام. الجَوُّ بارِدٌ جِدّاً.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 45
+ },
+ {
+  "id": "1pwfpt6",
+  "text": "كَمْ دَرَجَةُ الحَرارَةِ؟",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 25
+ },
+ {
+  "id": "c60myo",
+  "text": "تَحْتَ الصِّفْرِ! وَعِنْدَكُمْ؟",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 31
+ },
+ {
+  "id": "3u315o",
+  "text": "الجَوُّ حارٌّ هُنا. هَذا الصَّيْفُ.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 35
+ },
+ {
+  "id": "13k67cd",
+  "text": "هَلْ تُمْطِرُ السَّماءُ؟",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 24
+ },
+ {
+  "id": "c0z784",
+  "text": "لا، السَّماءُ لا تُمْطِرُ فِي الصَّيْفِ.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 40
+ },
+ {
+  "id": "g7vb2p",
+  "text": "وَماذا تَفْعَلُ فِي عُطْلَةِ الأُسْبُوعِ؟",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 41
+ },
+ {
+  "id": "leezd8",
+  "text": "أَذْهَبُ إِلى الشَّاطِئِ.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 25
+ },
+ {
+  "id": "5j5b7c",
+  "text": "وَأَنا أَبْقى فِي البَيْتِ. الجَوُّ بارِدٌ خارِجَ البَيْتِ.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 59
+ },
+ {
+  "id": "64iohv",
+  "text": "إِنْ شاءَ اللهُ يَكُونُ الجَوُّ دافِئاً غَداً.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 46
+ },
+ {
+  "id": "gow7kl",
+  "text": "إِنْ شاءَ اللهُ. مَعَ السَّلامَةِ.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 34
+ },
+ {
+  "id": "1wua77x",
+  "text": "يا طارِق، هَلْ نَذْهَبُ إِلى البَرِّ فِي عُطْلَةِ الأُسْبُوعِ؟",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 62
+ },
+ {
+  "id": "19m2mmx",
+  "text": "فِكْرَةٌ طَيِّبَةٌ! كَيْفَ الجَوُّ هُناكَ؟",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 42
+ },
+ {
+  "id": "1267nkb",
+  "text": "الجَوُّ مُعْتَدِلٌ. هَذا فَصْلُ الرَّبِيعِ.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 43
+ },
+ {
+  "id": "18zo5ub",
+  "text": "هَلْ نَأْخُذُ خَيْمَةً؟",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 23
+ },
+ {
+  "id": "g71dzt",
+  "text": "نَعَمْ، الخَيْمَةُ فِي السَّيَّارَةِ.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 37
+ },
+ {
+  "id": "susrex",
+  "text": "وَفِي اللَّيْلِ؟ هَلْ الجَوُّ بارِدٌ؟",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 37
+ },
+ {
+  "id": "1ai4847",
+  "text": "نَعَمْ، بارِدٌ قَلِيلاً فِي اللَّيْلِ.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 38
+ },
+ {
+  "id": "cm7o65",
+  "text": "أَتْرُكُ المِظَلَّةَ فِي البَيْتِ؟",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 34
+ },
+ {
+  "id": "13dznus",
+  "text": "نَعَمْ، السَّماءُ لا تُمْطِرُ.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 30
+ },
+ {
+  "id": "dpqzey",
+  "text": "كَمْ لَيْلَةً نَقْضِي هُناكَ؟",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 29
+ },
+ {
+  "id": "yx0yiu",
+  "text": "لَيْلَةً واحِدَةً فَقَطْ.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 25
+ },
+ {
+  "id": "4ja62r",
+  "text": "بارَكَ اللهُ فِيكَ. هَيَّا بِنا.",
+  "bucket": "dialogue",
+  "unit": "10",
+  "chars": 32
+ },
+ {
   "id": "prc4tp",
   "text": "الْجَوُّ بارِدٌ",
   "bucket": "ladder",
@@ -4648,6 +6230,167 @@
   "chars": 55
  },
  {
+  "id": "1tqq2pn",
+  "text": "يا رِيما، أَيْنَ تَسْكُنِينَ الآنَ؟",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 35
+ },
+ {
+  "id": "q5blxr",
+  "text": "أَسْكُنُ فِي المَدِينَةِ. وَأَنْتِ؟",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 35
+ },
+ {
+  "id": "1ch6oas",
+  "text": "أَنا أَسْكُنُ فِي القَرْيَةِ.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 29
+ },
+ {
+  "id": "1qkko77",
+  "text": "ما شاءَ اللهُ! كَيْفَ الجَوُّ هُناكَ؟",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 37
+ },
+ {
+  "id": "n2vqi7",
+  "text": "الهَواءُ جَمِيلٌ وَالقَرْيَةُ هادِئَةٌ.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 39
+ },
+ {
+  "id": "14i9ecv",
+  "text": "المَدِينَةُ لَيْسَتْ هادِئَةً. فِيها ازْدِحامٌ وَضَوْضاءُ.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 58
+ },
+ {
+  "id": "men9k7",
+  "text": "وَهَلْ فِيها تَلَوُّثٌ؟",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 23
+ },
+ {
+  "id": "pmrswo",
+  "text": "نَعَمْ، لَكِنَّ فِيها أَسْواقاً كَثِيرَةً.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 42
+ },
+ {
+  "id": "cibxe2",
+  "text": "ما رَأْيُكِ فِي القَرْيَةِ؟",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 27
+ },
+ {
+  "id": "15bzcls",
+  "text": "القَرْيَةُ جَمِيلَةٌ، لَكِنَّها بَعِيدَةٌ عَنِ العَمَلِ.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 56
+ },
+ {
+  "id": "tq9dfg",
+  "text": "هَلْ تَنْتَقِلِينَ إِلى القَرْيَةِ؟",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 35
+ },
+ {
+  "id": "re60z3",
+  "text": "لا، لا أَسْتَطِيعُ. عَمَلِي فِي المَدِينَةِ.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 44
+ },
+ {
+  "id": "ajmkk5",
+  "text": "وَعَلَيْكُمُ السَّلام. أَنا ذاهِبٌ إِلى المَدِينَةِ.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 52
+ },
+ {
+  "id": "1rkz66w",
+  "text": "هَلْ تَزُورُ أَصْدِقاءَكَ؟",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 26
+ },
+ {
+  "id": "1x68g7g",
+  "text": "لا، أَزُورُ عَمِّي. هُوَ مُدِيرُ شَرِكَةٍ هُناكَ.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 49
+ },
+ {
+  "id": "1spz38i",
+  "text": "كَمْ سَنَةً تَسْكُنُ فِي هَذا البَلَدِ؟",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 39
+ },
+ {
+  "id": "j1k49z",
+  "text": "خَمْسَ سَنَواتٍ تَقْرِيباً.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 27
+ },
+ {
+  "id": "66ha4b",
+  "text": "وَكَمْ تَسْتَغْرِقُ الرِّحْلَةُ بِالقِطارِ؟",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 43
+ },
+ {
+  "id": "1dil6la",
+  "text": "ثَلاثَ ساعاتٍ تَقْرِيباً.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 25
+ },
+ {
+  "id": "1b0m7ir",
+  "text": "القِطارُ هادِئٌ، لَيْسَ فِيهِ ضَوْضاءُ.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 39
+ },
+ {
+  "id": "rlu7qa",
+  "text": "صَحِيحٌ. وَالبَحْرُ بِجانِبِ القِطارِ جَمِيلٌ.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 46
+ },
+ {
+  "id": "6cqyt8",
+  "text": "ما رَأْيُكَ فِي السَّفَرِ بِالقِطارِ؟",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 37
+ },
+ {
+  "id": "w3wzgg",
+  "text": "أَفْضَلُ مِنَ السَّيَّارَةِ.",
+  "bucket": "dialogue",
+  "unit": "11",
+  "chars": 28
+ },
+ {
   "id": "109w1ej",
   "text": "انْتَقَلْتُ إِلَى هَذِهِ الْمَدِينَةِ",
   "bucket": "ladder",
@@ -5087,6 +6830,174 @@
   "bucket": "dialogue",
   "unit": "12",
   "chars": 66
+ },
+ {
+  "id": "8aawq7",
+  "text": "يا زَيْن، ما هِوايَتُكَ؟",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 24
+ },
+ {
+  "id": "5989o1",
+  "text": "هِوايَتِي القِراءَةُ. أَقْرَأُ كُتُباً إِسْلامِيَّةً.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 53
+ },
+ {
+  "id": "1rs6620",
+  "text": "ما شاءَ اللهُ. وَأَنا أَهْوى كُرَةَ القَدَمِ.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 45
+ },
+ {
+  "id": "ycayhq",
+  "text": "هَلْ تُحِبُّ السِّباحَةَ أَيْضاً؟",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 33
+ },
+ {
+  "id": "bu7vns",
+  "text": "نَعَمْ، أُحِبُّ الرِّياضَةَ كَثِيراً.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 37
+ },
+ {
+  "id": "1qathfj",
+  "text": "أَنا لا أُحِبُّ الرِّياضَةَ. أُفَضِّلُ الكُتُبَ.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 48
+ },
+ {
+  "id": "gz93n2",
+  "text": "هَلْ تَقْرَأُ المَجَلَّاتِ؟",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 27
+ },
+ {
+  "id": "12ajdgm",
+  "text": "نَعَمْ، مَجَلَّاتٍ عِلْمِيَّةً. هِيَ مُفِيدَةٌ جِدّاً.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 54
+ },
+ {
+  "id": "1h4x4o3",
+  "text": "وَهَلْ عِنْدَكَ هِوايَةٌ أُخْرى؟",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 32
+ },
+ {
+  "id": "374y47",
+  "text": "نَعَمْ، جَمْعُ الطَّوابِعِ. لَدَيَّ طَوابِعُ كَثِيرَةٌ.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 55
+ },
+ {
+  "id": "1kkh60z",
+  "text": "مِنْ جَمِيعِ البُلْدانِ؟",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 24
+ },
+ {
+  "id": "1dmci9i",
+  "text": "نَعَمْ، مِنْ جَمِيعِ البُلْدانِ.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 32
+ },
+ {
+  "id": "l1mn8f",
+  "text": "يا مَها، هَيَّا بِنا إِلى المَعْرِضِ.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 37
+ },
+ {
+  "id": "efyxw9",
+  "text": "أَيُّ مَعْرِضٍ؟",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 15
+ },
+ {
+  "id": "ha8xb2",
+  "text": "مَعْرِضُ الخَطِّ العَرَبِيِّ.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 29
+ },
+ {
+  "id": "1v3u7nr",
+  "text": "فِكْرَةٌ طَيِّبَةٌ! أَنا أُحِبُّ الخَطَّ العَرَبِيَّ.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 53
+ },
+ {
+  "id": "uca04n",
+  "text": "هَذا جَناحُ خَطِّ النَّسْخِ.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 28
+ },
+ {
+  "id": "dpoxi2",
+  "text": "ما شاءَ اللهُ، جَمِيلٌ جِدّاً! وَتِلْكَ؟",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 40
+ },
+ {
+  "id": "o498u8",
+  "text": "تِلْكَ لَوْحَةٌ بِخَطِّ الرُّقْعَةِ.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 36
+ },
+ {
+  "id": "1ush0ie",
+  "text": "هَلْ هَذِهِ آياتٌ مِنَ القُرْآنِ؟",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 33
+ },
+ {
+  "id": "1sgvnxy",
+  "text": "نَعَمْ، آياتٌ وَأَحادِيثُ.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 26
+ },
+ {
+  "id": "319gj0",
+  "text": "أَهْوى الخَطَّ العَرَبِيَّ. هَلْ أَخْتارُ لَوْحَةً؟",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 51
+ },
+ {
+  "id": "1ovdrux",
+  "text": "نَعَمْ، اخْتارِي لَوْحَةً قَصِيرَةً وَمُفِيدَةً.",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 48
+ },
+ {
+  "id": "1svm0lx",
+  "text": "شُكْراً يا هُدى. هِوايَةٌ جَمِيلَةٌ!",
+  "bucket": "dialogue",
+  "unit": "12",
+  "chars": 36
  },
  {
   "id": "1v5a1th",
