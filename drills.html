@@ -1627,8 +1627,10 @@ loadProg().then(()=>{
   if(new URLSearchParams(location.search).get('start')==='1'){
     // a direct "start session" link skips the picker
     shellEl.classList.remove('hidden'); pickerEl.classList.remove('on');
+    applyConvo();
     startSession();
   } else {
+    applyConvo();      // point u.dialogue at the selected conversation first
     render();          // pre-build the unit view underneath
     showPicker();      // ...but show the picker first
   }
