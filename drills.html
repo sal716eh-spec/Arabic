@@ -859,7 +859,7 @@ function loadVoices(){
   AUDIO_OK = voices.length>0;
   document.body.classList.toggle('no-audio', !AUDIO_OK);
   if(!voices.length){
-    sel.innerHTML='<option>No Arabic voice</option>';sel.disabled=true;
+    if(sel){sel.innerHTML='<option>No Arabic voice</option>';sel.disabled=true;}
     const t=document.getElementById('testv'); if(t)t.disabled=true;
     showWarn("No Arabic voice on this device. Every drill still works except dictation.<br>"+
       "<b>iPhone:</b> Settings → Accessibility → Spoken Content → Voices → Arabic.<br>"+
@@ -895,13 +895,14 @@ function loadVoices(){
     showWarn("Your device is using its default Arabic voice. A much clearer one is a free download:<br>"+
       "<b>iPhone:</b> Settings → Accessibility → Spoken Content → Voices → Arabic → tap ⤓ beside an <i>Enhanced</i> voice, then reload this page.<br>"+
       "<b>Android:</b> Settings → Accessibility → Text-to-speech → Google TTS → install Arabic.");
-  } else { warn.hidden=true; }
+  } else if(warn){ warn.hidden=true; }
 }
 function showWarn(html){
   if(!warn) return;
   let dismissed=false;
   try{dismissed=localStorage.getItem(WARN_KEY)==='1'}catch(e){}
   if(dismissed){warn.hidden=true;return}
+  if(!warn) return;
   warn.hidden=false;
   warn.innerHTML=html+' <button type="button" class="wdismiss" aria-label="Dismiss">Got it</button>';
   const b=warn.querySelector('.wdismiss');
@@ -927,7 +928,11 @@ try{
   if(typeof fetch==='function'){
     fetch('audio/index.json?t='+Math.floor(Date.now()/60000)).then(r=>r.ok?r.json():[]).then(a=>{
       CLIPS=new Set(a);
-      if(CLIPS.size){AUDIO_OK=true;document.body.classList.remove('no-audio');warn.hidden=true;}
+      if(CLIPS.size){
+        AUDIO_OK=true;
+        document.body.classList.remove('no-audio');
+        if(warn) warn.hidden=true;          // the settings panel is gone, so this may not exist
+      }
     }).catch(()=>{CLIPS=new Set()});
   } else { CLIPS=new Set(); }
 }catch(e){ CLIPS=new Set(); }
