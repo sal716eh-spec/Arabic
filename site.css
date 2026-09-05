@@ -14,7 +14,14 @@ body{
   font-family:var(--la);font-size:16px;line-height:1.55;
   -webkit-font-smoothing:antialiased;
 }
-:focus-visible{outline:2px solid var(--verdigris);outline-offset:-2px;border-radius:4px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:-2px;border-radius:4px}
+/* Touchscreens leave a button focused after a tap, so the ring lingers with no
+   purpose. Keyboard users on a pointer device still get one. */
+@media (hover:none) and (pointer:coarse){
+  :focus-visible,button:focus,a:focus,[role=button]:focus,select:focus{outline:none}
+}
+button:focus:not(:focus-visible),a:focus:not(:focus-visible),
+[role=button]:focus:not(:focus-visible){outline:none}
 /* Tapping a button in iOS Safari leaves it focused; an inset ring keeps that
    from bleeding into the element next to it. */
 button:focus:not(:focus-visible),a:focus:not(:focus-visible),
@@ -116,3 +123,9 @@ body.gear-open .voicebox{display:flex}
 .wdismiss{font-family:var(--la);font-size:11px;border:1px solid var(--rule);background:transparent;
   border-radius:3px;padding:3px 9px;margin-top:6px;cursor:pointer;color:var(--ink);display:inline-block}
 @media (max-width:860px){ .headrow{flex-direction:column} .voicebox{min-width:0;width:100%} .cog{width:100%;justify-content:center} }
+
+
+/* Account row — sign out lives here now the settings panel is gone */
+.acctbar{max-width:1000px;margin:34px auto 0;padding:16px 30px 0;border-top:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:860px){ .acctbar{padding:14px 16px 0;margin-top:26px} .acctbar .btn{min-height:44px} }

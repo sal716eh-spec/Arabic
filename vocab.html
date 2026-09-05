@@ -122,9 +122,9 @@ td.tr{font-family:var(--ut);font-size:11px;color:var(--ink-soft);width:20%}
   </div>
 </nav>
 <main class="wrap">
-  <div class="headrow">
+  <div class="headrow" style="display:block">
     <div class="head"><h1>Vocabulary</h1></div>
-    <div id="rq-audio"></div>
+    
   </div>
   <div class="tabs">
     <button id="tabTest" class="on" onclick="showTab('test')">Daily practise</button>
@@ -486,7 +486,7 @@ function speakCurrent(){ speak(current && current.ar); }
 function speak(text){ RQ.speak(text); }
 function hasArabicVoice(){ return RQ.available(); }
 function syncAudioUI(){ const on=hasArabicVoice(); document.querySelectorAll('.speak').forEach(b=>b.style.display=on?'':'none'); }
-RQ.mount(document.getElementById('rq-audio'));
+
 
 /* ---- daily test: multiple choice + typed English, shares the same spaced repetition ---- */
 let qQueue=[], qCurrent=null, qTotal=0, qDone=0, qCorrect=0, qLocked=false;
@@ -696,6 +696,11 @@ renderList();
 initCloud();
 </script>
 
+<div class="acctbar">
+  <span class="label" id="whoami">Account</span>
+  <button class="btn logout-link" type="button">Sign out</button>
+</div>
+
 <nav class="tabbar" aria-label="Sections">
   <a class="" href="dashboard.html"><span class="ti">الرَّئِيسَة</span>Home</a>
   <a class="on" href="vocab.html"><span class="ti">مُفْرَدات</span>Words</a>
@@ -704,5 +709,15 @@ initCloud();
   <a class="" href="connectors.html"><span class="ti">رَوابِط</span>Links</a>
 </nav>
 <script>requireLogin();</script>
+<script>
+(async function whoAmI(){
+  const el=document.getElementById('whoami'); if(!el) return;
+  let name=''; try{name=localStorage.getItem('bay_name')||''}catch(e){}
+  if(typeof sb!=='undefined' && sb){
+    try{const {data}=await sb.auth.getUser(); if(data&&data.user) name=name||data.user.email||''}catch(e){}
+  }
+  el.textContent = name? ('Signed in as '+name) : 'Account';
+})();
+</script>
 </body>
 </html>

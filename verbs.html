@@ -107,17 +107,22 @@ input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-hei
 </nav>
 
 <main class="wrap">
-  <div class="headrow"><div class="head">
+  <div class="headrow" style="display:block"><div class="head">
     <div class="ar">تَصْرِيفُ الأَفْعال</div>
     <h1>Verb forms</h1>
     <p>Twenty-one verbs covering every pattern in Book 1. Learn ذَهَبَ and you have all the sound verbs; learn قالَ and you have the hollow ones. The future is just سَـ on the front of the present.</p>
-  </div><div id="rq-audio"></div></div>
+  </div></div>
 
   <div class="tabs" id="tabs" role="tablist"></div>
   <div class="vpick" id="pick"></div>
   <div class="vhead" id="vhead"></div>
   <div id="panel"></div>
 </main>
+
+<div class="acctbar">
+  <span class="label" id="whoami">Account</span>
+  <button class="btn logout-link" type="button">Sign out</button>
+</div>
 
 <nav class="tabbar" aria-label="Sections">
   <a href="dashboard.html"><span class="ti">الرَّئِيسَة</span>Home</a>
@@ -128,11 +133,21 @@ input.ar-in{flex:1;min-width:200px;font-family:var(--ar);font-size:21px;line-hei
 </nav>
 
 <script src="toolkit-data.js?v=900"></script>
+<script>
+(async function whoAmI(){
+  const el=document.getElementById('whoami'); if(!el) return;
+  let name=''; try{name=localStorage.getItem('bay_name')||''}catch(e){}
+  if(typeof sb!=='undefined' && sb){
+    try{const {data}=await sb.auth.getUser(); if(data&&data.user) name=name||data.user.email||''}catch(e){}
+  }
+  el.textContent = name? ('Signed in as '+name) : 'Account';
+})();
+</script>
 <script src="audio.js?v=900"></script>
 <script>
 /* speech comes from audio.js (shared with every page) */
 const say=(t,el)=>RQ.speak(t,el);
-RQ.mount(document.getElementById('rq-audio'));
+
 
 /* ── answer checking, vowel-insensitive ── */
 function norm(s){return (s||'').replace(/[\u064B-\u0652\u0670\u0640\u0653-\u0656]/g,'')

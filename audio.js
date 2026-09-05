@@ -78,94 +78,10 @@
   }
   const available=()=> (CLIPS&&CLIPS.size>0) || list().length>0;
 
-  /* ── the panel ── */
-  function mount(host){
-    if(!host) return;
-    host.innerHTML=
-      '<button class="cog" id="rq-cog" type="button" aria-expanded="false" aria-controls="rq-panel" title="Audio settings">'+
-      '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+
-      '<circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 9 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 9a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/>'+
-      '</svg><span>Audio</span></button>'+
-      '<div class="voicebox" id="rq-panel">'+
-        '<div class="voicerow">'+
-          '<select id="rq-voice" aria-label="Arabic voice"></select>'+
-          '<label class="label" for="rq-rate">Speed</label>'+
-          '<input type="range" id="rq-rate" min="0.5" max="1.1" step="0.05">'+
-          '<span class="label" id="rq-ratev"></span>'+
-          '<button class="btn" id="rq-test" type="button">Test</button>'+
-          '<button class="btn" id="rq-stop" type="button">Stop</button>'+
-        '</div><div class="warn" id="rq-warn" hidden></div>'+
-        '<div class="acctrow"><span class="label" id="rq-who">Signed in</span>'+
-        '<button class="btn logout-link" type="button">Sign out</button></div>'+
-      '</div>';
-    const cog=host.querySelector('#rq-cog');
-    cog.onclick=()=>{
-      const open=document.body.classList.toggle('gear-open');
-      cog.setAttribute('aria-expanded',open);
-    };
-    const rIn=host.querySelector('#rq-rate'), rOut=host.querySelector('#rq-ratev');
-    rIn.value=rate(); rOut.textContent=rate().toFixed(2)+'×';
-    rIn.oninput=()=>{setRate(+rIn.value);rOut.textContent=(+rIn.value).toFixed(2)+'×'};
-    host.querySelector('#rq-test').onclick=()=>
-      speak('السَّلامُ عَلَيْكُمْ، كَيْفَ حالُكَ؟ أَنا أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ.');
-    host.querySelector('#rq-stop').onclick=stop;
-    host.querySelector('#rq-voice').onchange=e=>{
-      const l=list(); const v=l[e.target.value]; if(v) setVoice(v.voiceURI||v.name);
-    };
-    showWho();
-    sync();
-  }
-  /* auth.js handles the click via .logout-link; this just shows who you are */
-  async function showWho(){
-    const el=document.getElementById('rq-who'); if(!el) return;
-    let name=''; try{name=localStorage.getItem('bay_name')||''}catch(e){}
-    if(typeof sb!=='undefined' && sb){
-      try{const {data}=await sb.auth.getUser();
-        if(data&&data.user) name=name||data.user.email||'';}catch(e){}
-    }
-    el.textContent = name? ('Signed in as '+name) : 'Account';
-  }
-  function sync(){
-    const sel=document.getElementById('rq-voice'), warn=document.getElementById('rq-warn');
-    if(!sel) return;
-    const l=list();
-    sel.innerHTML='';
-    if(!l.length){
-      sel.innerHTML='<option>'+(CLIPS&&CLIPS.size?'Using recorded audio':'No Arabic voice')+'</option>';
-      sel.disabled=true;
-      if(warn && !(CLIPS&&CLIPS.size)) showWarn(warn,
-        'No Arabic voice on this device.<br><b>iPhone:</b> Settings → Accessibility → Spoken Content → Voices → Arabic.'+
-        '<br><b>Android:</b> Settings → Accessibility → Text-to-speech → install Arabic.');
-      return;
-    }
-    sel.disabled=false;
-    const used={};
-    l.forEach((v,i)=>{
-      const q=quality(v);
-      let t=(v.name||'Arabic')+' ('+v.lang+')'+(q==='standard'?'':' — '+q);
-      used[t]=(used[t]||0)+1; if(used[t]>1) t+=' ('+used[t]+')';
-      const o=document.createElement('option');o.value=i;o.textContent=t;sel.appendChild(o);
-    });
-    // match by voiceURI, not object identity — getVoices() may hand back new objects
-    const cur=chosen(), key=cur?(cur.voiceURI||cur.name):null;
-    const idx=l.findIndex(v=>(v.voiceURI||v.name)===key);
-    sel.value=String(idx<0?0:idx);
-    const q=quality(cur);
-    if(warn){
-      if(q==='basic'||q==='standard'){
-        showWarn(warn,'Your device is using its default Arabic voice. A clearer one is a free download:<br>'+
-          '<b>iPhone:</b> Settings → Accessibility → Spoken Content → Voices → Arabic → tap ⤓ beside an <i>Enhanced</i> voice, then reload.');
-      } else warn.hidden=true;
-    }
-  }
-  function showWarn(warn,html){
-    let done=false; try{done=localStorage.getItem(WKEY)==='1'}catch(e){}
-    if(done){warn.hidden=true;return}
-    warn.hidden=false;
-    warn.innerHTML=html+' <button type="button" class="wdismiss">Got it</button>';
-    const b=warn.querySelector('.wdismiss');
-    if(b)b.onclick=()=>{try{localStorage.setItem(WKEY,'1')}catch(e){}warn.hidden=true};
-  }
+  /* No picker any more — the best available voice is chosen automatically,
+     and pre-rendered clips are used ahead of it wherever they exist. */
+  function mount(){}
+  function sync(){}
 
   if(window.speechSynthesis) speechSynthesis.onvoiceschanged=sync;
   let unlocked=false;

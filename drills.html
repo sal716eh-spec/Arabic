@@ -26,9 +26,12 @@ html,body{margin:0;padding:0}
 body{background:var(--paper);color:var(--ink);font-family:var(--la);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent;overflow-x:hidden}
 button,.chip,.tile,.opt,
-:focus-visible{outline:2px solid var(--verdigris);outline-offset:-2px;border-radius:4px}
-/* Tapping a button in iOS Safari leaves it focused; an inset ring keeps that
-   from bleeding into the element next to it. */
+:focus-visible{outline:2px solid var(--ink);outline-offset:-2px;border-radius:4px}
+/* Touchscreens leave a button focused after a tap, so the ring lingers with no
+   purpose. Keyboard users on a pointer device still get one. */
+@media (hover:none) and (pointer:coarse){
+  :focus-visible,button:focus,a:focus,[role=button]:focus,select:focus{outline:none}
+}
 button:focus:not(:focus-visible),a:focus:not(:focus-visible),
 [role=button]:focus:not(:focus-visible){outline:none}
 .label{font-family:var(--ut);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
@@ -120,7 +123,9 @@ select{max-width:180px}
 .btn.lg{padding:8px 16px;font-size:14px}
 .btn:disabled{opacity:.4;cursor:default}
 input[type=range]{accent-color:var(--verdigris);width:100px}
-.warn{font-size:12px;color:var(--rubric);max-width:46ch;line-height:1.5}
+.warn{display:none}
+.acctbar{max-width:1000px;margin:34px auto 0;padding:16px 30px 0;border-top:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .acctrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
   padding-top:10px;border-top:1px solid var(--rule)}
 .acctrow .btn{min-height:40px}
@@ -169,7 +174,7 @@ body.no-audio .tf .src,body.no-audio .good{cursor:default}
 main{padding:18px 0 60px 28px;min-width:0}
 /* Ribbon: four categories on top, the drills inside one of them below.
    Neither row exceeds the 4–5 item ceiling where tap targets start to crowd. */
-.ribbon{position:sticky;top:60px;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule);margin-bottom:20px;position:sticky}
+.ribbon{position:sticky;top:60px;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule);margin-bottom:30px;position:sticky}
 .rgroups{display:flex;gap:2px;padding:2px 0 0;border-bottom:1px solid var(--rule);margin-bottom:6px}
 .rgroup{position:relative;flex:1 1 0;min-width:0;background:transparent;border:0;border-bottom:2px solid transparent;
   padding:9px 6px 8px;cursor:pointer;font-family:var(--la);color:var(--ink-soft);
@@ -207,7 +212,7 @@ main{padding:18px 0 60px 28px;min-width:0}
   .nav{justify-content:center;padding:12px 16px}
   .nav .navlinks{display:none}
 }
-.how{font-size:13px;color:var(--ink-soft);margin:0 0 18px;max-width:66ch;border-left:2px solid var(--gold);padding-left:12px}
+.how{font-size:13px;color:var(--ink-soft);margin:4px 0 20px;max-width:66ch;border-left:2px solid var(--gold);padding-left:12px}
 .how summary{cursor:pointer;font-family:var(--ut);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);list-style:none;padding:2px 0}
 .how summary::-webkit-details-marker{display:none}
 .how summary::after{content:" ▾";opacity:.6}
@@ -534,7 +539,7 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
   .headtools{width:100%;margin-top:8px}
 
   /* the ribbon and the drill row run edge to edge */
-  .ribbon{top:0;z-index:30;margin:0 -12px 14px;padding:0;
+  .ribbon{top:0;z-index:30;margin:0 -12px 24px;padding:0;
     box-shadow:0 6px 10px -8px rgba(23,38,43,.28)}
   .rgroups{padding:2px 12px 0;margin-bottom:0}
   .rmodes{margin:0;padding:7px 12px;border-radius:0}
@@ -597,25 +602,6 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     <p>Practise speaking full Arabic sentences, not just single words. Each drill plays a sentence for you to listen to and repeat out loud, then helps you build it up piece by piece until you can say the whole thing from memory.</p>
   </div>
   <div class="headtools">
-    <button class="cog" id="gear" type="button" aria-expanded="false" aria-controls="voicebox" title="Settings and progress">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="3.2"/>
-        <path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 9 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 9a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/>
-      </svg><span>Settings</span></button>
-    <div class="voicebox" id="voicebox">
-      <div class="progrow" id="progrow"></div>
-      <div class="voicerow">
-        <select id="voice" aria-label="Arabic voice"></select>
-        <label class="label" for="rate">Speed</label>
-        <input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="0.8">
-        <span class="label" id="ratev"></span>
-        <button class="btn" id="testv">Test</button>
-        <button class="btn" id="stop">Stop</button>
-      </div>
-      <div class="warn" id="warn" hidden></div>
-      <div class="acctrow"><span class="label" id="whoami">Account</span>
-        <button class="btn logout-link" type="button">Sign out</button></div>
-    </div>
   </div>
 </main>
 
@@ -637,6 +623,11 @@ footer{border-top:1px solid var(--rule);padding:16px 28px 30px;font-size:12px;co
     </div>
     <div id="panel"></div>
   </main>
+</div>
+
+<div class="acctbar">
+  <span class="label" id="whoami">Account</span>
+  <button class="btn logout-link" type="button">Sign out</button>
 </div>
 
 <nav class="tabbar" aria-label="Sections">
@@ -809,7 +800,7 @@ function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math
 /* ── speech out ─────────────────────────────────────────── */
 let voices=[],chosen=null,queue=null,AUDIO_OK=true;
 let rateV=(()=>{try{const r=parseFloat(localStorage.getItem('bay_voice_rate'));return (r>=0.5&&r<=1.1)?r:0.8}catch(e){return 0.8}})();
-const sel=document.getElementById('voice'),warn=document.getElementById('warn');
+const sel=document.getElementById('voice'),warn=document.getElementById('warn');   // both may be absent now
 /* iOS reports quality in voiceURI, not name — a downloaded Enhanced voice is still
    called "Majed". It also returns the same voice several times, hence the dedupe. */
 function vSig(v){ return ((v.voiceURI||'')+' '+(v.name||'')).toLowerCase(); }
@@ -854,6 +845,14 @@ function savedVoice(list){
   return uri? list.find(v=>(v.voiceURI||v.name)===uri) : null;
 }
 function loadVoices(){
+  if(!sel){                                   // no picker: just take the best voice
+    voices=dedupe((speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang)))
+            .sort((a,b)=>voiceScore(b)-voiceScore(a));
+    AUDIO_OK=voices.length>0;
+    document.body.classList.toggle('no-audio',!AUDIO_OK);
+    chosen=voices[0]||null;
+    return;
+  }
   voices=dedupe((speechSynthesis.getVoices()||[]).filter(v=>/^ar/i.test(v.lang)))
           .sort((a,b)=>voiceScore(b)-voiceScore(a));
   sel.innerHTML='';
@@ -899,6 +898,7 @@ function loadVoices(){
   } else { warn.hidden=true; }
 }
 function showWarn(html){
+  if(!warn) return;
   let dismissed=false;
   try{dismissed=localStorage.getItem(WARN_KEY)==='1'}catch(e){}
   if(dismissed){warn.hidden=true;return}
@@ -908,16 +908,16 @@ function showWarn(html){
   if(b)b.onclick=()=>{try{localStorage.setItem(WARN_KEY,'1')}catch(e){}warn.hidden=true};
 }
 speechSynthesis.onvoiceschanged=loadVoices;loadVoices();
-sel.onchange=()=>{
+if(sel)sel.onchange=()=>{
   chosen=voices[sel.value];
   try{localStorage.setItem(VOICE_KEY,chosen.voiceURI||chosen.name)}catch(e){}
 };
 const rEl=document.getElementById('rate'),rVal=document.getElementById('ratev');
-rEl.value=rateV;rVal.textContent=rateV.toFixed(2)+'×';
-rEl.oninput=()=>{rateV=+rEl.value;rVal.textContent=rateV.toFixed(2)+'×';try{localStorage.setItem(RATE_KEY,rateV)}catch(e){}};
-document.getElementById('testv').onclick=()=>
+if(rEl){rEl.value=rateV;rVal.textContent=rateV.toFixed(2)+'×';}
+if(rEl)rEl.oninput=()=>{rateV=+rEl.value;rVal.textContent=rateV.toFixed(2)+'×';try{localStorage.setItem(RATE_KEY,rateV)}catch(e){}};
+(document.getElementById('testv')||{}).onclick=()=>
   say('السَّلامُ عَلَيْكُمْ، كَيْفَ حالُكَ؟ أَنا أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ.',null);
-document.getElementById('stop').onclick=()=>{queue=null;stopAudio()};
+(document.getElementById('stop')||{}).onclick=()=>{queue=null;stopAudio()};
 
 /* Pre-rendered clips live in audio/<id>.mp3 and are listed in audio/index.json.
    Same hash as tools/build-manifest.js, so text maps to the same filename. */
@@ -1300,12 +1300,6 @@ function drawRibbon(){
 }
 
 
-const gear=document.getElementById('gear');
-gear.onclick=()=>{
-  const open=document.body.classList.toggle('gear-open');
-  gear.setAttribute('aria-expanded',open);
-  gear.textContent=open?'Hide settings':'Audio settings';
-};
 function isPhone(){return mq('(max-width:860px)')}
 function focusDrill(){
   if(!isPhone())return;
