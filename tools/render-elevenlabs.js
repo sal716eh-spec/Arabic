@@ -1,12 +1,20 @@
 #!/usr/bin/env node
 const fs=require('fs'), path=require('path'), root=path.join(__dirname,'..');
 const KEY=process.env.ELEVENLABS_API_KEY;
-const arg=(f,d)=>{const i=process.argv.indexOf(f);return i>-1?process.argv[i+1]:d};
+/* A flag with no value used to swallow the next flag — e.g. a blank --limit
+   would eat --model. Treat "next thing starts with --" as no value given. */
+const arg=(f,d)=>{
+  const i=process.argv.indexOf(f);
+  if(i<0) return d;
+  const v=process.argv[i+1];
+  return (v===undefined || v.startsWith('--')) ? d : v;
+};
 const has=f=>process.argv.includes(f);
 
 const VOICE=arg('--voice'), MODEL=arg('--model','eleven_multilingual_v2');
 const ONLY=(arg('--only','')||'').split(',').filter(Boolean);
-const LIMIT=parseInt(arg('--limit','0'),10)||0;
+const rawLimit=arg('--limit','0');
+const LIMIT=Number.isFinite(parseInt(rawLimit,10))?parseInt(rawLimit,10):0;   // blank or junk = no limit
 const DRY=has('--dry'), STRIP=has('--strip');
 const outDir=path.join(root,'audio');
 
